@@ -1,0 +1,239 @@
+\chapter{Identificación de Sistemas}
+
+
+\section{Introducción}
+Motivación:
+\begin{enumerate}
+    \item Obras civiles ``envejecen''
+    \begin{enumerate}
+        \item daño/deterioro estructura
+        \item cambio en las propiedades de materiales
+    \end{enumerate}
+    \item Incertidumbre
+    \begin{enumerate}
+        \item Propiedades nominales utilizadas en diseño
+        \item ¿Modelos nominales representan fielmente el comportamiento estructura real?
+    \end{enumerate}
+\end{enumerate}
+
+\underline{Propósito}: \begin{itemize}
+    \item Determinar un \textcolor{red}{modelo matemático} de un sistema físico
+    \item Predicciones, en base a un modelo calibrado\\
+    $\Longrightarrow$ desempeño estructural, control estructural
+\end{itemize}
+
+Proyectos de monitoreo estructural (SHM, structural health monitoring)\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Figuras/sysID.png}
+\end{figure}
+
+\section{Tipos de Id. Sis.}
+\begin{enumerate}
+    \item Análisis dinámico (problema directo)
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Figuras/problema_directo.png}
+    \end{figure}
+    \item Identificación de fuerza de entrada
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Figuras/fuerza_entrada.png}
+    \end{figure}    
+    \item Identificación de sistema (problema inverso)
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Figuras/problema_inverso.png}
+    \end{figure}
+\end{enumerate}
+
+Categorías:
+\begin{enumerate}
+    \item Basados en dominio frecuencia
+    \begin{itemize}
+        \item Análisis modal experimental
+    \end{itemize}
+    \item Basados en dominio tiempo
+    \begin{itemize}
+        \item Modelos auto-regresivos (ARX, ARMA, ARMAX, etc.)
+        \item Métodos basados en subespacios\\
+        $\Longrightarrow$ ERA, Next-ERA, SSI, etc.
+    \end{itemize}
+\end{enumerate}
+
+Resumen de SysID:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/resumenSysID.png}
+\end{figure}
+
+\section{Análisis Modal Experimental}
+Dado un sistema LTI, representado por una FRF $G_{YU}(\omega)$:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Figuras/UY.png}
+\end{figure}
+
+\begin{align*}
+    Y(\omega) &= G_{YU}(\omega)U(\omega)\\
+    y(t) &= (g_{YU} \ast u)(t)
+\end{align*}
+donde $g_{YU}(t)$: función respuesta impulso, $G_{YU}(\omega)$: función respuesta en frecuencia, $G_{YU}(\omega)=\mathcal{F}\{g_{YU}(t)\}$\\
+
+\par \underline{Objetivo}: Determinar $G_{YU}(\omega)$, dado $u(t)$ y $y(t)$ conocidos.\\
+\par Asumir que $u(t)$ y $y(t)$ son procesos estocásticos estacionarios. En particular, asumir que son p.e. estacionarios y Gaussianos de media cero.\\
+\par Recordando el teorema de Wiener-Khinchin:
+\begin{align*}
+    S_{XX}(\omega) &= \mathcal{F}\{R_{XX}(\tau)\}\\
+    R_{XX(\tau)} &= \mathcal{F}^{-1}\{S_{XX}(\omega)\}
+\end{align*}
+donde $R_{XX}(\tau) =\mathbb{E}\{X(t)X(t+\tau)$ para  un p.e. estacionario.\\
+\par \underline{Identidad}:
+\begin{align*}
+    S_{XX}(\omega) = \mathbb{E}\{X(\omega)X^\ast(\omega)\} \quad \text{Poder espectral}
+\end{align*}
+donde $X(\omega)=\mathcal{F}\{x(t)\}$ y $()^\ast$: transpuesta conjugada.\\
+\par Un primer alcance:
+\begin{align*}
+    S_{YY}(\omega) &= \mathbb{E}\{Y(\omega)Y^\ast (\omega)\}\\
+    &= \mathbb{E}\Bigl\{\bigl(G_{YU}(\omega)U(\omega)\bigr)\bigl(G_{YU}(\omega)U(\omega)\bigr)^\ast\Bigr\}\\
+    &= \mathbb{E}\Bigl\{G_{YU}(\omega)U(\omega)U^\ast(\omega)G^\ast_{YU}(\omega) \Bigr\}
+\end{align*}
+Si el sistema es SISO, y es determinístico:
+
+\begin{align*}
+    S_{YY}(\omega) &= G_{YU}(\omega)G^\ast_{YU}(\omega)\mathbb{E}\Bigl\{U(\omega)U^\ast(\omega) \Bigr\}\\
+    S_{YY}(\omega) &= |G_{YU}(\omega)|^2 S_{uu}(\omega)\\
+    \tag{*}
+    |G_{YU}(\omega)|^2 &= \frac{S_{YY}(\omega)}{S_{UU}(\omega)}
+    \label{eq:GYU}
+\end{align*}
+
+\underline{Nota}: $|G_{YU}(\omega)|^2$ es una función real, por lo tanto nos entregan solo información de la magnitud del sistema, y no de la fase. $\Longrightarrow$ (\ref{eq:GYU}) descartado.
+
+
+\subsection{Método $H_1$:}
+\begin{align*}
+    Y(\omega) &= G_{YU}(\omega)U(\omega)\\
+    Y(\omega)U^\ast(\omega) &= G_{YU}(\omega)U(\omega)U^\ast(\omega)\\
+    \mathbb{E}\{Y(\omega)U^\ast(\omega)\} &= G_{YU}(\omega)\mathbb{E}\{U(\omega)U^\ast(\omega)\}
+\end{align*}
+
+donde $\mathbb{E}\{Y(\omega)U^\ast(\omega)\}$: PSD cruzado en respuesta y entrada,$mathbb{E}\{U(\omega)U^\ast(\omega)\}$: auto PSD entrada.
+\begin{align*}
+    S_{YU}(\omega) &= G_{YU}(\omega)S_{UU}(\omega)\\
+    \hat{G}_{YU}(\omega) &= \frac{S_{YU}(\omega)}{S_{UU}(\omega)} \quad \text{Estimador $H_1$} 
+\end{align*}
+
+\begin{itemize}
+    \item magnitud: $|\hat{G}_{YU}(\omega)|$
+    \item fase: $\angle G_{YU}(\omega)$
+\end{itemize}
+
+\subsection{Método $H_2$}
+
+\begin{align*}
+    Y(\omega) &= G_{YU}(\omega)U(\omega)\\
+    S_{YY} &= G_{YU}(\omega)S_{YU}(\omega)\\
+    \hat{G}_{YU}(\omega) &= \frac{S_{YY}(\omega)}{S_{YU}(\omega)} \quad \text{Estimador $H_2$}
+\end{align*}
+
+\underline{Nota}: En ausencia de ruido en $u(t)$ y $y(t)$, ambos estimadores $H_1$ y $H_2$ coinciden (caso ideal).\\
+\par Situación con ruido:\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/H1_ruido.png}
+\end{figure}
+
+\par \underline{Nota}: 
+\begin{itemize}
+    \item Ruido $m(t)$ y $n(t)$ son p.e. estacionarios no correlacionados $\Longrightarrow \mathbb{E}\{m(t) u(t+\tau)\}=0 \quad \forall \tau$
+    \item Ruido $m(t)$ y $u(t)$ descorr. $\Longrightarrow \mathbb{E}\{m(t) u(t+\tau)\}=0$
+    \item Ruido $n(t)$ y $y(t)$ descorr. $\Longrightarrow \mathbb{E}\{n(t) y(t+\tau)\}=$
+\end{itemize}
+
+\begin{align*}
+    X(\omega) &= U(\omega)+M(\omega)\\
+    X(\omega)X^\ast(\omega) &= \bigl[ U(\omega)+M(\omega)\bigr]\bigl[ U(\omega)+M(\omega)\bigr]^\ast\\
+    &= U(\omega)U^\ast(\omega)+M(\omega)^\ast (\omega)+M(\omega)U^\ast(\omega)+U(\omega)M^\ast(\omega)\\
+    S_{XX}(\omega) &= S_{UU}(\omega)+S_{MM}(\omega)+S_{MU}(\omega)+S_{UM}(\omega)\\
+    \tag{1}
+    S_{XX}(\omega) &= S_{UU}(\omega)+S_{MM}(\omega)
+\end{align*}
+
+\begin{align*}
+    Z(\omega) &= Y(\omega)+N(\omega)\\
+    \tag{2}
+    S_{ZZ}(\omega) &= S_{YY}(\omega)+S_{NN}(\omega)
+\end{align*}
+
+Estimador $H_1$: 
+\begin{align*}
+    Z(\omega) &= G_{ZX}(\omega)(\omega)\\
+    Z(\omega)X^\ast(\omega) &= G_{ZX}(\omega)X(\omega)X^\ast(\omega)\\
+    \tag{3}
+    S_{ZX}(\omega) &= G_{ZX}(\omega)S_{XX}(\omega)
+\end{align*}
+
+\begin{align*}
+    Z(\omega)X^\ast(\omega)&= \bigl[ Y(\omega)+N(\omega) \bigr] \bigl[ U(\omega)+M(\omega)\bigr]^\ast\\
+    &= Y(\omega)U\ast(\omega)+Y(\omega)M^\ast(\omega)+N(\omega)U^\ast(\omega)+N(\omega)M(\omega)^\ast\\
+    S_{ZX}(\omega) &= S_{YU}(\omega)+S_{YM}(\omega)+S_{NU}(\omega)+S_{NM}(\omega)\\
+    \tag{4}
+    S_{ZX}(\omega) &= S_{YU}(\omega)
+\end{align*}
+
+Entonces, de (3)
+\begin{align*}
+    G_{ZX}(\omega) &= \frac{S_{ZX}(\omega)}{S_{XX}(\omega)}=\frac{S_{YU}(\omega)}{S_{UU}(\omega)+S_{MM}(\omega)}\\
+    &= \frac{S_{YU}(\omega)/S_{UU}(\omega)}{1+S_{MM}(\omega)/S_{UU}(\omega)}\\
+    H_1 &= \frac{S_{ZX}(\omega)}{S_{XX}(\omega)} = \frac{G_{YU}(\omega)}{1+S_{MM}(\omega)/S_{UU}(\omega)}
+\end{align*}
+donde $S_{MM}(\omega)/S_{UU}(\omega)$ es efecto del ruido de entrada $M(\omega)$.\\
+
+\par Luego, $H_1$ es un limite inferior de $G_{YU}(\omega)$.\\
+\par De manera similar:
+\begin{align*}
+    H_2 &= \frac{S_{ZZ}(\omega)}{S_{ZX}(\omega)} = G_{YU}(\omega)+\frac{S_{NN}(\omega)}{S_{YY}(\omega)}
+\end{align*}
+donde $\frac{S_{NN}(\omega)}{S_{YY}(\omega)}$ es efecto del ruido de salida.\\
+\par Luego, $H_2$ es un límite superior de $G_{YU}(\omega)$
+
+\subsection{Función de coherencia}
+\begin{align*}
+    \gamma_{ZX}^2(\omega) = \frac{|S_{ZX}(\omega)|^2}{S_{ZZ}(\omega)S_{XX}(\omega)}
+\end{align*}
+
+Si $\gamma_{ZX}^2=1$, entonces existe coherencia entre entrada y salida $\Longrightarrow$ $H_1$ y $H_2$ son buenos estimadores.\\
+\par Análogo a regresión lineal:
+\begin{align*}
+    Z=\theta X+\varepsilon
+\end{align*}
+
+\underline{Procedimiento}:
+\begin{enumerate}
+    \item Instalar sensores en el sistema a identificar\\
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Figuras/caja_negra.png}
+    \end{figure}
+    
+    \underline{Nota}: Debe satisfacer la condición de observabilidad
+    \item Generar un ruido blanco $x(t)$ y medir $z(t)$
+    \item Estimar $G_{YU}(\omega)$ utilizando $H_1$ o $H_2$
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Figuras/Gyu.png}
+    \end{figure}
+\end{enumerate}
+
+En estricto rigor, $H_1$ y $H_2$ nos entregan una respuesta discretizada para valores de $\omega \in \{\omega_0,\omega_1,...,\omega_N\}$\\
+
+\par Modelos calibrados a través de FRF experimental:
+\begin{itemize}
+    \item Matlab: System identification Toolbox
+    \item Métodos de optimización para calibrar modelos en base a FRF experimental
+\end{itemize}
+

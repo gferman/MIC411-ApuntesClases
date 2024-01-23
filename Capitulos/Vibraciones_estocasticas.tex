@@ -1,0 +1,472 @@
+\chapter{Vibraciones Estocásticas}
+
+
+\section{Proceso Estocástico}
+Primera, una \textcolor{red}{variable aleatoria} $X$ toma un valor de ``realización'', no hay un efecto del tiempo.
+
+\par Ejemplos:
+\begin{itemize}
+    \item Período de retorno (``ocurrencia'') de un terremoto
+    \item Módulo de Young (concreto)
+    \item Resistencia característica (acero, $F_y$)
+    \item Geometría
+\end{itemize}
+
+Un \textcolor{red}{proceso estocástico} es una familia de variables aleatorias cuya realización depende del tiempo.\\
+$X(t)$, $t\in T$ es un proceso estocástico (p.e.) 
+$$\Longrightarrow \{X(t_1),X(t_2),X(t_3),...\}$$
+
+Realización 1: 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/pe.png}
+\end{figure}
+
+Realización 2: 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/pe2.png}
+\end{figure}
+
+
+\par Ejemplos:
+\begin{itemize}
+    \item Registro de aceleración de un terremoto
+    \item Presión del viento
+    \item Aceleración de piso de un edificio
+\end{itemize}
+
+\par Considere un p.e. escalar $X(t)$, $t\in T$.\\
+\par Existen 2 formas de describir un p.e.:
+\begin{enumerate}
+    \item Función de densidad de probabilidad
+    \begin{align*}
+        \mathbb{P}[X(t_1)\leq x_1 \cap X(t_2)\leq x_2 \cap ... \cap X(t_m) \leq x_m ] = F_m(x_1,x_2,...,x_m;t_1,t_2,...,t_m)
+    \end{align*}
+    \item Momentos estocásticos $\Longrightarrow$ momentos de 1er y 2do orden
+    \begin{itemize}
+        \item Media: $$\mu _X(t)=\mathbb{E}\{X(t)\}$$
+        \item Varianza: $$\rho _X^2(t)=\mathbb{E}\{[X(t)-\mu_X(t)]^2\}$$
+        \item Función de auto-correlación: $$R_{XX}(t_1,t_2)=\mathbb{E}\{X(t_1)X(t_2)\}$$
+        \item Función de auto-covarianza: $$\Gamma_{XX}=\mathbb{E}\{[X(t_1)-\mu_X(t_1)][X(t_2)-\mu_X(t_2)]\}$$ $$\Gamma_{XX}=R_{XX}(t_1,t_2)-\mu_X(t_1)\mu_X(t_2)$$
+        \item Coeficiente de correlación: $$\rho_{XX}(t_1,t_2) = \frac{\Gamma_{XX}(t_1,t_2)}{\sigma_X(t_1)\sigma_X(t_2)}$$
+        Interpretación: ``medida de independencia lineal entre variables aleatorias''. \\
+        \begin{figure}[H]
+        \centering
+        \subfigure[]{\includegraphics[scale=0.7]{Figuras/rho1.png}}
+        \subfigure[]{\includegraphics[scale=0.7]{Figuras/rho0.png}}
+        \end{figure}
+        Notas: \begin{itemize}
+            \item $|\rho_{XX}(t_1,t_2)| \leq 1$
+            \item Si $\rho_{XX}(t_1,t_2)=0$, $\forall t_1 \neq t_2$, entonces el p.e. es un proceso descorrelacionado (ruido blanco, por ejemplo).
+        \end{itemize} 
+    \end{itemize}
+\end{enumerate}
+
+Otras definiciones importantes:\\
+\par Sean $X(t)$ y $Y(t)$ dos procesos estocásticos, $t\in T$:
+\begin{itemize}
+    \item Función de correlación cruzada: $$R_{XY}(t_1,t_2)=\mathbb{E}\{X(t_1)Y(t_2)\} $$
+    \item Función de covarianza cruzada:
+    $$\Gamma_{XY}(t_1,t_2) =\mathbb{E}\{ [X(t_1)-\mu_x(t_1)][Y(t_2)-\mu_y(t_2)]\} $$
+    $$\Gamma_{XY}(t_1,t_2) = R_{XY}-\mu_X(t_1)\mu_Y(t_2) $$ 
+    \item Coeficiente de correlación cruzado: $$\rho_{XY}(t_1,t_2)=\frac{\Gamma_{XY}(t_1,t_2)}{\sigma_x(t_1)\sigma_y(t_2)} $$
+\end{itemize}
+
+\section{Clasificación de P.E.}
+\begin{enumerate}
+    \item P.E. no estacionario:
+    \begin{itemize}
+        \item La distribución de probabilidad del p.e. depende del tiempo.
+    \end{itemize}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Figuras/penoesatacionario.png}
+    \end{figure}
+    \item P.E. Estrictamente estacionario:
+    \begin{itemize}
+        \item La distribución de probabilidad del p.e. no cambia con un retraso en el tiempo:
+        \begin{equation*}
+            F_X(x_1,...,x_m;t_1,...,t_m)=F_x(x_1,...,x_m;\textcolor{brown}{t_1+\tau,...,t_m+\tau})
+        \end{equation*}
+    \end{itemize}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Figuras/peestricto.png}
+    \end{figure}
+    \item P.E. Débilmente estacionario:
+    \begin{itemize}
+        \item Estadísticos de 2do orden son finitos y no varían en el tiempo
+        \begin{align*}
+            \mu_x(t)&=\mu_x<\infty, \quad \sigma_x^2(t)=\sigma_x^2<\infty\\
+            \Longrightarrow R_{XX}(t_1,t_2)=R_{XX}(t_2-t_1)
+        \end{align*}
+    \end{itemize}
+\end{enumerate}
+
+\section{P.E. Gaussiano}
+Un p.e. $X(t)$, $t \in T$, se llama un p.e. Gaussiano si, para cada conjunto $\{t_1,t_2,...,t_m\}\in T$, las ``m'' variables aleatorias $X(t_1)$, $X(t_2)$, $...,$ $X(t_m)$ son distribuidas normales multivariadas.
+\begin{align*}
+    X(t)\sim~ N\big(\mu_X(t),\Gamma_{XX}(t_i,t_j)\big)
+\end{align*}
+
+\underline{Notas}:
+\begin{itemize}
+    \item Un p.e. Gaussiano y débilmente estacionario es estrictamente estacionario.
+    \item Un p.e. Gaussiano preserva las transformaciones lineales, y esto es extremadamente útil en los problemas de sistemas lineales que se verán más adelante.
+\end{itemize}
+
+
+
+
+
+\section{Densidad de Poder Espectral (power spectral density, PSD)}
+Dado X un w.s.s., la función de autocorrelación se define como:
+\begin{align*}
+    R_X(\tau)=\mathbb{E}\{X(t)X(t+\tau)\}
+\end{align*}
+
+Características de $R_X$:
+\begin{enumerate}
+    \item $R_X(\tau)$ es una función par $\longrightarrow$ simetría
+    \begin{align*}
+        R_X(\tau)=R_X(-\tau)
+    \end{align*}
+    \item $R_X(\tau)$ debe ser finita. Adicionalmente.:
+    \begin{align*}
+        |R_X(\tau)|&\leq R_X(0)\\
+        \Longrightarrow R_X(0)&=\mathbb{E}\{X^2(t)\}=\sigma^2_X(t)+\mu_X^2(t)
+    \end{align*}
+    En $\tau=0$, $R_X(0)$ nos entrega el máximo valor de la media cuadrada del p.e. X.
+    \item $R_X(\tau)$ es una función definida positiva.\\
+    $\Longrightarrow$ Para cualquier función $g(t)$, si:
+    \begin{align*}
+        g(t_1)R_X(t_1-t_2)g(t_2)\geq 0
+    \end{align*}
+    Por lo tanto, $R_X(\tau)$ es definida positiva siempre.
+    \item $R_X(\tau)$ es continua en $\tau$.
+\end{enumerate}
+
+\underline{Definición}: Densidad de poder espectral.\\
+\par Sea $X=(X(t):t\in T)$ un p.e. w.s.s., con función de autocorrelación $R_x(\tau)$. La función de densidad de poder espectral se define como (Teorema de Wiener-Khintchine):
+\begin{align*}
+    S_X(\omega) &=\mathcal{F}\{R_X(\tau)\}\\
+    R_X(\tau) &=\mathcal{F}^{-1}\{S_X(\omega)\}
+\end{align*}
+Nota: En inglés, Power Spectral Density (PSD).\\
+\par \underline{Propiedades PSD}:
+\begin{enumerate}
+    \item Función real
+    \item Función simétrica
+    \item Definida positiva
+    \item Área bajo la curva de $S_X(\omega)$ es igual a l valor medio cuadrado
+\end{enumerate}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/PSD.png}
+\end{figure}
+
+\section{Ruido blanco}
+Sea $X=(X(t), t\in T)$ un p.e. w.s.s., con media 0, $\mu_x=0$, X es un ruido blanco si su PSD es constante:
+\begin{align*}
+    S_X(\omega) &= S_0, \quad \forall \omega \in (-\infty,+\infty)\\
+    R_X(\tau) &= 2\pi S_0\delta (\tau)
+\end{align*}
+
+\underline{Nota}: Un ruido blanco es un p.e. Gaussiano.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/ruidoblanco.png}
+\end{figure}
+
+
+\section{Ruido blanco de banda limitada (band-limited white noise, BLWN)}
+Sea X un p.e., w.s.s., es un BLWN si:
+\begin{align*}
+    S_X(\omega) & = \left\{
+\begin{array}{ll}
+      S_0 & |\omega|\leq \omega_c \\
+      0 & |\omega|> \omega_c \\
+\end{array} 
+\right. \\
+    R_X(\tau) & = R(0)\frac{\sin(\omega_c \tau)}{\omega_c \tau}\\
+    & = R(0)\text{sinc}(\omega_c \tau)
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/BLWN.png}
+\end{figure}
+
+Nota: a veces este p.e. se conoce como un filtro de paso bajo (``low-pass filter'').
+
+\section{Ergocidad}
+Sea $X=(X(t),t\in T)$ un p.e. estacionario, se dice que $X$ es ergódico si:
+\begin{itemize}
+    \item Ergódico en la media: 
+    \begin{align*}
+        \overline{\mu_X(t)}=\mu_X(t)
+    \end{align*}
+    \begin{itemize}
+        \item $\overline{\mu_X(t)}$: media tiempo
+        \item $\mu_X(t)$: media conjunto
+    \end{itemize}
+    \item Ergódico en el valor cuadrado:
+    \begin{align*}
+        \overline{\mathbb{E}\{X^2(t)\}} =\mathbb{E}\{X^2(t)\} 
+    \end{align*}
+    \begin{itemize}
+        \item $\overline{\mathbb{E}\{X^2(t)\}}$: valor cuadrado tiempo
+        \item $\mathbb{E}\{X^2(t)\}$: valor cuadrado conjunto
+    \end{itemize}
+    \item Ergódico en la correlación:
+    \begin{align*}
+        \overline{R_X(\tau)} = R_X(\tau)
+    \end{align*}
+    \begin{itemize}
+        \item $\overline{R_X(\tau)}$: autocorrelación tiempo
+        \item $R_X(\tau)$: autocorrelación conjunto
+    \end{itemize}
+\end{itemize}
+
+Nota: Ruido blanco es un p.e. Gaussiano, y es ergódico.
+
+\section{Respuesta estocástica de sistemas lineales}
+Sea un sistema LTI, determinístico:
+\begin{align*}
+    \tend{\dot{x}} =\tenq{A}\tend{x}+\tenq{B}u, \quad x(0)=x_0=0
+\end{align*}
+y asuma que $u(t)$ es un p.e. w.s.s., $\mu_U=0$.
+\par \underline{Objetivo}: Determinar la respuesta $x(t)$, p.e. w.s.s., $\mu_X=0$\\
+\par Calculemos la autocovarianza de $\tend{x}(t)$
+\begin{align*}
+    \tenq{\Gamma}_X(t)=\mathbb{E}[XX^\top]=
+\end{align*}
+
+La derivada de $\tenq{\Gamma}_X(t)$:
+\begin{align*}
+    \frac{d}{dt}\tenq{\Gamma}_X(t)&=\frac{d}{dt}\mathbb{E}[XX^\top]=\mathbb{E}\bigl[\frac{d}{dt}(XX^\top)\bigr]\\
+    &= \mathbb{E}[\dot{X}X^\top+X\dot{X}^\top]\\
+    &= \mathbb{E}\Bigl[(AX+BU)X^\top+X(AX+BU)^\top\Bigr]\\
+    &= A\mathbb{E}[XX^\top]+B\mathbb{E}[UX^\top]+\mathbb{E}[XX^\top]A^\top+\mathbb{E}[XU^\top]B^\top\\
+    \dot{\Gamma}_X &= A\Gamma_X+\Gamma_XA^\top+Q \quad \text{Ecuación diferencial de Lyapunov}
+\end{align*}
+
+
+donde $Q=\mathbb{E}\{BUX^\top\}+\mathbb{E}\{XU^\top B^\top\}$\\
+
+\par Si $u(t)$ es un ruido blanco: 
+\begin{itemize}
+    \item $\mu_U=0$
+    \item $\mathbb{E}\{U(t)U(t+\tau)\}=2\pi s_o\delta (\tau)$, $S_u=S_0$, $\forall \omega$
+\end{itemize}
+
+\underline{Aparte}: La solución analítica de $x(t)$ es:
+
+\begin{equation*}
+    x(t)=\phi(t)x_0+\int_0^t \phi(t-\tau)Bu(\tau)d\tau
+\end{equation*}
+
+Desarrollemos el primer término de $Q$:
+\begin{align*}
+    \mathbb{E}\{BU(t)X^\top (t)\} &=  \mathbb{E}\{BU(t)[\int_0^t \phi(t-\tau)Bu(\tau)d\tau]^\top\}\\
+    &= B\int_0^t \mathbb{E}\{U(t)[U^\top (t) B^\top \phi^\top (t-\tau)] \} d\tau\\
+    &= B\int_0^t \mathbb{E}\{U(t)U^\top (t)\} B^\top \phi^\top (t-\tau) d\tau
+\end{align*}
+
+Dado que $U$ es un ruido blanco:
+\begin{align*}
+    \Longrightarrow \mathbb{E}\{U(t)U(t+\tau)=2\pi s_0 \delta (\tau)
+\end{align*}
+
+Pueden demostrar que:
+\begin{align*}
+    \mathbb{E}\{BUX^\top \}=\frac{1}{2}B2\phi s_0B^\top
+\end{align*}
+
+\begin{align*}
+    Q &= \mathbb{E}\{BUX^\top \}+\mathbb{E}\{BU^\top X^\top \}=2\mathbb{E}\{BUX^\top \}\\
+    Q &= B(2\pi s_0)B^\top
+\end{align*}
+
+Para resolver $\Gamma_X(t)$, se calcula $Q$ que depende de $s_0$:
+\begin{align*}
+    \dot{\Gamma}_X(t)=A\Gamma_X+\Gamma_XA^\top +Q
+\end{align*}
+
+La solución es única ssi A es Hurwitz.\\
+\par \underline{Notas}:
+\begin{itemize}
+    \item $Q$ es una matriz simétrica, definida positiva. Entonces, $s_0$ es una matriz simétrica, definida positiva.
+    \item $\Gamma_X$ es una matriz simétrica, definida positiva.
+\end{itemize}
+
+Veamos qué ocurre en estado estacionario ($t\to \infty$)
+\begin{align*}
+    \lim_{t\top \infty} \dot{\Gamma}_X(t)=0
+\end{align*}
+Ecuación de Lyapunov:
+\begin{align*}
+   0=A\Gamma_X+\Gamma_XA^\top +Q
+\end{align*}
+
+Solución: $\Gamma_X$, autocovarianza estacionaria de $X(t)$.\\
+
+\par Dada la ec. de respuesta:
+\begin{align*}
+    y(t) = Cx(t)
+\end{align*}
+donde $y(t)$ es un p.e., w.s.s., $\mu_y=0$.\\
+\par Matriz autocovarianza respuesta:
+\begin{align*}
+    \Gamma_Y=\mathbb{E}\{YY^\top\} &= \mathbb{E}\{(CX)(CX)^\top\}\\
+     &= \mathbb{E}\{CXX^\top C^\top\}\\
+      &= C \mathbb{E}\{XX^\top\}C^\top\\
+       &= C \Gamma_X C^\top\\
+\end{align*}
+
+
+
+\section{Modelos de Carga Estructural Estocástica}
+Una gran cantidad de excitación sobre sistemas estructurales son estocásticos por naturaleza.\\
+\par Ejemplos:
+\begin{itemize}
+    \item Terremotos
+    \item Viento
+    \item Tránsito vehicular
+    \item Rugosidad pavimento
+    \item Oleaje
+\end{itemize}
+
+Para cada uno de estos tipos de excitación, se puede formular un modelo que captura las principales características de la carga estocástica en cuestión:
+\begin{itemize}
+    \item Carga sísmica: 
+    \begin{itemize}
+        \item Kanai-Tajimi
+        \item Clough-Penzien
+        \item Etc.
+    \end{itemize}
+    \item Carga viento:
+    \begin{itemize}
+        \item Daurenport
+        \item Kaimal \& Vonkerman
+        \item Etc.
+    \end{itemize}
+    \item Oleaje:
+    \begin{itemize}
+        \item Pierson-Moskowitz
+        \item Etc.
+    \end{itemize}
+\end{itemize}
+
+\section{Modelo Kanai-Tajimi}
+El modelo K-T genera un p.e. Gaussiano estacionario, que representa la aceleración del suelo producto de un evento sísmico: \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/KT.png}
+\end{figure}
+EDM: $a$- estado del suelo
+\begin{align*}
+    \ddot{a}+2\xi_g\omega_g\dot{a}+\omega_g^2a=W(t) 
+\end{align*}
+
+Ruido blanco: 
+$$\mathbb{E}\{W(t)\}=0$$ 
+$$\mathbb{E}\{W(t)W(t+\tau)\}=2\pi S_0\delta(\tau)$$
+
+$S_0$: poder espectral del sismo en roca (Intensidad del terremoto).\\
+
+\par Ecuación de respuesta:
+\begin{align*}
+    \ddot{u}_g = -2\xi_g\omega_g \dot{a}-\omega_g^2a
+\end{align*}
+donde $\ddot{u}_g$ es la aceleración del suelo en campo libre.\\
+\par Se puede demostrar que la función de respuesta en frecuencia (FRF) del estado de suelo es:
+
+\begin{align*}
+    H_{KT}(\Omega) &= \frac{\omega_g^2+i2\xi_g\omega_g\Omega}{(\omega_g^2-\Omega^2)+i2\xi_g\omega_g\Omega}\\
+    |H_{KT}(\Omega)| &= \frac{\omega_g^4+4\xi_g^2\omega_g^2\Omega^2}{(\omega_g^2-\Omega^2)+4\xi_g^2\omega_g^2\Omega^2}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/HKT.png}
+\end{figure}
+
+
+En espacio-estado:
+\begin{align*}
+    \dot{x}_g &= A_gx_g+B_gw(t), \quad x_g=a\\
+    y_g &= C_gx_g, \quad y_g=\ddot{u}_g
+\end{align*}
+
+Diagrama de bloques:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Figuras/diagrama_bloque_KT.png}
+\end{figure}
+
+\begin{align*}
+    \ddot{u}_g(t) &= h_{KT} \ast W(t)\\
+    \ddot{u}_g(t)\ddot{u}_g(t+\tau) &= h_{KT}^2(t) \ast W(t)W(t+\tau)\\
+    \Longrightarrow s_{\ddot{u}_g}(\omega) &= |H_{KT}(\omega)|^2s_0
+\end{align*}
+
+Parámetros del modelo K-T: $s_0$, $\omega_g$, $\xi_g$.\\
+\par Terremoto El Centro (1940): 
+\begin{itemize}
+    \item $\bar{\omega}_g = 18$ rad/s
+    \item $\bar{\xi}_g = 0.60$
+    \item $s_0 = $ depende del peak ground acceleration (PGA)
+\end{itemize}
+
+En estado estacionario:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/estado_estacionario_KT.png}
+\end{figure}
+Estados: $x_a=\left\{
+    \begin{array}{c}
+     x_s \\ x_g 
+    \end{array}\right\}$
+\begin{align*}
+    \dot{x}_a&=A_ax_a+B_aW(t)\\
+    y &= C_ax_a
+\end{align*}
+
+\par Ec. de Lyapunov:
+\begin{align*}
+    0 &= A_x\Gamma_x +\Gamma_aA_a^\top+Q_a\\
+    \Gamma_a &= \mathbb{E}\{x_ax_a^\top\}\\
+    \Gamma_y &= C_a\Gamma_aC_a^\top \Longrightarrow \text{RMS respuesta}
+\end{align*}
+
+Pero, en realidad los registros sísmicos son p.e. no estacionarios:
+
+\par ¿Podemos ocupar K-T? $\longrightarrow$ Sí, a través de una \textcolor{red}{función de modulación}\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Figuras/func_mod_KT.png}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Figuras/func_mod_KT2.png}
+\end{figure}
+
+\par Sistema atenuado (LTV): 
+\begin{align*}
+    \dot{x}_a(t) &= A_a(T)x_a(t)+B_a(t)Z(t)\\
+    y(t) &= C_a(t)x_a(t)
+\end{align*}
+$\Longrightarrow$ Ec. diferencial de Lyapunov:
+\begin{align*}
+    \dot{\Gamma}_a(t) = A_a(t)\Gamma_a(t)+\Gamma_a(t)A_a^\top (t))+Q_a(t)
+\end{align*}
+
+Integrar, resolver $\Gamma_a(T)\Longrightarrow \Gamma_y (t) \Longrightarrow\text{rms } y(t)$.
+
+

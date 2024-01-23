@@ -1,0 +1,52 @@
+\documentclass{report}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ 
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+% Paquetes de la AMS:
+\usepackage{amsmath,bm,amsthm, amsfonts,amssymb}
+\usepackage{mathtools,cancel}
+% tensor 2:
+\newcommand{\tend}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\sim}$\hidewidth}}}
+%tensor 4:
+\newcommand{\tenq}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\approx}$\hidewidth}}}
+
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\usepackage{alltt}
+\usepackage{gensymb}
+\usepackage{verbatim} 
+\usepackage{ragged2e}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{minted}
+\usemintedstyle{tango}
+\usepackage{amsfonts}
+\usepackage{subfigure}
+
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+
+
+
+\begin{document}
+
+%----------- Cap1 -----------%
+\setcounter{chapter}{0}
+\input{../Sistemas_dinamicos}
+
+\end{document}
