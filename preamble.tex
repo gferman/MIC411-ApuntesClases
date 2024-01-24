@@ -1,0 +1,30 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath,bm,amsthm, amsfonts,amssymb}
+\usepackage{mathtools,cancel}
+\usepackage{multicol}
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\usepackage{alltt}
+\usepackage{gensymb}
+\usepackage{subfigure} 
+\usepackage{ragged2e}
+\usepackage{minted}
+\usemintedstyle{tango}
+\usepackage{pifont}
+
+% tensor 2:
+\newcommand{\tend}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\sim}$\hidewidth}}}
+%tensor 4:
+\newcommand{\tenq}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\approx}$\hidewidth}}}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\graphicspath{{./Figuras/}}

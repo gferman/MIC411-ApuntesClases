@@ -4,7 +4,7 @@
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/sistema.png}
+\includegraphics[scale=0.7]{sistema.png}
 \end{figure}
 Los sistemas son modelos matemáticos (ecuaciónes) que relacionan variables de entrada con variables de salida. Pueden ser representados gráficamente por diagramas de bloques. \\
 Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
@@ -19,15 +19,15 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \subsection{Estáticos vs Dinámicos}
 \begin{itemize}
     \item Sistema Estático: respuesta solo depende de la excitación actual (independiente del tiempo).
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/estatico.png}
+    \includegraphics[scale=0.7]{estatico.png}
     \end{figure}
     
     \item Sistema Dinámico: respuesta actual depende de la excitación actual y de la ``historia'' de la respuesta.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/dinamico.png}
+    \includegraphics[scale=0.7]{dinamico.png}
     \end{figure}
     \par Si la respuesta del sistema dinámico está basada en la excitación actual y pasada, entonces el sistema se conoce como \textcolor{red}{causal} (todos los sistemas físicos).\\
     \par Si la respuesta del sistema dinámico está basada en excitación actual, pasada y \textcolor{ForestGreen}{futura}, entonces el sistema es \textcolor{red}{anticausal} (teóricos).
@@ -36,9 +36,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \subsection{SISO vs Multivariable}
 \begin{itemize}
     \item SISO: Single Input, Single Output.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/SISO.png}
+    \includegraphics[scale=0.7]{SISO.png}
     \end{figure}
     \begin{itemize}
         \item $u$: señal escalar
@@ -47,9 +47,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \end{itemize}
     
     \item SIMO: Single Input, Multi Output.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/SIMO.png}
+    \includegraphics[scale=0.7]{SIMO.png}
     \end{figure}
     \begin{itemize}
         \item $u$: señal escalar
@@ -57,9 +57,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \end{itemize}
     
     \item MISO: Multi Input, Simple Output.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/MISO.png}
+    \includegraphics[scale=0.7]{MISO.png}
     \end{figure}
     \begin{itemize}
         \item $\vec{u}$: señal vectorial
@@ -67,9 +67,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \end{itemize}
     
     \item MIMO: Multi Input, Multi Output.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/MIMO.png}
+    \includegraphics[scale=0.7]{MIMO.png}
     \end{figure}
     \begin{itemize}
         \item $\vec{u}$: señal vectorial
@@ -81,9 +81,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \subsection{Lineal vs No lineal}
 \begin{itemize}
     \item Un \textcolor{red}{sistema lineal} es tal que cumple con el principio de \textcolor{red}{superposición}.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/sistemayu.png}
+    \includegraphics[scale=0.7]{sistemayu.png}
     \end{figure}
     \begin{itemize}
         \item Aditividad: Si $u_1(t) \rightarrow y_1(t)$, $u_2(t) \rightarrow y_2(t)$, entonces: $u(t) = u_1(t) + u_2(t) \rightarrow y(t) = y_1(t) + y_2(t)$
@@ -92,9 +92,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \item De no cumplir con las propiedades del sistema lineal, entonces el sistema es \textcolor{red}{no lineal}.
 \end{itemize}
 \par \underline{Ejemplo}: resorte no lineal.\\
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/ej_nolineal.png}
+    \includegraphics[scale=0.7]{ej_nolineal.png}
     \end{figure}
 Se tiene que: 
 \begin{align*}
@@ -117,9 +117,9 @@ La respuesta es \textcolor{red}{no}, ya que:
 \begin{itemize}
     \item Sistema invariantes en el tiempo $\longrightarrow$ parámetros del modelo son constantes en el tiempo.\\
     \underline{Ejemplo}: Sistemas de 1GDL con masa, rigidez y amortiguamiento constante.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/invariante.png}
+    \includegraphics[scale=0.7]{invariante.png}
     \end{figure}
     
     \item Sistema variante en el tiempo $\longrightarrow$ parámetros del modelo varían en el tiempo.\\
@@ -139,9 +139,9 @@ Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidum
 \subsection{Continuo vs Discreto}
 \begin{itemize}
     \item Sistema Continuo: entrada y salida son función del tiempo.
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/continuo.png}
+    \includegraphics[scale=0.7]{continuo.png}
     \end{figure}
     \item Sistema Discreto: señales han sido discretizadas en el tiempo.\\
     % Ale: Reemplazar el ejemplo por siguiente línea:
@@ -159,9 +159,9 @@ Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidum
 
 \section{``Time sampling''} % Reemplazar por MUESTREO?
 Las señales de los sistemas físicos son continuas, pero que al momento de ser "observadas" por dispositivos digitales, estas señales se discretizan en función del tiempo.
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/time_sampling.png}
+    \includegraphics[scale=0.7]{time_sampling.png}
     \end{figure}
 
 
@@ -169,9 +169,9 @@ Las señales de los sistemas físicos son continuas, pero que al momento de ser 
 \section{Respuesta de sistemas LTI en tiempo continuo}
 LTI: Linear, Time-Invariant. \\
 
-\begin{figure}[H] % Borrar ?, ya está arriba
+\begin{figure}[h] % Borrar ?, ya está arriba
 \centering
-\includegraphics[scale=0.7]{Figuras/sistemayu.png}
+\includegraphics[scale=0.7]{sistemayu.png}
 \end{figure}
 
 Los sistemas LTI, son aquellos lineales cuyas propiedades y parámetros no varían en el tiempo, es decir, que los coeficientes de las ecuaciones diferenciales de los modelos matemáticos de los sistemas dinámicos son constantes en el tiempo $a_i=cte$.
@@ -212,9 +212,9 @@ La función \textit{Delta de Dirac} se denota como:
 %\right. 
 %\end{align*}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/delta.png}
+\includegraphics[scale=0.7]{delta.png}
 \end{figure}
 Propiedades:
 \begin{align*}
@@ -222,9 +222,9 @@ Propiedades:
     \int_{-\infty}^{+\infty}f(t)\delta(t-T)dt=f(T) \quad &\text{Sampleo}
 \end{align*}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/dirac.png}
+\includegraphics[scale=0.7]{dirac.png}
 \end{figure}
 
 
@@ -237,16 +237,16 @@ Propiedades:
     \int_{-\infty}^{+\infty}f(\tau)\delta(t-\tau)d\tau=f(t) 
 \end{align*}
 \underline{Importante}: Este resultado permite que cualquier función $f(t)$ pueda igualarse a una suma de impulsos.
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/suma_imp.png}
+\includegraphics[scale=0.7]{suma_imp.png}
 \end{figure}
 
 \section{Función de respuesta a impulso unitario}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/FRI.png}
+\includegraphics[scale=0.7]{FRI.png}
 \end{figure}
 
 Para sistemas estructurales ($\xi<1$):
@@ -261,15 +261,15 @@ Solución:
 Donde $\omega_n = $ y $\omega_d = $. \\
 
 Considere una excitación $u(t)$:
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/FRI2.png}
+\includegraphics[scale=0.7]{FRI2.png}
 \end{figure}
 $u(t)$ es continuo $\longrightarrow$ se representa a través de un tren de impulsos $\longrightarrow$ cada impulso tiene una respuesta del sistema $\delta(t-\tau)\longrightarrow h(t-\tau)$.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/FRI3.png}
+\includegraphics[scale=0.7]{FRI3.png}
 \end{figure}
 Por superposición: 
 \begin{align*}
@@ -299,9 +299,9 @@ donde $s\in\mathbb{C}$, $s=\sigma+j\omega$, $j^2=-1$.\\
     \mathcal{L}^{-1}: ~ f(t)=\frac{1}{2\pi j}\int_{+\sigma-j\infty}^{+\sigma+j\infty}F(s)e^{st}ds
 \end{align*}
 ¿Por qué utilizar $\mathcal{L}$? $\Rightarrow$ facilita el análisis de sistemas dinámicos.
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/laplace.png}
+\includegraphics[scale=0.7]{laplace.png}
 \end{figure}
 
 \underline{Nota}: $H(s)=\mathcal{L}\{h(t) \}$, donde:
@@ -364,9 +364,9 @@ En resumen:
 
 
 \section{Función de transferencia}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/TF.png}
+\includegraphics[scale=0.7]{TF.png}
 \end{figure}
 
 \begin{itemize}
@@ -407,20 +407,20 @@ Notar que $H(s)$ corresponde a: $H(s)=\mathcal{L}\{h(t)\}$ ($h(t)$ es función d
     \item Para visualizar las propiedades dinámicas del sistema, vamos a trabajar en el plano complejo.
 \end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/plano_complejo.png}
+\includegraphics[scale=0.7]{plano_complejo.png}
 \end{figure}
 
 $|H(s)|$ representa la ``superficie sobre el plano complejo''
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/polos_ceros.png}
+\includegraphics[scale=0.7]{polos_ceros.png}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/magHs.png}
+\includegraphics[scale=0.7]{magHs.png}
 \end{figure}
 % Recordar que $H(s)$ corresponde a: $H(s)=\mathcal{L}\{h(t)\}$ ($h(t)$ es FRI),
 % Por ende, $h(t)=\mathcal{L}^{-1}\{H(s)\}$.\\
@@ -431,24 +431,24 @@ Ejemplo: $H(s)=\frac{1}{s-a}\Longrightarrow h(t)=\mathcal{L}^{-1}\{H(s)\}=e^{at}
 \underline{Casos}:
 \begin{itemize}
     \item[(i)] $a>0, ~a\in\mathbb{R}\Longrightarrow h(t)=e^{-|a|t}$
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/caso1.png}
+    \includegraphics[scale=0.7]{caso1.png}
     \end{figure}
     \item[(ii)] $a=0, ~a\in\mathbb{R}\Longrightarrow h(t)=1$
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/caso2.png}
+    \includegraphics[scale=0.7]{caso2.png}
     \end{figure}
     \item[(iii)] $a<0, ~a\in\mathbb{R}\Longrightarrow h(t)=e^{|a|t}$
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/caso3.png}
+    \includegraphics[scale=0.7]{caso3.png}
     \end{figure}
     \item[(iv)] $H(s)=\frac{1}{s^2+a^2}\Longrightarrow s_{1,2}=\pm \beta j \in \mathbb{C}$\\ \\
-    $h(t)=\mathcal{L}^{-1}\{H(s)\}=\sin{(\beta t)}$\begin{figure}[H]
+    $h(t)=\mathcal{L}^{-1}\{H(s)\}=\sin{(\beta t)}$\begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{Figuras/caso4.png}
+    \includegraphics[scale=0.7]{caso4.png}
     \end{figure}
     
     \item[(v)] $a_{1,2}=\alpha\pm\beta j \in \mathbb{C}$ (polos conjugados)\\ \\
@@ -459,16 +459,16 @@ Ejemplo: $H(s)=\frac{1}{s-a}\Longrightarrow h(t)=\mathcal{L}^{-1}\{H(s)\}=e^{at}
     \begin{itemize}
         \item[(a)] $\alpha<0$ \\ \\
         $h(t) = e^{-|\alpha| t}\sin{(\beta t)}$
-        \begin{figure}[H]
+        \begin{figure}[h]
         \centering
-        \includegraphics[scale=0.7]{Figuras/caso5a.png}
+        \includegraphics[scale=0.7]{caso5a.png}
         \end{figure}
         
         \item[(b)] $\alpha>0$\\ \\ 
         $h(t) = e^{+|\alpha| t}\sin{(\beta t)}$
-        \begin{figure}[H]
+        \begin{figure}[h]
         \centering
-        \includegraphics[scale=0.7]{Figuras/caso5b.png}
+        \includegraphics[scale=0.7]{caso5b.png}
         \end{figure}
         
         \item[(c)] $\alpha=0$\\ \\
@@ -477,15 +477,15 @@ Ejemplo: $H(s)=\frac{1}{s-a}\Longrightarrow h(t)=\mathcal{L}^{-1}\{H(s)\}=e^{at}
 \end{itemize}
 
 Volviendo al plano complejo, podemos identificar el tipo de respuesta FRI del sistema solo con información de la posición de los polos:
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/Estabilidad1.png}
+\includegraphics[scale=0.7]{Estabilidad1.png}
 \end{figure}
 
 \section{Estabilidad ``Bounded Input, Bounded Output'' (BIBO)}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/BIBO.png}
+\includegraphics[scale=0.7]{BIBO.png}
 \end{figure}
 Un sistema es estable en el sentido BIBO, si y sólo si el sistema posee todos sus polos a la izquierda del plano complejo. Dicho de otra forma: $p_i=\alpha_i\pm\beta_i j$
 \begin{itemize}
@@ -494,9 +494,9 @@ Un sistema es estable en el sentido BIBO, si y sólo si el sistema posee todos s
 \end{itemize}
 
 \section{Función de transferencia de un sistema de 1GDL}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/edm.png}
+\includegraphics[scale=0.7]{edm.png}
 \end{figure}
 \underline{Problema}: Dado EDM, determinar $H(s)$\\ 
 \par \underline{Definición}: 
@@ -518,9 +518,9 @@ Asumir reposo: $u(0)=\dot{u}(0)=0$
 \end{align*}
 
 Aparte: Dado $F(s)$ y $H(s)$
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/hs.png}
+\includegraphics[scale=0.7]{hs.png}
 \end{figure}
 \begin{align*}
     H(s) &= \frac{1}{ms^2+cs+k} ~\color{red}{\frac{1/m}{1/m}}\\
@@ -547,9 +547,9 @@ Aparte: Dado $F(s)$ y $H(s)$
 \end{itemize}
 Además, el sistema oscila sí y solo si $\omega_d>0\Longrightarrow \omega_n>0$: propiedad del sistema dinámico.\\
 Si $\xi>0, ~ \omega_n>0$:
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{Figuras/estabilidad.png}
+\includegraphics[scale=0.6]{estabilidad.png}
 \end{figure}
 
 \section{Sistema MGDL}
@@ -576,9 +576,9 @@ y asumiendo $\tenq{C}=\tenq{0}$
 
 
 \section{Modelos Dinámicos}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/modelos.png}
+\includegraphics[scale=0.7]{modelos.png}
 \end{figure}
 
 La Función de Respuesta en Frecuencia se obtiene a través de:
@@ -666,9 +666,9 @@ Donde:
 \end{array}
 \end{align*}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/SS.png}
+\includegraphics[scale=0.7]{SS.png}
 \end{figure}
 
 \subsection{Relación entre State-Space y TF}
@@ -793,9 +793,9 @@ Donde:
 
 
 \section{Función respuesta escalón (``step'')}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/step.png}
+\includegraphics[scale=0.7]{step.png}
 \end{figure}
 \underline{Definición}:
 \begin{itemize}
@@ -810,9 +810,9 @@ Suponiendo un sistema LTI-SISO:\\
     \text{EDM: }~ m\ddot{u}+c\dot{u}+ku &= f\\
     \Longrightarrow H(s) &= \frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}
 \end{align*}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.5]{Figuras/transiente.png}
+\includegraphics[scale=0.5]{transiente.png}
 \end{figure}
 
 Fórmulas para estimar la respuesta transiente para el caso de excitación escalón:
@@ -827,9 +827,9 @@ Fórmulas para estimar la respuesta transiente para el caso de excitación escal
 
 \section*{``Pole placement'', ubicación de polos}
 Dadas las especificaciones transientes: $t_r$, $M_p$, $t_s$
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{Figuras/pole_placement.png}
+\includegraphics[scale=0.7]{pole_placement.png}
 \end{figure}
 
 \begin{align*}

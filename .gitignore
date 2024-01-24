@@ -1,0 +1,6 @@
+*.aux
+*.log
+*.sync
+.DS_Store
+*.pyg*
+*.*gz
