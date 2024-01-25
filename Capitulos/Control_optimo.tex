@@ -51,8 +51,9 @@ Esta ecuación resuelve $V(x,t)$ y se obtiene de la siguiente forma:
 \end{enumerate}
 
 \begin{align*}
-    \tetxt{Ec. HJB: }\quad -V_t(x,t) = \min_{u\in\mathcal{U}}\Big\{l(x,u,t)+\big(\nabla_x V(x,t)\big)^\top f(x,u,t)\Big\}
+    \text{Ec. HJB: } \quad -V_t(x,t) = \min_{u \in \mathcal{U}} \left\{ l(x,u,t) + \left( \nabla_x  V(x,t) \right)^T f(x,u,t) \right\}
 \end{align*}
+
 donde $V_t=\frac{\partial V}{\partial t}$, $\nabla_xV=\frac{\partial V}{\partial \tend{x}}$ \\
 \par Notar que la ecuación HJB es una ec. diferencial parcial. Por lo tanto, para resolver necesitamos condiciones de borde:
 \begin{align*}
