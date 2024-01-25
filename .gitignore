@@ -4,3 +4,5 @@
 .DS_Store
 *.pyg*
 *.*gz
+*.toc
+*.pdf
