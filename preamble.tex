@@ -18,6 +18,8 @@
 \usepackage{minted}
 \usemintedstyle{tango}
 \usepackage{pifont}
+\usepackage{hyperref}
+\usepackage{url}
 
 % tensor 2:
 \newcommand{\tend}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\sim}$\hidewidth}}}
@@ -27,4 +29,14 @@
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
 
-\graphicspath{{./Figuras/}}
+\graphicspath{{Figuras/}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={IPO426 Dinamica Estructural Avanzada},
+    pdfauthor={Gaston Fermandois},
+    pdfpagemode=UseOutlines,
+    }
