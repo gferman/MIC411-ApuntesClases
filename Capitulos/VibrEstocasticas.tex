@@ -1,20 +1,23 @@
 \chapter{Vibraciones Estocásticas}
 
-
 \section{Proceso Estocástico}
-Primera, una \textcolor{red}{variable aleatoria} $X$ toma un valor de ``realización'', no hay un efecto del tiempo.
+Una \textcolor{red}{variable aleatoria} $X$ toma una ``realización'' (valor), no hay un efecto del tiempo. \\
 
-\par Ejemplos:
+Ejemplos de variables aleatorias:
 \begin{itemize}
-    \item Período de retorno (``ocurrencia'') de un terremoto
-    \item Módulo de Young (concreto)
-    \item Resistencia característica (acero, $F_y$)
+    \item Período de retorno (``ocurrencia'') de un terremoto % $ > M_w8.5$
+    \item Módulo de Young de un material (Hormigón: $E_c$)
+    \item Resistencia característica (Acero: $F_y$)
     \item Geometría
+    \item Intensidad de un terremoto en un sitio específico.
 \end{itemize}
 
-Un \textcolor{red}{proceso estocástico} es una familia de variables aleatorias cuya realización depende del tiempo.\\
-$X(t)$, $t\in T$ es un proceso estocástico (p.e.) 
-$$\Longrightarrow \{X(t_1),X(t_2),X(t_3),...\}$$
+Un \textcolor{red}{proceso estocástico} (p.e.) es una colección de variables aleatorias para cada $t \in T$. Para los casos prácticos de este curso, la indexación $t$ puede ser el tiempo, por lo que la colección es secuencial. Además, un p.e. puede ser continuo (imposible de hacer en computador) o discreto (conjunto/arreglo/vector). \\
+\begin{align*} 
+    \Longrightarrow \{X(t): t \in T\} =\{X(t_1), X(t_2), ..., X(t_m)\}
+\end{align*}
+
+Una realización de un proceso estocástico corresponde a la realización de todas las variables aleatorias de su colección. \\
 
 Realización 1: 
 \begin{figure}[H]
@@ -28,87 +31,83 @@ Realización 2:
 \includegraphics[scale=0.7]{Figuras/pe2.png}
 \end{figure}
 
-
-\par Ejemplos:
+\par Ejemplos de p.e. para aplicación en ingeniería estructural y sísmica:
 \begin{itemize}
+    \item Vibraciones aleatorias
     \item Registro de aceleración de un terremoto
     \item Presión del viento
-    \item Aceleración de piso de un edificio
+    \item Carga de tráfico un puente
 \end{itemize}
 
-\par Considere un p.e. escalar $X(t)$, $t\in T$.\\
-\par Existen 2 formas de describir un p.e.:
+\par Existen 2 formas de describir un p.e. $\{X(t)$, $t\in T\}$:
 \begin{enumerate}
-    \item Función de densidad de probabilidad
+    \item Función de distribución conjunta (ej: CDF)
     \begin{align*}
-        \mathbb{P}[X(t_1)\leq x_1 \cap X(t_2)\leq x_2 \cap ... \cap X(t_m) \leq x_m ] = F_m(x_1,x_2,...,x_m;t_1,t_2,...,t_m)
+        \mathbb{P}[X(t_1)\leq x_1 \cap X(t_2)\leq x_2 \cap ... \cap X(t_m) \leq x_m ] = F_X(x_1,x_2,...,x_m;t_1,t_2,...,t_m)
     \end{align*}
     \item Momentos estocásticos $\Longrightarrow$ momentos de 1er y 2do orden
     \begin{itemize}
-        \item Media: $$\mu _X(t)=\mathbb{E}\{X(t)\}$$
-        \item Varianza: $$\rho _X^2(t)=\mathbb{E}\{[X(t)-\mu_X(t)]^2\}$$
-        \item Función de auto-correlación: $$R_{XX}(t_1,t_2)=\mathbb{E}\{X(t_1)X(t_2)\}$$
-        \item Función de auto-covarianza: $$\Gamma_{XX}=\mathbb{E}\{[X(t_1)-\mu_X(t_1)][X(t_2)-\mu_X(t_2)]\}$$ $$\Gamma_{XX}=R_{XX}(t_1,t_2)-\mu_X(t_1)\mu_X(t_2)$$
-        \item Coeficiente de correlación: $$\rho_{XX}(t_1,t_2) = \frac{\Gamma_{XX}(t_1,t_2)}{\sigma_X(t_1)\sigma_X(t_2)}$$
+        \item Media $(m \times 1)$: $$\mu _X(t_i)=\mathbb{E}\{X(t_i)\}$$
+        \item Varianza $(m \times 1)$: $$\sigma _X^2(t_i)=\mathbb{E}\{[X(t_i)-\mu_X(t_i)]^2\}$$
+        \item Función de auto-correlación $(m \times m)$: $$R_{XX}(t_i,t_j)=\mathbb{E}\{X(t_i)X(t_j)\}$$
+        \item Función de auto-covarianza $(m \times m)$: $$\Gamma_{XX}(t_i,t_j)=\mathbb{E}\{[X(t_i)-\mu_X(t_i)][X(t_j)-\mu_X(t_j)]\}$$ $$\Gamma_{XX}(t_i,t_j)=R_{XX}(t_i,t_j)-\mu_X(t_i)\mu_X(t_j)$$
+        \item Coeficiente de correlación $(m \times m)$: $$\rho_{XX}(t_i,t_j) = \frac{\Gamma_{XX}(t_i,t_j)}{\sigma_X(t_i)\sigma_X(t_j)}$$ \\
+
+        Notar que: $$\rho_{XX}(t_i, t_i) = 1$$\\
+        
         Interpretación: ``medida de independencia lineal entre variables aleatorias''. \\
         \begin{figure}[H]
-        \centering
-        \subfigure[]{\includegraphics[scale=0.7]{Figuras/rho1.png}}
-        \subfigure[]{\includegraphics[scale=0.7]{Figuras/rho0.png}}
+            \centering
+            \subfigure[]{\includegraphics[scale=0.7]{Figuras/rho1.png}}
+            \subfigure[]{\includegraphics[scale=0.7]{Figuras/rho0.png}}
         \end{figure}
         Notas: \begin{itemize}
-            \item $|\rho_{XX}(t_1,t_2)| \leq 1$
-            \item Si $\rho_{XX}(t_1,t_2)=0$, $\forall t_1 \neq t_2$, entonces el p.e. es un proceso descorrelacionado (ruido blanco, por ejemplo).
-        \end{itemize} 
+            \item $|\rho_{XX}(t_i,t_j)| \leq 1$
+            \item Si $\rho_{XX}(t_i,t_j)=0$, $\forall t_i \neq t_j$, entonces el p.e. es un proceso descorrelacionado (por ejemplo: ruido blanco).
+        \end{itemize}
     \end{itemize}
 \end{enumerate}
 
-Otras definiciones importantes:\\
-\par Sean $X(t)$ y $Y(t)$ dos procesos estocásticos, $t\in T$:
+En caso de dos procesos estocásticos, $\{X(t)$, $t \in T_X\}$ y $\{Y(t)$, $t \in T_Y\}$ dos procesos estocásticos (ej.: sismo y respuesta estructural):
 \begin{itemize}
-    \item Función de correlación cruzada: $$R_{XY}(t_1,t_2)=\mathbb{E}\{X(t_1)Y(t_2)\} $$
+    \item Función de correlación cruzada: $$R_{XY}(t_i,t_j)=\mathbb{E}\{X(t_i)Y(t_j)\} $$
     \item Función de covarianza cruzada:
-    $$\Gamma_{XY}(t_1,t_2) =\mathbb{E}\{ [X(t_1)-\mu_x(t_1)][Y(t_2)-\mu_y(t_2)]\} $$
-    $$\Gamma_{XY}(t_1,t_2) = R_{XY}-\mu_X(t_1)\mu_Y(t_2) $$ 
-    \item Coeficiente de correlación cruzado: $$\rho_{XY}(t_1,t_2)=\frac{\Gamma_{XY}(t_1,t_2)}{\sigma_x(t_1)\sigma_y(t_2)} $$
+    $$\Gamma_{XY}(t_i,t_j) =\mathbb{E}\{ [X(t_i)-\mu_x(t_i)][Y(t_j)-\mu_y(t_j)]\} $$
+    $$\Gamma_{XY}(t_i,t_j) = R_{XY}(t_i, t_j)-\mu_X(t_i)\mu_Y(t_j) $$ 
+    \item Coeficiente de correlación cruzado: $$\rho_{XY}(t_i,t_j)=\frac{\Gamma_{XY}(t_i,t_j)}{\sigma_X(t_i)\sigma_Y(t_j)} $$
 \end{itemize}
+
+% Ej.: p.e. de terremoto (X) y p.e. de respuesta estructural (Y), estos están correlacionados. githu
 
 \section{Clasificación de P.E.}
 \begin{enumerate}
-    \item P.E. no estacionario:
-    \begin{itemize}
-        \item La distribución de probabilidad del p.e. depende del tiempo.
-    \end{itemize}
+    \item \underline{P.E. no estacionario}: La distribución de probabilidad del p.e. depende del tiempo. Las variables aleatorias de la colección no tienen la misma distribución.
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{Figuras/penoesatacionario.png}
     \end{figure}
-    \item P.E. Estrictamente estacionario:
-    \begin{itemize}
-        \item La distribución de probabilidad del p.e. no cambia con un retraso en el tiempo:
-        \begin{equation*}
-            F_X(x_1,...,x_m;t_1,...,t_m)=F_x(x_1,...,x_m;\textcolor{brown}{t_1+\tau,...,t_m+\tau})
-        \end{equation*}
-    \end{itemize}
+    
+    \item \underline{P.E. Estrictamente estacionario}: La distribución de probabilidad del p.e. no cambia con un retraso en el tiempo:
+    \begin{equation*}
+        F_X(x_1,...,x_m; t_1,...,t_m) = F_X(x_1,...,x_m; \textcolor{brown}{t_1 + \tau,...,t_m + \tau})
+    \end{equation*}
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{Figuras/peestricto.png}
     \end{figure}
-    \item P.E. Débilmente estacionario:
-    \begin{itemize}
-        \item Estadísticos de 2do orden son finitos y no varían en el tiempo
-        \begin{align*}
-            \mu_x(t)&=\mu_x<\infty, \quad \sigma_x^2(t)=\sigma_x^2<\infty\\
-            \Longrightarrow R_{XX}(t_1,t_2)=R_{XX}(t_2-t_1)
-        \end{align*}
-    \end{itemize}
+    \item \underline{P.E. Débilmente estacionario}: Estadísticos de 2do orden son finitos y no varían en el tiempo
+    \begin{align*}
+        &\phantom{\Longrightarrow}\mu_X(t_i)=\mu_X(t_j) = cste, \quad \sigma_X^2(t_i)=\sigma_X^2(t_j)=cste\\
+        &\Longrightarrow R_{XX}(t_1,t_2) = R_{XX}(t_2-t_1)
+    \end{align*}
 \end{enumerate}
 
 \section{P.E. Gaussiano}
-Un p.e. $X(t)$, $t \in T$, se llama un p.e. Gaussiano si, para cada conjunto $\{t_1,t_2,...,t_m\}\in T$, las ``m'' variables aleatorias $X(t_1)$, $X(t_2)$, $...,$ $X(t_m)$ son distribuidas normales multivariadas.
+Un p.e. $\{X(t)$, $t \in T\}$, se llama un p.e. Gaussiano si, para cada conjunto $\{t_1,t_2,...,t_m\}\in T$, las ``m'' variables aleatorias $X(t_1)$, $X(t_2)$, $...,$ $X(t_m)$ son distribuidas normales multivariadas.
 \begin{align*}
-    X(t)\sim~ N\big(\mu_X(t),\Gamma_{XX}(t_i,t_j)\big)
+    \{X(t), t \in T\}\sim~ N\big(\mu_X,\Gamma_{XX}\big)
 \end{align*}
+donde $\mu_X$ es el vector de las medias de las variables aleatorias del p.e. y $\Gamma_{XX}$ es la matriz de auto-covarianza. \\
 
 \underline{Notas}:
 \begin{itemize}
@@ -116,19 +115,15 @@ Un p.e. $X(t)$, $t \in T$, se llama un p.e. Gaussiano si, para cada conjunto $\{
     \item Un p.e. Gaussiano preserva las transformaciones lineales, y esto es extremadamente útil en los problemas de sistemas lineales que se verán más adelante.
 \end{itemize}
 
-
-
-
-
-\section{Densidad de Poder Espectral (power spectral density, PSD)}
-Dado X un w.s.s., la función de autocorrelación se define como:
+\section{Función de Autocorrelación}
+Dado $\{X(t), t \in T\}$ un w.s.s., la \emph{función de autocorrelación} $R_{XX}(\tau) = R_X(\tau)$ se define como:
 \begin{align*}
-    R_X(\tau)=\mathbb{E}\{X(t)X(t+\tau)\}
+    R_{X}(\tau)=\mathbb{E}\{X(t)X(t+\tau)\}
 \end{align*}
 
-Características de $R_X$:
+\underline{Características de $R_X(\tau)$}:
 \begin{enumerate}
-    \item $R_X(\tau)$ es una función par $\longrightarrow$ simetría
+    \item $R_X(\tau)$ es una función par
     \begin{align*}
         R_X(\tau)=R_X(-\tau)
     \end{align*}
@@ -137,7 +132,7 @@ Características de $R_X$:
         |R_X(\tau)|&\leq R_X(0)\\
         \Longrightarrow R_X(0)&=\mathbb{E}\{X^2(t)\}=\sigma^2_X(t)+\mu_X^2(t)
     \end{align*}
-    En $\tau=0$, $R_X(0)$ nos entrega el máximo valor de la media cuadrada del p.e. X.
+    En $\tau=0$, $R_X(0)$ entrega el máximo valor de la media cuadrada del p.e. $\{X(t), t \in T\}$.
     \item $R_X(\tau)$ es una función definida positiva.\\
     $\Longrightarrow$ Para cualquier función $g(t)$, si:
     \begin{align*}
@@ -147,19 +142,20 @@ Características de $R_X$:
     \item $R_X(\tau)$ es continua en $\tau$.
 \end{enumerate}
 
-\underline{Definición}: Densidad de poder espectral.\\
-\par Sea $X=(X(t):t\in T)$ un p.e. w.s.s., con función de autocorrelación $R_x(\tau)$. La función de densidad de poder espectral se define como (Teorema de Wiener-Khintchine):
+\section{Densidad de Poder Espectral (power spectral density, PSD)}
+\underline{Definición}: Densidad de poder espectral (PSD) (Teorema de Wiener-Khintchine).\\
+\par Sea $X=\{X(t): t\in T\}$ un p.e. w.s.s. (weakly strictly stationary), con función de autocorrelación $R_x(\tau)$. La función de densidad de poder espectral se define como la \emph{transformada de fourier} de la \emph{función de autocorrelación}:
 \begin{align*}
     S_X(\omega) &=\mathcal{F}\{R_X(\tau)\}\\
     R_X(\tau) &=\mathcal{F}^{-1}\{S_X(\omega)\}
 \end{align*}
-Nota: En inglés, Power Spectral Density (PSD).\\
+
 \par \underline{Propiedades PSD}:
 \begin{enumerate}
     \item Función real
     \item Función simétrica
     \item Definida positiva
-    \item Área bajo la curva de $S_X(\omega)$ es igual a l valor medio cuadrado
+    \item Área bajo la curva de $S_X(\omega)$ es igual a $\mathbb{E}\{X^2(t)\} = \sigma^2_X(t) + \mu^2_X(t) = R_X(\tau=0)$
 \end{enumerate}
 \begin{figure}[H]
 \centering
@@ -167,21 +163,21 @@ Nota: En inglés, Power Spectral Density (PSD).\\
 \end{figure}
 
 \section{Ruido blanco}
-Sea $X=(X(t), t\in T)$ un p.e. w.s.s., con media 0, $\mu_x=0$, X es un ruido blanco si su PSD es constante:
+Sea $X=\{X(t): t\in T\}$ un p.e. w.s.s. Gaussiano, con $\mu_X=0$, $X$ es un ruido blanco si su PSD es constante:
 \begin{align*}
     S_X(\omega) &= S_0, \quad \forall \omega \in (-\infty,+\infty)\\
-    R_X(\tau) &= 2\pi S_0\delta (\tau)
+    \Longrightarrow R_X(\tau) &= 2\pi S_0\delta (\tau)
 \end{align*}
 
-\underline{Nota}: Un ruido blanco es un p.e. Gaussiano.
+donde $\delta(\tau)$ es el delta de Dirac.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/ruidoblanco.png}
 \end{figure}
 
 
-\section{Ruido blanco de banda limitada (band-limited white noise, BLWN)}
-Sea X un p.e., w.s.s., es un BLWN si:
+\subsection{Ruido blanco de banda limitada (band-limited white noise, BLWN)}
+Sea $X$ un p.e., w.s.s., es un \emph{ruido blanco de banda limitada} (BLWN) si:
 \begin{align*}
     S_X(\omega) & = \left\{
 \begin{array}{ll}
@@ -201,7 +197,7 @@ Sea X un p.e., w.s.s., es un BLWN si:
 Nota: a veces este p.e. se conoce como un filtro de paso bajo (``low-pass filter'').
 
 \section{Ergocidad}
-Sea $X=(X(t),t\in T)$ un p.e. estacionario, se dice que $X$ es ergódico si:
+Sea $X=\{X(t): t\in T\}$ un p.e. estacionario, se dice que $X$ es ergódico si:
 \begin{itemize}
     \item Ergódico en la media: 
     \begin{align*}
@@ -229,14 +225,15 @@ Sea $X=(X(t),t\in T)$ un p.e. estacionario, se dice que $X$ es ergódico si:
     \end{itemize}
 \end{itemize}
 
-Nota: Ruido blanco es un p.e. Gaussiano, y es ergódico.
+\underline{Nota}: Un Ruido blanco es un p.e. Gaussiano, Ergódico.
 
 \section{Respuesta estocástica de sistemas lineales}
-Sea un sistema LTI, determinístico:
+Sea un sistema LTI:
 \begin{align*}
-    \tend{\dot{x}} =\tenq{A}\tend{x}+\tenq{B}u, \quad x(0)=x_0=0
+    \tend{\dot{x}} =\tenq{A}\tend{x} + \tenq{B}u(t), \quad \tend{x}(0)=\tend{0}
 \end{align*}
-y asuma que $u(t)$ es un p.e. w.s.s., $\mu_U=0$.
+y asuma que $u(t)$ es un p.e. w.s.s., $\mu_U(t) = 0$. \\
+
 \par \underline{Objetivo}: Determinar la respuesta $x(t)$, p.e. w.s.s., $\mu_X=0$\\
 \par Calculemos la autocovarianza de $\tend{x}(t)$
 \begin{align*}
@@ -328,7 +325,7 @@ donde $y(t)$ es un p.e., w.s.s., $\mu_y=0$.\\
 
 
 \section{Modelos de Carga Estructural Estocástica}
-Una gran cantidad de excitación sobre sistemas estructurales son estocásticos por naturaleza.\\
+Algunas excitaciones que pueden ser modeladas como sistemas estocásticos son:\\
 \par Ejemplos:
 \begin{itemize}
     \item Terremotos
@@ -338,33 +335,30 @@ Una gran cantidad de excitación sobre sistemas estructurales son estocásticos 
     \item Oleaje
 \end{itemize}
 
-Para cada uno de estos tipos de excitación, se puede formular un modelo que captura las principales características de la carga estocástica en cuestión:
+Para cada una de estas excitaciones, se puede formular un modelo que captura las principales características de forma estocástica. Algunos de modelos conocidos son:
 \begin{itemize}
     \item Carga sísmica: 
     \begin{itemize}
         \item Kanai-Tajimi
         \item Clough-Penzien
-        \item Etc.
     \end{itemize}
     \item Carga viento:
     \begin{itemize}
         \item Daurenport
         \item Kaimal \& Vonkerman
-        \item Etc.
     \end{itemize}
     \item Oleaje:
     \begin{itemize}
         \item Pierson-Moskowitz
-        \item Etc.
     \end{itemize}
 \end{itemize}
 
-\section{Modelo Kanai-Tajimi}
-El modelo K-T genera un p.e. Gaussiano estacionario, que representa la aceleración del suelo producto de un evento sísmico: \\
+\section{Modelo Kanai-Tajimi (K-T)}
+El modelo K-T utiliza un p.e. Gaussiano estacionario para representar la aceleración del suelo producto de un evento sísmico: \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{Figuras/KT.png}
+\includegraphics[scale=0.85]{Figuras/KT.png}
 \end{figure}
 EDM: $a$- estado del suelo
 \begin{align*}

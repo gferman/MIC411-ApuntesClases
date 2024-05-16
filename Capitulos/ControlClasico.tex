@@ -1,5 +1,4 @@
-\chapter{Control Estructural}
-
+\chapter{Teoría de Control Clásico}
 
 \section{Open-loop vs closed-loop control}
 \subsection{Open-loop (feedforward)}
@@ -68,16 +67,36 @@ $\Longrightarrow$ Generar un set de requisitos de respuesta de planta $\Longrigh
 \end{itemize}
 
 \section{Diagrama de Bloque}
+Cuando se añade un dispositivo de control al sistema dinámico estructural, se genera un nuevo sistema dinámico con propiedades distintas. Si se desea encontrar la función de transferencia ($H(s)$) del nuevo sistema $Y(s) = H(s)R(s)$, donde $R(s)$ es la entrada (excitación) e $Y(s)$ es la salida (respuesta), se puede obtener aplicando la transformada de laplace a la EDM del nuevo sistema. Sin embargo es mucho más rápido encontrar $H(s)$ utilizando el diagrama de bloques si es que se saben a priori las funciones de transferencia tanto del controlador (actuador) como de la planta (edificio).
+
+Consideremos el siguiente ejemplo de diagrama de bloque:
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/Diagrama_bloque.png}
 \end{figure}
-\begin{itemize}
-    \item[(1)] $Y(s)=L(s)E(s)=G(s)C(s)E(s)$
-    \item[(2)] $E(s)=R(s)-Y(s)$
-\end{itemize}
 
-(2) en (1): 
+Desde el diagrama de bloques, se observa que:
+\begin{align*}
+    Y(s) = G(s)U(s)
+\end{align*}
+
+\noindent pero, la señal de entrada $U(s)$ es la señal de salida del controlador:
+\begin{align*}
+    U(s) = C(s)E(s)
+\end{align*}
+
+\noindent reemplazando, se obtiene que :
+\begin{align*}
+    Y(s) = G(s)C(s)E(s)
+\end{align*}
+
+Notar que la función de transferencia para este subsistema es $G(s)C(s)$. Siguiendo con el mísmo método reemplazando la señal de entrada por la multiplicación de su TF con su entrada (considerandola como salida):
+\begin{align*}
+    Y(s)&=L(s)E(s)=G(s)C(s)E(s)\\
+    E(s)&=R(s)-Y(s)
+\end{align*}
+
+Reemplzando (2) en (1): 
 \begin{align*}
     \Longrightarrow Y(s)&=G(s)C(s)[R(s)-Y(s)]\\
     \Longrightarrow[1+G(s)C(s)]Y(s)&=G(s)C(s)R(s)\\
@@ -85,7 +104,9 @@ $\Longrightarrow$ Generar un set de requisitos de respuesta de planta $\Longrigh
     \Longrightarrow Y(s)&= G_{CL}(s)R(s)
 \end{align*}
 
-\underline{Nota}: Vamos a ajustar $C(s)$ tal que $G_{CL}(s)$ tenga las propiedades deseadas en función de $t_r$, $M_p$ y $t_s$. O bien, elegir posición de los polos de $G_{CL}(s)$.
+$\therefore G_{CL} = \bigg[\frac{G(s)C(s)}{1+G(s)C(s)}\bigg]$ es la función de transferencia del nuevo sistema que incorpora al controlador.
+
+% \underline{Nota}: Vamos a ajustar $C(s)$ tal que $G_{CL}(s)$ tenga las propiedades deseadas en función de $t_r$, $M_p$ y $t_s$. O bien, elegir posición de los polos de $G_{CL}(s)$.
 
 
 
@@ -158,17 +179,22 @@ $$C(s)=K_p+\frac{K_I}{s}+K_Ds$$
     &=G_{yr}R(s)
 \end{align*}
 
-\subsection{Control Proporcional (P)}
+\subsection{Control P}
+Si se considera únicamente el control P (proporcional), se puede obtener la función de transferencia del sistema cerrado.
 \begin{align*}
     & C(s)=K_p\\
     \Longrightarrow & G(s)=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}=\frac{c}{s^2+as+b}\\
-    \Longrightarrow & G_{CL}(s)=\frac{K_p\frac{c}{s^2+bs+c}}{1+K_p\frac{c}{s^2+bs+c}}
+    \Longrightarrow & G_{CL}(s)=\frac{K_p\frac{c}{s^2+bs+c}}{1+K_p\frac{c}{s^2+bs+c}} \\
+    \Longrightarrow & G_{CL}(s)=\frac{K_p c}{s^2+as+(b+K_p\cdot c)} \longrightarrow \text{Función de transferencia Closed-loop}
 \end{align*}
+
+Al tener la misma forma de un sistema 1GDL, se pueden definir propiedades equivalentes:
 \begin{align*}
-    \Longrightarrow & G_{CL}(s)=\frac{K_p c}{s^2+as+(b+K_p\cdot c)}\\
     \Longrightarrow & \omega_{n,CL}= \sqrt{b+K_p\cdot c}\\
     \Longrightarrow & \xi_{CL}= \frac{a}{2\omega_{n,CL}}=\frac{a}{2\sqrt{b+K_p\cdot c}}
 \end{align*}
+
+Notar que:
 \begin{itemize}
     \item Aumentar $K_p$ hace que $\omega_{n,CL}$ aumente (sistema rígido)
     \item Aumentar $K_p$ hace que $\xi$ disminuya
@@ -190,9 +216,14 @@ Valores pequeños de $K_p\Longrightarrow$ error en estado estacionario
 \end{figure}
 
 \subsection{Control PD}
+Análogamente al control P, se puede obtener la función de transferencia de un sistema estructural con control PD
 \begin{align*}
     G_{CL}(s)&=\frac{G(s)C(s)}{1+G(s)C(s)}=\frac{\left(\frac{c}{s^2+as+b}\right)C(s)}{1+\left(\frac{c}{s^2+as+b}\right)C(s)}\\
-    & = \frac{c\cdot C(s)}{a^2+as+\left( b+c \cdot C(s) \right)}\\
+    & = \frac{c\cdot C(s)}{a^2+as+\left( b+c \cdot C(s) \right)}
+\end{align*}
+
+Si el controlador es PD, entonces se obtiene la expresión para el sistema cerrado:
+\begin{align*}
     C(s) &= K_p+K_Ds=K_p(1+T_Ds)\\
     \Longrightarrow G_{CL} &= \frac{cK_p(1+T_Ds)}{s^2+(a+cbK_pT_D)s+b(1+K_p)}
 \end{align*}
@@ -245,7 +276,7 @@ $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
 
 
 
-\section{Ejemplo: Simulación mediante Simulink}
+\section{Ejemplo: Simulación control PID mediante Simulink}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/simulink_modelo.png}
@@ -362,7 +393,7 @@ Gyu=tf(sysyu);
 %% Sistema Cerrado
 
 Gcl=Gyu*Cpid/(1+Gyu*Cpid);
-Gcl=minreal(Gcl)
+Gcl=minreal(Gcl) % Cancelación polos y ceros
 
 figure;
 rlocus(Gcl)
@@ -432,13 +463,9 @@ Representación espacio estado, sistema LTI.\\
 \end{itemize}
 
 \underline{Paréntesis}:
+Aplicando la Transformada de Laplace a las ecuaciones de estado y respuesta de la representación espacio-estado:
 \begin{align*}
-    \tend{X}(s)&=\mathcal{L}\{\tend{x}(t)\}\\
-    \tend{U}(s)&=\mathcal{L}\{\tend{u}(t)\}\\
-    \tend{Y}(s)&=\mathcal{L}\{\tend{y}(t)\}
-\end{align*}
-\begin{align*}
-    \tend{\dot{x}}\tenq{A}\tend{x}+\tenq{B}\tend{u}\xrightarrow[]{\mathcal{L}}s\tend{X}(s)=\tenq{A}\tend{X}(s)+\tenq{B}\tend{U}(s)\\
+    \tend{\dot{x}}=\tenq{A}\tend{x}+\tenq{B}\tend{u}\xrightarrow[]{\mathcal{L}}s\tend{X}(s)=\tenq{A}\tend{X}(s)+\tenq{B}\tend{U}(s)\\
     \Longrightarrow \tend{X}(s)=(s\tenq{I}-\tenq{A})^{-1}\tenq{B}\tend{U}(s)\\
     G_{xu}(s)=(s\tenq{I}-\tenq{A})^{-1}\tenq{B}
 \end{align*}

@@ -1,0 +1,127 @@
+\chapter{Sistemas de Control Estructural}
+
+% NOTA: Utilizar apuntes de Manuel Ruiz Sandoval como guía
+% Papers: 
+% - Symans et al. 2008 - Energy Dissipation Systems for Seismic Applications: Current Practice and Recent Developments
+% - Housner et al, 1997 - Structural Control. Past, Present, and Future
+% - Saaed et al, 2015 - A State-of-the-art review of structural control systems
+% - 
+\section{Introducción}
+% Some from Saaed et al 2015
+Los sistemas de control estructural son dispositivos mecánicos que se incorporan a una estructura para poder mejorar su desempeño y serviciabilidad ante cargas dinámicas mediante reducción de la respuesta y pérdidas por daños en elementos estructurales y no estructurales. \\
+
+Estos dispositivos se han clasificado en cuatro grupos en función de cómo operan, los grupos son: (i) pasivos, (ii) activos, (iii) semi-activos e (iv) híbridos.
+
+\section{Control pasivo}
+Los sistemas de control pasivo no requieren de una fuente de energía externa y funcionan absorbiendo, disipando o aislando energía. Su operación puede depender tanto de el desplazamien, velocidad y aceleración relativa entre los nodos de conexión del dispositivo. Algunos de estos dispositivos requieren ser reemplazados luego de ser utilizados. \\
+
+La ecuación general para un sistema estructural con dispositivos de control pasivo es:
+\begin{align*}
+    m\ddot{x} + c\dot{x} + kx + fp(x,\dot{x},\ddot{x}) = \cancelto{0}{f_a} + f_e
+\end{align*}
+
+donde $f_a$: es la fuerza de un actuador (en control pasivo no hay actuadores) y $f_e$: fuerza externa. $f_p$ varía en función de si la operación del dispositivo depende del desplazamiento, velocidad o aceleración. \\
+
+Ejemplos:
+\begin{itemize}
+    \item Dispositivo disipador histerético: $f_p$ depende de sus ciclos de histéresis.
+    \item Amortiguador viscoso: $f_p(\dot{x}) = c_d |\dot{x}|^\alpha sgn(\dot{x})$
+    \item TMD: $f_p = m_{T} \ddot{x}_{rT}$
+\end{itemize}
+
+\subsection{Dispositivos de Disipación de Energía}
+\subsubsection{Dispositivos Histeréticos}
+
+\underline{Dispositivos Metálicos}:
+Para modelar la fuerza de los BRB .... 
+
+\underline{Dispositivos de Fricción}
+Para modelar la fuerza de los dispositivos de fricción (modelo de Coulomb de fricción):
+\begin{align*}
+    P(t) = \mu N(t) \text{sgn}(\dot{u}(t))
+\end{align*}
+
+\noindent donde $P(t)$ es la fuerza que aplica el dispositivo a la estructura, $\mu$ es el coeficiente de fricción (roce) dinámico, $N(t)$ es la fuerza normal en la superficie de deslizamiento y $\dot{u}$ es la velocidad relativa del deslizamDiento de las superficies.
+
+\subsubsection{Dispositivos Viscoelásticos}
+Comunmente son pistones que consisten en cilindros huecos rellenos de un material viscoelástico (fluido o sólido). En el caso de meteriales fluidos, la fuerza se genera cuando el fluido orificios y en el caso de materiales sólidos ocurre cuando estos se deforman. 
+
+Para modelar las fuerzas:
+\begin{align*}
+    P(t) &= C|\dot{u}(t)|^\alpha \text{sign}[\dot{u}(t)] \longrightarrow \text{VE Fluidos} \\
+    P(t) &= Ku(t) + C\dot{u}(t) \longrightarrow \text{VE Sólidos}
+\end{align*}
+La disipación de energía ocurre por la fricción generando calor.
+
+
+\subsubsection{Otros}
+
+\begin{itemize}
+    \item Dispositivos de re-centrado
+    \item Amortiguadores de transformación de fase
+    \item Amortiguadores/disipadores de vibración dinámica:
+    \begin{itemize}
+        \item Amortiguadores de Masa Sintonizada (TMD)
+        \item Amortiguadores de Líquido Sintonizado (TLD)
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Dispositivos de Aislación Sísmica}
+% Saaed
+
+\begin{itemize}
+    \item Eficiente para vibraciones desde el suelo como sismos y tráfico, no para viento.
+    \item Alta flexibilidad lateral
+    \item Alta rigidez vertical
+    \item Inclusión de nuevo modo de vibrar con \emph{Desplazamientos relativos entre piso} pequeños.
+    \item Al incluir el nuevo modo de vibrar, se alejan los otros modos lejos del contenido de periodos de la excitación.
+    \item Funcionan para edificios bajos con periodos fundamentales cortos y no para edificios altos que tienen periodos fundamentales largos.
+    \item Se puede incluir en distintas ubicaciones de la estructura.
+\end{itemize}
+% Los dispositivos de aislación sísmica basan su funcionamiento en la flexibilidad horizontal de un nivel pero una alta rigidez vertical. Debido a la flexibilidad horizontal, se introduce un nuevo modo de vibrar que contiene \emph{desplazamientos relativos entre pisos} pequeños. 
+
+\section{Control activo}
+Los dispositivos de control activo requieren de energía para contrarrestar la respuesta estructural. Funcionan adaptandose en función de la excitación y respuesta. Requieren del uso de sensores y actuadores. La ecuación general es la siguiente:
+
+\begin{align*}
+    m\ddot{x} + c\dot{x} + kx + fp(x,\dot{x},\ddot{x}) = f_a + f_e
+\end{align*}
+
+donde $f_a$ depende del actuador que se instale.
+
+\underline{Ventajas del control activo}:
+\begin{itemize}
+    \item Efectividad, no hay límites teoréticos para la eficiencia del controlador
+    \item Adaptabilidad a la excitación
+    \item Selectvidad, el controlador se puede diseñar para varios objetivos (seguridad y comfort)
+    \item Aplicabilidad para un gran rango de frecuencias y excitaciones
+\end{itemize}
+
+\underline{Dispositivos}:
+\begin{itemize}
+    \item Amortiguador de masa activo (Active mass damper, AMD)
+    \item Sistemas de tendones activos (Active tendon systems)
+    \item (Active brace systems)
+    \item (Pulse generation systems)
+\end{itemize}
+
+\section{Control semi-activo}
+\begin{itemize}
+    \item TMD semi-activo (Semi-active TMDs)
+    \item TLD semi-activo (Semi-active TLDs)
+    \item Amortiguador de fricción semi-activo (Semi-active friction damper)
+    \item (Semi-active vibration absorbers)
+    \item Controlador de rigidez semi-activo
+    \item Amortiguadores Electroreologicos (Electrorheological damper, ER)
+    \item Amortiguador Magnetoreologico (MR)
+    \item Amortiguador viscoelástico semi-activo
+\end{itemize}
+
+\section{Control híbrido}
+
+\begin{itemize}
+    \item Amortiguador de masa hibrido (Hybrid mass damper, HMD)
+    \item Aislación basal híbrida (Hybrid base isolation)
+    \item (Hybrid damper actuator bracing control)
+\end{itemize}

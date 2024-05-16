@@ -20,6 +20,10 @@
 \usepackage{pifont}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{float}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+\tcbuselibrary{minted}
 
 % tensor 2:
 \newcommand{\tend}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\sim}$\hidewidth}}}
@@ -40,3 +44,24 @@
     pdfauthor={Gaston Fermandois},
     pdfpagemode=UseOutlines,
     }
+
+\setminted{
+    autogobble=true,
+    breaklines=true,
+    linenos=false,
+    fontsize=\footnotesize
+}
+
+% Definir el nuevo entorno verbatimg
+\newtcblisting{verbatimg}{
+    colback=lightgray,
+    listing only,
+    left=0pt,
+    listing options={
+        style=Matlab,
+        showstringspaces=false % Espacios normales
+    },
+    minted options={
+        fontsize=\normalsize
+    }
+}

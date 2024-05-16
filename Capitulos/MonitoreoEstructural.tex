@@ -1,35 +1,37 @@
-\chapter{Identificación de Sistemas}
-
-
+\chapter{Técnicas de Monitoreo Estructural}
 \section{Introducción}
-Motivación:
+\underline{Motivación}:
 \begin{enumerate}
-    \item Obras civiles ``envejecen''
-    \begin{enumerate}
-        \item daño/deterioro estructura
-        \item cambio en las propiedades de materiales
-    \end{enumerate}
-    \item Incertidumbre
-    \begin{enumerate}
+    \item Obras civiles ``envejecen'':
+    \begin{itemize}
+        \item Daño/deterioro estructura
+        \item Cambio en las propiedades de materiales
+    \end{itemize}
+    \item Incertidumbre:
+    \begin{itemize}
         \item Propiedades nominales utilizadas en diseño
         \item ¿Modelos nominales representan fielmente el comportamiento estructura real?
-    \end{enumerate}
+    \end{itemize}
 \end{enumerate}
 
-\underline{Propósito}: \begin{itemize}
-    \item Determinar un \textcolor{red}{modelo matemático} de un sistema físico
-    \item Predicciones, en base a un modelo calibrado\\
-    $\Longrightarrow$ desempeño estructural, control estructural
+\underline{Objetivos}:
+El monitoreo estructural tiene múltiples objetivos, entre ellos se incluyen:
+\begin{itemize}
+    \item Determinar un \textcolor{red}{modelo matemático} de un sistema.
+    \item Predecir respuesta estructural
+    \item Predecir input que genera una cierta respuesta.
+    \item Predicir desempeño estructural.
+    \item Predecir 
 \end{itemize}
 
 Proyectos de monitoreo estructural (SHM, structural health monitoring)\\
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.6]{Figuras/sysID.png}
+\includegraphics[scale=0.5]{Figuras/sysID.png}
 \end{figure}
 
-\section{Tipos de Id. Sis.}
+\section{Tipos de Identificación*}
 \begin{enumerate}
     \item Análisis dinámico (problema directo)
     \begin{figure}[H]
@@ -48,7 +50,7 @@ Proyectos de monitoreo estructural (SHM, structural health monitoring)\\
     \end{figure}
 \end{enumerate}
 
-Categorías:
+Estas predicciones se pueden realizar en con distintos métodos que se agrupan en categorías:
 \begin{enumerate}
     \item Basados en dominio frecuencia
     \begin{itemize}
@@ -113,7 +115,7 @@ Si el sistema es SISO, y es determinístico:
 \underline{Nota}: $|G_{YU}(\omega)|^2$ es una función real, por lo tanto nos entregan solo información de la magnitud del sistema, y no de la fase. $\Longrightarrow$ (\ref{eq:GYU}) descartado.
 
 
-\subsection{Método $H_1$}
+\subsection{Método \texorpdfstring{$H_1$}{H1}}
 
 \begin{align*}
     Y(\omega) &= G_{YU}(\omega)U(\omega)\\
@@ -121,7 +123,7 @@ Si el sistema es SISO, y es determinístico:
     \mathbb{E}\{Y(\omega)U^\ast(\omega)\} &= G_{YU}(\omega)\mathbb{E}\{U(\omega)U^\ast(\omega)\}
 \end{align*}
 
-donde $\mathbb{E}\{Y(\omega)U^\ast(\omega)\}$: PSD cruzado en respuesta y entrada,$mathbb{E}\{U(\omega)U^\ast(\omega)\}$: auto PSD entrada.
+donde $\mathbb{E}\{Y(\omega)U^\ast(\omega)\}$: PSD cruzado en respuesta y entrada,$\mathbb{E}\{U(\omega)U^\ast(\omega)\}$: auto PSD entrada.
 \begin{align*}
     S_{YU}(\omega) &= G_{YU}(\omega)S_{UU}(\omega)\\
     \hat{G}_{YU}(\omega) &= \frac{S_{YU}(\omega)}{S_{UU}(\omega)} \quad \text{Estimador $H_1$} 
@@ -132,7 +134,7 @@ donde $\mathbb{E}\{Y(\omega)U^\ast(\omega)\}$: PSD cruzado en respuesta y entrad
     \item fase: $\angle G_{YU}(\omega)$
 \end{itemize}
 
-\subsection{Método $H_2$}
+\subsection{Método \texorpdfstring{$H_2$}{H2}}
 
 \begin{align*}
     Y(\omega) &= G_{YU}(\omega)U(\omega)\\
@@ -237,4 +239,10 @@ En estricto rigor, $H_1$ y $H_2$ nos entregan una respuesta discretizada para va
     \item Matlab: System identification Toolbox
     \item Métodos de optimización para calibrar modelos en base a FRF experimental
 \end{itemize}
+
+\section{FDD}
+
+\section{Métodos de subespacio}
+
+
 

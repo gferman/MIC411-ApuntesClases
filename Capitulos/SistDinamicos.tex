@@ -19,13 +19,13 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \subsection{Estáticos vs Dinámicos}
 \begin{itemize}
     \item Sistema Estático: respuesta solo depende de la excitación actual (independiente del tiempo).
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{estatico.png}
     \end{figure}
     
     \item Sistema Dinámico: respuesta actual depende de la excitación actual y de la ``historia'' de la respuesta.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{dinamico.png}
     \end{figure}
@@ -36,7 +36,7 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \subsection{SISO vs Multivariable}
 \begin{itemize}
     \item SISO: Single Input, Single Output.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{SISO.png}
     \end{figure}
@@ -47,7 +47,7 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \end{itemize}
     
     \item SIMO: Single Input, Multi Output.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{SIMO.png}
     \end{figure}
@@ -67,7 +67,7 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \end{itemize}
     
     \item MIMO: Multi Input, Multi Output.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{MIMO.png}
     \end{figure}
@@ -81,7 +81,7 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \subsection{Lineal vs No lineal}
 \begin{itemize}
     \item Un \textcolor{red}{sistema lineal} es tal que cumple con el principio de \textcolor{red}{superposición}.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{sistemayu.png}
     \end{figure}
@@ -95,22 +95,25 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.7]{ej_nolineal.png}
-    \end{figure}
+\end{figure}
+
 Se tiene que: 
 \begin{align*}
-f_s &= ku^2
+f_s &= ku^2 \\3
 p_1 &\rightarrow u_1\\  
 p_2 &\rightarrow u_2\\
 \end{align*}
+
 La pregunta es, ¿Se cumple la condición de aditividad?
 \begin{align*}
 p_1+p_2 &\xrightarrow{?} u_1+u_2
 \end{align*}
+
 La respuesta es \textcolor{red}{no}, ya que:
 \begin{align*}
-    f_s = k(u_1+u_2)^2 \\
+    f_s &= k(u_1+u_2)^2 \\
     p_1 + p_2 & = ku_1^2+ku_2^2+2ku_1u_2\\
-    p_1 + p_2 \neq p_1 + p_2 + \textcolor{red}{2ku_1u_2}
+    p_1 + p_2 &\neq p_1 + p_2 + \textcolor{red}{2ku_1u_2}
 \end{align*}
 
 \subsection{Invariante tiempo vs variante tiempo}
@@ -139,7 +142,7 @@ Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidum
 \subsection{Continuo vs Discreto}
 \begin{itemize}
     \item Sistema Continuo: entrada y salida son función del tiempo.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{continuo.png}
     \end{figure}
@@ -158,7 +161,7 @@ Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidum
 \end{itemize}
 
 \section{``Time sampling''} % Reemplazar por MUESTREO?
-Las señales de los sistemas físicos son continuas, pero que al momento de ser "observadas" por dispositivos digitales, estas señales se discretizan en función del tiempo.
+Las señales de los sistemas físicos son continuas, pero que al momento de ser \emph{observadas} por dispositivos digitales, estas señales se discretizan en función del tiempo.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.7]{time_sampling.png}
@@ -169,20 +172,21 @@ Las señales de los sistemas físicos son continuas, pero que al momento de ser 
 \section{Respuesta de sistemas LTI en tiempo continuo}
 LTI: Linear, Time-Invariant. \\
 
-\begin{figure}[h] % Borrar ?, ya está arriba
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{sistemayu.png}
 \end{figure}
 
-Los sistemas LTI, son aquellos lineales cuyas propiedades y parámetros no varían en el tiempo, es decir, que los coeficientes de las ecuaciones diferenciales de los modelos matemáticos de los sistemas dinámicos son constantes en el tiempo $a_i=cte$.
+Los sistemas LTI, son aquellos cuyas propiedades y parámetros no varían en el tiempo, es decir, que los coeficientes de las ecuaciones diferenciales de los modelos matemáticos de los sistemas dinámicos son constantes en el tiempo $a_i=cte$.
 \begin{align*}
     \frac{d^ny}{dt^n}+a_{n-1}\frac{d^{n-1}y}{dt^{n-1}}+...+a_2\frac{d^2y}{dt^2}+a_1\frac{dy}{dt}+a_0y=u(t)
 \end{align*}
 \begin{itemize}
     \item $u(t)$: excitación
     \item $y(t)$: respuesta
+    \item $a_i$: coeficientes
 \end{itemize}
-Dado un $u(t)$, la respuesta se obtiene al resolver la ecuación diferencial:
+Dada una excitación $u(t)$, la respuesta se obtiene al resolver la ecuación diferencial:
 \begin{align*}
     y(t)=y_H(t)+y_p(t)
 \end{align*}
@@ -190,6 +194,7 @@ Dado un $u(t)$, la respuesta se obtiene al resolver la ecuación diferencial:
     \item $y_H(t)$ es la \textcolor{red}{respuesta homogénea} (para $u(t)=0$, con condiciones iniciales)
     \item $y_p(t)$ es la \textcolor{red}{respuesta particular} (para $u(t)\neq0$)
 \end{itemize}
+\pagebreak
 
 \section{Función impulso (Delta Dirac)}
 La función \textit{Delta de Dirac} se denota como:
@@ -212,124 +217,114 @@ La función \textit{Delta de Dirac} se denota como:
 %\right. 
 %\end{align*}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{delta.png}
 \end{figure}
-Propiedades:
+
+\underline{Propiedades}:
 \begin{align*}
     \int_{-\infty}^{+\infty}\delta(t)dt=1 \quad &\text{Impulso unitario}\\
     \int_{-\infty}^{+\infty}f(t)\delta(t-T)dt=f(T) \quad &\text{Sampleo}
 \end{align*}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{dirac.png}
 \end{figure}
 
-
 \begin{align*}
-    \Rightarrow f(t)\ast\delta(t-T)=f(T)
+    \Rightarrow f(T) = f(t)\ast\delta(t-T)
 \end{align*}
 
-\underline{Propiedad}: Considere que $f(t)$ es una función continua
+\underline{Propiedad}: Sea $f(t)$ una función continua, entonces, se puede expresar como una integral de la convolución con la función $\delta(t)$.
 \begin{align*}
-    \int_{-\infty}^{+\infty}f(\tau)\delta(t-\tau)d\tau=f(t) 
+    f(t)=\int_{-\infty}^{+\infty}f(\tau)\delta(t-\tau)d\tau 
 \end{align*}
-\underline{Importante}: Este resultado permite que cualquier función $f(t)$ pueda igualarse a una suma de impulsos.
+
+Esta superposición nos permite componer la función $f(t)$ como una suma infinita de impulsos unitarios con la función $\delta(t)$.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{suma_imp.png}
 \end{figure}
 
 \section{Función de respuesta a impulso unitario}
-
-\begin{figure}[h]
+¿Cuál es la respuesta de un sistema cuando se le somete a un impulso unitario? 
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{FRI.png}
 \end{figure}
 
-Para sistemas estructurales ($\xi<1$):
+\par Para sistemas estructurales ($\xi<1$), la ecuación de movimiento sometida a un impulso unitario:
 \begin{align*}
     m\ddot{x}+c\dot{x}+kx=\delta(t)\\
     x(0)=0 \quad \dot{x}(0)=0
 \end{align*}
-Solución:
+
+La solución a esta ecuación es la Función de Respuesta Impulso (FRI) cuando el impulso se aplica en el tiempo $\tau = 0$:
 \begin{align*}
     x(t)=h(t)=\frac{1}{m\omega_d}e^{-\xi\omega_nt}\sin{(\omega_dt)}, \quad t\geq0
 \end{align*}
-Donde $\omega_n = $ y $\omega_d = $. \\
 
-Considere una excitación $u(t)$:
-\begin{figure}[h]
+\noindent donde $\omega_n = \sqrt{\frac{k}{m}}$ es la frecuencia natural y $\omega_d = \omega_n \sqrt{1-\xi^2}$ es la frecuencia natural amortiguada. \\
+
+Ahora, considere una excitación $u(t)$ continua. Se puede representar como un tren de impulsos:
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{FRI2.png}
 \end{figure}
-$u(t)$ es continuo $\longrightarrow$ se representa a través de un tren de impulsos $\longrightarrow$ cada impulso tiene una respuesta del sistema $\delta(t-\tau)\longrightarrow h(t-\tau)$.
+Notar que cada impulso genera una respuesta en el sistema $\delta(t-\tau)\longrightarrow h(t-\tau)$.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{FRI3.png}
-\end{figure}
-Por superposición: 
+/\end{figure}
+
+La respuesta del sistema cuando se somete a este tren de impulsos se obtiene por superposición: 
 \begin{align*}
     y(t)=\int_0^tu(\tau)h(t-\tau)d\tau \quad \text{``Integral de Duhamel''}\Rightarrow\text{Convolución}
 \end{align*}
-\underline{En resumen}: Para resolver un sistema LTI, si conoce la $h(t)$, entonces para cualquier $u(t)$, función continua, la respuesta analítica está dada por la convolución.
+
+\underline{En resumen}: La respuesta analítica de un sistema LTI es la convolución entre el FRI $h(t)$ y la excitación $u(t)$.
 
 \begin{align*}
     \Rightarrow y(t)=u(t)\ast h(t)
 \end{align*}
-\begin{itemize}
-    \item $u(t)$: excitación
-    \item $\ast$: convolución
-    \item $h(t)$: FRI
-\end{itemize}
 
 \section{Transformada de Laplace}
 \underline{Definición}: La transformada de Laplace de $f(t)$ es igual a:
 \begin{align*}
-    \mathcal{L}: ~ F(s)=\int_{-\infty}^{+\infty}f(t)e^{(-\xi t)}dt \quad \text{Transformada Bilateral (``two-sided'')}
+    \mathcal{L}: ~ F(s)=\int_{-\infty}^{+\infty}f(t)e^{-\xi t}dt \quad \text{Transformada Bilateral (``two-sided'')}
 \end{align*}
 
-donde $s\in\mathbb{C}$, $s=\sigma+j\omega$, $j^2=-1$.\\
+\noindent donde $s\in\mathbb{C}$, $s=\sigma+j\omega$, $j^2=-1$, $j$ es la unidad imaginaria.\\
 
 \underline{Definición}: La transformada inversa de Laplace es igual a:
 \begin{align*}
     \mathcal{L}^{-1}: ~ f(t)=\frac{1}{2\pi j}\int_{+\sigma-j\infty}^{+\sigma+j\infty}F(s)e^{st}ds
 \end{align*}
-¿Por qué utilizar $\mathcal{L}$? $\Rightarrow$ facilita el análisis de sistemas dinámicos.
-\begin{figure}[h]
+
+La razón por la que se opta por trabajar con la variable de Laplace $s$ en lugar de utilizar el tiempo $t$ es la simplificación para obtener la respuesta. Al emplear la variable de Laplace, la respuesta se obtiene con multiplicaciones en vez de convoluciones.
+
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{laplace.png}
 \end{figure}
 
-\underline{Nota}: $H(s)=\mathcal{L}\{h(t) \}$, donde:
+Al obtener la respuesta ya sea por el dominio del tiempo o pasando por el dominio complejo, se obtiene exactamente el mismo resultado.
+\begin{align*}
+    y(t)=h(t)\ast u(t) \xRightarrow[]{\mathcal{L}} Y(s)=H(s)\cdot U(s)
+\end{align*}
+donde:
+\begin{align*}
+H(s)=\mathcal{L}\{h(t)\}=\int_0^{\infty}h(t)e^{-\xi t}dt \\
+Y(s)=\mathcal{L}\{y(t)\}=\int_0^{\infty}y(t)e^{-\xi t}dt \\
+U(s)=\mathcal{L}\{u(t)\}=\int_0^{\infty}u(t)e^{-\xi t}dt
+\end{align*}
 \begin{itemize}
     \item $h(t)$: Función de Respuesta Impulso (FRI)
     \item $H(s)$: Función de transferencia (TF)
 \end{itemize}
-
-\underline{Aparte}: 
-\begin{align*}
-    H(j\omega)=\mathcal{F}\{h(t)\}
-\end{align*}
-\begin{itemize}
-    \item $H(j\omega)$: Función de Respuesta en Frecuencia (FRF)
-\end{itemize}
-
-\begin{align*}
-    H(j\omega) \xleftrightarrow{s=j\omega} H(s) 
-\end{align*}
-
-En resumen:
-\begin{align*}
-    y(t)=h(t)\ast u(t) \xRightarrow[]{\mathcal{L}} Y(s)=H(s)\cdot U(s)
-\end{align*}
-
-\begin{align*}
-    \mathcal{L}\{y(t)\}=Y(s)=\int_0^{\infty}y(t)e^{-\xi t}dt
-\end{align*}
 
 \underline{Propiedades}: 
 \begin{itemize}
@@ -360,20 +355,26 @@ En resumen:
     \end{align*}
 \end{itemize}
 
+\underline{Aparte}: 
+\begin{align*}
+    H(j\omega)=\mathcal{F}\{h(t)\}
+\end{align*}
+\begin{itemize}
+    \item $H(j\omega)$: Función de Respuesta en Frecuencia (FRF)
+\end{itemize}
 
-
+\begin{align*}
+    H(j\omega) \xleftrightarrow{s=j\omega} H(s) 
+\end{align*}
 
 \section{Función de transferencia}
-\begin{figure}[h]
+Trabajar con LT permite obtener la respuesta simplemente multiplicando la señal de entrada con la función de transferencia en vez de realizar la convolución.
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{TF.png}
 \end{figure}
 
-\begin{itemize}
-    \item $H(s)$: Función de transferencia
-\end{itemize}
-
-\underline{Definición}: $H(s)\in \mathbb{C}$
+\underline{Definición}: $H(s)\in \mathbb{C}$ (función de transferencia)
 \begin{align*}
     H(s)=\frac{\prod_{i=1}^m(s-z_i)}{\prod_{j=1}^n(s-p_j)}
 \end{align*}
@@ -382,66 +383,57 @@ En resumen:
     \item $p_j$: ceros
 \end{itemize}
 
-\underline{Definición}: Polos ($p_j$) son las raíces de la ecuación característica del sistema dinámico:
+\underline{Definición}: $p_j \in \mathbb{C}$ (polos) son las raíces de la ecuación característica del sistema dinámico:
 \begin{align*}
     \prod_{j=1}^n(s-p_j)=0
 \end{align*}
 
-\underline{Definición}: Ceros ($z_i$) son las raíces del polinomio del numerador:
+\underline{Definición}: $z_i \in \mathbb{C}$ (ceros) son las raíces del polinomio del numerador:
 \begin{align*}
     \prod_{i=1}^m(s-z_i)=0
 \end{align*}
 
-\underline{Importante}: 
-\begin{align*}
-    H(s)\in \mathbb{C}, \quad s\in\mathbb{C}\\
-    \Longrightarrow p_i\in\mathbb{C}\\
-    \Longrightarrow z_j \in \mathbb{C}
-\end{align*}
-
-Notar que $H(s)$ corresponde a: $H(s)=\mathcal{L}\{h(t)\}$ ($h(t)$ es función de respuesta impulso FRI), por ende, $h(t)=\mathcal{L}^{-1}\{H(s)\}$.\\
+\underline{Importante}: La función de transferencia recopila \textcolor{red}{toda} la información del sistema dinámico en los coeficientes de los polinomios del numerador y denominador o equivalentemente con los polos y ceros.
 
 \section{Plano complejo}
-\begin{itemize}
-    \item La función de transferencia recopila \textcolor{red}{toda} la información del sistema dinámico.
-    \item Para visualizar las propiedades dinámicas del sistema, vamos a trabajar en el plano complejo.
-\end{itemize}
+Para visualizar las propiedades dinámicas del sistema, vamos a trabajar en el plano complejo.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{plano_complejo.png}
 \end{figure}
 
-$|H(s)|$ representa la ``superficie sobre el plano complejo''
-\begin{figure}[h]
+Los ceros $z_i$ y polos $p_j$ son puntos sobre el plano complejo
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{polos_ceros.png}
 \end{figure}
 
-\begin{figure}[h]
+\newpage
+$|H(s)|$ representa una ``superficie'' sobre el plano complejo
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{magHs.png}
 \end{figure}
-% Recordar que $H(s)$ corresponde a: $H(s)=\mathcal{L}\{h(t)\}$ ($h(t)$ es FRI),
-% Por ende, $h(t)=\mathcal{L}^{-1}\{H(s)\}$.\\
 
-Ejemplo: $H(s)=\frac{1}{s-a}\Longrightarrow h(t)=\mathcal{L}^{-1}\{H(s)\}=e^{at}$\\
-\par Por lo tanto, los polos nos dan informaci;on del FRI.\\
+\underline{Aparte}: Recordar que $H(s)$ corresponde a: $H(s)=\mathcal{L}\{h(t)\}$ ($h(t)$ es FRI), por ende, $h(t)=\mathcal{L}^{-1}\{H(s)\}$. Por lo tanto, los polos nos dan información del FRI.\\
+
+Ejemplo: Si tenemos la siguiente función de transferencia $H(s)=\frac{1}{s-a}$, se puede obtener la FRI aplicando la inversa de la transformada de Laplace $h(t)=\mathcal{L}^{-1}\{H(s)\}=e^{at}$\\
 
 \underline{Casos}:
 \begin{itemize}
     \item[(i)] $a>0, ~a\in\mathbb{R}\Longrightarrow h(t)=e^{-|a|t}$
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{caso1.png}
     \end{figure}
     \item[(ii)] $a=0, ~a\in\mathbb{R}\Longrightarrow h(t)=1$
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{caso2.png}
     \end{figure}
     \item[(iii)] $a<0, ~a\in\mathbb{R}\Longrightarrow h(t)=e^{|a|t}$
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{caso3.png}
     \end{figure}
@@ -476,14 +468,14 @@ Ejemplo: $H(s)=\frac{1}{s-a}\Longrightarrow h(t)=\mathcal{L}^{-1}\{H(s)\}=e^{at}
     \end{itemize}
 \end{itemize}
 
-Volviendo al plano complejo, podemos identificar el tipo de respuesta FRI del sistema solo con información de la posición de los polos:
-\begin{figure}[h]
+\underline{Volviendo al plano complejo}, podemos identificar el tipo de respuesta FRI del sistema solo con información de la posición de los polos:
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Estabilidad1.png}
 \end{figure}
 
 \section{Estabilidad ``Bounded Input, Bounded Output'' (BIBO)}
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{BIBO.png}
 \end{figure}
@@ -494,18 +486,18 @@ Un sistema es estable en el sentido BIBO, si y sólo si el sistema posee todos s
 \end{itemize}
 
 \section{Función de transferencia de un sistema de 1GDL}
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{edm.png}
 \end{figure}
-\underline{Problema}: Dado EDM, determinar $H(s)$\\ 
-\par \underline{Definición}: 
+\underline{Problema}: Dada la EDM de un sistema estructural 1GDL, determinar su función de transferencia $H(s)$\\ 
+\par Notación: 
 \begin{align*}
     U(s) &= \mathcal{L}\{u(t)\}~: \text{respuesta (dominio complejo)}\\
     F(s) &= \mathcal{L}\{f(t)\} ~: \text{input (dominio complejo)}
 \end{align*}
 
-Asumir reposo: $u(0)=\dot{u}(0)=0$
+Asumiendo reposo: $u(0)=\dot{u}(0)=0$
 
 \begin{align*}
     m\ddot{u}+c\dot{u}+ku &= f(t) ~/\color{red}{\mathcal{L}\{\cdot\}}\\
@@ -517,11 +509,13 @@ Asumir reposo: $u(0)=\dot{u}(0)=0$
     \Longrightarrow H(s) = \frac{U(s)}{F(s)}&=\frac{1}{ms^2+cs+k} ~\text{: TF del sistema de 1GDL}
 \end{align*}
 
-Aparte: Dado $F(s)$ y $H(s)$
-\begin{figure}[h]
+Aparte: Dada la entrada $F(s)$ y la TF $H(s)$, la salida es $U(s) = H(s)F(s)$
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{hs.png}
 \end{figure}
+
+Desde la TF del sistema:
 \begin{align*}
     H(s) &= \frac{1}{ms^2+cs+k} ~\color{red}{\frac{1/m}{1/m}}\\
     &= \frac{1/m}{s^2+2\xi\omega_ns+\omega_n^2}
@@ -539,35 +533,40 @@ Aparte: Dado $F(s)$ y $H(s)$
      s_{1,2}=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}j\\
      s_{1,2}=-\xi\omega_n\pm\omega_dj ~\text{: Polos del sistema de 1GDL}
 \end{align*}
+
 ¿Es estable? $\Longrightarrow$ Depende del valor de $\xi$:
 \begin{itemize}
     \item $\xi>0, ~ Re(s_{1,2}<0\Longrightarrow$ Estable asintóticamente
     \item $\xi<0, ~ Re(s_{1,2}>0\Longrightarrow$ Inestable
     \item $\xi=0, ~ Re(s_{1,2}=0\Longrightarrow$ ``Estable''
 \end{itemize}
+
 Además, el sistema oscila sí y solo si $\omega_d>0\Longrightarrow \omega_n>0$: propiedad del sistema dinámico.\\
 Si $\xi>0, ~ \omega_n>0$:
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{estabilidad.png}
 \end{figure}
 
-\section{Sistema MGDL}
+\section{Función de transferencia de un sistema de MGDL}
 \begin{align*}
     \tend{U}(s) &= \mathcal{L}\{\tend{u}(t)\}~: \text{respuesta (dominio complejo)}\\
     \tend{F}(s) &= \mathcal{L}\{\tend{f}(t)\} ~: \text{input (dominio complejo)}
 \end{align*}
+
 Desde la ecuación de movimiento:
 \begin{align*}
     \tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tend{F} ~/\color{red}{\mathcal{L}\{\cdot\}}\\
     \Longrightarrow\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]\tend{U}(s)&=\tend{F}(s) 
 \end{align*}
 
-\underline{Definición}: $\tenq{H}(s)=\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]^{-1}$: TF para un sistema MGDL\\
-\par Para buscar los polos, resolver raíces del siguiente polinomio:
+$\tenq{H}(s)=\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]^{-1}$: TF para un sistema MGDL\\
+
+Para buscar los polos, resolver raíces del siguiente polinomio:
 \begin{align*}
     s^2\tenq{M}+s\tenq{C}+\tenq{K} = \tend{0} ~/\color{red}{\tend{\cdot \phi}}
 \end{align*}
+
 y asumiendo $\tenq{C}=\tenq{0}$
 \begin{align*}
     \Longrightarrow (s^2\tenq{M}+\tenq{K})\tend{\phi} = \tend{0} ~\text{: Problema de valores propios generalizado}
@@ -575,20 +574,22 @@ y asumiendo $\tenq{C}=\tenq{0}$
 
 
 
-\section{Modelos Dinámicos}
-\begin{figure}[h]
+\section{Modelos Dinámicos}*
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{modelos.png}
 \end{figure}
 
-La Función de Respuesta en Frecuencia se obtiene a través de:
+La Función de Respuesta en Frecuencia se obtiene a través de aplicar la transformada de Fourier:
 \begin{align*}
     H(\omega)=\mathcal{F}\{h(t)\}
 \end{align*}
+
 De manera alternativa, FRF se obtiene al reemplazar $s=j\omega$ en la TF:
 \begin{align*}
     H(\omega)=H(s)\bigg|_{s=j\omega}
 \end{align*}
+
 \underline{Ejemplo}: Sistema de 1GDL
 \begin{align*}
     \text{EOM: }~m\ddot{u}+c\dot{u}+ku=f(t)
@@ -607,42 +608,44 @@ De manera alternativa, FRF se obtiene al reemplazar $s=j\omega$ en la TF:
     \lambda_1, \lambda_1^*=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}~\text{: polos del sistema}
 \end{align*}
 
-\subsection{Representación en Variables de Estado}
+\subsection{Representación en Variables de Estado (State-Space)}
+
+La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordinarias cuyas matrices contienen toda la información dinámica del sistema.
+
 \begin{align*}
     \text{EDM: }~\tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tenq{G}\tend{p}(t) 
 \end{align*}
-\begin{itemize}
-    \item $\tenq{G}$: matriz de influencia
-\end{itemize}
 
-\underline{Definición}: 
+\underline{Definición}: Ecuación de estado
+
+\begin{align*}
+    \tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}
+\end{align*}
+
+Donde:
 \begin{itemize}
     \item Vector de Estado: $\tend{x}=\begin{bmatrix}\tend{u}\\ \tend{\dot{u}}\end{bmatrix}$
-    \item Ecuación de Estado: $\tend{\dot{u}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}$
 \end{itemize}
 
 \begin{align*}
     \Longrightarrow \tend{\dot{x}}=\begin{bmatrix}\tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}=\tenq{A_s}\begin{bmatrix}\tend{u}\\ \tend{\dot{u}}\end{bmatrix}+\tenq{B_s}\tend{p}(t)
 \end{align*}
 
-Donde:
 \begin{itemize}
     \item Matriz de estado: $\tenq{A_s}=\begin{bmatrix}\tenq{0} & \tenq{I}\\ -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
     \item Matriz de influencia de excitación: $\tenq{B_s}=\begin{bmatrix}\tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
 \end{itemize}
 
 \underline{Definición}: Ecuación de respuesta\\
-\begin{itemize}
-    \item Vector de respuesta: $\tend{y}$
-\end{itemize}
 
 \begin{align*}
     \tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p}
 \end{align*}
 
-\underline{Ejemplo}: $\tend{y}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
-
+Donde:
 \begin{itemize}
+    \item Vector de respuesta: $\tend{y}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
+
     \item $\tenq{C_s}=\begin{bmatrix}\tenq{I} & \tenq{0}\\
     \tenq{0} & \tenq{I}\\ 
     -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
@@ -650,7 +653,7 @@ Donde:
     \tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
 \end{itemize}
 
-\underline{Resumen}: 
+En resumen, la representación espacio estado se denota como dos ecuaciones donde toda la información del sistema dinámico se encuentra en las cuatro matrices.
 
 \begin{align*}
 \left .
@@ -666,16 +669,17 @@ Donde:
 \end{array}
 \end{align*}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{SS.png}
 \end{figure}
 
 \subsection{Relación entre State-Space y TF}
-Asumir condiciones iniciales: $\tend{x}(0)=0\Longrightarrow$ Reposo.\\
-\par \underline{Definición}: $\mathcal{L}\{\tend{x}(t)\}=\tend{X}(s)$, $\mathcal{L}\{\tend{p}(t)\}=\tend{P}(s)$ \\
-Entonces: 
-\begin{align*}
+
+Asumiendo condiciones iniciales de reposo: $\tend{x}(0) = \tend{0} \longrightarrow \text{Estados}\\
+
+Entonces, aplicando la transformada de laplace a la ecuación de estado:
+\begin{align*} \label{eq:ss2tf_1}
     \tend{\dot{x}}&=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p} ~/\color{red}{\mathcal{L}\{\cdot\}}\\
     \Longrightarrow s\tend{X}(s)&= \tenq{A_s}\tend{X}(s)+\tenq{B_s}\tend{P}(s)\\
     \Longrightarrow (s\tenq{I}-\tenq{A_s})\tend{X}(s)&=\tenq{B_s}\tend{P}(s)
@@ -684,66 +688,84 @@ Entonces:
     \Longrightarrow \tend{X}(s)&=(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)
 \end{align}
 
-\par Ecuación de respuesta:
-\par \underline{Definición}: $\mathcal{L}\{\tend{y}(t)\}=\tend{Y}(s)$\\
+Luego, aplicando la transformada de Laplace a la ecuación de respuesta:
+
 \begin{align*}
     \tend{y}(t)=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} ~/\color{red}{\mathcal{L}\{\cdot\}}\\
 \end{align*}
-\begin{align}
+\begin{align}\label{eq:ss2tf_2}
     \Longrightarrow \tend{Y}(s)&=\tenq{C_s}\tend{X}(s)+\tenq{D_s}\tend{P}(s)
 \end{align} 
 
-Reemplazando la ecuación (2) en (1):
+Reemplazando la ecuación \ref{eq:ss2tf_1} en \ref{eq:ss2tf_2}:
 \begin{align*}
     \tend{Y}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)+\tenq{D_s}\tend{P}(s)\\
     \tend{Y}(s)&=[\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}]\tend{P}(s)\\
     \Longrightarrow \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}
 \end{align*}
-Asumiendo $\tenq{D_s}=0$:
+
+\underline{Aparte}: Asumiendo $\tenq{D_s}=0$:
 \begin{align*}
-\tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\\
-\tenq{H}(s)&=\frac{1}{\det(s\tenq{I}-\tenq{A_s})}\tenq{C_s}\text{ adj}(s\tenq{I}-\tenq{A_s})\tenq{B_s}
+    \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\\
+    \tenq{H}(s)&=\frac{1}{\det(s\tenq{I}-\tenq{A_s})}\tenq{C_s}\text{ adj}(s\tenq{I}-\tenq{A_s})\tenq{B_s} \\
+    \Longrightarrow\det(s\tenq{I}-\tenq{A_s})&=0 ~\text{: Problema de valores propios de }\tenq{A_s}
 \end{align*}
 
-\begin{align*}
-    \Longrightarrow\det(s\tenq{I}-\tenq{A_s})=0 ~\text{: Problema de valores propios de }\tenq{A_s}
-\end{align*}
-
-Polos:
-\begin{itemize}
-    \item Raíces del polinomio del denominador de $\tenq{H}(s)$
-    \item Valores propios de $\tenq{A_s}$
-\end{itemize}
+Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de $\tenq{H}(s)$, o, por los valores propios de $\tenq{A_s}$.
 
 \section{Implementación utilizando Matlab/Simulink}
-Matlab $\longrightarrow$ variables del tipo sistema\\
-\par $\tenq{M}$, $\tenq{C}$, $\tenq{K}$, $\tenq{G} \Longrightarrow$ matrices de tipo ``double'' \\
 
-\par $\Longrightarrow$ $\tenq{A_s}$, $\tenq{B_s}$, $\tenq{C_s}$, $\tenq{D_s} \Longrightarrow$ matrices de tipo ``double''\\
-\par Para construir un sistema de tipo espacio-estado, se utiliza el siguiente comando:
+En matlab se puede trabajar con sistemas dinámicos utilizando \emph{variables tipo sistema}. Estas variables se puede crear si se cuenta con la información de alguna de las representaciones vistas anteriormente. \\
+
+Para State-Space se requieren las matrices $\tenq{A}$, $\tenq{B}$, $\tenq{C}$, $\tenq{D} \Longrightarrow$ matrices de tipo ``double'' \\
+
+\par Para construir un sistema desde representación espacio-estado, se utiliza el siguiente comando:
 \begin{minted}[]{matlab}
 >> sys = ss(As, Bs, Cs, Ds); % Variable tipo sistema 
 \end{minted}
+
+Para representar utilizando la función de transferencia se requiere conocer los coeficientes de los polinomios del numerador y denominador de la función de transferencia:
 
 \begin{align*}
     H(s)=\frac{b_ms^m+b_{m-1}s^{m-1}+...+b_1s+b_0}{s^n+a_{n-1}s^{n-1}+...+a_1s+a_0}
 \end{align*}
 
+\par Se utiliza el siguiente comando para construir la variable tipo sistema:
 \begin{minted}[]{matlab}
->> sys = tf(num,den); % Variable sistema 
+>> sys = tf(num,den); % Variable tipo sistema 
 \end{minted}
+
 Donde:
 \begin{align*}
     \text{num} = [b_m, b_{m-1}, ... , b_1, b_0]\\
-    \text{den} = [1, a_{n-1}, ... , a_1, a_0]\\
-\end{align*}
-\underline{Ejemplo}: 1GDL
-\begin{align*}
-    \text{num} = [1/m]\\
-    \text{den} = [1, c/m, k/m]\\
+    \text{den} = [1, a_{n-1}, ... , a_1, a_0]
 \end{align*}
 
+Ejemplo de coeficientes para sistema 1GDL:
+\begin{align*}
+    \text{num} = [1/m]\\
+    \text{den} = [1, c/m, k/m]
+\end{align*}
+
+También, se pueden generar conociendo los polos, ceros y la ganancia del sistema:
+\begin{align*}
+    \text{TF: }~H(s)= k\frac{\prod_{i=1}^m(s-z_i)}{\prod_{j=1}^n(s-p_j)}
+\end{align*} 
+\begin{align*}
+    \text{zeros} &= [z_m, z_{m-1}, ..., z_2, z_1]\\
+    \text{poles} &= [p_n, p_{n-1},..., p_2, p_1]\\
+    \text{gain} &= k
+\end{align*} 
+
+\par Ocupando los polos, ceros y ganancia, también se puede generar una variable tipo sistema:
+\begin{minted}[]{matlab}
+>> sys = zpk(ceros, polos, gain); 
+\end{minted}
+
 \underline{Matlab: Control System Toolbox}\\
+
+El toolbox \emph{Control System} de matlab permite también extraer información y simular las variables de tipo sistema.
+
 \begin{itemize}
     \item Valores y vectores propios del sistema:
 \begin{minted}[]{matlab}
@@ -764,19 +786,6 @@ Donde:
 >> bode(sys)
 >> bodeplot(sys)
 \end{minted}
-\item Definición de un sistema con su TF:
-\begin{align*}
-    \text{TF: }~H(s)= k\frac{\prod_{i=1}^m(s-z_i)}{\prod_{j=1}^n(s-p_j)}
-\end{align*} 
-\begin{align*}
-    \text{zeros} &= [z_m, z_{m-1}, ..., z_2, z_1]\\
-    \text{poles} &= [p_n, p_{n-1},..., p_2, p_1]\\
-    \text{gain} &= k
-\end{align*} 
-\begin{minted}[]{matlab}
->> sys = zpk(zeros, polos, gain); 
-\end{minted}
-
 \item Ganancia del sistema
 \begin{minted}[]{matlab}
 >> dcgain(sys) %% DC: direct current (caso estático)
@@ -793,9 +802,9 @@ Donde:
 
 
 \section{Función respuesta escalón (``step'')}
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{step.png}
+\includegraphics[scale=0.6]{step.png}
 \end{figure}
 \underline{Definición}:
 \begin{itemize}
@@ -804,13 +813,13 @@ Donde:
     \item \textcolor{LimeGreen}{Tiempo de asentamiento} (``senttling time'', $t_s$): tiempo que toma el sistema en decaer hasta 1\%
 \end{itemize}
 
-\section{Especificaciones de Respuesta Transiente}
+\section*{Especificaciones de Respuesta Transiente}
 Suponiendo un sistema LTI-SISO:\\
 \begin{align*}
     \text{EDM: }~ m\ddot{u}+c\dot{u}+ku &= f\\
     \Longrightarrow H(s) &= \frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}
 \end{align*}
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{transiente.png}
 \end{figure}
@@ -827,13 +836,14 @@ Fórmulas para estimar la respuesta transiente para el caso de excitación escal
 
 \section*{``Pole placement'', ubicación de polos}
 Dadas las especificaciones transientes: $t_r$, $M_p$, $t_s$
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.7]{pole_placement.png}
-\end{figure}
-
 \begin{align*}
     \color{VioletRed}{t_s}&<(t_s)_{lim}=\frac{4}{(\xi\omega_n)_{lim}}\\
     \color{BurntOrange}{t_r}&<(t_r)_{lim}\approx \frac{1.6}{\omega_n}\\
     \color{LimeGreen}{M_p}&<(M_p)_{lim}=e^{-\pi\tan(\theta)}
 \end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{pole_placement.png}
+\end{figure}
+
