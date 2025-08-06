@@ -1,19 +1,24 @@
 \chapter{Teoría de Sistemas Lineales}
 
-\section{Matriz de transición de Estados}
+\section{Matriz de transición de estados}
 \subsection{Para LTI autónomo}
-Sea un sistema LTI autónomo (es decir, sin entrada $u(t)$). Su solución $\tend{x}(t)$ se puede obtener utilizando transformación de Laplace:
+Sea un sistema LTI autónomo, es decir, sin entrada $u(t)$. Su solución $\tend{x}(t)$ se puede obtener utilizando transformación de Laplace:
+
 \begin{align*}
-    &\phantom{\Longrightarrow} \tend{\dot{x}}(t) =\tenq{A}\tend{x}(t)\\
+    &\phantom{\Longrightarrow} \tend{\dot{x}}(t) =\tenq{A}\tend{x}(t)~/\mathcal{L}\{\cdot\}\\
     &\Longrightarrow s\tend{X}(s)-\tend{x_0} = \tenq{A}\tend{X}(s)\\
     &\Longrightarrow (s\tenq{I}-\tenq{A})\tend{X}(s) =\tend{x_0}\\
-    &\Longrightarrow \tend{X}(s) = (s\tenq{I}-\tenq{A})^{-1}\tend{x_0}~/\color{red}{\mathcal{L}^{-1}\{\cdot\}}\\
+    &\Longrightarrow \tend{X}(s) = (s\tenq{I}-\tenq{A})^{-1}\tend{x_0}~/\mathcal{L}^{-1}\{\cdot\}\\
     &\Longrightarrow \tend{x}(t) = e^{\tenq{A}t}\tend{x_0}
 \end{align*}
+
 definiendo $\tenq{\phi}(t) = e^{\tenq{A}t}$ como la \emph{matriz de transición de estados}, la respuesta de los estados del sistema queda determinada por la siguiente expresión:
+
 \begin{align*}
     \Longrightarrow \tend{x}(t) = \tenq{\phi}(t)\tend{x_0}
 \end{align*}
+
+Notar que $\tenq{\phi}(t)$ es una matriz que varía en función del tiempo.
 
 \noindent \underline{Aparte}: Para entender qué significa $e^{\tenq{A}t}$ hay que recordar la Expansión de Taylor de una exponencial.\\
 
@@ -28,7 +33,7 @@ aplicando la expansión en una función exponencial en en torno a $\alpha = 0$:
 
 La Expansión de Taylor de una exponencial también converge en torno a $\alpha = 0$ cuando se utiliza una matriz $\tenq{A}$ cuadrada. Por lo tanto, $\tenq{\phi}(t) = e^{\tenq{A}t}$ se puede calcular utilizando la siguiente serie:
 \begin{align*}
-    \tenq{\phi}(t) = \tenq{I}+\tenq{A}t+\frac{1}{2!}\tenq{A}^2t^2+\frac{1}{3!}\tenq{A}^3t^3+...
+    \tenq{\phi}(t) = e^{\tenq{A}t} = \tenq{I}+\tenq{A}t+\frac{1}{2!}\tenq{A}^2t^2+\frac{1}{3!}\tenq{A}^3t^3+...
 \end{align*}
 
 Notar que la expansión de Taylor de $\tenq{\phi}(t) = e^{\tenq{A}t}$ es una serie infinita. La serie finita se obtiene con el \emph{Teorema de Cayley-Hamilton} que se encuentra más adelante.
@@ -38,7 +43,7 @@ Notar que la expansión de Taylor de $\tenq{\phi}(t) = e^{\tenq{A}t}$ es una ser
 \begin{align*}
     \Longrightarrow \tend{x}(t) &= \tenq{\phi}(t)\tend{x_0} = \left[\tenq{I}+\tenq{A}t+\frac{1}{2!}\tenq{A}^2t^2+...\right]\tend{x_0}\\
     \Longrightarrow \tend{\dot{x}}(t) &= \left[\tenq{A}+\frac{2}{2!}\tenq{A}^2t+...\right]\tend{x_0} =  \tenq{A}\left[\tenq{I}+\tenq{A}t+\frac{1}{2!}\tenq{A}^2t^2+...\right]\tend{x_0}\\
-    \Longrightarrow \tend{\dot{x}}(t) &= \tenq{A}\tenq{\phi}(t)\tend{x_0}=\tenq{A}\tend{x}(t) \quad \text{Ecuación de Estado}
+    \Longrightarrow \tend{\dot{x}}(t) &= \tenq{A}\tenq{\phi}(t)\tend{x_0}=\tenq{A}\tend{x}(t) \quad \text{(Ecuación de Estado)}
 \end{align*}
 
 \subsection{Para LTI no autónomo}
@@ -75,10 +80,36 @@ Si $\tend{x_0}=\tend{v}$, entonces $\tend{x}(t)=\tenq{\phi}(t)\tend{v}$\\
     \lim_{t \to \infty} \phi(t)<\infty     
 \end{align*}
 
-\noindent \underline{Definición}: Una matriz $\tenq{A}$ se dice que es \textcolor{red}{Hurwitz} ssi los valores propios de $\tenq{A}$ tienen una parte real estrictamente negativa.
+\noindent \underline{Definición}: Una matriz $\tenq{A}$ se dice que es \textbf{Hurwitz} ssi los valores propios de $\tenq{A}$ tienen una parte real estrictamente negativa.
 
 
-\section{Plano de Fase}
+\section{Teorema de Cayley-Hamilton}
+\underline{Teorema}: Sea una matriz $A\in\mathbb{R}^{n\times n}$, cuya ecuación característica $\Delta(\tenq{A}) = 0$ está dada por el siguiente polinomio de orden $n$:
+\begin{align*}
+    \Delta(\tenq{A})=\text{det}(s\tenq{I}-\tenq{A})=s^n+\alpha_{n-1}s^{n-1}+...+\alpha_1s+\alpha_0=0
+\end{align*}
+donde $\alpha_i\in\mathbb{R}$, $i\in [0,n-1]$, son los coeficientes del polinomio característico de $\tenq{A}$. Entonces, el teorema establece que la matriz $\tenq{A}$ también satisface la ecuación característica:
+\begin{align*}
+    \Delta (\tenq{A})=\tenq{A}^n+\alpha_{n-1}\tenq{A}^{n-1}+...+\alpha_1\tenq{A}+\alpha_0\tenq{I}=\tenq{0}
+\end{align*}
+
+Del teorema, podemos despejar $\tenq{A}^n$:
+\begin{align*}
+    \tenq{A}^n &= -\left[\alpha_{n-1}\tenq{A}^{n-1}+...+\alpha_1\tenq{A}+\alpha_0\tenq{I} \right]
+\end{align*}
+
+El poder de una matriz se escribe como una serie polinomial de orden igual al exponente del poder.\\
+
+\par $\Longrightarrow$ Este resultado es útil para evaluar la matriz de transición $\phi(t)$
+\begin{align*}
+    \tenq{\phi(t)}=e^{\tenq{A}t}=\sum_{i=0}^\infty \beta_i(t)\tenq{A}^i \overset{\text{(C-H)}}{=} \sum_{i=0}^{n-1}\gamma_i(t)\tenq{A}^i
+\end{align*}
+
+\underline{Nota}: Este resultado es útil para evaluar $\phi(t)$ como una serie finita en términos de $A^i$.
+
+
+\section{Equilibrio y Estabilidad}
+\subsection{Plano de Fase}
 El plano de Fase o diagrama de fase, es una representación gráfica de las trayectorias de un sistema dinámico en el tiempo, es decir, se puede observar como varían los estados en función del tiempo y entender mejor el comportamiento del sistema. También permite observar gráficamente la estabilidad. \\
 
 Ejemplo: Considere el siguiente sistema dinámico LTI Autónomo de un grado de libertad.
@@ -102,7 +133,7 @@ Notar que el diagrama de fase puede ser para cualquier vector de estados y no ú
 \includegraphics[scale=0.7]{Figuras/plano_de_fase.png_2.png}
 \end{figure}
 
-\section{Equilibrio}
+\subsection{Equilibrio}
 Sea el sistema dinámico LTI en representación espacio-estado:
 $$\tend{\dot{x}}=\tenq{A}\tend{x}+\tenq{B}\tend{u} $$
 
@@ -127,7 +158,7 @@ Entonces, despejando el estado de equilibrio $\tend{x_e}$ desde el sistema LTI:
     \item No confundir: los estados de equilibrio $\tend{x_e}$ no son necesariamente \emph{estables}.
 \end{itemize}
 
-\section{Estabilidad de Lyapunov}
+\subsection{Estabilidad de Lyapunov}
 Sea un sistema dinámico LTI y autónomo: $\dot{x}=Ax$, $x(0) = x_0$ y $x_e$ un punto de equilibrio del sistema. Vamos a definir la estabilidad respecto a un punto de equilibrio.\\
 \par \underline{Definición}: $x_e$ es estable en el sentido de Lyapunov si para cualquier $\varepsilon >0$ existe un $\delta >0$ tal que:
 $$||x_0-x_e||<\delta\Longrightarrow ||x(t)-x_e||<\varepsilon, \quad \forall t>0$$
@@ -137,7 +168,7 @@ $$||x_0-x_e||<\delta\Longrightarrow ||x(t)-x_e||<\varepsilon, \quad \forall t>0$
 \end{figure}
 * Mínima restricción que podemos imponer para satisfacer estabilidad.
 
-\subsection{Definición Estabilidad Asintótica}
+\subsubsection{Definición Estabilidad Asintótica}
 $x_e$ es asintóticamente estable si existe $\delta>0$ tal que:
 \begin{itemize}
     \item $||x_0-x_e||<\delta$
@@ -149,7 +180,7 @@ $x_e$ es asintóticamente estable si existe $\delta>0$ tal que:
 \includegraphics[scale=0.7]{Figuras/asintotica.png}
 \end{figure}
 
-\subsection{Definición Estabilidad Asintótica Global}
+\subsubsection{Definición Estabilidad Asintótica Global}
 $x_e$ es estable asintótica global ssi es asintóticamente estable para $\delta \to \infty$.
 
 \begin{table}[H]
@@ -163,7 +194,7 @@ $x_e$ es estable asintótica global ssi es asintóticamente estable para $\delta
 \end{table}
 
 
-\section{Límites de Estabilidad para sistemas LTI}
+\subsubsection{Límites de Estabilidad para sistemas LTI}
 Sea el sistema LTI autónomo $\dot{x}(t)=Ax(t)$, cuya solución es $x(t)=\phi(t)x_0$ y $x_e$ un estado de equilibrio. Se requiere analizar la estabilidad en el sentido de Lyapunov. Por lo cual hay que analizar las normas $||x(t) - x_e||$ y $||x_0 - x_e||$ \\
 
 \par Suponiendo que $\phi(t)$ es finita, es decir, $||\phi(t)||=||e^{At}||\leq\beta<\infty$. Se tiene que la siguiente diferencia de vectores de estados:
@@ -194,7 +225,7 @@ $\phi(t)$ es finito si y solo si $A$ es Hurwitz:
     \text{Re}\left(\text{eig}(A)\right)<0\Longrightarrow \text{Estabilidad}
 \end{align*}
 
-\section{Función Candidata de Lyapunov}
+\subsubsection{Función Candidata de Lyapunov}
 \underline{Definición}: Sea una función $V(x)$, $\mathbb{R}^n\to \mathbb{R}$, tal que: 
 \begin{itemize}
     \item $V(x_e)=0$
@@ -280,30 +311,6 @@ $$A^\top P+PA+Q=\emptyset $$
 
 entonces, $\dot{x}=Ax$ es asintóticamente estable.
 
-\section{Teorema de Cayley-Hamilton}
-\underline{Teorema}: Sea una matriz $A\in\mathbb{R}^{n\times n}$, cuya ecuación característica $\Delta(\tenq{A}) = 0$ está dada por el siguiente polinomio de orden $n$:
-\begin{align*}
-    \Delta(\tenq{A})=\text{det}(s\tenq{I}-\tenq{A})=s^n+\alpha_{n-1}s^{n-1}+...+\alpha_1s+\alpha_0=0
-\end{align*}
-donde $\alpha_i\in\mathbb{R}$, $i\in [0,n-1]$, son los coeficientes del polinomio característico de $\tenq{A}$. Entonces, el teorema establece que la matriz $\tenq{A}$ también satisface la ecuación característica:
-\begin{align*}
-    \Delta (\tenq{A})=\tenq{A}^n+\alpha_{n-1}\tenq{A}^{n-1}+...+\alpha_1\tenq{A}+\alpha_0\tenq{I}=\tenq{0}
-\end{align*}
-
-Del teorema, podemos despejar $\tenq{A}^n$:
-\begin{align*}
-    \tenq{A}^n &= -\left[\alpha_{n-1}\tenq{A}^{n-1}+...+\alpha_1\tenq{A}+\alpha_0\tenq{I} \right]
-\end{align*}
-
-El poder de una matriz se escribe como una serie polinomial de orden igual al exponente del poder.\\
-
-\par $\Longrightarrow$ Este resultado es útil para evaluar la matriz de transición $\phi(t)$
-\begin{align*}
-    \tenq{\phi(t)}=e^{\tenq{A}t}=\sum_{i=0}^\infty \beta_i(t)\tenq{A}^i \overset{\text{(C-H)}}{=} \sum_{i=0}^{n-1}\gamma_i(t)\tenq{A}^i
-\end{align*}
-
-\underline{Nota}: Este resultado es útil para evaluar $\phi(t)$ como una serie finita en términos de $A^i$.
-
 \section{Controlabilidad}
 % La controlabilidad es una propiedad de cualquier sistema dinámico.\\
 
@@ -352,7 +359,7 @@ Cada término de la integral es un vector constante de dimensión $p\times 1$
     \end{array}\right]
 \end{align*}
 
-Por lo tanto, se define la \emph{Matriz de Controlabilidad} \mathcal{C}:
+Por lo tanto, se define la \emph{Matriz de Controlabilidad} $\mathcal{C}$:
 \begin{align*}
     \mathcal{C}=\left[
     \begin{array}{c|c|c|c|c}
@@ -365,7 +372,7 @@ Este resultado indica que cualquier vector $-x_0$ puede ser expresado como una c
 \underline{Por lo tanto, un sistema LTI es controlable ssi $\text{rank}(\mathcal{C})=n$}. \\
 
 \underline{Nota}: Si $\text{rank}(\mathcal{C})= n_e < n$, entonces el sistema tiene no más de $n_e$ estados controlables.\\
-\par \underline{Definición}: Si el sistema tiene estados inestables, pero controlables, entonces se dice que estos estados son \textcolor{red}{estabilizables}. Por lo tanto, puede diseñar $u(t)$ tal que el sistema cerrado tenga todos sus estados estables.\\
+\par \underline{Definición}: Si el sistema tiene estados inestables, pero controlables, entonces se dice que estos estados son \textbf{estabilizables}. Por lo tanto, puede diseñar $u(t)$ tal que el sistema cerrado tenga todos sus estados estables.\\
 
 \underline{Nota}: Sea el sistema LTI, $\dot{x}=Ax+Bu$, y sea $T$ una matriz de transformación tal que $x=Tz$, donde $\dot{z}=A_cz+B_cu$, es una realización CCF. Entonces, el sistema es controlable ssi $T$ existe.
 
@@ -413,272 +420,4 @@ Se define:
 
 Si $\mathcal{O}$ no es de rango completo, entonces podemos elegir $x_0\neq 0$ tal que $y(0)=0$, porque $t_0$ puede producir el mismo resultado. \\
 \par \underline{Por lo tanto, un sistema LTI es observable ssi $\text{rank}(\mathcal{O})=n$}\\
-\par \underline{Definición}: Si un estado es inestable, pero observable, entonces dicho estado se dice que es \textcolor{red}{detectable}. 
-
-
-\section{Observadores}
-\underline{Motivación}: \\
-
-Considere el siguiente ejemplo de sistema dinámico:
-\begin{align*}
-    \dot{x} &= f(x,u)\\
-    y &= g(x,u)
-\end{align*}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/nuclear.png}
-\end{figure}
-¿Es posible determinar los estados internos del sistema $x(t)$ (temperatura de las barras), utilizando solo las señales de entrada y salida $\{u(t), y(t)\}$? La respuesta es sí, pero con la condición de que el sistema sea \textcolor{red}{observable}.\\
-
-El objetivo de lo que se desarrollará a continuación es \emph{diseñar} un \emph{observador/estimador} para poder estimar los estados internos $x(t)$ de un sistema, de tal forma que dependa únicamente de las señales de entrada y salida del sistema:
-
-\begin{align*}
-    \hat{x}(t) = f(u(t), y(t))
-\end{align*}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/observador2.png}
-\end{figure}
-
-\underline{Notación}:
-\begin{itemize}
-    \item $x(t)$: estados del sistema
-    \item $\hat{x}(t)$: estados estimados
-    \item $\tilde{x}(t)=x(t)-\hat{x}(t)$: error de estimación
-\end{itemize}
-
-La dinámica del sistema de los \emph{estados estimados} $\hat{x}$ es la misma que la del sistema planta:
-
-\begin{align*}
-    &\dot{\hat{x}} = A\hat{x}+Bu \\
-    &\hat{x}(0) = \hat{x}_0    
-\end{align*}
-
-Luego, se puede deducir la dinámica del \emph{error de estimación} $\tilde{x}$:
-
-\begin{align*}
-    \dot{\tilde{x}} &= \frac{d}{dt}(x-\hat{x})=\dot{x}-\dot{\hat{x}}\\
-    &= (Ax+Bu)-(A\hat{x}+Bu)=A(x-\hat{x}) \\
-    \Longrightarrow \dot{\tilde{x}} &= A\tilde{x} 
-\end{align*}
-
-La estrategia para diseñar el observador es la siguiente: Si los estados decaen a cero, entonces se diseña un estimador tal que el error de la estimación decae con la misma tasa que el sistema.
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.8]{Figuras/observador.png}
-\end{figure}
-
-\section{Diseño de Observador de Estados}
-De la figura anterior, notar que para estimar los estados del sistema, se requiere de una ganancia $L$. Lo que se va a realizar a continuación es diseñar esta matriz $L$. \\
-
-La representación espacio-estado de los estados estimados $\hat{x}(t)$ incluye la señal del error de estimación $\tilde{x}$ y su ganancia $L$.
-
-\begin{align*}
-    \dot{\hat{x}}(t) = A\hat{x}(t)+Bu(t)+L\tilde{y}(t)
-\end{align*}
-donde:
-\begin{align*}
-    L=\left[
-    \begin{array}{c}
-     l_1 \\ l_2\\ \vdots\\ l_n 
-    \end{array}\right], \quad L \in \mathbb{R}^{n\times r}, \quad x,y \in \mathbb{R}^n 
-\end{align*}
-
-La ecuación de estado del error de estimación queda de la siguiente forma:
-\begin{align*}
-    \dot{\tilde{x}}=\dot{x}-\dot{\hat{x}} &= (Ax+Bu)-(A\hat{x}+Bu+L\tilde{y})\\
-    &= A\tilde{x}-L(y-\hat{y})\\
-    &= A\tilde{x}-L(Cx-C\hat{x})\\
-    &= A\tilde{x}-LC\tilde{x}\\
-    \dot{\tilde{x}} &= (A-LC)\tilde{x}
-\end{align*}
-
-Por lo tanto, para diseñar $L$, $(A-LC)$ debe cumplir con estabilidad. Para lograr esta estabilidad, se ubicarán apropiadamente los polos de forma que se encuentren al lado izquierdo del plano complejo. A esta estrategia se le conoce como \textcolor{red}{POLE PLACEMENT}. \\
-
-\underline{Caso particular}: 
-
-Considere el siguiente sistema con $x\in\mathbb{R}^n$, $u\in\mathbb{R}$, $y\in\mathbb{R}$: 
-
-\begin{align*}
-    G(s) = \frac{b_0}{s^n+a_{n-1}s^{n-1}+...+a_1s+a_0}
-\end{align*}
-
-Su Forma Canónica Observable es: 
-
-\begin{align*}
-\tenq{A_o}=\left[
-    \begin{array}{c|cccc}
-     -a_{n-1} & 1 & & & 0 \\ 
-     -a_{n-2} & & 1 & & \\
-     \vdots   & & & \ddots & \\
-     -a_1     & 0 & & & 1 \\ \hline
-     -a_0     & 0 & 0 & \dots & 0   
-    \end{array}\right], \quad \tenq{A_o}\in \mathbb{R}^{n\times n}
-\end{align*}
-\begin{align*}
-\tenq{B_o}=\left[
-    \begin{array}{c}
-     b_{n-1} \\
-     b_{n-2}\\
-    \vdots\\
-     b_1 \\ \hline
-     b_0
-    \end{array}\right], \quad \tenq{B_o}\in \mathbb{R}^{n\times 1}
-\end{align*}
-\begin{align*}
-\tenq{C_o}=\left[
-    \begin{array}{c|ccc}
-     1 & 0 & \dots & 0
-    \end{array}\right], \quad \tenq{C}_o\in \mathbb{R}^{1\times n}
-\end{align*}
-
-Como en este caso particular, $y\in\mathbb{R}$, entonces $L$ es matriz $n \times 1$:
-\begin{align*}
-    L=\left[
-    \begin{array}{c}
-     l_{n-1} \\ l_{n-2}\\ \vdots\\ l_0 
-    \end{array}\right] 
-\end{align*}
-%\underline{Objetivo}: Determinar los $l_i$, $i\in[0,n-1]$
-
-Por lo tanto, se puede obtener $A_0 - LC_0$ de la siguiente forma:
-\begin{align*}
-    LC_o&=\left[
-    \begin{array}{c}
-     l_{n-1} \\ l_{n-2}\\ \vdots\\ l_0 
-    \end{array}\right] \left[
-    \begin{array}{c c c c}
-     1 & 0 & ... & 0
-    \end{array}\right] =\left[
-    \begin{array}{c|c}
-     l_{n-1} & \\ \vdots & \tenq{0} \\ l_0 & 
-    \end{array}\right] \\
-    A_o-LC_o &= \left[ \begin{array}{c|c c c}
-     -a_{n-1}-l_{n-1} & & & \\  -a_{n-2}-l_{n-2} & & & \\ \vdots & & \tenq{I} & \\-a_1-l_1 & & & \\ \hline \\ -a_0-l_0 & 0 & ... & 0
-    \end{array}\right] 
-\end{align*}
-y su ecuación característica es: 
-\begin{align*}
-    &\phantom{\Longrightarrow} \Delta(A_o-LC_o) = 0 \\
-    &\Longrightarrow s^n+(a_{n-1}+l_{n-1})s^{n-1}+...+(a_1+l_1)s+(a_0+l_0) = 0
-\end{align*}
-
-Cada coeficiente $(a_i+l_i)$, son los coeficientes $\lambda_i$ del polinomio característico asociado a la ubicación de polos deseada $p_i$:
-
-\begin{align*}
-    \prod_{i=0}^{n-1}(s-p_i)=s^n+\lambda_{n-1}s^{n-1}+...+\lambda_1s+\lambda_0=0
-\end{align*}
-
-Para finalmente obtener los términos $l_i$ de la matriz $L$, se deben definir los polos deseados, expandir el polinomio y luego igualar ambos términos para todo $i \in [0,n-1]$.
-
-\begin{align*}
-    &\phantom{\longrightarrow} a_i + l_i = \lambda_i \\
-    &\longrightarrow l_i = a_i-\lambda_i
-\end{align*}
-
-\underline{Nota}: En MATLAB, el diseño por ubicación de polos se puede realizar utilizando el comando \texttt{place()}. \\
-
-\underline{Nota}: Si el sistema no está escrito en OCF (forma canónica observable), es recomendable transformarlo a OCF con una transformación de similitud utilizando la matriz $T$. Recordar que esta matriz $T$ existe ssi el sistema es observable.
-
-\newpage
-\section{Principio de Separación}
-Considere el siguiente sistema LTI cerrado:
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/ppio_separacion.png}
-\end{figure}
-
-
-Planta:
-\begin{subequations}
-    \begin{align}
-        \dot{x} &= Ax+Bu\\
-        y &= Cx
-    \end{align}
-\end{subequations}
-
-Controlador:
-\begin{subequations}
-    \begin{align}
-        u = -K\hat{x}
-    \end{align}
-\end{subequations} 
-
-Estimador y error de estimación:
-\begin{subequations}
-    \begin{align}
-        \dot{\hat{x}}&= A\hat{x}+Bu+L\tilde{y}\\
-        \hat{y} &= C\hat{x}\\
-        \tilde{x} &= x-\hat{x}\\
-        \tilde{y} &= y-\hat{y}
-    \end{align}
-\end{subequations}
-
-Utilizando las ecuaciones de cada subsistema, vamos a obtener una expresión para el sistema cerrado: \\
-
-Reemplazando (2.3c) en (2.2a):
-\begin{align*}
-    u&=-K(x-\tilde{x})\\
-\end{align*}
-
-Reemplazando lo anterior en (2.1a):
-\begin{align*}
-    \dot{x} &= Ax + B(-K(x - \tilde{x}))\\
-    \Longrightarrow \dot{x} &= Ax - BK(x-\tilde{x}) \\
-    \Longrightarrow \dot{x} &= (A-BK)x+BK\tilde{x}
-\end{align*}
-
-Restando (2.1a) menos (2.3a) para obtener la dinámica del error de estimación
-\begin{align*}
-    \Longrightarrow \dot{\tilde{x}} &= (Ax+Bu)-(A\hat{x}+Bu+L\tilde{y})\\
-    \Longrightarrow \dot{\tilde{x}} &= A\tilde{x}-LC \tilde{x}\\
-    \Longrightarrow \dot{\tilde{x}} &= (A-LC)\tilde{x}
-\end{align*}
-
-Luego, definiendo los estados del sistema cerrado como $z=\left[
-    \begin{array}{c}
-     x \\ \tilde{x} 
-    \end{array}\right]$
-
-La ecuación de estado del sistema cerrado queda de la siguiente forma:
-\begin{align*}
-    \dot{z}=\left[
-    \begin{array}{c}
-     \dot{x} \\ \dot{\tilde{x}} 
-    \end{array}\right] = \left[
-    \begin{array}{cc}
-     A-BK & BK \\ 0 & A-LC 
-    \end{array}\right]\left[
-    \begin{array}{c}
-     x \\ \tilde{x} 
-    \end{array}\right]
-\end{align*}
-
-Para simplificar notación, la matriz de estado del sistema cerrado se denotará como $A_{CL}$
-\begin{align*}
-    A_{CL} &= \left[
-    \begin{array}{cc}
-     A-BK & BK \\ 0 & A-LC 
-    \end{array}\right]\\
-    \Longrightarrow \dot{z}&=A_{CL}z
-\end{align*}
-
-Finalmente, los polos de $A_{CL}$ se obtienen al resolver la ecuación característica:
-\begin{align*}
-    \text{det}(sI-A_{CL})&=0\\
-    \Longrightarrow \text{det}(sI-(A-BK))\cdot\text{det}(sI-(A-LC)) &=0
-\end{align*}
-
-\begin{itemize}
-    \item $\text{det}(sI-(A-BK))$: polos del subsistema planta + controlador
-    \item $\text{det}(sI-(A-LC))$: polos del subsistema planta + observador 
-\end{itemize}
-
-Este resultado se conoce como\textcolor{red}{PRINCIPIO DE SEPARACIÓN}.\\
-
-Con este principio, se puede diseñar $K$ y $L$ por separado, luego agrupar y construir el sistema de control cerrado.
-
-
+\par \underline{Definición}: Si un estado es inestable, pero observable, entonces dicho estado se dice que es \textbf{detectable}. 

@@ -6,43 +6,70 @@
 % - Housner et al, 1997 - Structural Control. Past, Present, and Future
 % - Saaed et al, 2015 - A State-of-the-art review of structural control systems
 % - 
+
+%% Anotaciones - Ideas
+% En sistemas de control estructural, en introducción, poner la formula general de un sistema con control Mxpp + Cxp + Kx = F_externas + F_control
+% Explicar que F_control tiene varias formas de diseñarse
+% En vez de explicar los dispositivos de control en secciones de control pasivo, activo, semi-activo e híbrido... poner una sección de tipos de control explicandolos brevemente.
+% Luego, crear secciones de modelos de sistemas de control, explicar brevemente como se modelan y ecuaciones de TMD, Amortiguador viscoso, Disipador histerético, BRB, 
+%
+
 \section{Introducción}
 % Some from Saaed et al 2015
-Los sistemas de control estructural son dispositivos mecánicos que se incorporan a una estructura para poder mejorar su desempeño y serviciabilidad ante cargas dinámicas mediante reducción de la respuesta y pérdidas por daños en elementos estructurales y no estructurales. \\
+Los sistemas de control estructural son dispositivos mecánicos que se incorporan a una estructura para poder mejorar su desempeño y serviciabilidad ante cargas dinámicas.
 
-Estos dispositivos se han clasificado en cuatro grupos en función de cómo operan, los grupos son: (i) pasivos, (ii) activos, (iii) semi-activos e (iv) híbridos.
+\begin{itemize}
+    \item Reducir la \underline{respuesta}
+    \item Reducir \underline{pérdidas por daños}
+    \item Reducción de \underline{riesgos} (Ej. Probabilidad de colapso)
+\end{itemize}
+
+Se clasifican en los siguientes grupos:
+\begin{itemize}
+    \item \underline{Pasivos}: No requieren energía adicional
+    \item \underline{Activos}: Requieren energía adicional
+    \item \underline{Semi-Activos}: Pueden requerir o no energía adicional
+    \item \underline{Híbridos}: dos de los anteriores.
+\end{itemize}
+
+En general, las estructuras con dispositivos de control tienen la siguiente EDM:
+
+\begin{align*}
+    \tenq{M}\tend{\ddot{u}} + \tenq{C}\tend{\dot{u}} + \tenq{K}\tend{u} + \tend{f}_p = \tend{f}_a + \tend{f}_e
+\end{align*}
+
+Donde $\tend{f}_p$ es la fuerza pasiva, $\tend{f}_a$ (actuadores) es la fuerza activa y $\tend{f}_e$ es la fuerza externa (sismo).
 
 \section{Control pasivo}
-Los sistemas de control pasivo no requieren de una fuente de energía externa y funcionan absorbiendo, disipando o aislando energía. Su operación puede depender tanto de el desplazamien, velocidad y aceleración relativa entre los nodos de conexión del dispositivo. Algunos de estos dispositivos requieren ser reemplazados luego de ser utilizados. \\
+Los sistemas de control pasivo no requieren de una fuente de energía externa. \\
+
+Funcionan absorbiendo, aislando y disipando energía. \\
+
+Su operación puede depender tanto de el desplazamiente, velocidad y aceleración relativa entre los nodos de conexión del dispositivo. Algunos de estos dispositivos requieren ser reemplazados luego de ser utilizados. \\
 
 La ecuación general para un sistema estructural con dispositivos de control pasivo es:
 \begin{align*}
-    m\ddot{x} + c\dot{x} + kx + fp(x,\dot{x},\ddot{x}) = \cancelto{0}{f_a} + f_e
+    \tenq{M}\tend{\ddot{u}} + \tenq{C}\tend{\dot{u}} + \tenq{K}\tend{u} + \tend{f}_p = \cancelto{0}{\tend{f}_a} + \tend{f}_e
 \end{align*}
-
-donde $f_a$: es la fuerza de un actuador (en control pasivo no hay actuadores) y $f_e$: fuerza externa. $f_p$ varía en función de si la operación del dispositivo depende del desplazamiento, velocidad o aceleración. \\
 
 Ejemplos:
 \begin{itemize}
     \item Dispositivo disipador histerético: $f_p$ depende de sus ciclos de histéresis.
     \item Amortiguador viscoso: $f_p(\dot{x}) = c_d |\dot{x}|^\alpha sgn(\dot{x})$
-    \item TMD: $f_p = m_{T} \ddot{x}_{rT}$
+    \item TMD: $f_p = m_{TMD} \ddot{x}_{TMD}$
 \end{itemize}
 
-\subsection{Dispositivos de Disipación de Energía}
-\subsubsection{Dispositivos Histeréticos}
-
-\underline{Dispositivos Metálicos}:
-Para modelar la fuerza de los BRB .... 
-
-\underline{Dispositivos de Fricción}
-Para modelar la fuerza de los dispositivos de fricción (modelo de Coulomb de fricción):
+\subsubsection{Dispositovs metálicos}
+-
+\subsubsection{Dispositivos de fricción}
 \begin{align*}
     P(t) = \mu N(t) \text{sgn}(\dot{u}(t))
 \end{align*}
 
-\noindent donde $P(t)$ es la fuerza que aplica el dispositivo a la estructura, $\mu$ es el coeficiente de fricción (roce) dinámico, $N(t)$ es la fuerza normal en la superficie de deslizamiento y $\dot{u}$ es la velocidad relativa del deslizamDiento de las superficies.
+donde $P(t)$ es la fuerza que aplica el dispositivo a la estructura, $\mu$ es el coeficiente de fricción (roce) dinámico, $N(t)$ es la fuerza normal en la superficie de deslizamiento y $\dot{u}$ es la velocidad relativa del deslizamDiento de las superficies.
 
+\subsubsection{Dispositivos Histeréticos}
+-
 \subsubsection{Dispositivos Viscoelásticos}
 Comunmente son pistones que consisten en cilindros huecos rellenos de un material viscoelástico (fluido o sólido). En el caso de meteriales fluidos, la fuerza se genera cuando el fluido orificios y en el caso de materiales sólidos ocurre cuando estos se deforman. 
 
@@ -67,7 +94,7 @@ La disipación de energía ocurre por la fricción generando calor.
 \end{itemize}
 
 
-\subsection{Dispositivos de Aislación Sísmica}
+\subsubsection{Dispositivos de Aislación Sísmica}
 % Saaed
 
 \begin{itemize}

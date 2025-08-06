@@ -1,0 +1,126 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath,bm,amsthm, amsfonts,amssymb}
+\usepackage{mathtools,cancel}
+\usepackage{multicol}
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\usepackage{alltt}
+\usepackage{gensymb}
+\usepackage{subfigure} 
+\usepackage{ragged2e}
+\usepackage{minted}
+\usemintedstyle{tango}
+\usepackage{pifont}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{float}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+\tcbuselibrary{minted}
+
+% tensor 2:
+\newcommand{\tend}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\sim}$\hidewidth}}}
+
+%tensor 4:
+\newcommand{\tenq}[1]{\hbox{\oalign{$\bm{#1}$\crcr\hidewidth$\scriptscriptstyle\bm{\approx}$\hidewidth}}}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\graphicspath{{Figuras/}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Dinamica Estructural Avanzada},
+    pdfauthor={Gaston Fermandois},
+    pdfpagemode=UseOutlines,
+    }
+
+\setminted{
+    autogobble=true,
+    breaklines=true,
+    linenos=false,
+    fontsize=\footnotesize
+}
+
+% Definir el nuevo entorno verbatimg
+\newtcblisting{verbatimg}{
+    colback=lightgray,
+    listing only,
+    left=0pt,
+    listing options={
+        style=Matlab,
+        showstringspaces=false % Espacios normales
+    },
+    minted options={
+        fontsize=\normalsize
+    }
+}
+
+\def\version{2.0}
+
+\begin{document}
+
+\input{titlepage}
+
+\pagenumbering{Roman}
+
+\input{Capitulos/Prefacio}
+
+\input{Capitulos/versiones}
+
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+
+\part{Teoría}
+
+\input{Capitulos/SistDinamicos}
+
+\input{Capitulos/TeoSistLineales}
+
+\input{Capitulos/VibrEstocasticas}
+
+\input{Capitulos/ProcSenalesDigitales}
+
+\part{Aplicaciones}
+
+\input{Capitulos/ControlEstructural}
+
+\input{Capitulos/ControlClasico}
+
+\input{Capitulos/ControlOptimo}
+
+\input{Capitulos/Sensores}
+
+\input{Capitulos/MonitoreoEstructural}
+
+\part{Tópicos avanzados}
+
+\input{Capitulos/SimulacionHibrida}
+
+\input{Capitulos/AprendizajeAutomatico}
+
+\appendix
+
+\part{Apéndice}
+
+\input{Capitulos/IntroMatlab}
+
+\input{Capitulos/IntroSimulink}
+
+\end{document}
+

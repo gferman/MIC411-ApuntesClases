@@ -1,5 +1,7 @@
 \chapter{Introducción a Matlab}
+
 \section{Introducción}
+
 \textbf{MATLAB} (\textbf{MAT}rix \textbf{LAB}oratory) es un entorno y lenguaje de programación. Su ventaja es su capacidad para realizar operaciones de arreglos multidimensionales como vectores ($n \times 1$), matrices ($n \times m$), etc. de manera rápida y sencilla. \\
 
 \noindent MATLAB tiene documentación para todas sus funciones. Dentro del mismo entorno se puede consultar cómo utilizar una función escribiendo \emph{help nombre\_función} en la ventana de comandos o consultando su página web, la cual contiene ejemplos:
@@ -28,10 +30,11 @@ $
     c = [1 2 3; 4 5 6; 7 8 9];      % matriz de números (o arreglo 3x3)
 \end{verbatimg}
 
-\noindent Los comentarios van con signo de porcentaje \%. Para no mostrar la asignación de la variable en la ventana de comandos, escribir ; al final de la asignación.
+\noindent Los comentarios van con signo de porcentaje \texttt{\%}. Para no mostrar la asignación de la variable en la ventana de comandos, escribir el símbolo \texttt{;} al final de la asignación.
 
 \subsubsection{Inicializar arreglos}
 Es una buena practica primero inicializar un vector/matriz vacío (llenos de ceros o unos) ya que MATLAB primero asigna un espacio en la memoria, por lo que si se desea añadir un nuevo elemento al arreglo, se tendría que reasignar el espacio en la memoria todas las veces que se modifica.
+
 \begin{verbatimg}
     A = zeros(3,4); % Inicializar matriz con ceros, 3 filas y 4 columnas
     v = zeros(3,1); % Inicializar vector con ceros, 3 filas
@@ -194,7 +197,7 @@ MATLAB cuenta con la función \emph{eig()} para resolver el problema de vectores
 \noindent $vectores\_propios$ es una matriz donde cada columna es un vector propio y $valores\_propios$ es un vector donde cada elemento es un valor propio.
 
 \subsection{Funciones estadísticas}
-Media $\mu$
+Valor esperado o media $\mu$
 \begin{verbatimg}
     media = mean(datos_x)
 \end{verbatimg}
@@ -490,7 +493,9 @@ Desde State-Space a Transfer Function y viceversa
     sys = tf2ss(num, den)   % ss desde coeficientes tf
 \end{verbatimg}
 
-\noindent Da exactamente el mismo sistema si se utiliza la representación state-space o transfer function.
+\noindent Da exactamente el mismo sistema si se utiliza la representación state-space o transfer function. \\
+
+\noindent Notar que la variable tipo sistema tiene toda la información del sistema. Para mostrarla se puede escribir $sys$ en la ventana de comandos o $disp(sys)$
 
 \subsection{Excitar sistemas}
 \begin{itemize}
@@ -498,6 +503,13 @@ Desde State-Space a Transfer Function y viceversa
     \item \emph{ramp(sys)}: aplicar excitación de rampa al sistema
     \item \emph{step(sys)}: aplicar excitación de escalón al sistema
 \end{itemize}
+
+\subsection{Subsistemas}
+\noindent Si se desea extraer la información del sistema que relaciona el output $i$ con el input $j$, se puede utilizar $sys(i,j)$
+\begin{verbatimg}
+    bode(sys(i,j)) % grafica sólo el bode (i,j)
+    impulse(sys(i,j)) % grafica la respuesta del output "i" cuando input "j" es un impulso
+\end{verbatimg}
 
 \subsection{Otras funciones útiles para el curso}
 \begin{itemize}

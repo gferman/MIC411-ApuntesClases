@@ -14,10 +14,10 @@
 
 Reemplazar (2) en (1):
 $$Y(s)=G(s)C(s)R(s)=L(s)R(s)$$
-Donde $L(s)=G(s)C(s)$ es el sistema abierto ``open-loop system''.\\
+Donde $L(s)=G(s)C(s)$ es el sistema abierto ``open-loop system'' en representación función de transferencia.\\
 \par Si buscamos: 
 \begin{align*}
-    y(t)&=r(t) ~/\color{red}{\mathcal{L}\{\cdot\}}\\
+    y(t)&=r(t) ~/\mathcal{L}\{\cdot\}\\
     Y(s)&=R(s)\\
     \Longrightarrow L(s)&=1\\
     \Longrightarrow C(s)&=\frac{1}{G(s)} ~\text{``control inverso''}
@@ -54,22 +54,9 @@ Donde $L(s)=G(s)C(s)$ es el sistema abierto ``open-loop system''.\\
     \item Respuesta va a ser lenta $\Longrightarrow$ Real-time hybrid simulation
 \end{itemize}
 
-\section{Requisitos de control}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/Planta.png}
-\end{figure}
-$\Longrightarrow$ Generar un set de requisitos de respuesta de planta $\Longrightarrow$ Especificaciones de respuesta transiente ante un escalón unitario
-\begin{itemize}
-    \item $t_r$ (tiempo de subida)
-    \item $M_p$ (sobreimpulso)
-    \item $t_s$ (tiempo de asentamiento)
-\end{itemize}
+\subsubsection{Diagrama de Bloque}
+Cuando se añade un dispositivo de control al sistema dinámico estructural, se genera un nuevo sistema dinámico con propiedades distintas.
 
-\section{Diagrama de Bloque}
-Cuando se añade un dispositivo de control al sistema dinámico estructural, se genera un nuevo sistema dinámico con propiedades distintas. Si se desea encontrar la función de transferencia ($H(s)$) del nuevo sistema $Y(s) = H(s)R(s)$, donde $R(s)$ es la entrada (excitación) e $Y(s)$ es la salida (respuesta), se puede obtener aplicando la transformada de laplace a la EDM del nuevo sistema. Sin embargo es mucho más rápido encontrar $H(s)$ utilizando el diagrama de bloques si es que se saben a priori las funciones de transferencia tanto del controlador (actuador) como de la planta (edificio).
-
-Consideremos el siguiente ejemplo de diagrama de bloque:
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/Diagrama_bloque.png}
@@ -80,12 +67,12 @@ Desde el diagrama de bloques, se observa que:
     Y(s) = G(s)U(s)
 \end{align*}
 
-\noindent pero, la señal de entrada $U(s)$ es la señal de salida del controlador:
+Pero, la señal de entrada $U(s)$ es la señal de salida del controlador:
 \begin{align*}
     U(s) = C(s)E(s)
 \end{align*}
 
-\noindent reemplazando, se obtiene que :
+Reemplazando, se obtiene que :
 \begin{align*}
     Y(s) = G(s)C(s)E(s)
 \end{align*}
@@ -108,11 +95,32 @@ $\therefore G_{CL} = \bigg[\frac{G(s)C(s)}{1+G(s)C(s)}\bigg]$ es la función de 
 
 % \underline{Nota}: Vamos a ajustar $C(s)$ tal que $G_{CL}(s)$ tenga las propiedades deseadas en función de $t_r$, $M_p$ y $t_s$. O bien, elegir posición de los polos de $G_{CL}(s)$.
 
+\section{Sistema estructural con Active Mass Damper (AMD)}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Figuras/AMD.png}
+\end{figure}
+\begin{align*}
+    \text{EDM: }~ m\ddot{z}+c\dot{z}+kz=f_a(u)+\cancelto{\text{Asuma=0}}{d}
+\end{align*}
+$u$: señal control (voltaje)\\
+El objetivo es diseñar un \underline{algoritmo de control} $f_a(u,t)$ para mitigar $z(t)$ y mejorar el desempeño.
 
 
+\section{Respuesta transiente}
+Si queremos transicionar de un estado $x(t_0)$ a $x_2$, la respuesta no es instantánea y existe una respuesta transiente que hay que limitar.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{step.png}
+\end{figure}
+\underline{Definición}:
+\begin{itemize}
+    \item \underline{Tiempo de subida} (``rise time'', $t_r$): tiempo que toma subir. Ej.: ir desde 10\% hasta 90\% de respuesta o de 0\% a 100\%.
+    \item \underline{Sobreimpulso} (``overshoot'', $M_p$): exceso de respuesta transitoria sobre la referencia deseada.
+    \item \underline{Tiempo de asentamiento} (``senttling time'', $t_s$): tiempo que toma el sistema en decaer hasta 1\%
+\end{itemize}
 
-
-\section{Teorema Límite Final}
+\subsubsection{Teorema del Límite Final}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/planta2.png}
@@ -123,43 +131,81 @@ Respuesta Estado Estacionario: $y_\infty=\lim_{t\to\infty} y(t)$\\
 \begin{align*}
     \lim_{t\to\infty} y(t)=\lim_{s\to 0} sY(s)
 \end{align*}
-\section{Sistema estructural con Active Mass Damper (AMD)}
+
+
+\subsection{Requisitos de control}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{Figuras/AMD.png}
+\includegraphics[scale=0.7]{Figuras/Planta.png}
 \end{figure}
+$\Longrightarrow$ Generar un set de requisitos de respuesta de planta $\Longrightarrow$ Especificaciones de respuesta transiente ante un escalón unitario
+\begin{itemize}
+    \item $t_r$ (tiempo de subida)
+    \item $M_p$ (sobreimpulso)
+    \item $t_s$ (tiempo de asentamiento)
+\end{itemize}
+
+\subsection{Especificaciones de Respuesta Transiente}
+Suponiendo un sistema LTI-SISO:\\
 \begin{align*}
-    \text{EDM: }~ m\ddot{z}+c\dot{z}+kz=f_a(u)+\cancelto{\text{Asuma=0}}{d}
+    \text{EDM: }~ m\ddot{u}+c\dot{u}+ku &= f\\
+    \Longrightarrow H_{UF}(s) &= \frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}
 \end{align*}
-$u$: señal control (voltaje)\\
-\par \underline{Objetivo}: Diseñar un \textcolor{red}{sistema de control} para mitigar $z(t)$ $\Longrightarrow$ Control PID (Proporcional-Integral-Derivativo)
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{transiente.png}
+\end{figure}
+
+Fórmulas para estimar la respuesta transiente para el caso de excitación escalón:
+\begin{itemize}
+    \item \underline{Tiempo subida, $t_r$}: Asumiento $\xi=2\%$, 
+    $$t_r\approx \frac{1.6}{\omega_n}$$
+    \item \underline{Sobreimpulso, $M_p$}: 
+    $$-\log \left(\frac{M_p}{\pi} \right) \approx \tan(\theta)$$
+    \item \underline{Tiempo asentamiento, $t_s$}: Asumiendo 2\% de respuesta esperada en ``steady-state'',
+    $$t_s\approx \frac{4}{\xi \omega_n} $$
+\end{itemize}
+
+\subsection{``Pole placement'', ubicación de polos}
+Dadas las especificaciones transientes: $t_r$, $M_p$, $t_s$
+\begin{align*}
+    \color{VioletRed}{t_s}&<(t_s)_{lim}=\frac{4}{(\xi\omega_n)_{lim}}\\
+    \color{BurntOrange}{t_r}&<(t_r)_{lim}\approx \frac{1.6}{\omega_n}\\
+    \color{LimeGreen}{M_p}&<(M_p)_{lim}=e^{-\pi\tan(\theta)}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{pole_placement.png}
+\end{figure}
+
 
 \section{Control PID}
+El control PID es un \underline{algoritmo de control} para diseñar la señal de control $u(t)$ para definir nuestra fuerza de control $f_a(u,t)$ es el control PID.
 \begin{align*}
-    C(s)=K_p+K_Ds+\frac{K_I}{s}
+    u(t)&=K_pe(t)+K_D\frac{de(t)}{dt}+K_I\int e(t)dt\\
+    \Longleftrightarrow U(s) &= K_pE(s)+K_DsE(s)+K_I\frac{E(s)}{s} \\
+    \Longleftrightarrow U(s) &= \left(K_P + K_Ds + \frac{K_I}{s}\right)E(s)
+\end{align*}
+
+Si definimos $C(s) = K_P + K_Ds + \frac{K_I}{s}$
+\begin{align*}
+    U(s) = C(s)E(s)
 \end{align*}
 \begin{itemize}
     \item $K_p$: control proporcional
     \item $K_D$: control derivativo
     \item $K_I$: control integral
+    \item $K_pe(t)$: error instantáneo
+    \item $K_D\frac{de(t)}{dt}$: error futuro
+    \item $K_I\int e(t)dt$: error pasado
+    \item $e(t) = r(t) - y(t)$
 \end{itemize}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/controlador.png}
 \end{figure}
-
-\begin{align*}
-    U(s)&=C(s)E(s)\\
-    &=K_pE(s)+K_DsE(s)+K_I\frac{E(s)}{s}~/\color{red}{\mathcal{L}^{-1}\{\cdot\}}\\
-    \Longrightarrow u(t)&=K_pe(t)+K_D\frac{de(t)}{dt}+K_I\int e(t)dt
-\end{align*}
- 
-\begin{itemize}
-    \item $K_pe(t)$: error instantáneo
-    \item $K_D\frac{de(t)}{dt}$: error futuro
-    \item $K_I\int e(t)dt$: error pasado
-\end{itemize}
 
 \begin{figure}[H]
 \centering
@@ -735,10 +781,15 @@ Entonces, el controlador $K$ se define como:
     \vdots \\
     \alpha_0 = a_0+k_0 &\Longrightarrow k_0 = \alpha_0-a_0\\
 \end{align*}
+
 Donde $\alpha_i$ se obtiene de la posición deseada de los polos. \\
-\par Entonces, si el sistema es CCF, podemos diseñar $K$ al elegir la posición de los polos de manera apropiada $\Longrightarrow$ \textcolor{red}{POLE PLACEMENT}\\
+
+\par Entonces, si el sistema es CCF, podemos diseñar $K$ al elegir la posición de los polos de manera apropiada $\Longrightarrow$ \textbf{POLE PLACEMENT}\\
+
 \par \underline{Nota}: Si el sistema no es CCF, entonces se puede transformar a CCF utilizando matriz de transformación $\tenq{T}$, provisto que el sistema sea controlable.\\
+
 \par Sea la realización:
+
 \begin{align*}
     \tend{x}=Ax+Bu \xrightarrow[]{x=Tz} \dot{z}=A_cz+B_cu
 \end{align*}
@@ -768,4 +819,269 @@ Reemplazando:
     \Longrightarrow \dot{x} &= (A-BK)x
 \end{align*}
 donde  $K=K_cT^{-1}$, controlador para el sistema original.
+
+\section{Observadores}
+\underline{Motivación}: \\
+
+Considere el siguiente ejemplo de sistema dinámico:
+\begin{align*}
+    \dot{x} &= f(x,u)\\
+    y &= g(x,u)
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/nuclear.png}
+\end{figure}
+¿Es posible determinar los estados internos del sistema $x(t)$ (temperatura de las barras), utilizando solo las señales de entrada y salida $\{u(t), y(t)\}$? La respuesta es sí, pero con la condición de que el sistema sea \textbf{observable}.\\
+
+El objetivo de lo que se desarrollará a continuación es \emph{diseñar} un \emph{observador/estimador} para poder estimar los estados internos $x(t)$ de un sistema, de tal forma que dependa únicamente de las señales de entrada y salida del sistema:
+
+\begin{align*}
+    \hat{x}(t) = f(u(t), y(t))
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/observador2.png}
+\end{figure}
+
+\underline{Notación}:
+\begin{itemize}
+    \item $x(t)$: estados del sistema
+    \item $\hat{x}(t)$: estados estimados
+    \item $\tilde{x}(t)=x(t)-\hat{x}(t)$: error de estimación
+\end{itemize}
+
+La dinámica del sistema de los \emph{estados estimados} $\hat{x}$ es la misma que la del sistema planta:
+
+\begin{align*}
+    &\dot{\hat{x}} = A\hat{x}+Bu \\
+    &\hat{x}(0) = \hat{x}_0    
+\end{align*}
+
+Luego, se puede deducir la dinámica del \emph{error de estimación} $\tilde{x}$:
+
+\begin{align*}
+    \dot{\tilde{x}} &= \frac{d}{dt}(x-\hat{x})=\dot{x}-\dot{\hat{x}}\\
+    &= (Ax+Bu)-(A\hat{x}+Bu)=A(x-\hat{x}) \\
+    \Longrightarrow \dot{\tilde{x}} &= A\tilde{x} 
+\end{align*}
+
+La estrategia para diseñar el observador es la siguiente: Si los estados decaen a cero, entonces se diseña un estimador tal que el error de la estimación decae con la misma tasa que el sistema.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{Figuras/observador.png}
+\end{figure}
+
+\section{Diseño de Observador de Estados}
+De la figura anterior, notar que para estimar los estados del sistema, se requiere de una ganancia $L$. Lo que se va a realizar a continuación es diseñar esta matriz $L$. \\
+
+La representación espacio-estado de los estados estimados $\hat{x}(t)$ incluye la señal del error de estimación $\tilde{x}$ y su ganancia $L$.
+
+\begin{align*}
+    \dot{\hat{x}}(t) = A\hat{x}(t)+Bu(t)+L\tilde{y}(t)
+\end{align*}
+donde:
+\begin{align*}
+    L=\left[
+    \begin{array}{c}
+     l_1 \\ l_2\\ \vdots\\ l_n 
+    \end{array}\right], \quad L \in \mathbb{R}^{n\times r}, \quad x,y \in \mathbb{R}^n 
+\end{align*}
+
+La ecuación de estado del error de estimación queda de la siguiente forma:
+\begin{align*}
+    \dot{\tilde{x}}=\dot{x}-\dot{\hat{x}} &= (Ax+Bu)-(A\hat{x}+Bu+L\tilde{y})\\
+    &= A\tilde{x}-L(y-\hat{y})\\
+    &= A\tilde{x}-L(Cx-C\hat{x})\\
+    &= A\tilde{x}-LC\tilde{x}\\
+    \dot{\tilde{x}} &= (A-LC)\tilde{x}
+\end{align*}
+
+Por lo tanto, para diseñar $L$, $(A-LC)$ debe cumplir con estabilidad. Para lograr esta estabilidad, se ubicarán apropiadamente los polos de forma que se encuentren al lado izquierdo del plano complejo. A esta estrategia se le conoce como \textbf{Pole Placement}. \\
+
+\underline{Caso particular}: 
+
+Considere el siguiente sistema con $x\in\mathbb{R}^n$, $u\in\mathbb{R}$, $y\in\mathbb{R}$: 
+
+\begin{align*}
+    G(s) = \frac{b_0}{s^n+a_{n-1}s^{n-1}+...+a_1s+a_0}
+\end{align*}
+
+Su Forma Canónica Observable es: 
+
+\begin{align*}
+\tenq{A_o}=\left[
+    \begin{array}{c|cccc}
+     -a_{n-1} & 1 & & & 0 \\ 
+     -a_{n-2} & & 1 & & \\
+     \vdots   & & & \ddots & \\
+     -a_1     & 0 & & & 1 \\ \hline
+     -a_0     & 0 & 0 & \dots & 0   
+    \end{array}\right], \quad \tenq{A_o}\in \mathbb{R}^{n\times n}
+\end{align*}
+\begin{align*}
+\tenq{B_o}=\left[
+    \begin{array}{c}
+     b_{n-1} \\
+     b_{n-2}\\
+    \vdots\\
+     b_1 \\ \hline
+     b_0
+    \end{array}\right], \quad \tenq{B_o}\in \mathbb{R}^{n\times 1}
+\end{align*}
+\begin{align*}
+\tenq{C_o}=\left[
+    \begin{array}{c|ccc}
+     1 & 0 & \dots & 0
+    \end{array}\right], \quad \tenq{C}_o\in \mathbb{R}^{1\times n}
+\end{align*}
+
+Como en este caso particular, $y\in\mathbb{R}$, entonces $L$ es matriz $n \times 1$:
+\begin{align*}
+    L=\left[
+    \begin{array}{c}
+     l_{n-1} \\ l_{n-2}\\ \vdots\\ l_0 
+    \end{array}\right] 
+\end{align*}
+%\underline{Objetivo}: Determinar los $l_i$, $i\in[0,n-1]$
+
+Por lo tanto, se puede obtener $A_0 - LC_0$ de la siguiente forma:
+\begin{align*}
+    LC_o&=\left[
+    \begin{array}{c}
+     l_{n-1} \\ l_{n-2}\\ \vdots\\ l_0 
+    \end{array}\right] \left[
+    \begin{array}{c c c c}
+     1 & 0 & ... & 0
+    \end{array}\right] =\left[
+    \begin{array}{c|c}
+     l_{n-1} & \\ \vdots & \tenq{0} \\ l_0 & 
+    \end{array}\right] \\
+    A_o-LC_o &= \left[ \begin{array}{c|c c c}
+     -a_{n-1}-l_{n-1} & & & \\  -a_{n-2}-l_{n-2} & & & \\ \vdots & & \tenq{I} & \\-a_1-l_1 & & & \\ \hline \\ -a_0-l_0 & 0 & ... & 0
+    \end{array}\right] 
+\end{align*}
+y su ecuación característica es: 
+\begin{align*}
+    &\phantom{\Longrightarrow} \Delta(A_o-LC_o) = 0 \\
+    &\Longrightarrow s^n+(a_{n-1}+l_{n-1})s^{n-1}+...+(a_1+l_1)s+(a_0+l_0) = 0
+\end{align*}
+
+Cada coeficiente $(a_i+l_i)$, son los coeficientes $\lambda_i$ del polinomio característico asociado a la ubicación de polos deseada $p_i$:
+
+\begin{align*}
+    \prod_{i=0}^{n-1}(s-p_i)=s^n+\lambda_{n-1}s^{n-1}+...+\lambda_1s+\lambda_0=0
+\end{align*}
+
+Para finalmente obtener los términos $l_i$ de la matriz $L$, se deben definir los polos deseados, expandir el polinomio y luego igualar ambos términos para todo $i \in [0,n-1]$.
+
+\begin{align*}
+    &\phantom{\longrightarrow} a_i + l_i = \lambda_i \\
+    &\longrightarrow l_i = a_i-\lambda_i
+\end{align*}
+
+\underline{Nota}: En MATLAB, el diseño por ubicación de polos se puede realizar utilizando el comando \texttt{place()}. \\
+
+\underline{Nota}: Si el sistema no está escrito en OCF (forma canónica observable), es recomendable transformarlo a OCF con una transformación de similitud utilizando la matriz $T$. Recordar que esta matriz $T$ existe ssi el sistema es observable.
+
+
+\section{Principio de Separación}
+Considere el siguiente sistema LTI cerrado:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Figuras/ppio_separacion.png}
+\end{figure}
+
+
+Planta:
+\begin{subequations}
+    \begin{align}
+        \dot{x} &= Ax+Bu\\
+        y &= Cx
+    \end{align}
+\end{subequations}
+
+Controlador:
+\begin{subequations}
+    \begin{align}
+        u = -K\hat{x}
+    \end{align}
+\end{subequations} 
+
+Estimador y error de estimación:
+\begin{subequations}
+    \begin{align}
+        \dot{\hat{x}}&= A\hat{x}+Bu+L\tilde{y}\\
+        \hat{y} &= C\hat{x}\\
+        \tilde{x} &= x-\hat{x}\\
+        \tilde{y} &= y-\hat{y}
+    \end{align}
+\end{subequations}
+
+Utilizando las ecuaciones de cada subsistema, vamos a obtener una expresión para el sistema cerrado: \\
+
+Reemplazando (2.3c) en (2.2a):
+\begin{align*}
+    u&=-K(x-\tilde{x})\\
+\end{align*}
+
+Reemplazando lo anterior en (2.1a):
+\begin{align*}
+    \dot{x} &= Ax + B(-K(x - \tilde{x}))\\
+    \Longrightarrow \dot{x} &= Ax - BK(x-\tilde{x}) \\
+    \Longrightarrow \dot{x} &= (A-BK)x+BK\tilde{x}
+\end{align*}
+
+Restando (2.1a) menos (2.3a) para obtener la dinámica del error de estimación
+\begin{align*}
+    \Longrightarrow \dot{\tilde{x}} &= (Ax+Bu)-(A\hat{x}+Bu+L\tilde{y})\\
+    \Longrightarrow \dot{\tilde{x}} &= A\tilde{x}-LC \tilde{x}\\
+    \Longrightarrow \dot{\tilde{x}} &= (A-LC)\tilde{x}
+\end{align*}
+
+Luego, definiendo los estados del sistema cerrado como $z=\left[
+    \begin{array}{c}
+     x \\ \tilde{x} 
+    \end{array}\right]$
+
+La ecuación de estado del sistema cerrado queda de la siguiente forma:
+\begin{align*}
+    \dot{z}=\left[
+    \begin{array}{c}
+     \dot{x} \\ \dot{\tilde{x}} 
+    \end{array}\right] = \left[
+    \begin{array}{cc}
+     A-BK & BK \\ 0 & A-LC 
+    \end{array}\right]\left[
+    \begin{array}{c}
+     x \\ \tilde{x} 
+    \end{array}\right]
+\end{align*}
+
+Para simplificar notación, la matriz de estado del sistema cerrado se denotará como $A_{CL}$
+\begin{align*}
+    A_{CL} &= \left[
+    \begin{array}{cc}
+     A-BK & BK \\ 0 & A-LC 
+    \end{array}\right]\\
+    \Longrightarrow \dot{z}&=A_{CL}z
+\end{align*}
+
+Finalmente, los polos de $A_{CL}$ se obtienen al resolver la ecuación característica:
+\begin{align*}
+    \text{det}(sI-A_{CL})&=0\\
+    \Longrightarrow \text{det}(sI-(A-BK))\cdot\text{det}(sI-(A-LC)) &=0
+\end{align*}
+
+\begin{itemize}
+    \item $\text{det}(sI-(A-BK))$: polos del subsistema planta + controlador
+    \item $\text{det}(sI-(A-LC))$: polos del subsistema planta + observador 
+\end{itemize}
+
+Este resultado se conoce como \textbf{Principio de Separación}.\\
+
+Con este principio, se puede diseñar $K$ y $L$ por separado, luego agrupar y construir el sistema de control cerrado.
 

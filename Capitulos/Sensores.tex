@@ -2,46 +2,106 @@
 
 % NOTA: Utilizar apuntes de Spencer como guía
 
+\section{Fundamentos de sensores}
+\subsection{Qué es un sensor}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.15]{Figuras/acelerometros.png}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figuras/funcionamientoSensor.png}
+\end{figure}
+\begin{itemize}
+    \item $z(t)$: desplazamiento de la estructura
+    \item $u(t)$: desplazamiento del SDOF del sensor
+    \item $w(t)$: desplazamiento relativo entre sensor y estructura $w(t) = u(t) - z(t)$
+\end{itemize}
+
+El output que genera el sensor es una señal eléctrica (voltaje, corriente) que es proporcional a $w(t)$.\\
+
+Sobre la utilidad de un sensor, fijarse en el rango de frecuencia y en el rango de aceleraciones. \\
+Ej.: Sensor con rangos $[5; 10000]Hz$ y $[-10; 10]g$ no podría medir frecuencias de $1[Hz]$.
+
+\subsection{Diseño de Sensores}
+Supongamos tenemos un sensor con un oscilador SDOF sin amortiguamiento
+
+\begin{align*}
+    \ddot{w} + \omega_s^2 w = -\ddot{z}
+\end{align*}
+
+La FRF de este oscilador es:
+\begin{align*}
+    H_{WZ}(\Omega) = \frac{1}{1-\frac{\omega_s}{\Omega}^2}\\
+    H_{W\ddot{Z}}(\Omega) = \frac{1}{\Omega^2 - \omega_s^2}
+\end{align*}
+\begin{itemize}
+    \item Si quiero que $w(t)$ se parezca a $z(t)$. Ocupar rigidez alta.
+    \item Si quiero que $w(t)$ se parezca a $\ddot{z}(t)$. Ocupar rigidez baja.
+\end{itemize}
+% agregar FRF del ppt sensores?
+Generalmente la respuesta transiente de $w(t)$ (que contiene información del sensor) decae rápido
+
 \section{Fundamentos básicos de electrónica}
-
 \subsection{Resistencia}
-
 Relación deformación vs voltaje
 
 \subsection{Capacitancia}
+Es la propiedad de algunos materiales o dispositivos para almacenar carga eléctrica cuando se les aplica una diferencia de potencial.
 
 
+\subsection{Piezoelectricidad}
+Del griego \emph{piezo} (apretar/presión). Es la propiedad de algunos materiales que, al ser sometidos a tensiones o deformaciones, generan diferencias de potencial y cargas eléctricas. De manera inversa, si se les aplica una diferencia de potencial, estos materiales se deforman. \\
 
-\subsection{Piezo-electricidad}
+Ejemplos de materiales piezoelétricos: Sal de Rochello, Tourmalina, cristales de cuarzo.
 
-Del griego \emph{piezo} (presión)
+% \ section{Fundamentos de sensores de vibración}
 
-\section{Fundamentos de sensores de vibración}
-
-Ecuación de movimiento
-FRF: Acelerometro vs Medidor desplazamiento
-Giroscopio, efecto de Coriolis
+% Ecuación de movimiento
+% FRF: Acelerometro vs Medidor desplazamiento
+% Giroscopio, efecto de Coriolis
 %Ref: https://youtu.be/PK05u9c3yWI?si=s8M-EsRE4FtOPgVj&t=386
 
 \section{Especificaciones de sensores}
 
-\subsection{Sensitividad}
+\underline{sensitividad}: Cantidad de voltaje que se genera por unidad de medida de vibración (ej: de aceleración).
 
-\subsection{Resolución}
+\begin{align*}
+    S = \frac{\text{output (voltaje)}}{\text{input (vibración)}}
+\end{align*}
 
-\subsection{Rango de frecuencias}
+\underline{Resolución}: Cantidad mínima de input para generar algún voltaje (se relacióna con el ruido/contaminación de la señal). \\
 
-\subsection{Linealidad}
+\underline{Rango de Frecuencias}: Rango de frecuencias que el sensor es capaz de medir. Si la respuesta que quiero medir contiene una frecuencia fuera de este rango, no se estaría midiendo la respuesta real de la estructura. \\
+
+\underline{Linealidad}: Que tan lineal es la respuesta que estoy midiendo con la señal eléctrica.
+
+\begin{align*}
+    \text{medición} = C \times (\text{señal})
+\end{align*}
+
+Generalmente, los sensores tienen $R^2 \approx 0.99$
 
 \section{Sensores de vibración}
 
 \subsection{Acelerómetros resistivos}
+Voltaje proporcional con la aceleración aplicada al sensor.
+
+\subsection{Acelerómetro capacitivo}
+Utiliza una técnica de modulación de frecuencias a través de la variación del "Bridge" de un capacitor conectado a la masa.
 
 \subsection{Acelerómetros piezoeléctricos}
+Los dos anteriores son muy frágiles (limitada protección a golpes)
+
+
+Hay de compresión, flexión y corte.
 
 \subsection{\emph{Strain gages}}
+Miden deformación y se pueden ocupar para medir fuerza.
 
 \subsection{Celdas de carga}
+
 
 \subsection{Transductores de desplazamiento}
 
@@ -60,6 +120,7 @@ Geofonos
 \section{Adquisición Digital de Datos}
 
 \subsection{Muestreo (\emph{sampling})}
+$w[k]$
 
 \subsection{Cuantización}
 

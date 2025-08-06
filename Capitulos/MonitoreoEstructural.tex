@@ -1,37 +1,37 @@
 \chapter{Técnicas de Monitoreo Estructural}
+
 \section{Introducción}
-\underline{Motivación}:
+
+Nunca se está seguro de las propiedades \emph{exactas} de una estructura. 
+
 \begin{enumerate}
     \item Obras civiles ``envejecen'':
     \begin{itemize}
-        \item Daño/deterioro estructura
-        \item Cambio en las propiedades de materiales
+        \item Daño/deterioro estructura $\longrightarrow$ Cambio en las propiedades de materiales
     \end{itemize}
     \item Incertidumbre:
     \begin{itemize}
         \item Propiedades nominales utilizadas en diseño
-        \item ¿Modelos nominales representan fielmente el comportamiento estructura real?
+        \item Los modelos nominales no necesariamente representan fielmente el comportamiento real de la estructura
     \end{itemize}
 \end{enumerate}
 
-\underline{Objetivos}:
-El monitoreo estructural tiene múltiples objetivos, entre ellos se incluyen:
-\begin{itemize}
-    \item Determinar un \textcolor{red}{modelo matemático} de un sistema.
-    \item Predecir respuesta estructural
-    \item Predecir input que genera una cierta respuesta.
-    \item Predicir desempeño estructural.
-    \item Predecir 
-\end{itemize}
-
-Proyectos de monitoreo estructural (SHM, structural health monitoring)\\
+Un buen proyecto de monitoreo estructural (Structural health monitoring, SHM) tiene múltiples objetivos más allá de la instrumentación.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{Figuras/sysID.png}
+    \centering
+    \includegraphics[scale=0.5]{Figuras/sysID.png}
 \end{figure}
 
-\section{Tipos de Identificación*}
+Para el monitoreo estructural se busca:
+
+\begin{itemize}
+    \item Determinar un modelo matemático de un sistema.
+    \item Realizar predecicción: desempeño, daño,
+\end{itemize}
+
+\section{Tipos de Identificación}
+
 \begin{enumerate}
     \item Análisis dinámico (problema directo)
     \begin{figure}[H]
@@ -43,14 +43,15 @@ Proyectos de monitoreo estructural (SHM, structural health monitoring)\\
     \centering
     \includegraphics[scale=0.6]{Figuras/fuerza_entrada.png}
     \end{figure}    
-    \item Identificación de sistema (problema inverso)
+    \item Identificación de sistema
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{Figuras/problema_inverso.png}
     \end{figure}
 \end{enumerate}
 
-Estas predicciones se pueden realizar en con distintos métodos que se agrupan en categorías:
+Estas predicciones se pueden realizar con distintos métodos:
+
 \begin{enumerate}
     \item Basados en dominio frecuencia
     \begin{itemize}
@@ -58,183 +59,207 @@ Estas predicciones se pueden realizar en con distintos métodos que se agrupan e
     \end{itemize}
     \item Basados en dominio tiempo
     \begin{itemize}
-        \item Modelos auto-regresivos (ARX, ARMA, ARMAX, etc.)
-        \item Métodos basados en subespacios\\
-        $\Longrightarrow$ ERA, Next-ERA, SSI, etc.
+        \item Modelos auto-regresivos: ARX, ARMA, ARMAX, etc.
+        \item Métodos basados en subespacios: ERA, Next-ERA, SSI, etc.
     \end{itemize}
 \end{enumerate}
 
-Resumen de SysID:
+Resumen de identificación de sistemas (SysID):
+
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/resumenSysID.png}
+    \centering
+    \includegraphics[scale=0.7]{Figuras/resumenSysID.png}
 \end{figure}
 
-\section{Análisis Modal Experimental}
-Dado un sistema LTI, representado por una FRF $G_{YU}(\omega)$:
+\section{Identificación de Sistemas}
+
+Dado un sistema LTI representado por su FRF $G_{YU}(\omega)$, buscamos determinar $G_{YU}(\omega)$ dado $u(t)$ y $y(t)$ conocidos.\\
+
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{Figuras/UY.png}
+    \centering
+    \includegraphics[scale=0.6]{Figuras/UY.png}
 \end{figure}
 
 \begin{align*}
-    Y(\omega) &= G_{YU}(\omega)U(\omega)\\
-    y(t) &= (g_{YU} \ast u)(t)
+    Y(\omega) &= G_{YU}(\omega)U(\omega) \quad \text{(FRF)}\\
+    y(t) &= (g_{YU} \ast u)(t) \quad \text{(FRI)} \\
+    G_{YU}(\omega) &= \mathcal{F}\{g_{YU}(t)\}
 \end{align*}
-donde $g_{YU}(t)$: función respuesta impulso, $G_{YU}(\omega)$: función respuesta en frecuencia, $G_{YU}(\omega)=\mathcal{F}\{g_{YU}(t)\}$\\
 
-\par \underline{Objetivo}: Determinar $G_{YU}(\omega)$, dado $u(t)$ y $y(t)$ conocidos.\\
-\par Asumir que $u(t)$ y $y(t)$ son procesos estocásticos estacionarios. En particular, asumir que son p.e. estacionarios y Gaussianos de media cero.\\
+\subsection{Análisis Modal Experimental}
+
+\par Asumir que $u(t)$ e $y(t)$ son procesos estocásticos $\mathbb{U}$ e $\mathbb{Y}$ estacionarios Gaussianos de media cero. \\
+
 \par Recordando el teorema de Wiener-Khinchin:
+
 \begin{align*}
-    S_{XX}(\omega) &= \mathcal{F}\{R_{XX}(\tau)\}\\
-    R_{XX(\tau)} &= \mathcal{F}^{-1}\{S_{XX}(\omega)\}
+    S_{\mathbb{X}\mathbb{X}}(\omega) &= \mathcal{F}\{R_{\mathbb{X}\mathbb{X}}(\tau)\}\\
+    R_{\mathbb{X}\mathbb{X}}(\tau) &= \mathcal{F}^{-1}\{S_{\mathbb{X}\mathbb{X}}(\omega)\}
 \end{align*}
-donde $R_{XX}(\tau) =\mathbb{E}\{X(t)X(t+\tau)$ para  un p.e. estacionario.\\
-\par \underline{Identidad}:
+
+donde $R_{\mathbb{X}\mathbb{X}}(\tau) =\mathbb{E}\{X(t)X(t+\tau)\}$ para  un p.e. estacionario.\\
+
+Se puede demostrar que: 
+
 \begin{align*}
-    S_{XX}(\omega) = \mathbb{E}\{X(\omega)X^\ast(\omega)\} \quad \text{Poder espectral}
+    S_{\mathbb{X}\mathbb{X}}(\omega) = \mathbb{E}\{X(\omega)X^\ast(\omega)\} \quad \text{Poder espectral}
 \end{align*}
+
 donde $X(\omega)=\mathcal{F}\{x(t)\}$ y $()^\ast$: transpuesta conjugada.\\
+
 \par Un primer alcance:
+
 \begin{align*}
-    S_{YY}(\omega) &= \mathbb{E}\{Y(\omega)Y^\ast (\omega)\}\\
+    S_{\mathbb{Y}\mathbb{Y}}(\omega) &= \mathbb{E}\{Y(\omega)Y^\ast (\omega)\}\\
     &= \mathbb{E}\Bigl\{\bigl(G_{YU}(\omega)U(\omega)\bigr)\bigl(G_{YU}(\omega)U(\omega)\bigr)^\ast\Bigr\}\\
     &= \mathbb{E}\Bigl\{G_{YU}(\omega)U(\omega)U^\ast(\omega)G^\ast_{YU}(\omega) \Bigr\}
 \end{align*}
+
 Si el sistema es SISO, y es determinístico:
 
 \begin{align*}
-    S_{YY}(\omega) &= G_{YU}(\omega)G^\ast_{YU}(\omega)\mathbb{E}\Bigl\{U(\omega)U^\ast(\omega) \Bigr\}\\
-    S_{YY}(\omega) &= |G_{YU}(\omega)|^2 S_{uu}(\omega)\\
+    S_{\mathbb{Y}\mathbb{Y}}(\omega) &= G_{YU}(\omega)G^\ast_{YU}(\omega)\mathbb{E}\Bigl\{U(\omega)U^\ast(\omega) \Bigr\}\\
+    S_{\mathbb{Y}\mathbb{Y}}(\omega) &= |G_{YU}(\omega)|^2 S_{\mathbb{U}\mathbb{U}}(\omega)\\
     \tag{*}
-    |G_{YU}(\omega)|^2 &= \frac{S_{YY}(\omega)}{S_{UU}(\omega)}
-    \label{eq:GYU}
+    |G_{YU}(\omega)|^2 &= \frac{S_{\mathbb{Y}\mathbb{Y}}(\omega)}{S_{\mathbb{Y}\mathbb{Y}}(\omega)}
 \end{align*}
 
-\underline{Nota}: $|G_{YU}(\omega)|^2$ es una función real, por lo tanto nos entregan solo información de la magnitud del sistema, y no de la fase. $\Longrightarrow$ (\ref{eq:GYU}) descartado.
-
+\underline{Nota}: $|G_{YU}(\omega)|^2$ es una función real y nos entrega sólo información de la magnitud del sistema y no de la fase. Por lo tanto, \underline{este método queda descartado}.
 
 \subsection{Método \texorpdfstring{$H_1$}{H1}}
 
 \begin{align*}
-    Y(\omega) &= G_{YU}(\omega)U(\omega)\\
-    Y(\omega)U^\ast(\omega) &= G_{YU}(\omega)U(\omega)U^\ast(\omega)\\
-    \mathbb{E}\{Y(\omega)U^\ast(\omega)\} &= G_{YU}(\omega)\mathbb{E}\{U(\omega)U^\ast(\omega)\}
+    Y(\omega) &= G_{YU}(\omega)U(\omega) \quad / \cdot U^*(\omega)\\
+    Y(\omega)U^\ast(\omega) &= G_{YU}(\omega)U(\omega)U^\ast(\omega) \quad / \mathbb{E}\{\cdot\}\\
+    \mathbb{E}\{Y(\omega)U^\ast(\omega)\} &= G_{YU}(\omega)\mathbb{E}\{U(\omega)U^\ast(\omega)\} \\
+    S_{\mathbb{Y}\mathbb{U}}(\omega) &= G_{YU}(\omega)S_{\mathbb{U}\mathbb{U}}(\omega)\\
+    \hat{G}_{YU}(\omega) &= \frac{S_{\mathbb{Y}\mathbb{U}}(\omega)}{S_{UU}(\omega)} \quad \text{Estimador $H_1$}
 \end{align*}
 
-donde $\mathbb{E}\{Y(\omega)U^\ast(\omega)\}$: PSD cruzado en respuesta y entrada,$\mathbb{E}\{U(\omega)U^\ast(\omega)\}$: auto PSD entrada.
-\begin{align*}
-    S_{YU}(\omega) &= G_{YU}(\omega)S_{UU}(\omega)\\
-    \hat{G}_{YU}(\omega) &= \frac{S_{YU}(\omega)}{S_{UU}(\omega)} \quad \text{Estimador $H_1$} 
-\end{align*}
+donde $\mathbb{E}\{Y(\omega)U^\ast(\omega)\} =S_{\mathbb{Y}\mathbb{U}}(\omega)$ es el PSD cruzado.
 
-\begin{itemize}
-    \item magnitud: $|\hat{G}_{YU}(\omega)|$
-    \item fase: $\angle G_{YU}(\omega)$
-\end{itemize}
+Notar que este método tiene tanto magnitud:  $|\hat{G}_{YU}(\omega)|$, como fase: $\angle G_{YU}(\omega)$.
 
 \subsection{Método \texorpdfstring{$H_2$}{H2}}
 
 \begin{align*}
     Y(\omega) &= G_{YU}(\omega)U(\omega)\\
-    S_{YY} &= G_{YU}(\omega)S_{YU}(\omega)\\
-    \hat{G}_{YU}(\omega) &= \frac{S_{YY}(\omega)}{S_{YU}(\omega)} \quad \text{Estimador $H_2$}
+    S_{\mathbb{Y}\mathbb{Y}} &= G_{YU}(\omega)S_{\mathbb{Y}\mathbb{U}}(\omega)\\
+    \hat{G}_{YU}(\omega) &= \frac{S_{\mathbb{Y}\mathbb{Y}}(\omega)}{S_{\mathbb{Y}\mathbb{U}}(\omega)} \quad \text{Estimador $H_2$}
 \end{align*}
 
-\underline{Nota}: En ausencia de ruido en $u(t)$ y $y(t)$, ambos estimadores $H_1$ y $H_2$ coinciden (caso ideal).\\
-\par Situación con ruido:\\
+En ausencia de ruido en $u(t)$ y $y(t)$, ambos estimadores $H_1$ y $H_2$ coinciden (caso ideal).\\
+
+Situación con ruido:\\
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/H1_ruido.png}
+    \centering
+    \includegraphics[scale=0.7]{Figuras/H1_ruido.png}
 \end{figure}
 
 \par \underline{Nota}: 
+
 \begin{itemize}
-    \item Ruido $m(t)$ y $n(t)$ son p.e. estacionarios no correlacionados $\Longrightarrow \mathbb{E}\{m(t) u(t+\tau)\}=0 \quad \forall \tau$
+    \item Ruido $m(t)$ y $n(t)$ son p.e. estacionarios no correlacionados $\Longrightarrow R_{\mathbb{M}\mathbb{U}} = \mathbb{E}\{m(t) u(t+\tau)\}=0$
     \item Ruido $m(t)$ y $u(t)$ descorr. $\Longrightarrow \mathbb{E}\{m(t) u(t+\tau)\}=0$
-    \item Ruido $n(t)$ y $y(t)$ descorr. $\Longrightarrow \mathbb{E}\{n(t) y(t+\tau)\}=$
+    \item Ruido $n(t)$ y $y(t)$ descorr. $\Longrightarrow \mathbb{E}\{n(t) y(t+\tau)\}=0$
 \end{itemize}
 
 \begin{align*}
     X(\omega) &= U(\omega)+M(\omega)\\
     X(\omega)X^\ast(\omega) &= \bigl[ U(\omega)+M(\omega)\bigr]\bigl[ U(\omega)+M(\omega)\bigr]^\ast\\
-    &= U(\omega)U^\ast(\omega)+M(\omega)^\ast (\omega)+M(\omega)U^\ast(\omega)+U(\omega)M^\ast(\omega)\\
-    S_{XX}(\omega) &= S_{UU}(\omega)+S_{MM}(\omega)+S_{MU}(\omega)+S_{UM}(\omega)\\
+    X(\omega)X^\ast(\omega)&= U(\omega)U^\ast(\omega)+M(\omega)^\ast (\omega)+M(\omega)U^\ast(\omega)+U(\omega)M^\ast(\omega) \quad / \mathbb{E}\{\cdot\}\\
+    S_{\mathbb{X}\mathbb{X}}(\omega) &= S_{\mathbb{U}\mathbb{U}}(\omega)+S_{\mathbb{M}\mathbb{M}}(\omega)+S_{\mathbb{M}\mathbb{U}}(\omega)+S_{\mathbb{U}\mathbb{M}}(\omega)\\
     \tag{1}
-    S_{XX}(\omega) &= S_{UU}(\omega)+S_{MM}(\omega)
+    S_{\mathbb{X}\mathbb{X}}(\omega) &= S_{\mathbb{U}\mathbb{U}}(\omega)+S_{\mathbb{M}\mathbb{M}}(\omega)
 \end{align*}
 
 \begin{align*}
     Z(\omega) &= Y(\omega)+N(\omega)\\
     \tag{2}
-    S_{ZZ}(\omega) &= S_{YY}(\omega)+S_{NN}(\omega)
+    S_{\mathbb{Z}\mathbb{Z}}(\omega) &= S_{\mathbb{Y}\mathbb{Y}}(\omega)+S_{\mathbb{N}\mathbb{N}}(\omega)
 \end{align*}
 
 Estimador $H_1$: 
+
 \begin{align*}
     Z(\omega) &= G_{ZX}(\omega)(\omega)\\
     Z(\omega)X^\ast(\omega) &= G_{ZX}(\omega)X(\omega)X^\ast(\omega)\\
     \tag{3}
-    S_{ZX}(\omega) &= G_{ZX}(\omega)S_{XX}(\omega)
+    S_{\mathbb{Z}\mathbb{X}}(\omega) &= G_{\mathbb{Z}\mathbb{X}}(\omega)S_{\mathbb{X}\mathbb{X}}(\omega)
 \end{align*}
 
 \begin{align*}
     Z(\omega)X^\ast(\omega)&= \bigl[ Y(\omega)+N(\omega) \bigr] \bigl[ U(\omega)+M(\omega)\bigr]^\ast\\
-    &= Y(\omega)U\ast(\omega)+Y(\omega)M^\ast(\omega)+N(\omega)U^\ast(\omega)+N(\omega)M(\omega)^\ast\\
-    S_{ZX}(\omega) &= S_{YU}(\omega)+S_{YM}(\omega)+S_{NU}(\omega)+S_{NM}(\omega)\\
+    Z(\omega)X^\ast(\omega)&= Y(\omega)U\ast(\omega)+Y(\omega)M^\ast(\omega)+N(\omega)U^\ast(\omega)+N(\omega)M(\omega)^\ast \quad / \mathbb{E}\{\cdot\}\\
+    S_{\mathbb{Z}\mathbb{X}}(\omega) &= S_{\mathbb{Y}\mathbb{U}}(\omega)+S_{\mathbb{Y}\mathbb{M}}(\omega)+S_{\mathbb{N}\mathbb{U}}(\omega)+S_{\mathbb{N}\mathbb{M}}(\omega)\\
     \tag{4}
-    S_{ZX}(\omega) &= S_{YU}(\omega)
+    S_{\mathbb{Z}\mathbb{X}}(\omega) &= S_{\mathbb{Y}\mathbb{U}}(\omega)
 \end{align*}
 
-Entonces, de (3)
+Entonces, de Ec. (3):
+
 \begin{align*}
-    G_{ZX}(\omega) &= \frac{S_{ZX}(\omega)}{S_{XX}(\omega)}=\frac{S_{YU}(\omega)}{S_{UU}(\omega)+S_{MM}(\omega)}\\
-    &= \frac{S_{YU}(\omega)/S_{UU}(\omega)}{1+S_{MM}(\omega)/S_{UU}(\omega)}\\
-    H_1 &= \frac{S_{ZX}(\omega)}{S_{XX}(\omega)} = \frac{G_{YU}(\omega)}{1+S_{MM}(\omega)/S_{UU}(\omega)}
+    G_{ZX}(\omega) &= \frac{S_{\mathbb{Z}\mathbb{X}}(\omega)}{S_{\mathbb{X}\mathbb{X}}(\omega)}=\frac{S_{\mathbb{Y}\mathbb{U}}(\omega)}{S_{\mathbb{U}\mathbb{U}}(\omega)+S_{\mathbb{M}\mathbb{M}}(\omega)}\\
+    &= \frac{S_{\mathbb{Y}\mathbb{U}}(\omega)/S_{\mathbb{U}\mathbb{U}}(\omega)}{1+S_{\mathbb{M}\mathbb{M}}(\omega)/S_{\mathbb{U}\mathbb{U}}(\omega)}\\
+    H_1 &= \frac{S_{\mathbb{Z}\mathbb{X}}(\omega)}{S_{\mathbb{X}\mathbb{X}}(\omega)} = \frac{G_{YU}(\omega)}{1+S_{\mathbb{M}\mathbb{M}}(\omega)/S_{\mathbb{U}\mathbb{U}}(\omega)}
 \end{align*}
-donde $S_{MM}(\omega)/S_{UU}(\omega)$ es efecto del ruido de entrada $M(\omega)$.\\
+
+donde $S_{\mathbb{M}\mathbb{M}}(\omega)/S_{\mathbb{U}\mathbb{U}}(\omega)$ es efecto del ruido de entrada $M(\omega)$.\\
 
 \par Luego, $H_1$ es un limite inferior de $G_{YU}(\omega)$.\\
+
 \par De manera similar:
+
 \begin{align*}
-    H_2 &= \frac{S_{ZZ}(\omega)}{S_{ZX}(\omega)} = G_{YU}(\omega)+\frac{S_{NN}(\omega)}{S_{YY}(\omega)}
+    H_2 &= \frac{S_{\mathbb{Z}\mathbb{Z}}(\omega)}{S_{\mathbb{Z}\mathbb{X}}(\omega)} = G_{YU}(\omega)+\frac{S_{\mathbb{N}\mathbb{N}}(\omega)}{S_{\mathbb{Y}\mathbb{Y}}(\omega)}
 \end{align*}
-donde $\frac{S_{NN}(\omega)}{S_{YY}(\omega)}$ es efecto del ruido de salida.\\
+
+donde $S_{\mathbb{N}\mathbb{N}}(\omega)/S_{\mathbb{Y}\mathbb{Y}}(\omega)$ es efecto del ruido de salida.\\
+
 \par Luego, $H_2$ es un límite superior de $G_{YU}(\omega)$
 
 \subsection{Función de coherencia}
+
 \begin{align*}
-    \gamma_{ZX}^2(\omega) = \frac{|S_{ZX}(\omega)|^2}{S_{ZZ}(\omega)S_{XX}(\omega)}
+    \gamma_{ZX}^2(\omega) = \frac{|S_{\mathbb{Z}\mathbb{X}}(\omega)|^2}{S_{\mathbb{Z}\mathbb{Z}}(\omega)S_{\mathbb{X}\mathbb{X}}(\omega)}
 \end{align*}
 
 Si $\gamma_{ZX}^2=1$, entonces existe coherencia entre entrada y salida $\Longrightarrow$ $H_1$ y $H_2$ son buenos estimadores.\\
+
 \par Análogo a regresión lineal:
+
 \begin{align*}
     Z=\theta X+\varepsilon
 \end{align*}
 
 \underline{Procedimiento}:
+
 \begin{enumerate}
+
     \item Instalar sensores en el sistema a identificar\\
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.7]{Figuras/caja_negra.png}
-    \end{figure}
     
-    \underline{Nota}: Debe satisfacer la condición de observabilidad
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.7]{Figuras/caja_negra.png}
+        \end{figure}
+    
+        \underline{Nota}: Debe satisfacer la condición de observabilidad
     \item Generar un ruido blanco $x(t)$ y medir $z(t)$
+    
     \item Estimar $G_{YU}(\omega)$ utilizando $H_1$ o $H_2$
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.7]{Figuras/Gyu.png}
-    \end{figure}
+    
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.7]{Figuras/Gyu.png}
+        \end{figure}
+        
 \end{enumerate}
 
 En estricto rigor, $H_1$ y $H_2$ nos entregan una respuesta discretizada para valores de $\omega \in \{\omega_0,\omega_1,...,\omega_N\}$\\
 
 \par Modelos calibrados a través de FRF experimental:
+
 \begin{itemize}
     \item Matlab: System identification Toolbox
     \item Métodos de optimización para calibrar modelos en base a FRF experimental

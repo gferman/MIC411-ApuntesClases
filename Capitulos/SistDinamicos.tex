@@ -1,22 +1,33 @@
 \chapter{Sistemas dinámicos}
 
-\section{Definición de sistemas}
+\section{Generalidades}
+
+En ingeniería estructural, un sistema se refiere al conjunto de elementos estructurales interconectados que trabajan en conjunto para resistir cargas y garantizar la estabilidad y seguridad de una construcción. En particular, un sistema dinámico es una estructura cuya respuesta varía en el tiempo ante cargas cambiantes, como sismos, viento, impactos o transito.
+
+Al estudiar sistemas dinámicos es fundamental distinguir entre el sistema físico y el modelo matemático. El sistema físico es la estructura real, con sus materiales, geometría y condiciones de carga, sujeta a imperfecciones y a interacciones complejas con el entorno. En cambio, el modelo matemático es una representación simplificada que traduce ese comportamiento en ecuaciones, permitiendo predecir su respuesta bajo distintas condiciones.
+
+Estos modelos matemáticos se construyen a partir de principios fundamentales, es decir, de las leyes físicas que gobiernan la mecánica estructural. Entre ellas destacan la cinemática y compatibilidad geométrica, ecuaciones de balance (Newton, Lagrange, etc.), relaciones constitutivas de los materiales, y la geometería y condiciones de contorno e iniciales del sistema físico. A partir de estos principios, se generan modelos matemáticas que representan de forma coherente el comportamiento de la estructura, aunque siempre con ciertas simplificaciones necesarias para el análisis.
+
+Los sistemas sistemas dinámicos pueden ser representados gráficamente por diagramas de bloques:
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{sistema.png}
+    \centering
+    \includegraphics[scale=0.7]{sistema.png}
+    \caption{Representación de un sistema dinámico}
 \end{figure}
-Los sistemas son modelos matemáticos (ecuaciónes) que relacionan variables de entrada con variables de salida. Pueden ser representados gráficamente por diagramas de bloques. \\
-Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
-\begin{itemize}
-    \item[(1)] Análisis
-    \item[(2)] Diseño
-    \item[(3)] Control y monitoreo
-\end{itemize}
 
+Principales razones para construir modelos matemáticos de sistemas dinámicos:
+
+\begin{enumerate}
+    \item Análisis
+    \item Diseño
+    \item Control y monitoreo
+\end{enumerate}
 
 \section{Tipos de sistemas}
+
 \subsection{Estáticos vs Dinámicos}
+
 \begin{itemize}
     \item Sistema Estático: respuesta solo depende de la excitación actual (independiente del tiempo).
     \begin{figure}[H]
@@ -30,10 +41,10 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \includegraphics[scale=0.7]{dinamico.png}
     \end{figure}
     \par Si la respuesta del sistema dinámico está basada en la excitación actual y pasada, entonces el sistema se conoce como \textcolor{red}{causal} (todos los sistemas físicos).\\
-    \par Si la respuesta del sistema dinámico está basada en excitación actual, pasada y \textcolor{ForestGreen}{futura}, entonces el sistema es \textcolor{red}{anticausal} (teóricos).
+    \par Si la respuesta del sistema dinámico está basada en excitación actual, pasada y \textcolor{ForestGreen}{futura}, entonces el sistema es \textcolor{red}{anticausal} (solo aplicable en sistemas teóricos \emph{offline}, por ejemplo, en procesamiento digital de señales).
 \end{itemize}
 
-\subsection{SISO vs Multivariable}
+\subsection{Univariado vs Multivariado}
 \begin{itemize}
     \item SISO: Single Input, Single Output.
     \begin{figure}[H]
@@ -41,9 +52,9 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \includegraphics[scale=0.7]{SISO.png}
     \end{figure}
     \begin{itemize}
-        \item $u$: señal escalar
-        \item $y$: señal escalar
-        \item $f(u)=y$: función escalar
+        \item $u \in \mathbb{R}$: entrada escalar
+        \item $y \in \mathbb{R}$: respuesta escalar
+        % \item $f(u)=y$: función escalar
     \end{itemize}
     
     \item SIMO: Single Input, Multi Output.
@@ -52,8 +63,8 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \includegraphics[scale=0.7]{SIMO.png}
     \end{figure}
     \begin{itemize}
-        \item $u$: señal escalar
-        \item $\vec{y}$: señal vectorial
+        \item $u \in \mathbb{R}$: entrada escalar
+        \item $y \in \mathbb{R}^m$: respuesta vectorial
     \end{itemize}
     
     \item MISO: Multi Input, Simple Output.
@@ -62,8 +73,8 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \includegraphics[scale=0.7]{MISO.png}
     \end{figure}
     \begin{itemize}
-        \item $\vec{u}$: señal vectorial
-        \item $y$: señal escalar
+        \item $u \in \mathbb{R}^n$: entrada vectorial
+        \item $y \in \mathbb{R}$: respuesta escalar
     \end{itemize}
     
     \item MIMO: Multi Input, Multi Output.
@@ -72,68 +83,94 @@ Se utiliza matemática para ``modelar'' sistemas por las siguientes razones:
     \includegraphics[scale=0.7]{MIMO.png}
     \end{figure}
     \begin{itemize}
-        \item $\vec{u}$: señal vectorial
-        \item $\vec{y}$: señal vectorial
-        \item $f(\vec{u})=\vec{y}$: función vectorial
+        \item $u \in \mathbb{R}^n$: entrada vectorial
+        \item $y \in \mathbb{R}^m$: respuesta vectorial
     \end{itemize}
 \end{itemize}
 
-\subsection{Lineal vs No lineal}
+\subsection{Lineal vs Nolineal}
+
 \begin{itemize}
-    \item Un \textcolor{red}{sistema lineal} es tal que cumple con el principio de \textcolor{red}{superposición}.
-    \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.7]{sistemayu.png}
-    \end{figure}
+    \item Un \emph{sistema lineal} es tal que cumple con el \emph{principio de superposición}.
+    
     \begin{itemize}
-        \item Aditividad: Si $u_1(t) \rightarrow y_1(t)$, $u_2(t) \rightarrow y_2(t)$, entonces: $u(t) = u_1(t) + u_2(t) \rightarrow y(t) = y_1(t) + y_2(t)$
-        \item Homogeneidad/Proporcionalidad: Si $u(t) \rightarrow y(t)$, entoncecs $\textcolor{red}{\alpha}u(t) \rightarrow \textcolor{red}{\alpha}y(t)$.
+        \item Aditividad: Si $u_1 \rightarrow y_1$, $u_2 \rightarrow y_2$, entonces: $u = u_1 + u_2 \rightarrow y = y_1 + y_2$
+        \item Homogeneidad/Proporcionalidad: Si $u \rightarrow y$, entoncecs ${\alpha}u \rightarrow {\alpha}y$.
     \end{itemize}
-    \item De no cumplir con las propiedades del sistema lineal, entonces el sistema es \textcolor{red}{no lineal}.
+    \item De no cumplir con las propiedades del sistema lineal, entonces el sistema es \emph{nolineal}.
 \end{itemize}
-\par \underline{Ejemplo}: resorte no lineal.\\
-\begin{figure}[h]
+
+\par \underline{Ejemplo}: resorte nolineal.\\
+
+\begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{ej_nolineal.png}
+    \includegraphics[scale=0.7]{Figuras/resortenolineal.png}
+    \caption{Resorte nolineal}
 \end{figure}
 
 Se tiene que: 
+
 \begin{align*}
-f_s &= ku^2 \\3
-p_1 &\rightarrow u_1\\  
-p_2 &\rightarrow u_2\\
+    f_s &= ku^2 \\
+    p_1 = k u_1^2 &\rightarrow u_1 = \sqrt{\frac{p_1}{k}}\\  
+    p_2 = k u_2^2 &\rightarrow u_2 = \sqrt{\frac{p_2}{k}}\\
 \end{align*}
 
-La pregunta es, ¿Se cumple la condición de aditividad?
+La pregunta es, ¿Se cumple el principio de superposición?
+
 \begin{align*}
-p_1+p_2 &\xrightarrow{?} u_1+u_2
+    p_1+p_2 &\xrightarrow{?} u_1+u_2
 \end{align*}
 
-La respuesta es \textcolor{red}{no}, ya que:
+La respuesta es {no}, ya que:
+
+%\begin{align*}
+%    f_s &= k(u_1+u_2)^2 \\
+%    p_1 + p_2 & = ku_1^2+ku_2^2+2ku_1u_2\\
+%    p_1 + p_2 &\neq p_1 + p_2 + \textcolor{red}{2ku_1u_2}
+%\end{align*}
+
 \begin{align*}
-    f_s &= k(u_1+u_2)^2 \\
-    p_1 + p_2 & = ku_1^2+ku_2^2+2ku_1u_2\\
-    p_1 + p_2 &\neq p_1 + p_2 + \textcolor{red}{2ku_1u_2}
+    p_1 + p_2 &= k(u_*)^2 \\
+    u_* &= \sqrt{\frac{p_1 +p_2}{k}} \neq \sqrt{\frac{p_1}{k}} + \sqrt{\frac{p_2}{k}}
 \end{align*}
 
 \subsection{Invariante tiempo vs variante tiempo}
+
 \begin{itemize}
-    \item Sistema invariantes en el tiempo $\longrightarrow$ parámetros del modelo son constantes en el tiempo.\\
-    \underline{Ejemplo}: Sistemas de 1GDL con masa, rigidez y amortiguamiento constante.
+
+    \item Sistema invariantes en el tiempo (\emph{time invariant}) $\longrightarrow$ parámetros del modelo son constantes en el tiempo.\\
+    
+    \underline{Ejemplo}: Sistemas de 1GDL (Figura \ref{f:invariante}),  con masa, rigidez y amortiguamiento constante son LTI (\emph{linear time invariant}).
+    
     \begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.7]{invariante.png}
+        \centering
+        \includegraphics[scale=0.7]{invariante.png}
+        \caption{Sistema LTI (\emph{linear time invariant})}
+        \label{f:invariante}
     \end{figure}
     
-    \item Sistema variante en el tiempo $\longrightarrow$ parámetros del modelo varían en el tiempo.\\
-    \underline{Ejemplo}: Puentes con tráfico (la masa varía).
+    \item Sistema variante en el tiempo (\emph{time variant}) $\longrightarrow$ parámetros del modelo varían en el tiempo.\\
+    
+    \underline{Ejemplo}: Puentes con masa movil (Figura \ref{f:movingmass}), por ejemplo por el transito de un vehículo pesado (la masa del sistema varía). En este caso el sistema dinámico es LTV (\emph{linear time variant}).
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{movingmass.png}
+        \caption{Sistema LTV (\emph{linear time variant})}
+        \label{f:movingmass}
+    \end{figure}
+    
 \end{itemize}
 
 \subsection{Determinístico vs Estocástico}
+
 Si el input del sistema es conocido (y el sistema no incorpora incertidumbre), entonces el output será predecible $\longrightarrow$ \textcolor{red}{Determinístico} \\ 
+
 \underline{Ejemplo}: Simular múltiples veces el mismo registro (input) sobre el mismo edifico (sistema), se obtienen siempre las mismas respuestas (output). \\
 
 Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidumbre), entonces el output también tiene incertidumbre y no es predecible $\longrightarrow$ \textcolor{red}{Estocástico} \\
+
 \underline{Ejemplo}: Simular peatones diferentes (input con incertidumbre en masa del peatón, velocidad al caminar y frecuencia de pasos) sobre un mismo puente (sistema), se obtendrán respuestas diferentes (outputs)\\
 
 % María: Si los parámetros del modelo son conocidos $\longrightarrow$ \textcolor{red}{Determinístico}.\\
@@ -160,21 +197,19 @@ Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidum
     \end{itemize}
 \end{itemize}
 
-\section{``Time sampling''} % Reemplazar por MUESTREO?
 Las señales de los sistemas físicos son continuas, pero que al momento de ser \emph{observadas} por dispositivos digitales, estas señales se discretizan en función del tiempo.
+
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.7]{time_sampling.png}
     \end{figure}
 
-
-
 \section{Respuesta de sistemas LTI en tiempo continuo}
-LTI: Linear, Time-Invariant. \\
+LTI: Linear, Time-Invariant.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{sistemayu.png}
+    \centering
+    \includegraphics[scale=0.7]{sistemayu.png}
 \end{figure}
 
 Los sistemas LTI, son aquellos cuyas propiedades y parámetros no varían en el tiempo, es decir, que los coeficientes de las ecuaciones diferenciales de los modelos matemáticos de los sistemas dinámicos son constantes en el tiempo $a_i=cte$.
@@ -194,7 +229,226 @@ Dada una excitación $u(t)$, la respuesta se obtiene al resolver la ecuación di
     \item $y_H(t)$ es la \textcolor{red}{respuesta homogénea} (para $u(t)=0$, con condiciones iniciales)
     \item $y_p(t)$ es la \textcolor{red}{respuesta particular} (para $u(t)\neq0$)
 \end{itemize}
-\pagebreak
+
+\section{Modelos de sistemas dinámicos}
+
+Existen diversas formas de modelar un sistema dinámico.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{modelos.png}
+    \caption{Relaciones entre distintas representaciones de modelos de sistemas dinámicos.}
+\end{figure}
+
+\section{Función de transferencia de un sistema de 1GDL}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{edm.png}
+\end{figure}
+\underline{Problema}: Dada la EDM de un sistema estructural 1GDL, determinar su función de transferencia $H(s)$\\ 
+\par Notación: 
+\begin{align*}
+    U(s) &= \mathcal{L}\{u(t)\}~: \text{respuesta (dominio complejo)}\\
+    F(s) &= \mathcal{L}\{f(t)\} ~: \text{input (dominio complejo)}
+\end{align*}
+
+Asumiendo reposo: $u(0)=\dot{u}(0)=0$
+
+\begin{align*}
+    m\ddot{u}+c\dot{u}+ku &= f(t) ~/\color{red}{\mathcal{L}\{\cdot\}}\\
+    m\mathcal{L}\{\ddot{u}\}+c\mathcal{L}\{\dot{u}\}+k\mathcal{L}\{u\} &= \mathcal{L}\{f\}\\
+    ms^2U(s)+csU(s)+kU(s) &= F(s)\\
+    (ms^2+cs+k)U(s) &= F(s)
+\end{align*}
+\begin{align*}
+    \Longrightarrow H(s) = \frac{U(s)}{F(s)}&=\frac{1}{ms^2+cs+k} ~\text{: TF del sistema de 1GDL}
+\end{align*}
+
+Aparte: Dada la entrada $F(s)$ y la TF $H(s)$, la salida es $U(s) = H(s)F(s)$
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{hs.png}
+\end{figure}
+
+Desde la TF del sistema:
+\begin{align*}
+    H(s) &= \frac{1}{ms^2+cs+k} ~\color{red}{\frac{1/m}{1/m}}\\
+    &= \frac{1/m}{s^2+2\xi\omega_ns+\omega_n^2}
+\end{align*}
+\begin{itemize}
+    \item $\xi$: razón de amortiguamiento
+    \item $\omega_n$: frecuencia natural
+\end{itemize}
+
+¿Cómo se obtienen los polos? $\Longrightarrow$ Calcular las raíces del polinomio del denominador:
+\begin{align*}
+    s^2+2\xi\omega_ns+\omega_n^2=0 ~\text{: Ecuación característica}
+\end{align*}
+\begin{align*}
+     s_{1,2}=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}j\\
+     s_{1,2}=-\xi\omega_n\pm\omega_dj ~\text{: Polos del sistema de 1GDL}
+\end{align*}
+
+¿Es estable? $\Longrightarrow$ Depende del valor de $\xi$:
+\begin{itemize}
+    \item $\xi>0, ~ Re(s_{1,2}<0\Longrightarrow$ Estable asintóticamente
+    \item $\xi<0, ~ Re(s_{1,2}>0\Longrightarrow$ Inestable
+    \item $\xi=0, ~ Re(s_{1,2}=0\Longrightarrow$ ``Estable''
+\end{itemize}
+
+Además, el sistema oscila sí y solo si $\omega_d>0\Longrightarrow \omega_n>0$: propiedad del sistema dinámico.\\
+Si $\xi>0, ~ \omega_n>0$:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{estabilidad.png}
+\end{figure}
+
+% La Función de Respuesta en Frecuencia se obtiene a través de aplicar la transformada de Fourier:
+%\begin{align*}
+%    H(\omega)=\mathcal{F}\{h(t)\}
+%\end{align*}
+
+Notar que el FRF se puede obtener al reemplazar $s=j\omega$ en la TF:
+\begin{align*}
+    H(\omega)=H(s)\bigg|_{s=j\omega}
+\end{align*}
+
+\underline{Ejemplo}: Sistema de 1GDL
+\begin{align*}
+    \text{EOM: }~m\ddot{u}+c\dot{u}+ku=f(t)
+\end{align*}
+\begin{align*}
+    \Longrightarrow \text{TF: }&~ H(s)=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+(c/m)s+k/m}\\
+    \Longrightarrow \text{FRF: }&~ H(\omega)=H(s)\bigg|_{s=j\omega}=\frac{1}{(k=m\omega^2)+j\omega c}
+\end{align*}
+\begin{align*}
+    H(\omega)=\frac{1}{(j\omega-\lambda_1)(j\omega-\lambda_1^*)}
+\end{align*}
+\begin{itemize}
+    \item $\{\}^*$: conjugado del número complejo
+\end{itemize}
+\begin{align*}
+    \lambda_1, \lambda_1^*=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}~\text{: polos del sistema}
+\end{align*}
+
+\section{Función de transferencia de un sistema de MGDL}
+La TF de un sistema dinámico de MGDL se obtiene aplicando la transformada de Laplace a la EDM:
+
+\begin{align*}
+    \tenq{M}\tend{\ddot{u}}(t)+\tenq{C}\tend{\dot{u}}(t)+\tenq{K}\tend{u}(t)&=\tend{F}(t) ~/\mathcal{L}\{\cdot\}\\
+    \Longrightarrow s^2\tenq{M}\tend{U}(s) + s\tenq{C}\tend{U}(s) +\tenq{K}\tend{U}(s) &= \tend{F}(s)\\
+    \Longrightarrow\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]\tend{U}(s)&=\tend{F}(s) \\
+    \Longrightarrow \tenq{H}(s) = \frac{\tenq{U}(s)}{\tenq{F}(s)} = =\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]^{-1} 
+\end{align*}
+
+Donde 
+\begin{align*}
+    \tend{F}(s) &= \mathcal{L}\{\tend{f}(t)\} ~: \text{input en dominio complejo (excitación)}\\
+    \tend{U}(s) &= \mathcal{L}\{\tend{u}(t)\}~: \text{output en dominio complejo (respuesta)}\\
+    \tenq{H}(s) &= \left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]^{-1} ~:\text{TF para un sistema MGDL}
+\end{align*}
+
+Notar que para encontrar los polos se debe resolver las raíces polinomio:
+\begin{align*}
+    s^2\tenq{M}+s\tenq{C}+\tenq{K} = \tend{0} ~/ \text{$\cdot\tend{\phi}$ yasumiendo $\tenq{C}=\tenq{0}$} \\
+    \Longrightarrow (s^2\tenq{M}+\tenq{K})\tend{\phi} = \tend{0} ~\text{: Problema de valores propios generalizado}
+\end{align*}
+
+\subsection{Representación en Variables de Estado (State-Space)}
+
+La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordinarias cuyas matrices contienen toda la información dinámica del sistema.
+
+\begin{align*}
+    \text{EDM: }~\tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tenq{G}\tend{p}(t) 
+\end{align*}
+
+\begin{align*}
+\left .
+\begin{array}{rr}
+\tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}\\
+\tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} 
+\end{array}
+\right \} \Longrightarrow 
+\begin{array} {|r|r|}
+  \hline A & B \\
+  \hline C & D \\
+  \hline 
+\end{array}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{SS.png}
+\end{figure}
+
+\underline{Ecuación de estado}
+
+\begin{align*}
+    \tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}
+\end{align*}
+
+Donde:
+\begin{itemize}
+    \item Vector de Estado: $\tend{x}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\end{bmatrix} \Longrightarrow \tend{\dot{x}}=\begin{bmatrix}\tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
+    \item Matriz de estado: $\tenq{A_s}=\begin{bmatrix}\tenq{0} & \tenq{I}\\ -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
+    \item Matriz de influencia de excitación: $\tenq{B_s}=\begin{bmatrix}\tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
+\end{itemize}
+
+\underline{Ecuación de respuesta} \\
+
+\begin{align*}
+    \tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p}
+\end{align*}
+
+Donde (este es un ejemplo):
+\begin{itemize}
+    \item Vector de respuesta: $\tend{y}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
+
+    \item $\tenq{C_s}=\begin{bmatrix}\tenq{I} & \tenq{0}\\
+    \tenq{0} & \tenq{I}\\ 
+    -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
+    \item ``Feedthrough'': $\tenq{D_s}=\begin{bmatrix}\tenq{0}\\
+    \tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
+\end{itemize}
+
+\subsection{Relación entre State-Space y TF}
+
+Asumiendo condiciones iniciales de reposo: $\tend{x}(0) = \tend{0} \longrightarrow \text{Estados}$\\
+
+Entonces, aplicando la transformada de laplace a la ecuación de estado:
+\begin{align*} \label{eq:ss2tf_1}
+    \tend{\dot{x}}&=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p} ~/\mathcal{L}\{\cdot\}\\
+    \Longrightarrow s\tend{X}(s)&= \tenq{A_s}\tend{X}(s)+\tenq{B_s}\tend{P}(s)\\
+    \Longrightarrow (s\tenq{I}-\tenq{A_s})\tend{X}(s)&=\tenq{B_s}\tend{P}(s)
+\end{align*}
+\begin{align}
+    \Longrightarrow \tend{X}(s)&=(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)
+\end{align}
+
+Luego, aplicando la transformada de Laplace a la ecuación de respuesta:
+
+\begin{align*}
+    \tend{y}(t)=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} ~/\mathcal{L}\{\cdot\}\\
+\end{align*}
+\begin{align}\label{eq:ss2tf_2}
+    \Longrightarrow \tend{Y}(s)&=\tenq{C_s}\tend{X}(s)+\tenq{D_s}\tend{P}(s)
+\end{align} 
+
+Reemplazando la ecuación \ref{eq:ss2tf_1} en \ref{eq:ss2tf_2}:
+\begin{align*}
+    \tend{Y}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)+\tenq{D_s}\tend{P}(s)\\
+    \tend{Y}(s)&=[\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}]\tend{P}(s)\\
+    \Longrightarrow \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}
+\end{align*}
+
+\underline{Aparte}: Asumiendo $\tenq{D_s}=0$:
+\begin{align*}
+    \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\\
+    \tenq{H}(s)&=\frac{1}{\det(s\tenq{I}-\tenq{A_s})}\tenq{C_s}\text{ adj}(s\tenq{I}-\tenq{A_s})\tenq{B_s} \\
+    \Longrightarrow\det(s\tenq{I}-\tenq{A_s})&=0 ~\text{: Problema de valores propios de }\tenq{A_s}
+\end{align*}
+
+Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de $\tenq{H}(s)$, o, por los valores propios de $\tenq{A_s}$.
 
 \section{Función impulso (Delta Dirac)}
 La función \textit{Delta de Dirac} se denota como:
@@ -485,234 +739,6 @@ Un sistema es estable en el sentido BIBO, si y sólo si el sistema posee todos s
     \item \textcolor{red}{Si el sistema posee al menos un polo cuyo $Re(p_i)=\alpha_i>0$, entonces el sistema es inestable}
 \end{itemize}
 
-\section{Función de transferencia de un sistema de 1GDL}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{edm.png}
-\end{figure}
-\underline{Problema}: Dada la EDM de un sistema estructural 1GDL, determinar su función de transferencia $H(s)$\\ 
-\par Notación: 
-\begin{align*}
-    U(s) &= \mathcal{L}\{u(t)\}~: \text{respuesta (dominio complejo)}\\
-    F(s) &= \mathcal{L}\{f(t)\} ~: \text{input (dominio complejo)}
-\end{align*}
-
-Asumiendo reposo: $u(0)=\dot{u}(0)=0$
-
-\begin{align*}
-    m\ddot{u}+c\dot{u}+ku &= f(t) ~/\color{red}{\mathcal{L}\{\cdot\}}\\
-    m\mathcal{L}\{\ddot{u}\}+c\mathcal{L}\{\dot{u}\}+k\mathcal{L}\{u\} &= \mathcal{L}\{f\}\\
-    ms^2U(s)+csU(s)+kU(s) &= F(s)\\
-    (ms^2+cs+k)U(s) &= F(s)
-\end{align*}
-\begin{align*}
-    \Longrightarrow H(s) = \frac{U(s)}{F(s)}&=\frac{1}{ms^2+cs+k} ~\text{: TF del sistema de 1GDL}
-\end{align*}
-
-Aparte: Dada la entrada $F(s)$ y la TF $H(s)$, la salida es $U(s) = H(s)F(s)$
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{hs.png}
-\end{figure}
-
-Desde la TF del sistema:
-\begin{align*}
-    H(s) &= \frac{1}{ms^2+cs+k} ~\color{red}{\frac{1/m}{1/m}}\\
-    &= \frac{1/m}{s^2+2\xi\omega_ns+\omega_n^2}
-\end{align*}
-\begin{itemize}
-    \item $\xi$: razón de amortiguamiento
-    \item $\omega_n$: frecuencia natural
-\end{itemize}
-
-¿Cómo se obtienen los polos? $\Longrightarrow$ Calcular las raíces del polinomio del denominador:
-\begin{align*}
-    s^2+2\xi\omega_ns+\omega_n^2=0 ~\text{: Ecuación característica}
-\end{align*}
-\begin{align*}
-     s_{1,2}=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}j\\
-     s_{1,2}=-\xi\omega_n\pm\omega_dj ~\text{: Polos del sistema de 1GDL}
-\end{align*}
-
-¿Es estable? $\Longrightarrow$ Depende del valor de $\xi$:
-\begin{itemize}
-    \item $\xi>0, ~ Re(s_{1,2}<0\Longrightarrow$ Estable asintóticamente
-    \item $\xi<0, ~ Re(s_{1,2}>0\Longrightarrow$ Inestable
-    \item $\xi=0, ~ Re(s_{1,2}=0\Longrightarrow$ ``Estable''
-\end{itemize}
-
-Además, el sistema oscila sí y solo si $\omega_d>0\Longrightarrow \omega_n>0$: propiedad del sistema dinámico.\\
-Si $\xi>0, ~ \omega_n>0$:
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{estabilidad.png}
-\end{figure}
-
-\section{Función de transferencia de un sistema de MGDL}
-\begin{align*}
-    \tend{U}(s) &= \mathcal{L}\{\tend{u}(t)\}~: \text{respuesta (dominio complejo)}\\
-    \tend{F}(s) &= \mathcal{L}\{\tend{f}(t)\} ~: \text{input (dominio complejo)}
-\end{align*}
-
-Desde la ecuación de movimiento:
-\begin{align*}
-    \tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tend{F} ~/\color{red}{\mathcal{L}\{\cdot\}}\\
-    \Longrightarrow\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]\tend{U}(s)&=\tend{F}(s) 
-\end{align*}
-
-$\tenq{H}(s)=\left[s^2\tenq{M}+s\tenq{C}+\tenq{K} \right]^{-1}$: TF para un sistema MGDL\\
-
-Para buscar los polos, resolver raíces del siguiente polinomio:
-\begin{align*}
-    s^2\tenq{M}+s\tenq{C}+\tenq{K} = \tend{0} ~/\color{red}{\tend{\cdot \phi}}
-\end{align*}
-
-y asumiendo $\tenq{C}=\tenq{0}$
-\begin{align*}
-    \Longrightarrow (s^2\tenq{M}+\tenq{K})\tend{\phi} = \tend{0} ~\text{: Problema de valores propios generalizado}
-\end{align*}
-
-
-
-\section{Modelos Dinámicos}*
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{modelos.png}
-\end{figure}
-
-La Función de Respuesta en Frecuencia se obtiene a través de aplicar la transformada de Fourier:
-\begin{align*}
-    H(\omega)=\mathcal{F}\{h(t)\}
-\end{align*}
-
-De manera alternativa, FRF se obtiene al reemplazar $s=j\omega$ en la TF:
-\begin{align*}
-    H(\omega)=H(s)\bigg|_{s=j\omega}
-\end{align*}
-
-\underline{Ejemplo}: Sistema de 1GDL
-\begin{align*}
-    \text{EOM: }~m\ddot{u}+c\dot{u}+ku=f(t)
-\end{align*}
-\begin{align*}
-    \Longrightarrow \text{TF: }&~ H(s)=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+(c/m)s+k/m}\\
-    \Longrightarrow \text{FRF: }&~ H(\omega)=H(s)\bigg|_{s=j\omega}=\frac{1}{(k=m\omega^2)+j\omega c}
-\end{align*}
-\begin{align*}
-    H(\omega)=\frac{1}{(j\omega-\lambda_1)(j\omega-\lambda_1^*)}
-\end{align*}
-\begin{itemize}
-    \item $\{\}^*$: conjugado del número complejo
-\end{itemize}
-\begin{align*}
-    \lambda_1, \lambda_1^*=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}~\text{: polos del sistema}
-\end{align*}
-
-\subsection{Representación en Variables de Estado (State-Space)}
-
-La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordinarias cuyas matrices contienen toda la información dinámica del sistema.
-
-\begin{align*}
-    \text{EDM: }~\tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tenq{G}\tend{p}(t) 
-\end{align*}
-
-\underline{Definición}: Ecuación de estado
-
-\begin{align*}
-    \tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}
-\end{align*}
-
-Donde:
-\begin{itemize}
-    \item Vector de Estado: $\tend{x}=\begin{bmatrix}\tend{u}\\ \tend{\dot{u}}\end{bmatrix}$
-\end{itemize}
-
-\begin{align*}
-    \Longrightarrow \tend{\dot{x}}=\begin{bmatrix}\tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}=\tenq{A_s}\begin{bmatrix}\tend{u}\\ \tend{\dot{u}}\end{bmatrix}+\tenq{B_s}\tend{p}(t)
-\end{align*}
-
-\begin{itemize}
-    \item Matriz de estado: $\tenq{A_s}=\begin{bmatrix}\tenq{0} & \tenq{I}\\ -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
-    \item Matriz de influencia de excitación: $\tenq{B_s}=\begin{bmatrix}\tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
-\end{itemize}
-
-\underline{Definición}: Ecuación de respuesta\\
-
-\begin{align*}
-    \tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p}
-\end{align*}
-
-Donde:
-\begin{itemize}
-    \item Vector de respuesta: $\tend{y}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
-
-    \item $\tenq{C_s}=\begin{bmatrix}\tenq{I} & \tenq{0}\\
-    \tenq{0} & \tenq{I}\\ 
-    -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
-    \item ``Feedthrough'': $\tenq{D_s}=\begin{bmatrix}\tenq{0}\\
-    \tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
-\end{itemize}
-
-En resumen, la representación espacio estado se denota como dos ecuaciones donde toda la información del sistema dinámico se encuentra en las cuatro matrices.
-
-\begin{align*}
-\left .
-\begin{array}{rr}
-\tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}\\
-\tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} 
-\end{array}
-\right \} \Longrightarrow 
-\begin{array} {|r|r|}
-  \hline A & B \\
-  \hline C & D \\
-  \hline 
-\end{array}
-\end{align*}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{SS.png}
-\end{figure}
-
-\subsection{Relación entre State-Space y TF}
-
-Asumiendo condiciones iniciales de reposo: $\tend{x}(0) = \tend{0} \longrightarrow \text{Estados}\\
-
-Entonces, aplicando la transformada de laplace a la ecuación de estado:
-\begin{align*} \label{eq:ss2tf_1}
-    \tend{\dot{x}}&=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p} ~/\color{red}{\mathcal{L}\{\cdot\}}\\
-    \Longrightarrow s\tend{X}(s)&= \tenq{A_s}\tend{X}(s)+\tenq{B_s}\tend{P}(s)\\
-    \Longrightarrow (s\tenq{I}-\tenq{A_s})\tend{X}(s)&=\tenq{B_s}\tend{P}(s)
-\end{align*}
-\begin{align}
-    \Longrightarrow \tend{X}(s)&=(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)
-\end{align}
-
-Luego, aplicando la transformada de Laplace a la ecuación de respuesta:
-
-\begin{align*}
-    \tend{y}(t)=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} ~/\color{red}{\mathcal{L}\{\cdot\}}\\
-\end{align*}
-\begin{align}\label{eq:ss2tf_2}
-    \Longrightarrow \tend{Y}(s)&=\tenq{C_s}\tend{X}(s)+\tenq{D_s}\tend{P}(s)
-\end{align} 
-
-Reemplazando la ecuación \ref{eq:ss2tf_1} en \ref{eq:ss2tf_2}:
-\begin{align*}
-    \tend{Y}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)+\tenq{D_s}\tend{P}(s)\\
-    \tend{Y}(s)&=[\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}]\tend{P}(s)\\
-    \Longrightarrow \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}
-\end{align*}
-
-\underline{Aparte}: Asumiendo $\tenq{D_s}=0$:
-\begin{align*}
-    \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\\
-    \tenq{H}(s)&=\frac{1}{\det(s\tenq{I}-\tenq{A_s})}\tenq{C_s}\text{ adj}(s\tenq{I}-\tenq{A_s})\tenq{B_s} \\
-    \Longrightarrow\det(s\tenq{I}-\tenq{A_s})&=0 ~\text{: Problema de valores propios de }\tenq{A_s}
-\end{align*}
-
-Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de $\tenq{H}(s)$, o, por los valores propios de $\tenq{A_s}$.
-
 \section{Implementación utilizando Matlab/Simulink}
 
 En matlab se puede trabajar con sistemas dinámicos utilizando \emph{variables tipo sistema}. Estas variables se puede crear si se cuenta con la información de alguna de las representaciones vistas anteriormente. \\
@@ -797,53 +823,3 @@ El toolbox \emph{Control System} de matlab permite también extraer información
 >> step(sys)
 \end{minted}
 \end{itemize}
-
-
-
-
-\section{Función respuesta escalón (``step'')}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{step.png}
-\end{figure}
-\underline{Definición}:
-\begin{itemize}
-    \item \textcolor{red}{Tiempo de subida} (``rise time'', $t_r$): tiempo que toma ir desde 10\% hasta 90\% de respuesta (alternativa: 0\% a 100\%)
-    \item \textcolor{Goldenrod}{Sobreimpulso} (``overshoot'', $M_p$)
-    \item \textcolor{LimeGreen}{Tiempo de asentamiento} (``senttling time'', $t_s$): tiempo que toma el sistema en decaer hasta 1\%
-\end{itemize}
-
-\section*{Especificaciones de Respuesta Transiente}
-Suponiendo un sistema LTI-SISO:\\
-\begin{align*}
-    \text{EDM: }~ m\ddot{u}+c\dot{u}+ku &= f\\
-    \Longrightarrow H(s) &= \frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}
-\end{align*}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{transiente.png}
-\end{figure}
-
-Fórmulas para estimar la respuesta transiente para el caso de excitación escalón:
-\begin{itemize}
-    \item \underline{Tiempo subida, $t_r$}: Asumiento $\xi=2\%$, 
-    $$t_r\approx \frac{1.6}{\omega_n}$$
-    \item \underline{Sobreimpulso, $M_p$}: 
-    $$-\log \left(\frac{M_p}{\pi} \right) \approx \tan(\theta)$$
-    \item \underline{Tiempo asentamiento, $t_s$}: Asumiendo 2\% de respuesta esperada en ``steady-state'',
-    $$t_s\approx \frac{4}{\xi \omega_n} $$
-\end{itemize}
-
-\section*{``Pole placement'', ubicación de polos}
-Dadas las especificaciones transientes: $t_r$, $M_p$, $t_s$
-\begin{align*}
-    \color{VioletRed}{t_s}&<(t_s)_{lim}=\frac{4}{(\xi\omega_n)_{lim}}\\
-    \color{BurntOrange}{t_r}&<(t_r)_{lim}\approx \frac{1.6}{\omega_n}\\
-    \color{LimeGreen}{M_p}&<(M_p)_{lim}=e^{-\pi\tan(\theta)}
-\end{align*}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{pole_placement.png}
-\end{figure}
-

@@ -2,11 +2,12 @@
 
 
 \section{Sistemas discretos}
+Es necesario convertir una señal análoga a discreta.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/sist_discreto.png}
 \end{figure}
-\underline{Nota}: Computadores representan números utilizando dígitos binarios (bits, flip-flops). Es necesario convertir una señal análoga a discreta.\\
+\underline{Nota}: Computadores representan números utilizando dígitos binarios (bits, flip-flops).\\
 
 \par \underline{Muestreo (sampling)}: 
 \begin{enumerate}
@@ -29,16 +30,21 @@ Máquina 16 bits $\Longrightarrow$ Números utilizando $2^{16}$ cifras significa
 \includegraphics[scale=0.7]{Figuras/sistema_discret.png}
 \end{figure}
 
-$x[n]$: señal en tiempo discreto.\\
-$$x[n]=x_a(nT)$$
-T: intervalo de muestreo, n: índice (número entero)\\
+$x[n]$: señal en tiempo discreto.
+
+\begin{align*}
+    x[n]=x_a(nT_s)
+\end{align*}
+
+$T_s$: paso temporal de muestreo.\\
+$n$: índice (número entero)\\
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/xn.png}
 \end{figure}
 
-\par \underline{Función pulso unitario}:
+La representación matemática del muestreo se puede realizar utilizando la \underline{Función pulso unitario} (delta de Dirac):
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/pulso_unitario.png}
@@ -46,7 +52,7 @@ T: intervalo de muestreo, n: índice (número entero)\\
 \begin{align*}
     \delta[n] = \left\{ \begin{array}{ll}
              1 & n=0\\
-             1 & \text{else}
+             0 & \text{else}
              \end{array}
    \right. 
 \end{align*}
@@ -56,7 +62,7 @@ T: intervalo de muestreo, n: índice (número entero)\\
 \end{align*}
 
 \begin{align*}
-    \{x_n\}_0^{N-1}=\{x_0,x_1,x_2,...,x_{N-1}\} \Longrightarrow \text{Vector de N puntos}
+    \{x_n\}_0^{N-1}=\{x_0,x_1,x_2,...,x_{N-1}\} \Longrightarrow \text{Arreglo de N puntos (vector)}
 \end{align*}
 \begin{figure}[H]
 \centering
@@ -69,40 +75,41 @@ T: intervalo de muestreo, n: índice (número entero)\\
 \centering
 \includegraphics[scale=0.7]{Figuras/analisis_frec.png}
 \end{figure}
-\par \underline{Fourier Transform (FT)}
+\par \underline{Continuous-Time Fourier Transform (CTFT)}
 \begin{align*}
-    X(\Omega) &= \int_{-\infty}^{+\infty}x_a(t)e^{-j\Omega t}dt \quad \text{(FT)}\\
-    x_a(t) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}X(\omega)e^{+j\Omega t}d\Omega \quad \text{(inverse FT)}
+    X(\Omega) &= \int_{-\infty}^{+\infty}x_a(t)e^{-j\Omega t}dt \quad \text{(CTFT)}\\
+    x_a(t) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty}X(\omega)e^{+j\Omega t}d\Omega \quad \text{(inverse CTFT)}
 \end{align*}
 
-\underline{Nota}: $x_a(t)\in \mathbb{R}$, $X(\Omega)\in \mathbb{C}$, tiene magnitud y fase.\\
+$t, \Omega \in \mathbb{R}$, $x_a(t)\in \mathbb{R}$, $X(\Omega)\in \mathbb{C}$\\
 
 \par \underline{Discrete-time Fourier Transform (DTFT)}
 \begin{align*}
     X_d(\omega) &= \sum_{n=-\infty}^{\infty}x[n]e^{-j\omega n} \quad \text{(DTFT)}\\
     x[n] &= \frac{1}{2\pi}\int_{-\infty}^{\infty}X_d(\omega)e^{+j\omega n}d\omega \quad \text{(inverse DTFT)}
 \end{align*}
-$\omega$: variable contínua (frec. DTFT).
+
+$\omega \in \mathbb{R}, n \in \mathbb{N}$
 
 \par \underline{Discrete Fourier Transform (DFT)}
 \begin{align*}
-    \text{(DFT):} \quad X_m &= \sum_{n=0}^{N-1} x_ne^{-j\frac{2\pi}{N}nm}, \quad m\in [0,N-1]\\
-    \text{(Inverse DFT):} \quad x_n &= \frac{1}{N}\sum_{m=0}^{N-1}X_me^{+j\frac{2\pi}{N}nm}, \quad n\in[0,N-1]
+    X_m &= \sum_{n=0}^{N-1} x_ne^{-j\frac{2\pi}{N}nm}, \quad m\in [0,N-1] \quad \text{(DFT)}\\
+    x_n &= \frac{1}{N}\sum_{m=0}^{N-1}X_me^{+j\frac{2\pi}{N}nm}, \quad n\in[0,N-1] \quad \text{(Inverse DFT)}
 \end{align*}
 
+$X_{m(N,1)}, X_{n(N,1)}$.\\
 \underline{Nota}: Fast Fourier Transform (FFT) es un algoritmo computacional para calcular el DFT.\\
 \par \underline{Relación entre DFT y DTFT}
 \begin{align*}
     X[m]=X_d\bigg|_{\omega=\frac{2\pi}{N}m}
 \end{align*}
-\par \underline{Relación entre DTFT y FT}
+\par \underline{Relación entre DTFT y CTFT}
 \begin{align*}
-    X_d(\omega)=\frac{1}{T}\sum_{l=-\infty}^{+\infty}X\Bigl(\frac{\omega+wl\pi}{T}\Bigr)
+    X_d(\omega)=\frac{1}{T}\sum_{l=-\infty}^{+\infty}X\Bigl(\frac{\omega + 2\pi l}{T}\Bigr)
 \end{align*}
 
 \section{Criterio de muestreo de Nyquist}
-En DSP, queremos muestrear la señal sin pérdida de información (``loss less'').\\
-\par Entonces, hay que elegir correctamente el intervalo de muestreo T (sampling time).\\
+En DSP, queremos muestrear la señal sin pérdida de información (``lossless''). Entonces, hay que elegir correctamente el intervalo de muestreo $T_s$ (sampling time).\\
 
 \par \underline{Teorema de Nyquist}
 La frecuencia de muestreo de una señal análoga debe ser al menos el doble de la máxima frecuencia de la señal: $$F_s>2f_{max} $$
@@ -128,8 +135,8 @@ Sin Aliasing:
 \end{figure}
 
 \begin{align*}
-    Fs &> 2f_{max}\\
-    f_{max} &< \frac{Fs}{2}=F_N \quad \text{frecuencia de Nyquist}
+    F_s &> 2f_{max}\\
+    f_{max} &< \frac{F_s}{2}=F_N \quad \text{frecuencia de Nyquist}
 \end{align*}
 
 \par Con Aliasing:
@@ -155,123 +162,115 @@ Sin Aliasing:
 \end{figure}
 
 \subsection{Spectral Leakage}
-FT/DTFT/DFT asume que la señal es del tipo periódica.
-$$ x(t) = x(t+T_1) $$
-¿Qué pasa con señales no periódicas?
+CTFT/DTFT/DFT asumen que la \underline{señal es periódica}, es decir, que la señal se repite luego de un periodo $T_1$ indefinidamente.
+$$ x(t) = x(t+nT_1) $$
+Si la señal no es periódica, ocurren saltos abruptos.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/FT.png}
 \end{figure}
-DFT (N-pts): $X[m]=\sum_{n=0}^{N-1}x[n]e^{-j2\pi/N nm}$, $n$: 
-indice tiempo, $m$: índice frecuencia
+
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{Figuras/DFT.png}
+\includegraphics[scale=0.6]{Figuras/DFT.png}
 \end{figure}
 
-\par Una función escalón se puede escribir como una serie de Fourier (suma de armónicas).\\
-
-\par Al calcular $X[m]$ (DFT de $x[n]$) surge el fenómeno de ``spectral leakage'', donde se agregan armónicas artificiales producto del escalón generado.\\
+Este salto abrupto es semejante a una función escalón. Recordar que una función escalón se puede escribir como una Serie de Fourier que es una suma de armónicas con distinta frecuencia. Por lo tanto, al calcular $X[m]$ (DFT de $x[n]$) surge el fenómeno de ``spectral leakage'', donde se agregan armónicas artificiales producto del escalón generado.\\
 \par \underline{Ejemplo}:
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{Figuras/ejemplo_leakage.png}
+\includegraphics[scale=0.6]{Figuras/ejemplo_leakage.png}
 \end{figure}
 
 \par \underline{Solución}: ``Windowing'' $\Longrightarrow$ aplicar ventanas.\\
-\par Sobre el cálculo de PSD en registros digitales: 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.6]{Figuras/solucion_leakage.png}
+\includegraphics[scale=0.5]{Figuras/solucion_leakage.png}
 \end{figure}
+También ocurre cuando la señal está contaminada con ruido. \\
 
+Para resolver el \emph{spectral leakage} se pueden utilizar \emph{Periodogramas}
+
+\section{PSD de señal digital}
+En el caso de que $x(t)$ sea un p.e. w.s.s., su PSD se puede calcular de la siguiente forma:
 \begin{align*}
-    u(t)\xrightarrow[]{\text{Auto-PSD}} S_{UU}(\omega)=\mathcal{F}\{R_{UU}(\tau)\}\\
-    \Longrightarrow S_{UU}(\omega) = \mathcal{F}\Bigl\{\mathbb{E}\{u(t)u(t+\tau)\}\Bigr\}
-\end{align*}
-
-Cómo calcular $S_{UU}(\omega)$ con una señal digital? $\Longrightarrow$ Periodograma.
-
-
-\section{Motivación}
-Sea $x[k]$ un proceso estocástico wss (estacionario sentido amplio), señal digital con un intervalo de muestreo T.
-\begin{align*}
-    S_X(\omega) &= \mathbb{F}\{R_x(\tau)\} \quad \text{(Caso contínuo)}\\
+    S_\mathbb{X}(\omega) &= \mathcal{F}\{R_\mathbb{X}(\tau)\} \quad \text{(Caso contínuo, CTFT)}\\
     &= \mathbb{E}\{X(\omega)X^\ast(\omega)\} \quad \text{(Caso contínuo)}
 \end{align*}
 
-Podemos estimar $S_x(\omega)$ utilizando estimadores de valor medio y la definición de DTFT.
-
+En cambio, si $x[k]$ un p.e. w.s.s., señal digital con un intervalo de muestreo $T_s$. Podemos estimar $S_\mathbb{X}(\omega)$ (continua) utilizando estimadores de valor medio y la definición de DTFT.
 \begin{align*}
-    S_x(\omega) \sum_{k=-\infty}^{+\infty}\hat{r}_x[k]e^{-j\omega k}
+    \hat{S}_\mathbb{X}(\omega) = \sum_{k=-\infty}^{+\infty}\hat{r}_x[k]e^{-j\omega k}
 \end{align*}
-donde $\hat{r}_x[k]=\frac{1}{N}\sum_{n=1}^Nx[n]x[n+k]$ estimador de autocorrelación.\\
+
+donde el estimador de autocorrelación $\hat{r}_\mathbb{X}[k]$ ($k$ índice para el retraso $\tau$ y $n$ índice para la señal).
+\begin{align*}
+    \hat{r}_\mathbb{X}[k]=\frac{1}{N}\sum_{n=1}^Nx[n]x[n+k]    
+\end{align*}
 
 \par Alcance para la estimación del PSD:
 \begin{enumerate}
     \item Calcular DFT, y utilizar una forma de calcular el promedio de manera insesgada.
-    \begin{figure}[H]
+    \item Distintas realizaciones de $\mathbb{X}$ (de $x[k]$) nos entegan disintas estimaciones del PSD. \\ Cada estimación del PSD es una realización de un proceso estocástico.
+\end{enumerate}
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{Figuras/PSD_realizaciones.png}
-    \end{figure}
-    \item Tres realizaciones de $x[k]$ nos entegan disintas estimaciones del PSD.
-\end{enumerate}
+\end{figure}
 
-Cada estimación del PSD es una realización de un proceso estocástico.\\
-\par Vamos a caracterizar el PSD utilizando la media y varianza:
+\par Estrategia para caracterizar el PSD:
 \begin{enumerate}
     \item Queremos que la media del PSD se acerque al valor real del PSD.
     \item Queremos que la varianza del PSD sea pequeña.
 \end{enumerate}
 
-\underline{Ejemplo}: Considere el sgte. p.e.:
+\underline{Ejemplo}: Considere el siguiente p.e.:
 \begin{align*}
-    x[n]=A+\omega[n]
+    x[n]=A+w[n]
 \end{align*}
-donde $A$ es una constante y $\omega[n]$ es ruido blanco, de media cero, $\sigma^2$.\\
-\par Dada una secuencia finita $\{x[0],x[1]...,x[N-1]\}$, estimar A:\\
-\par Estimador razonable: $\hat{A}=\frac{1}{N}\sum_{n=0}^{N-1}x[n]$ ``media muestral de A''.\\
-\par Queremos dos cosas:
+donde $A$ es una constante y $w[n] = w(nT_s)$ es ruido blanco, de $\mu_\mathbb{X}(t) = 0$, varianza $\sigma_\mathbb{X}^2(t) = \sigma^2$.\\
+\par Dada una secuencia finita $\{x[0],x[1]...,x[N-1]\}$. Un estimador razonable para la media $A$ es la ``media muestral de A'' (promedio).
+\begin{align*}
+    \hat{A}=\frac{1}{N}\sum_{n=0}^{N-1}x[n]
+\end{align*}
+\par Entonces, queremos dos cosas:
 \begin{enumerate}
-    \item Que $\hat{A}$ converja al valor correcto de $A$: 
-    $$\mathbb{E}\{\hat{A}\}=A \quad \text{ estimador es insesgado}$$
-    Sino, $\hat{A}$ es sesgado. Si no se cumple, pero $$lim_{N\to\infty} \mathbb{E}\{\hat{A}\}=A \quad \text{estimador asintóticamente insesgado} $$
+    \item Que $\hat{A}$ sea insesgado, es decir, que converja al valor correcto de $A$: 
+    $$\mathbb{E}\{\hat{A}\}=A$$
+    Si $\hat{A}$ es sesgado. Que al menos cumpla con ser un estimador asintóticamente insesgado: $$lim_{N\to\infty} \mathbb{E}\{\hat{A}\}=A  $$
     \item La varianza de $\hat{A}$ sea pequeña
-    $$\text{var}\{\hat{A}\}\to 0 \quad \text{quizás aumentando N se disminuye la dispersión de }\hat{A}$$
+    $$\text{var}\{\hat{A}\}\to 0$$ 
+    \underline{Nota}: Quizás, aumentando N se disminuye la dispersión de $\hat{A}$
 \end{enumerate}
 
-\underline{Objetivos}: Estimar $\hat{S}_x(\omega)$ tal que:
-$$\mathbb{E}\{\hat{S}_x(\omega)=S_x(\omega) $$ y 
-$$\text{var}\{\hat{S}_x(\omega)\}=\text{pequeño} $$ 
+\underline{Objetivos}: Estimar $\hat{S}_\mathbb{X}(\omega)$ tal que:
+$$\mathbb{E}\{\hat{S}_\mathbb{X}(\omega)\}=S_\mathbb{X}(\omega) $$ y 
+$$\text{var}\{\hat{S}_\mathbb{X}(\omega)\}=\text{pequeño} $$ 
 
-\section{Periodograma}
+\subsection{Periodograma}
 \underline{Definición}: 
 \begin{align*}
-    \hat{S}_{PER}[k] =\frac{1}{N}\bigg|\sum_{n=0}^{N-1}x[n]e^{-j2\pi nk/N}\bigg|^2
+    \hat{S}_{PER}[k] &=\frac{1}{N}\bigg|\sum_{n=0}^{N-1}x[n]e^{-j2\pi nk/N}\bigg|^2 \\
+    & = \frac{1}{N} \bigg|X_m\bigg|^2
 \end{align*}
 
 \underline{Nota}: 
-\begin{enumerate}
+\begin{itemize}
     \item Considera el cálculo del DFT en vez de TF contínua
     \item Considera un estimador neutral para el cálculo de la $\mathbb{E}\{\cdot \}$
-\end{enumerate}
+\end{itemize}
 
-Ahora, hay que preguntarse:
-\begin{enumerate}
-    \item ¿Es $\hat{S}_{PER}[k]$ insesgado? 
-    \item ¿$\text{var}\{\hat{S}_{PER}[k]\}$ es pequeña? 
-\end{enumerate}
+$\hat{S}_{PER}[k]$ es sesgado, pero es asintóticamente insesgado
+\begin{align*}
+    \lim_{N\to\infty}\mathbb{E}\{\hat{S}_{PER}[k]\}=S_\mathbb{X}[k]
+\end{align*}
 
-\underline{Respuestas}:
-\begin{enumerate}
-    \item $\hat{S}_{PER}[k]$ es sesgado, pero es asintóticamente insesgado
-    $$ \lim_{N\to\infty}\mathbb{E}\{\hat{S}_{PER}[k]\}=S_x[k]\}$$
-    \item Varianza de $\hat{S}_{PER}[k]$ no tiende a cero para $N\to \infty$ $\Longrightarrow$ Problema
-    
-    $$\text{var}\{\hat{S}_x(\omega)\}=\sigma^4 $$ 
-\end{enumerate}
+Varianza de $\hat{S}_{PER}[k]$ no tiende a cero para $N\to \infty$ $\Longrightarrow$ Problema
+\begin{align*}
+    \text{var}\{\hat{S}_\mathbb{X}(\omega)\}=\sigma^4  
+\end{align*}
 
 donde $\sigma^2=S(\omega)$ si $x[n]$ es un ruido blanco.\\
 \par Principales problemas del periodograma:
@@ -288,44 +287,41 @@ donde $\sigma^2=S(\omega)$ si $x[n]$ es un ruido blanco.\\
 
 \subsection{Periodograma Modificado}
 Métodos que modifican el periodograma clásico, para resolver los problemas estacionarios:
-\begin{enumerate}
-    \item Periodograma modificada (uso de ventanas)
-    $$\hat{S}_{MP}(\omega)=\frac{1}{N\cdot U}\bigg| \sum_{n=0}^{N-1} x[n]\omega[n]e^{-j\omega n} \bigg| ^2 $$
-    donde $\omega[n]$: ventana en el dominio del tiempo.
-    $$U=\frac{1}{N}\sum_{n=0}^{N-1}|\omega[n]|^2 \quad \text{: factor de escala}$$
+\begin{itemize}
+    \item \underline{Periodograma modificada}: uso de ventanas
+    $$\hat{S}_{MP}(\omega)=\frac{1}{N\cdot U}\bigg| \sum_{n=0}^{N-1} x[n]w[n]e^{-j\omega n} \bigg| ^2 $$
+    donde $w[n]$: ventana en el dominio del tiempo y $U$ es un factor de escala.
+    $$U=\frac{1}{N}\sum_{n=0}^{N-1}|w[n]|^2$$
     
-    \item Método de Bartlett (promedio de periodogramas)
+    \item \underline{Método de Bartlett}: promedio de periodogramas). Dividir la señal en $K$ segmentos de $L$ muestras ($N = KL$
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{Figuras/ventana1.png}
     \end{figure}
     $$\hat{S}_B(\omega)=\frac{1}{K}\sum_{i=0}^{K-1}\Bigl\{\frac{1}{L}\bigg|\sum_{n=0}^{L-1}x_i[n]e^{-j\omega n} \bigg|^2 \Bigr\} $$
     donde: \begin{itemize}
-        \item i: bloque ``i'' de longitud L
-        \item K: cantidad de bloques
-        \item L: tamaño del bloque
+        \item $i$: bloque $i$ de tamaño $L$
     \end{itemize}
-    $$\Longrightarrow  \text{var}\{\hat{S}_X(\omega)\} \approx \frac{1}{K}S_X^2(\omega)$$
+
+    La varianza de la estimación del PSDes inversamente proporcional a la cantidad de bloques $K$:
+    $$\text{var}\{\hat{S}_\mathbb{X}(\omega)\} \approx \frac{1}{K}S_\mathbb{X}^2(\omega)$$
+    Es decir, que mientras más bloques se escogan (mayor $K$) más nos acercamos al objetivo de que la varianza sea $0$. \\
     
-    
-    Problemas:
-    \begin{itemize}
-        \item Más bloques $\Longrightarrow$ bloques más cortos
-        \item Blques cortos $\Longrightarrow$ peor resolución en frecuencia, $\Delta \omega$ es grande.
-    \end{itemize}
+    El problema es que como $N = KL$, si se definen más bloques (aumentar $K$), significa que los bloques son más cortos ($L$ disminuye) y bloques cortos implican una resolución en frecuencia baja, es decir, $\Delta \omega$ es grande.
     $$X[k] = \sum_{n=0}^{L-1}x[n]e^{-j2\pi nk/L} \quad \text{(DFT)}$$
     $\Longrightarrow$ ``Trade-off'': Varianza vs resolución.
     
-    \item Método de Welch (promedio de periodogramas con ventanas)
+    \item \underline{Método de Welch}: promedio de periodogramas con ventanas traslapadas al 50\%
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{Figuras/ventana2.png}
     \end{figure}
-    $$\hat{S}_W(\omega) =\frac{1}{KLU}\sum_{i=0}^{K-1}\bigg| \sum_{n=0}^{L-1} x_i[n]\omega[n]e^{-j\omega n} \bigg|^2$$
-    $$\text{var}\{\hat{S}_W(\omega)\} \approx \frac{9}{16}\frac{L}{N}S_x^2(\omega) $$
-    Recomendación: En Matlab: \texttt{cpsd()}: cross power spectral density (método de Welch)
+    $$\hat{S}_\mathbb{X}(\omega) =\frac{1}{KLU}\sum_{i=0}^{K-1}\bigg| \sum_{n=0}^{L-1} x_i[n]w[n]e^{-j\omega n} \bigg|^2$$
+    $$\text{var}\{\hat{S}_\mathbb{X}(\omega)\} \approx \frac{9}{16}\frac{L}{N}S_\mathbb{X}^2(\omega) $$
     
-    \item Método de Blackman-Tucky
+    En \underline{MATLAB}, la función \texttt{cpsd()} (cross power spectral density) utiliza el método de Welch.
+    
+    \item \underline{Método de Blackman-Tuckly}:
     
     
-\end{enumerate}
+\end{itemize}
