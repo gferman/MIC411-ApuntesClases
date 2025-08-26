@@ -1,0 +1,265 @@
+\chapter{Modelos matemáticos de sistemas dinámicos lineales}
+
+\section{Generalidades}
+
+Existen diversas formas de modelar un sistema dinámico en el rango lineal.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{modelos.png}
+    \caption{Relaciones entre distintas representaciones de modelos de sistemas dinámicos.}
+\end{figure}
+
+\section{Principios fundamentales de la mecánica estructural}
+
+Dominio $\Omega$ tiene una frontera $\partial \Omega = \Gamma_u \cup \Gamma_t$, donde $\Gamma_u$ es la frontera con desplazamientos prescritos, y $\Gamma_t$ es la frontera con tracciones prescritas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4in]{dominio.png}
+    \caption{Problema de valores de contorno en mecánica estructural.}
+\end{figure}
+
+\begin{enumerate}
+    \item Cinemática y compatibilidad
+    \item Ecuaciones de balance
+    \item Leyes constitutivas de los materiales
+    \item Geometría y propiedades estructurales
+    \item Condiciones de borde y condiciones iniciales
+\end{enumerate}
+
+\subsection{Forma fuerte}
+
+La ecuación de equilibrio en forma fuerte, que describe el equilibrio dinámico en un continuo elástico, donde:
+
+\begin{align}
+    \sigma_{ij,j} + b_i = \rho\frac{\partial^2 u_i}{\partial t^2}, & \qquad \forall \Omega\\
+    u_i = q_i, & \qquad \forall \Gamma_u\\
+    \sigma_{ij} n_j = t_i, & \qquad \forall \Gamma_t\\
+    u_i(x,0) = u_{0i}(x), & \qquad \forall \Omega\\
+    \frac{\partial u_i}{\partial t}(x,0) =\frac{\partial u_{0i}}{\partial t}(x), & \qquad \forall \Omega\\
+\end{align}
+
+donde: $\sigma_{ij,j}$ es la divergencia del tensor de esfuerzos ($\sigma_{ij}$); $b_i$ son las fuerzas volumétricas; $\rho \frac{\partial^2 u_i}{\partial t^2}$ es el término inercial, con $\rho$ la densidad y $u_i$ el desplazamiento.
+
+\subsection{Forma débil}
+
+Lagrangiano: $\mathcal{L} = T-V$
+
+Acción: $S = \int_{t_1}^{t_2} \mathcal{L}dt$
+
+Principio de mínima acción: 
+
+\begin{equation}
+    \delta S = 0
+\end{equation}
+
+Utilizando calculo variacional se obtiene la forma débil del problema de elastodinámica, utilizando notación directa (Hughes, 2000):
+
+\begin{equation}
+    (w,\rho \ddot{u}) + a(w,u) = (w,b) + (w,t)_\Gamma
+\end{equation}
+
+\subsection{Discretizacion}
+
+\begin{itemize}
+    \item Rayleigh-Ritz
+    \item Modos asumidos
+    \item Métodos residuales (por ejemplo, Galerkin)
+\end{itemize}
+
+\section{Ecuaciones de movimiento}
+
+Forma matricial obtenida después de la etapa de semidiscretización espacial (tiempo contínuo). El sistema dinámico se escribe finalmente como un sistema de ecuaciones diferenciales ordinarias (ODEs).
+
+\begin{equation}
+    M \ddot{u} + C \dot{u} + K u = F(t)
+\end{equation}
+
+donde $u = \{u_1,u_2, \ldots,u_n\}^T$ son los grados de libertad del sistema.
+
+\section{Funciones de respuesta en frecuencia (FRF)}
+
+\emph{En desarrollo}
+
+\section{Función de transferencia (TF)}
+
+\subsection{Sistema 1GDL}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{edm.png}
+\end{figure}
+
+\underline{Problema}: Dada la EDM de un sistema estructural 1GDL, determinar su función de transferencia $H(s)$\\ 
+
+\noindent Notación: 
+
+\begin{align*}
+    U(s) &= \mathcal{L}\{u(t)\}~: \text{respuesta (dominio complejo)}\\
+    F(s) &= \mathcal{L}\{f(t)\} ~: \text{input (dominio complejo)}
+\end{align*}
+
+Asumiendo reposo: $u(0)=\dot{u}(0)=0$
+
+\begin{align*}
+    m\ddot{u}+c\dot{u}+ku &= f(t) ~/\color{red}{\mathcal{L}\{\cdot\}}\\
+    m\mathcal{L}\{\ddot{u}\}+c\mathcal{L}\{\dot{u}\}+k\mathcal{L}\{u\} &= \mathcal{L}\{f\}\\
+    ms^2U(s)+csU(s)+kU(s) &= F(s)\\
+    (ms^2+cs+k)U(s) &= F(s)
+\end{align*}
+\begin{align*}
+    \Longrightarrow H(s) = \frac{U(s)}{F(s)}&=\frac{1}{ms^2+cs+k} ~\text{: TF del sistema de 1GDL}
+\end{align*}
+
+Aparte: Dada la entrada $F(s)$ y la TF $H(s)$, la salida es $U(s) = H(s)F(s)$
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{hs.png}
+\end{figure}
+
+\subsection{Sistema MDGL}
+
+Ahora considere la EDM de un sistema MGDL:
+
+\begin{equation}
+    M \ddot{u}(t )+ C \dot{u}(t) + K u(t) = F(t)
+\end{equation}
+
+Donde: $u(t) \in \mathbb{R}^{n \times 1}$, es el vector de grados de libertad; $M \in \mathbb{R}^{n \times n}$, $C \in \mathbb{R}^{n \times n}$, y $K \in \mathbb{R}^{n \times n}$ son las matrices de masas, amortiguamiento y rigidez, respectivamente; $F(t) \in \mathbb{R}^{n \times 1}$ es el vector de fuerzas externas.\\
+
+\noindent Notación: 
+
+\begin{align*}
+    \mathcal{L}\{u(t)\} &= U(s)\\
+    \mathcal{L}\{\dot{u}(t)\} &= s U(s) - u(0)\\
+    \mathcal{L}\{\ddot{u}(t)\} &= s^2 U(s) - s u(0) - \dot{u}(0)\\
+    \mathcal{L}\{f(t)\} &= F(s)
+\end{align*}
+
+Entonces, la función de transferencia (\emph{transfer function, TF}) del sistema dinámico se obtiene aplicando la transformada de Laplace sobre la EDM, asumiendo condiciones iniciales de reposo ($u(0)= 0 \wedge \dot{u}(0)=0$):
+
+\begin{align*}
+    M \ddot{u}(t) + C \dot{u}(t) + K u(t) &= F(t) ~/\mathcal{L}\{\cdot\}\\
+    %\Longrightarrow s^2 M U(s) + s C U(s) + K U(s) &= F(s)\\
+    \Longrightarrow \left[s^2M+sC+K \right]U(s)&= F(s) \\
+     \Longrightarrow U(s)&= \underbrace{\left[s^2M+sC+K \right]^{-1}}_{H(s)} F(s)
+\end{align*}
+
+
+\begin{align*}
+    \tend{F}(s) &= \mathcal{L}\{\tend{f}(t)\} ~: \text{input en dominio complejo (excitación)}\\
+    \tend{U}(s) &= \mathcal{L}\{\tend{u}(t)\}~: \text{output en dominio complejo (respuesta)}\\
+    \tenq{H}(s) &= \left[s^2M + s\tenq{C}+\tenq{K} \right]^{-1} ~:\text{TF para un sistema MGDL}
+\end{align*}
+
+Notar que para encontrar los polos se debe resolver las raíces polinomio:
+\begin{align*}
+    s^2\tenq{M}+s\tenq{C}+\tenq{K} = \tend{0} ~/ \text{$\cdot\tend{\phi}$ yasumiendo $\tenq{C}=\tenq{0}$} \\
+    \Longrightarrow (s^2\tenq{M}+\tenq{K})\tend{\phi} = \tend{0} ~\text{: Problema de valores propios generalizado}
+\end{align*}
+
+
+\section{Representación en variables de estado}
+
+La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordinarias cuyas matrices contienen toda la información dinámica del sistema.
+
+\begin{align*}
+    \text{EDM: }~\tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tenq{G}\tend{p}(t) 
+\end{align*}
+
+\begin{align*}
+\left .
+\begin{array}{rr}
+\tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}\\
+\tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} 
+\end{array}
+\right \} \Longrightarrow 
+\begin{array} {|r|r|}
+  \hline A & B \\
+  \hline C & D \\
+  \hline 
+\end{array}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{SS.png}
+\end{figure}
+
+\underline{Ecuación de estado}
+
+\begin{align*}
+    \tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}
+\end{align*}
+
+Donde:
+\begin{itemize}
+    \item Vector de Estado: $\tend{x}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\end{bmatrix} \Longrightarrow \tend{\dot{x}}=\begin{bmatrix}\tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
+    \item Matriz de estado: $\tenq{A_s}=\begin{bmatrix}\tenq{0} & \tenq{I}\\ -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
+    \item Matriz de influencia de excitación: $\tenq{B_s}=\begin{bmatrix}\tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
+\end{itemize}
+
+\underline{Ecuación de respuesta} \\
+
+\begin{align*}
+    \tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p}
+\end{align*}
+
+Donde (este es un ejemplo):
+\begin{itemize}
+    \item Vector de respuesta: $\tend{y}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
+
+    \item $\tenq{C_s}=\begin{bmatrix}\tenq{I} & \tenq{0}\\
+    \tenq{0} & \tenq{I}\\ 
+    -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
+    \item ``Feedthrough'': $\tenq{D_s}=\begin{bmatrix}\tenq{0}\\
+    \tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
+\end{itemize}
+
+
+\subsection{Relación entre State-Space y TF}
+
+Asumiendo condiciones iniciales de reposo: $\tend{x}(0) = \tend{0} \longrightarrow \text{Estados}$\\
+
+Entonces, aplicando la transformada de laplace a la ecuación de estado:
+\begin{align*} \label{eq:ss2tf_1}
+    \tend{\dot{x}}&=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p} ~/\mathcal{L}\{\cdot\}\\
+    \Longrightarrow s\tend{X}(s)&= \tenq{A_s}\tend{X}(s)+\tenq{B_s}\tend{P}(s)\\
+    \Longrightarrow (s\tenq{I}-\tenq{A_s})\tend{X}(s)&=\tenq{B_s}\tend{P}(s)
+\end{align*}
+\begin{align}
+    \Longrightarrow \tend{X}(s)&=(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)
+\end{align}
+
+Luego, aplicando la transformada de Laplace a la ecuación de respuesta:
+
+\begin{align*}
+    \tend{y}(t)=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} ~/\mathcal{L}\{\cdot\}\\
+\end{align*}
+\begin{align}\label{eq:ss2tf_2}
+    \Longrightarrow \tend{Y}(s)&=\tenq{C_s}\tend{X}(s)+\tenq{D_s}\tend{P}(s)
+\end{align} 
+
+Reemplazando la ecuación \ref{eq:ss2tf_1} en \ref{eq:ss2tf_2}:
+\begin{align*}
+    \tend{Y}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)+\tenq{D_s}\tend{P}(s)\\
+    \tend{Y}(s)&=[\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}]\tend{P}(s)\\
+    \Longrightarrow \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}
+\end{align*}
+
+\underline{Aparte}: Asumiendo $\tenq{D_s}=0$:
+\begin{align*}
+    \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\\
+    \tenq{H}(s)&=\frac{1}{\det(s\tenq{I}-\tenq{A_s})}\tenq{C_s}\text{ adj}(s\tenq{I}-\tenq{A_s})\tenq{B_s} \\
+    \Longrightarrow\det(s\tenq{I}-\tenq{A_s})&=0 ~\text{: Problema de valores propios de }\tenq{A_s}
+\end{align*}
+
+Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de $\tenq{H}(s)$, o, por los valores propios de $\tenq{A_s}$.
+
+
+
+
+% \section{Implementación computacional}
+
+

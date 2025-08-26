@@ -1,57 +1,433 @@
 \chapter{Introducción a Simulink}
 
 \section{Generalidades}
-% "programación" con señales y bloques
-% señales, dimensión de la señal -> En simulink, la señal es un arreglo que varía en el tiempo (?)
+
+Simulink es una herramienta de \emph{MATLAB} que permite modelar, simular y analizar sistemas dinámicos mediante un enfoque de programación gráfica. 
+
+El usuario construye el modelo conectando bloques que representan operaciones matemáticas, sistemas físicos o funciones lógicas. 
+Las conexiones entre bloques representan señales, que transmiten información en forma de variables que evolucionan en el tiempo.
+
+En Simulink, una \textbf{señal} puede ser escalar, vectorial o matricial. Su \emph{dimensión} y tipo de dato dependen del bloque que la genera y de la configuración del modelo. En términos generales, puede pensarse como un arreglo que cambia con el tiempo.
+
+La Figura \ref{fig:simulink-ej} muestra un ejemplo sencillo de un modelo en Simulink.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{placeholder_generalidades.png}
+    \caption{Ejemplo de modelo simple en Simulink.}
+    \label{fig:simulink-ej}
+\end{figure}
 
 \section{Entradas}
+Las entradas permiten excitar el sistema o modelo. Simulink ofrece diversos bloques para generar señales de entrada.
 
 \subsection{Constante}
+El bloque \textbf{Constant} genera una señal con valor constante durante toda la simulación, como se muestra en la Figura \ref{fig:simulink-cte}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{bloque constant.png}
+    \caption{Bloque de entrada constante.}
+    \label{fig:simulink-cte}
+\end{figure}
 
 \subsection{Seno}
+El bloque \textbf{Sine Wave} genera una señal sinusoidal con amplitud, frecuencia y fase configurables, como se muestra en las Figuras \ref{fig:simulink-sine} y \ref{fig:simulink-prop-sine}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque seno.png}
+    \caption{Bloque de entrada Seno.}
+    \label{fig:simulink-sine}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros seno.png}
+    \caption{Parámetros de entrada Seno.}
+    \label{fig:simulink-prop-sine}
+\end{figure}
 
 \subsection{Rampa}
+El bloque \emph{Ramp} produce una señal de tipo rampa lineal, útil para representar entradas que crecen con pendiente constante, donde, como se muestra en la Figura \ref{fig:simulink-para-ramp} se puede configurar tanto la pendiente como el intervalo donde inicia la señal. El bloque se muestra en la Figura \ref{fig:simulink-ramp}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque ramp.png}
+    \caption{Bloque Ramp.}
+    \label{fig:simulink-ramp}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros ramp.png}
+    \caption{Parámetros Ramp.}
+    \label{fig:simulink-para-ramp}
+\end{figure}
 
 \subsection{Ruido blanco}
+El bloque \textbf{Band-Limited White Noise} permite generar ruido blanco, empleado en análisis de respuesta a señales aleatorias. Como se muestra en la Figura \ref{fig:simulink-blwn}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Figuras/bloque ruido blanco.png}
+    \caption{Bloque de entrada Ruido Blanco de Banda Limitada.}
+    \label{fig:simulink-blwn}
+\end{figure}
+
+Para emplear este bloque es necesario contar con la densidad espectral de potencia, la frecuencia de muestro asociada y un valor de semilla que permita generar el ruido no correlacionado. Como se Muestra en la Figura \ref{fig:simulink-parameterblwn}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros ruido blanco.png}
+    \caption{parámetros de entrada Ruido Blanco de Banda Limitada.}
+    \label{fig:simulink-parameterblwn}
+\end{figure}
 
 \subsection{\emph{From workspace}}
+Este bloque permite incorporar variables previamente definidas en el espacio de trabajo (\emph{workspace}) de MATLAB y asignar como señales en \emph{Simulink}, facilitando la simulación con datos experimentales o precomputados.
+La variable cargada desde el espacio de trabajo debe estructurarse como una matriz de dos columnas: la primera indica los instantes de tiempo y la segunda los valores de la señal. Si la duración de la simulación excede el rango temporal de los datos, los valores deben prolongarse como cero, evitando en todo momento el uso de la opción de “extrapolación”. El bloque y sus parámetros se muestran en las Figuras \ref{fig:simulink-workspace} y \ref{fig:simulink-para-workspace}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Figuras/bloque from workspace.png}
+    \caption{Bloque de entrada del Espacio de Trabajo.}
+    \label{fig:simulink-workspace}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros from workspace.png}
+    \caption{Parámetros de entrada del Espacio de Trabajo.}
+    \label{fig:simulink-para-workspace}
+\end{figure}
 
 \section{Operaciones}
+Los bloques de operaciones permiten transformar señales mediante operaciones matemáticas básicas.
 
 \subsection{Suma}
+El bloque \textbf{Sum} combina varias señales mediante suma o resta, dependiendo de la configuración de sus entradas. Como se muestra en la Figura \ref{fig:simulink-suma}.
 
-\subsection{Multiplicacion}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Figuras/bloque sum.png}
+    \caption{Bloque de Suma.}
+    \label{fig:simulink-suma}
+\end{figure}
+
+El número de entradas, su posición dentro del bloque y su signo pueden modificarse agregando los símbolos ‘+’, ‘–’ y '\textbar '
+
+\subsection{Multiplicación}
+El bloque \textbf{Product} multiplica dos señales entre sí. Es posible configurarlo para modificar el número de entradas y definir si la operación entre ellas corresponde a una multiplicación escalar o matricial. Como se muestra en la Figura \ref{fig:simulink-product}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque product.png}
+    \caption{Bloque Producto.}
+    \label{fig:simulink-product}
+\end{figure}
 
 \subsection{Gain}
+El bloque \textbf{Gain} aplica una ganancia constante a una señal de entrada, mostrado en la Figura \ref{fig:simulink-gain}. Este bloque, al igual que \textbf{Product}, admite multiplicación escalar o matricial, con la opción adicional de cambiar el orden en la operación matricial. Como se muestra en la Figura \ref{fig:simulink-parametros-gain}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque gain.png}
+    \caption{Bloque Ganancia.}
+    \label{fig:simulink-gain}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figuras/parametros gain.png}
+    \caption{Parámetros Ganancia.}
+    \label{fig:simulink-parametros-gain}
+\end{figure}
 
 \subsection{Integración}
+El bloque \textbf{Integrator}, mostrado en la Figura \ref{fig:simulink-int}. calcula la integral de la señal de entrada, representando sistemas dinámicos como masas, resortes o cargas acumuladas. Este bloque permite definir la condición inicial de la integración, ofrece la posibilidad de establecer límites superior e inferior mediante saturación, y cuenta con configuraciones adicionales para el manejo de la salida y la opción de reiniciar el integrador. Como se muestra en la Figura \ref{fig:simulink-para-int}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque integrator.png}
+    \caption{Bloque Integración.}
+    \label{fig:simulink-int}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros integrator.png}
+    \caption{Parámetros bloque integración.}
+    \label{fig:simulink-para-int}
+\end{figure}
 
 \section{Sistemas}
+Simulink ofrece bloques para representar modelos dinámicos en distintas formas matemáticas.
 
 \subsection{State-space}
-Espacio estado
+El bloque \textbf{State-Space} permite implementar un sistema LTI en representación de variables de estado, definido por las matrices $A$, $B$, $C$ y $D$. Como se muestra en las Figuras \ref{fig:simulink-ss}. y \ref{fig:simulink-para-ss}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque espacio estado.png}
+    \caption{Bloque Espacio-estado.}
+    \label{fig:simulink-ss}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figuras/parametros espacio estado.png}
+    \caption{Parámetros Espacio-estado.}
+    \label{fig:simulink-para-ss}
+\end{figure}
+
+% \textit{Nota: Si una matriz contiene únicamente ceros, debe ingresarse respetando su dimensión completa y no como un valor escalar igual a cero.}
 
 \subsection{Transfer function}
+El bloque \textbf{Transfer Function} implementa sistemas definidos mediante funciones de transferencia, expresadas como el cociente de polinomios en $s$, como se muestra en la Figura \ref{fig:simulink-tf}. Los parámetros a ingresar en el bloque se muestran en la Figura \ref{fig:simulink-parametrostf}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque transfer funtion.png}
+    \caption{Bloque Función de transferencia.}
+    \label{fig:simulink-tf}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros trans fun.png}
+    \caption{Parámetros Trasnsfer Function.}
+    \label{fig:simulink-parametrostf}
+\end{figure}
 
 \subsection{Matlab Function}
-No todas clase de señales pueden ser generadas por operaciones de señales o bloques de simulink. En algunos casos es necesario generarlas generar una función que tome una señal (input) y retorne otra señal (output).
+En algunos casos, es necesario generar señales complejas o no lineales que no pueden obtenerse sólo con bloques estándar. 
+El bloque \textbf{MATLAB Function} permite definir una función que recibe una señal de entrada y produce una salida calculada en código MATLAB. El bloque se muestra en la Figura \ref{fig:simulink-matfun}.
+
+Este bloque permite integrar funciones escritas en MATLAB directamente en un modelo, ejecutando código personalizado durante la simulación. Su sintaxis se muestra en la Figura \ref{fig:simulink-para-matfun}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque mat fun.png}
+    \caption{Bloque Función de Matlab.}
+    \label{fig:simulink-matfun}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros mat fun.png}
+    \caption{Parámetros Bloque Función de Matlab.}
+    \label{fig:simulink-para-matfun}
+\end{figure}
 
 \section{Salidas}
+Las salidas permiten visualizar, registrar o exportar los resultados de la simulación.
 
 \subsection{Scope}
+El bloque \textbf{Scope} es un osciloscopio virtual que muestra la evolución temporal de las señales durante la simulación. La Figura \ref{fig:simulink-ver-scope} muestra una señal sinusoidal de entrada..
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque scope.png}
+    \caption{Bloque Scope.}
+    \label{fig:simulink-scope}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros scope.png}
+    \caption{Visualización Scope.}
+    \label{fig:simulink-ver-scope}
+\end{figure}
 
 \subsection{\emph{To workspace}}
+Este bloque permite exportar las señales al \emph{workspace} de MATLAB, para su posterior análisis o graficación. Como se muestra en la Figura \ref{fig:simulink-toworkspace}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque to workspace.png}
+    \caption{Bloque To workspace.}
+    \label{fig:simulink-toworkspace}
+\end{figure}
 
 \section{Propiedades simulación}
-% t_init, t_end, t_step (1/1000 ok para casos prácticos), integration method, fixed-step, *variable-step, r-k ode 4
+Antes de ejecutar un modelo, es necesario configurar sus parámetros de simulación: 
+tiempo inicial $t_\text{init}$, tiempo final $t_\text{end}$ y paso de integración $t_\text{step}$. 
+Simulink ofrece distintos métodos de integración (\emph{fixed-step} y \emph{variable-step}) y algoritmos como Runge-Kutta de cuarto orden (\texttt{ode4}). Esta configuración se encuentra en la sección mostrada en la Figura \ref{fig:simulink-parametros-simulacion}.
+
+\begin{figure}[H]
+    \centering
+    
+    % Subimagen 1
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=\linewidth]{propiedades1.png}
+    \end{subfigure}
+    
+    % Subimagen 2
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=\linewidth]{propiedades2.png}
+    \end{subfigure}
+    
+    % Subimagen 3
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=\linewidth]{propiedades3.png}
+    \end{subfigure}
+
+    \caption{Configuración parámetros de Simulación}
+    \label{fig:simulink-parametros-simulacion}
+\end{figure}
 
 \section{Bloques especiales}
 
 \subsection{Mux/Demux}
+Los bloques \textbf{Mux} y \textbf{Demux} permiten agrupar y desagrupar señales, respectivamente. 
+Son útiles para manejar señales vectoriales en diagramas complejos. Ambos bloques se muestran en la Figura \ref{fig:simulink-mux-demux}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque mux demux.png}
+    \caption{Bloque Mux y Demux.}
+    \label{fig:simulink-mux-demux}
+\end{figure}
 
 \subsection{Selector}
+El bloque \textbf{Selector} permite extraer componentes específicas de una señal vectorial o matricial, como se muestra en la Figura \ref{fig:simulink-selector}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque selector.png}
+    \caption{Bloque Selector.}
+    \label{fig:simulink-selector}
+\end{figure}
 
 \subsection{\emph{Zero-order hold} (ZOH)}
+El bloque \textbf{Zero-Order Hold} convierte señales continuas en discretas manteniendo el último valor de muestreo, lo que es esencial en sistemas mixtos continuo. El paso temporal se define en los parámetros como se muestra en la Figura \ref{fig:simulink-para-zoh}. Este bloque se muestra en la Figura \ref{fig:simulink-zoh}.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Figuras/bloque zoh.png}
+    \caption{Bloque Zoh.}
+    \label{fig:simulink-zoh}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/parametros zoh.png}
+    \caption{Parámetros Zoh.}
+    \label{fig:simulink-para-zoh}
+\end{figure}
 
+\section{Ejemplo}
+
+Se realiza el ejemplo de un modelo de un grado de libertad sometido a una aceleración basal.
+Inicialmente se definen los parámetros del sistema dinámico, masa, frecuencia natural y razón de amortiguamiento.
+
+\begin{verbatimg}
+%% Definir parametros
+
+fn = 2; % Hz
+m = 1000; % kg
+zeta = 0.05;
+\end{verbatimg}
+
+A partir de los parámetros definidos se obtienen los coeficientes de la ecuación diferencial de movimiento asociada.
+
+\begin{verbatimg}
+%% Obtener EDM
+% m*ddu + c*du + k*u = -m*ddug
+
+wn = 2*pi*fn; % rad/s
+k = wn^2*m; % N/m
+c = 2*zeta*m*wn; % N-s/m
+\end{verbatimg}
+
+Luego se escribe en función de las ecuaciones de espacio estado. En este caso particular se quiere como salida el desplazamiento relativo, la velocidad relativa y la aceleración absoluta.
+
+\begin{verbatimg}
+%% Representacion Espacio Estado
+% dx = As*x + Bs*ddug
+%  y = Cs*x + Ds*ddug
+
+Ass = [0 1; -k/m -c/m];
+Bss = [0; -m/m];
+Css = [1 0; 0 1; -k/m -c/m];
+Dss = [0; 0; 0];
+\end{verbatimg}
+
+Después se lee el registro de aceleración y se crea una matriz con tiempo-aceleración.
+
+\begin{verbatimg}
+%% Leer registro aceleracion
+
+record = importdata('RegistroNorthridge1994_TarzanaCH1.txt');
+record.dt = 0.02;
+record.N = length(record.data);
+time = linspace(0,(record.N-1)*record.dt,record.N)';
+
+acel = record.data/100; % en m/s2
+acel_simu = [time,acel];
+
+\end{verbatimg}
+
+Se ajustan los parámetros de simulación, considerando un paso temporal de 0.001 s y se ajusta el tiempo de simulación al tiempo del registro de aceleración.
+
+\begin{verbatimg}
+%% Simulacion
+
+t_muestreo = time(end); % tiempo final del registro sismico
+dt = 1/1000; % s
+
+\end{verbatimg}
+
+Ya con los parámetros definidos se ingresan en la configuración de Simulink, se utiliza Runge-Kutta (ode4), como se muestra en la Figura \ref{fig:simulink-para-ejem}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figuras/parametros simulacion ejemplo.png}
+    \caption{Parámetros Simulación de Ejemplo.}
+    \label{fig:simulink-para-ejem}
+\end{figure}
+
+Luego se modela la entrada como un bloque \textbf{from workspace}, como se muestra en la Figura \ref{fig:simulink-acel}. El sistema dinámico utilizando el bloque \textbf{state-space},como se muestra en la Figura \ref{fig:simulink-ss-ejemplo}, donde las salidas se separan utilizando un bloque \textbf{demux} para finalmente ser enviadas al espacio de trabajo utilizando el bloque \textbf{to workspace}. El sistema completo se muestra en la Figura \ref{fig:simulink-ejemplo}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/aceleracion ejemplo.png}
+    \caption{Registro de Aceleración.}
+    \label{fig:simulink-acel}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figuras/espacio estado ejemplo.png}
+    \caption{Parámetros Espacio Estado ejemplo.}
+    \label{fig:simulink-ss-ejemplo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Figuras/modelo simulink ejemplo.png}
+    \caption{Modelo Simulink ejemplo.}
+    \label{fig:simulink-ejemplo}
+\end{figure}
+
+Aparte se incorporan bloques \textbf{scope} en todas las señales para poder observarlas antes de llevar los datos al espacio de trabajo.
+
+Finalmente, para llamar las variables desde el espacio de trabajo y correr la simulación se utiliza el siguiente código.
+
+\begin{verbatimg}
+%% Cargar el modelo de Simulink
+
+modelo = 'ejemplo_Dinav'; % Nombre del archivo sin la extensión .slx
+load_system(modelo);
+% Ejecutar la simulación
+simOut = sim(modelo);
+% solución numerica
+d = simOut.desplazamiento.Data;
+v = simOut.velocidad.Data;
+a = simOut.aceleracion.Data;
+
+\end{verbatimg}

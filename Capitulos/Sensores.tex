@@ -83,48 +83,97 @@ Ejemplos de materiales piezoelétricos: Sal de Rochello, Tourmalina, cristales d
 
 Generalmente, los sensores tienen $R^2 \approx 0.99$
 
-\section{Sensores de vibración}
+\section{Tipos de sensores}
+
+En ingeniería estructural y mecánica, los sensores permiten medir variables físicas como aceleración, desplazamiento, fuerza o deformación. 
+La correcta selección del sensor depende de la magnitud de interés, el rango de operación, la frecuencia de muestreo requerida y la robustez necesaria para el ambiente de trabajo. 
 
 \subsection{Acelerómetros resistivos}
-Voltaje proporcional con la aceleración aplicada al sensor.
+Estos sensores generan un voltaje proporcional a la aceleración aplicada al sensor. 
+Funcionan generalmente con un elemento sensible resistivo (como un puente de Wheatstone) acoplado a una masa interna que se desplaza frente a la aceleración.  
+Tienen la ventaja de ser simples, económicos y de fácil acondicionamiento de señal, pero suelen tener limitaciones de frecuencia y son sensibles al ruido eléctrico.
 
-\subsection{Acelerómetro capacitivo}
-Utiliza una técnica de modulación de frecuencias a través de la variación del "Bridge" de un capacitor conectado a la masa.
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{placeholder_acelerometro_resistivo.png}
+    \caption{Ejemplo de principio de funcionamiento de un acelerómetro resistivo.}
+\end{figure}
+
+\subsection{Acelerómetros capacitivos}
+Estos sensores utilizan la variación de capacitancia provocada por el movimiento de una masa interna. 
+La señal de salida se obtiene mediante técnicas de modulación, generalmente cambiando la frecuencia de un puente capacitivo (\emph{capacitive bridge}).  
+Se caracterizan por su alta sensibilidad a bajas frecuencias, bajo consumo de energía y bajo costo.  
+Sin embargo, son frágiles frente a impactos fuertes y su rango dinámico es limitado.
 
 \subsection{Acelerómetros piezoeléctricos}
-Los dos anteriores son muy frágiles (limitada protección a golpes)
+Estos sensores emplean cristales piezoeléctricos que generan carga eléctrica proporcional a la fuerza inercial aplicada.  
+A diferencia de los acelerómetros resistivos o capacitivos, los piezoeléctricos son muy robustos frente a altas frecuencias y choques, lo que los hace ideales para aplicaciones dinámicas.  
+Existen configuraciones de \textbf{compresión}, \textbf{flexión} y \textbf{corte}, cada una con distinta sensibilidad a vibraciones y ruidos ambientales.  
 
-
-Hay de compresión, flexión y corte.
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{placeholder_acelerometro_piezoelectrico.png}
+    \caption{Ejemplo de acelerómetro piezoeléctrico y su principio de funcionamiento.}
+\end{figure}
 
 \subsection{\emph{Strain gages}}
-Miden deformación y se pueden ocupar para medir fuerza.
+Las galgas extensiométricas (\emph{strain gages}) miden la deformación de un material a través de la variación de resistencia eléctrica de un filamento conductor.  
+Al adherirlas a un elemento estructural, permiten medir su deformación y, a partir de ésta, estimar esfuerzos o fuerzas aplicadas.  
+Se utilizan ampliamente en pruebas de laboratorio y monitoreo estructural.
+
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{placeholder_strain_gage.png}
+    \caption{Strain gage adherido a un elemento estructural.}
+\end{figure}
 
 \subsection{Celdas de carga}
-
+Las celdas de carga son transductores que convierten fuerzas en señales eléctricas, generalmente usando \emph{strain gages} en configuración de puente de Wheatstone.  
+Se emplean en balanzas, bancos de pruebas y sistemas de monitoreo de cargas estructurales.
 
 \subsection{Transductores de desplazamiento}
+Estos sensores miden movimiento o desplazamiento lineal/rotacional. Entre los más comunes están:
+\begin{itemize}
+    \item \textbf{Potenciómetros:} Miden desplazamiento mediante variación resistiva; son económicos pero tienen desgaste mecánico.
+    \item \textbf{LVDT (Linear Variable Differential Transformer):} Utilizan inducción electromagnética para medir desplazamiento lineal con alta precisión.
+    \item \textbf{Encoders:} Miden desplazamiento angular o velocidad de rotación mediante lectura óptica o magnética.
+\end{itemize}
 
-Potenciometros, LVDT, encoders
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{placeholder_lvdt_encoder.png}
+    \caption{Ejemplos de transductores de desplazamiento: LVDT y encoder rotacional.}
+\end{figure}
 
 \subsection{Otros sensores}
+Existen tecnologías avanzadas que permiten medir movimiento, vibración o rotación en aplicaciones especializadas:
+\begin{itemize}
+    \item \textbf{Interferómetros láser:} Permiten medir desplazamientos con resolución nanométrica mediante interferencia de luz coherente.
+    \item \textbf{Giroscopios:} Sensan velocidad angular; existen versiones mecánicas, ópticas y MEMS. 
+    \item \textbf{Sensores de fibra óptica:} Basados en variaciones de intensidad o interferometría, útiles para monitoreo estructural distribuido.
+    \item \textbf{MEMS (Micro-Electro-Mechanical Systems):} Integran sensores de aceleración, giro y presión en tamaño muy reducido.
+    \item \textbf{Geófonos:} Detectan vibraciones en el suelo, ampliamente usados en geotecnia y monitoreo sísmico.
+\end{itemize}
 
-Laser interferometer
-Gyroscopios % Link: https://youtu.be/DOjT5r4cpNo?si=1dA6Qn6ORPoe-9nk&t=231
-Fibra óptica
-MEMS
-% Link: https://www.analog.com/en/technical-articles/accelerometer-and-gyroscopes-sensors-operation-sensing-and-applications.html
-Geofonos
-% Link: https://en.wikipedia.org/wiki/Geophone
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.6\textwidth]{placeholder_otros_sensores.png}
+    \caption{Ejemplos de sensores avanzados: giroscopio MEMS, fibra óptica y geófono.}
+\end{figure}
 
 \section{Adquisición Digital de Datos}
 
 \subsection{Muestreo (\emph{sampling})}
-$w[k]$
+
+\emph{En desarrollo}
 
 \subsection{Cuantización}
 
+\emph{En desarrollo}
+
 \subsection{Filtros \emph{Anti-Aliasing}}
+
+\emph{En desarrollo}
 
 
 
