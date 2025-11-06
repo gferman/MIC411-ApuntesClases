@@ -107,20 +107,20 @@ $u$: señal control (voltaje)\\
 El objetivo es diseñar un \underline{algoritmo de control} $f_a(u,t)$ para mitigar $z(t)$ y mejorar el desempeño.
 
 
-\section{Respuesta transiente}
-Si queremos transicionar de un estado $x(t_0)$ a $x_2$, la respuesta no es instantánea y existe una respuesta transiente que hay que limitar.
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{step.png}
-\end{figure}
-\underline{Definición}:
-\begin{itemize}
-    \item \underline{Tiempo de subida} (``rise time'', $t_r$): tiempo que toma subir. Ej.: ir desde 10\% hasta 90\% de respuesta o de 0\% a 100\%.
-    \item \underline{Sobreimpulso} (``overshoot'', $M_p$): exceso de respuesta transitoria sobre la referencia deseada.
-    \item \underline{Tiempo de asentamiento} (``senttling time'', $t_s$): tiempo que toma el sistema en decaer hasta 1\%
-\end{itemize}
+% \section{Respuesta transiente}
+% Si queremos transicionar de un estado $x(t_0)$ a $x_2$, la respuesta no es instantánea y existe una respuesta transiente que hay que limitar.
+% \begin{figure}[H]
+% \centering
+% \includegraphics[scale=0.6]{step.png}
+% \end{figure}
+% \underline{Definición}:
+% \begin{itemize}
+%     \item \underline{Tiempo de subida} (``rise time'', $t_r$): tiempo que toma subir. Ej.: ir desde 10\% hasta 90\% de respuesta o de 0\% a 100\%.
+%     \item \underline{Sobreimpulso} (``overshoot'', $M_p$): exceso de respuesta transitoria sobre la referencia deseada.
+%     \item \underline{Tiempo de asentamiento} (``senttling time'', $t_s$): tiempo que toma el sistema en decaer hasta 1\%
+% \end{itemize}
 
-\subsubsection{Teorema del Límite Final}
+\section{Teorema del Límite Final}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/planta2.png}
@@ -133,7 +133,7 @@ Respuesta Estado Estacionario: $y_\infty=\lim_{t\to\infty} y(t)$\\
 \end{align*}
 
 
-\subsection{Requisitos de control}
+\section{Requisitos de control}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/Planta.png}
@@ -342,15 +342,15 @@ $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
 
 \underline{Representación espacio-estado}: 
 \begin{align*}
-    \tend{x}=\begin{bmatrix}\tend{z}\\ \tend{\dot{z}}\end{bmatrix}, \quad u_1 =\ddot{z}_g, \quad u_2=u
+    {x}=\begin{bmatrix}{z}\\ {\dot{z}}\end{bmatrix}, \quad u_1 =\ddot{z}_g, \quad u_2=u
 \end{align*}
 
 \begin{align*}
-    \tend{\dot{x}} &=
+    {\dot{x}} &=
     \begin{bmatrix}
     0 & 1\\
     -k/m & -c/m
-    \end{bmatrix}\tend{x} +
+    \end{bmatrix}{x} +
     \begin{bmatrix}
     0 \\ -1
     \end{bmatrix}u_1+
@@ -358,7 +358,7 @@ $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
     0 \\ g/m
     \end{bmatrix}u_2 \\
     &= \begin{bmatrix} 0 & 1\\-k/m & -c/m
-    \end{bmatrix}\tend{x} +
+    \end{bmatrix}{x} +
     \begin{bmatrix}
     0 & 0\\ -1 & g/m
     \end{bmatrix} 
@@ -368,14 +368,14 @@ $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
 \end{align*}
 
 \begin{align*}
-    \tend{y}&=[z]\\
-    \tend{y}&= \begin{bmatrix}1 & 0 \end{bmatrix}\tend{x}+\begin{bmatrix}0 & 0 \end{bmatrix}\begin{bmatrix}
+    {y}&=[z]\\
+    {y}&= \begin{bmatrix}1 & 0 \end{bmatrix}{x}+\begin{bmatrix}0 & 0 \end{bmatrix}\begin{bmatrix}
     \ddot{z}_g\\ u
     \end{bmatrix}
 \end{align*}
 
 \begin{align}
-    \tend{u}=\begin{bmatrix}
+    {u}=\begin{bmatrix}
     \ddot{z}_g\\ u
     \end{bmatrix}\longrightarrow
     \begin{array} {|r|r|}
@@ -383,7 +383,7 @@ $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
       \hline C & D \\
       \hline 
     \end{array}
-    \longrightarrow \tend{y}=[z] \quad \text{Sistema ``MISO''}
+    \longrightarrow {y}=[z] \quad \text{Sistema ``MISO''}
 \end{align}
 
 
@@ -497,65 +497,65 @@ $\Longrightarrow$ ``Migración de polos'', Locus = posición en latín
 Representación espacio estado, sistema LTI.\\
 \par Sea: 
 \begin{align*}
-    \tend{x}&=[x_1,x_2,...,x_N]^\top\\
-    \tend{u}&=[u_1,u_2,...,u_p]^\top\\
-    \tend{y}&=[y_1,y_2,...,y_r]^\top
+    {x}&=[x_1,x_2,...,x_N]^\top\\
+    {u}&=[u_1,u_2,...,u_p]^\top\\
+    {y}&=[y_1,y_2,...,y_r]^\top
 \end{align*}
 \begin{itemize}
     \item[(1)] Ecuación de estado:
-    $$\tend{\dot{x}}=\tenq{A}\tend{x}+\tenq{B}\tend{u} $$
+    $${\dot{x}}={A}{x}+{B}{u} $$
     \item[(2)] Ecuación de respuesta:
-    $$\tend{y}=\tenq{C}\tend{x}+\tenq{D}\tend{u} $$
+    $${y}={C}{x}+{D}{u} $$
 \end{itemize}
 
 \underline{Paréntesis}:
 Aplicando la Transformada de Laplace a las ecuaciones de estado y respuesta de la representación espacio-estado:
 \begin{align*}
-    \tend{\dot{x}}=\tenq{A}\tend{x}+\tenq{B}\tend{u}\xrightarrow[]{\mathcal{L}}s\tend{X}(s)=\tenq{A}\tend{X}(s)+\tenq{B}\tend{U}(s)\\
-    \Longrightarrow \tend{X}(s)=(s\tenq{I}-\tenq{A})^{-1}\tenq{B}\tend{U}(s)\\
-    G_{xu}(s)=(s\tenq{I}-\tenq{A})^{-1}\tenq{B}
+    {\dot{x}}={A}{x}+{B}{u}\xrightarrow[]{\mathcal{L}}s{X}(s)={A}{X}(s)+{B}{U}(s)\\
+    \Longrightarrow {X}(s)=(s{I}-{A})^{-1}{B}{U}(s)\\
+    G_{xu}(s)=(s{I}-{A})^{-1}{B}
 \end{align*}
 \begin{align*}
-    \tend{y}=\tenq{C}\tend{x}+\tenq{D}\tend{u}\xrightarrow[]{\mathcal{L}}s\tend{Y}(s)=\tenq{C}\tend{X}(s)+\tenq{D}\tend{U}(s)\\
-    \tenq{Y}(s)=[\tenq{C}(s\tenq{I}-\tenq{A})^{-1}\tenq{B}+\tenq{D}]\tend{U}(s)\\
-    G_{yu}=\tenq{C}(s\tenq{I}-\tenq{A})^{-1}\tenq{B}+\tenq{D}
+    {y}={C}{x}+{D}{u}\xrightarrow[]{\mathcal{L}}s{Y}(s)={C}{X}(s)+{D}{U}(s)\\
+    {Y}(s)=[{C}(s{I}-{A})^{-1}{B}+{D}]{U}(s)\\
+    G_{yu}={C}(s{I}-{A})^{-1}{B}+{D}
 \end{align*}
 
 
 \section{Formas canónicas}
 \subsection{Forma Canónica Controlable (CCF)}
-Asumir que $\tenq{D}=\tenq{0}$ (no hay componente ``feedthrough'' en la salida del sistema).
+Asumir que ${D}={0}$ (no hay componente ``feedthrough'' en la salida del sistema).
 \begin{align*}
-\tenq{A_c}=\left[
+{A_c}=\left[
     \begin{array}{cccc|c}
      -a_1 & -a_2 & \dots & -a_{n-1} & -a_n\\ \hline
      1 & & & 0 & 0\\
        & 1 & & & \vdots\\
        & & \ddots & & \\
      0 & & & 1 & 0  
-    \end{array}\right], \quad \tenq{A_c}\in \mathbb{R}^{n\times n}
+    \end{array}\right], \quad {A_c}\in \mathbb{R}^{n\times n}
 \end{align*}
 \begin{align*}
-\tenq{B_c}=\left[
+{B_c}=\left[
     \begin{array}{c}
      1 \\ \hline
      0\\
     \vdots\\
      0  
-    \end{array}\right], \quad \tenq{B_c}\in \mathbb{R}^{n\times 1}
+    \end{array}\right], \quad {B_c}\in \mathbb{R}^{n\times 1}
 \end{align*}
 \begin{align*}
-\tenq{C_c}=\left[
+{C_c}=\left[
     \begin{array}{cccc}
      b_1 & b_2 & \dots & b_n
-    \end{array}\right], \quad \tenq{C_c}\in \mathbb{R}^{1\times n}
+    \end{array}\right], \quad {C_c}\in \mathbb{R}^{1\times n}
 \end{align*}
 \begin{align*}
     \text{Realización (SISO): }\quad 
     \left\{
     \begin{array}{l}
-          \tend{\dot{x}_c}=\tenq{A_c}\tend{x_c}+\tenq{B_c}u \\
-          y=\tenq{C_c}\tend{x_c} \\
+          {\dot{x}_c}={A_c}{x_c}+{B_c}u \\
+          y={C_c}{x_c} \\
     \end{array} 
     \right. 
 \end{align*}
@@ -578,35 +578,35 @@ Se utiliza para diseñar controladores cuando todos los estados del sistema son 
 \subsection{Forma Canónica Modal (MCF)}
 Sea $G(s)=\frac{c_1}{s+p_1}+\frac{c_2}{s+p_2}+...+\frac{c_n}{s+p_n}$, $G(s)$ se escribe como una expansión de fracción parcial, y los polos $p_i$ son todos distintos:
 \begin{align*}
-\tenq{A_m}=\left[
+{A_m}=\left[
     \begin{array}{cccc}
      -p_1& & & 0\\
      & -p_2 & & \\
      & & \ddots & \\
      0 & & & -p_n
-    \end{array}\right], \quad \tenq{A_m}\in \mathbb{R}^{n\times n}
+    \end{array}\right], \quad {A_m}\in \mathbb{R}^{n\times n}
 \end{align*}
 \begin{align*}
-\tenq{B_m}=\left[
+{B_m}=\left[
     \begin{array}{c}
      1 \\ 
      1\\
     \vdots\\
      1  
-    \end{array}\right], \quad \tenq{B_m}\in \mathbb{R}^{n\times 1}
+    \end{array}\right], \quad {B_m}\in \mathbb{R}^{n\times 1}
 \end{align*}
 \begin{align*}
-\tenq{C_m}=\left[
+{C_m}=\left[
     \begin{array}{cccc}
      c_1 & c_2 & \dots & c_n
-    \end{array}\right], \quad \tenq{C_m}\in \mathbb{R}^{1\times n}
+    \end{array}\right], \quad {C_m}\in \mathbb{R}^{1\times n}
 \end{align*}
 
 \begin{align*}
     \text{Realización (SISO): }\quad 
     \left\{
     \begin{array}{l}
-          \tend{\dot{x}_m}=\tenq{A_m}\tend{x_m}+\tenq{B_m}\cancelto{0}{u} 
+          {\dot{x}_m}={A_m}{x_m}+{B_m}\cancelto{0}{u} 
     \end{array} 
     \right. 
 \end{align*}
@@ -619,40 +619,40 @@ Sea $G(s)=\frac{c_1}{s+p_1}+\frac{c_2}{s+p_2}+...+\frac{c_n}{s+p_n}$, $G(s)$ se 
 \end{align*}
 
 \begin{align*}
-    \Longrightarrow\tend{\dot{x}}=\tenq{A}\tend{x}
+    \Longrightarrow{\dot{x}}={A}{x}
 \end{align*}
 
-\underline{Resolver}: $\tenq{A}\tend{v}=\lambda \tend{v}$ (Problema de valores propios de $\tenq{A}$).\\
-\par $\tenq{T}$ es la matriz de transformación modal, $\tenq{T}=[\tend{v_1},\tend{v_2},...,\tend{v_n}]$\\
+\underline{Resolver}: ${A}{v}=\lambda {v}$ (Problema de valores propios de ${A}$).\\
+\par ${T}$ es la matriz de transformación modal, ${T}=[{v_1},{v_2},...,{v_n}]$\\
 
 \subsection{Forma Canónica Observable (OCF)}
 Dado $G(s)=\frac{n(s)}{d(s)}$, con $a_i$, $b_i$ conocidos.
 
 \begin{align*}
-\tenq{A_o}=\left[
+{A_o}=\left[
     \begin{array}{c|cccc}
      -a_{n-1} & 1 & & & 0 \\ 
      -a_{n-2} & & 1 & & \\
      \vdots   & & & \ddots & \\
      -a_1     & 0 & & & 1 \\ \hline
      -a_0     & 0 & 0 & \dots & 0   
-    \end{array}\right], \quad \tenq{A_o}\in \mathbb{R}^{n\times n}
+    \end{array}\right], \quad {A_o}\in \mathbb{R}^{n\times n}
 \end{align*}
 \begin{align*}
-\tenq{B_o}=\left[
+{B_o}=\left[
     \begin{array}{c}
      b_{n-1} \\
      b_{n-2}\\
     \vdots\\
      b_1 \\ \hline
      b_0
-    \end{array}\right], \quad \tenq{B_o}\in \mathbb{R}^{n\times 1}
+    \end{array}\right], \quad {B_o}\in \mathbb{R}^{n\times 1}
 \end{align*}
 \begin{align*}
-\tenq{C_o}=\left[
+{C_o}=\left[
     \begin{array}{c|ccc}
      1 & 0 & \dots & 0
-    \end{array}\right], \quad \tenq{C}_o\in \mathbb{R}^{1\times n}
+    \end{array}\right], \quad {C}_o\in \mathbb{R}^{1\times n}
 \end{align*}
 
 Se utiliza para diseñar ``observadores''.
@@ -699,7 +699,7 @@ Para que el sistema cerrado sea \textcolor{red}{ESTABLE}, los valores propios de
 
 \par Analicemos el diseño de un controlador utilizando una representación CCF:
 \begin{align*}
-\tenq{A}=\left[
+{A}=\left[
     \begin{array}{cccc|c}
      -a_1 & -a_2 & \dots & -a_{n-1} & -a_n\\ \hline
      1 & & & 0 & 0\\
@@ -709,7 +709,7 @@ Para que el sistema cerrado sea \textcolor{red}{ESTABLE}, los valores propios de
     \end{array}\right]_{n\times n}
 \end{align*}
 \begin{align*}
-\tenq{B}=\left[
+{B}=\left[
     \begin{array}{c}
      1 \\ \hline
      0\\
@@ -718,7 +718,7 @@ Para que el sistema cerrado sea \textcolor{red}{ESTABLE}, los valores propios de
     \end{array}\right]_{n\times 1}
 \end{align*}
 \begin{align*}
-\tenq{K}=\left[
+{K}=\left[
     \begin{array}{ccccc}
      k_{n-1} & k_{n-2} & \dots & k_1 & k_0
     \end{array}\right]_{1\times n}
@@ -726,33 +726,33 @@ Para que el sistema cerrado sea \textcolor{red}{ESTABLE}, los valores propios de
 
 Calculemos $BK$:
 \begin{align*}
-\tenq{BK}=\left[
+{BK}=\left[
     \begin{array}{cccc|c}
      k_{n-1} & k_{n-2} & \dots & k_1 & k_0\\ \hline
       & & & & 0\\
-      & & \tenq{0}_{(n-1)\times(n-1)} & & \vdots\\
+      & & {0}_{(n-1)\times(n-1)} & & \vdots\\
       & & & & 0  
     \end{array}\right]_{n\times n}
 \end{align*}
 
 Ahora, calculemos $A_{CL}=A-BK$
 \begin{align*}
-\tenq{BK}=\left[
+{BK}=\left[
     \begin{array}{cccc|c}
      -(a_{n-1}+k_{n-1}) & -(a_{n-2}+k_{n-2}) & \dots & -(a_1+k_1) & -(a_0+k_0)\\ \hline
       & & & & 0\\
-      & & \tenq{I}_{(n-1)\times(n-1)} & & \vdots\\
+      & & {I}_{(n-1)\times(n-1)} & & \vdots\\
       & & & & 0  
     \end{array}\right]_{n\times n}
 \end{align*}
 
 Queremos encontrar los valores propios de $A_{CL}$. Escribamos la ecuación característica de $A_{CL}$
 \begin{align*}
-    \det(\tenq{A_{CL}}-\lambda \tenq{I})=0
+    \det({A_{CL}}-\lambda {I})=0
 \end{align*}
 
 \begin{align*}
-\tenq{BK}=\left[
+{BK}=\left[
     \begin{array}{cccc|c}
      -(\lambda+a_{n-1}+k_{n-1}) & -(a_{n-2}+k_{n-2}) & \dots & -(a_1+k_1) & -(a_0+k_0)\\ \hline
       1 & -\lambda & & & 0\\
@@ -786,12 +786,12 @@ Donde $\alpha_i$ se obtiene de la posición deseada de los polos. \\
 
 \par Entonces, si el sistema es CCF, podemos diseñar $K$ al elegir la posición de los polos de manera apropiada $\Longrightarrow$ \textbf{POLE PLACEMENT}\\
 
-\par \underline{Nota}: Si el sistema no es CCF, entonces se puede transformar a CCF utilizando matriz de transformación $\tenq{T}$, provisto que el sistema sea controlable.\\
+\par \underline{Nota}: Si el sistema no es CCF, entonces se puede transformar a CCF utilizando matriz de transformación ${T}$, provisto que el sistema sea controlable.\\
 
 \par Sea la realización:
 
 \begin{align*}
-    \tend{x}=Ax+Bu \xrightarrow[]{x=Tz} \dot{z}=A_cz+B_cu
+    {x}=Ax+Bu \xrightarrow[]{x=Tz} \dot{z}=A_cz+B_cu
 \end{align*}
 Sea $T \in \mathbb{R}^{n\times n}$, tal que $T^{-1}$ existe
 \begin{align*}
@@ -913,30 +913,30 @@ Considere el siguiente sistema con $x\in\mathbb{R}^n$, $u\in\mathbb{R}$, $y\in\m
 Su Forma Canónica Observable es: 
 
 \begin{align*}
-\tenq{A_o}=\left[
+{A_o}=\left[
     \begin{array}{c|cccc}
      -a_{n-1} & 1 & & & 0 \\ 
      -a_{n-2} & & 1 & & \\
      \vdots   & & & \ddots & \\
      -a_1     & 0 & & & 1 \\ \hline
      -a_0     & 0 & 0 & \dots & 0   
-    \end{array}\right], \quad \tenq{A_o}\in \mathbb{R}^{n\times n}
+    \end{array}\right], \quad {A_o}\in \mathbb{R}^{n\times n}
 \end{align*}
 \begin{align*}
-\tenq{B_o}=\left[
+{B_o}=\left[
     \begin{array}{c}
      b_{n-1} \\
      b_{n-2}\\
     \vdots\\
      b_1 \\ \hline
      b_0
-    \end{array}\right], \quad \tenq{B_o}\in \mathbb{R}^{n\times 1}
+    \end{array}\right], \quad {B_o}\in \mathbb{R}^{n\times 1}
 \end{align*}
 \begin{align*}
-\tenq{C_o}=\left[
+{C_o}=\left[
     \begin{array}{c|ccc}
      1 & 0 & \dots & 0
-    \end{array}\right], \quad \tenq{C}_o\in \mathbb{R}^{1\times n}
+    \end{array}\right], \quad {C}_o\in \mathbb{R}^{1\times n}
 \end{align*}
 
 Como en este caso particular, $y\in\mathbb{R}$, entonces $L$ es matriz $n \times 1$:
@@ -958,10 +958,10 @@ Por lo tanto, se puede obtener $A_0 - LC_0$ de la siguiente forma:
      1 & 0 & ... & 0
     \end{array}\right] =\left[
     \begin{array}{c|c}
-     l_{n-1} & \\ \vdots & \tenq{0} \\ l_0 & 
+     l_{n-1} & \\ \vdots & {0} \\ l_0 & 
     \end{array}\right] \\
     A_o-LC_o &= \left[ \begin{array}{c|c c c}
-     -a_{n-1}-l_{n-1} & & & \\  -a_{n-2}-l_{n-2} & & & \\ \vdots & & \tenq{I} & \\-a_1-l_1 & & & \\ \hline \\ -a_0-l_0 & 0 & ... & 0
+     -a_{n-1}-l_{n-1} & & & \\  -a_{n-2}-l_{n-2} & & & \\ \vdots & & {I} & \\-a_1-l_1 & & & \\ \hline \\ -a_0-l_0 & 0 & ... & 0
     \end{array}\right] 
 \end{align*}
 y su ecuación característica es: 

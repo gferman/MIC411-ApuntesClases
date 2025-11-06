@@ -1,7 +1,7 @@
 \documentclass[10pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[letterpaper, margin=1in]{geometry}
-\usepackage[spanish,es-tabla]{babel}
+\usepackage[spanish,es-nodecimaldot,es-tabla]{babel}
 \usepackage{graphicx}
 \usepackage{setspace}
 \usepackage{verbatim}
@@ -21,6 +21,15 @@
 \usepackage{float}
 \usepackage{tcolorbox}
 \usepackage{fancyhdr}
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{references.bib}
+\usepackage{csquotes}
+\usepackage{matlab-prettifier}
+
+\newtheorem{theorem}{Teorema}
+
+% Add the following line to increase the space between entries
+\setlength{\bibitemsep}{2\itemsep}
 
 % Options for tcolorbox
 \tcbuselibrary{listings}
@@ -46,9 +55,10 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={Dinamica Estructural Avanzada},
+    citecolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    pdftitle={MIC411 Dinamica Estructural Avanzada},
     pdfauthor={Gaston Fermandois},
     pdfpagemode=UseOutlines,
     }
@@ -81,8 +91,7 @@
     }
 }
 
-\def\version{3.0}
-
+\def\version{3.2.4}
 
 %%% MAINMATTER %%%
 \begin{document}
@@ -120,7 +129,9 @@
 
 \part{Aplicaciones}
 
-\input{Capitulos/ModeloNolineal}
+\input{Capitulos/Sensores}
+
+\input{Capitulos/MonitoreoEstructural}
 
 \input{Capitulos/ControlEstructural}
 
@@ -128,11 +139,9 @@
 
 \input{Capitulos/ControlOptimo}
 
-\input{Capitulos/Sensores}
-
-\input{Capitulos/MonitoreoEstructural}
-
 \part{Tópicos avanzados}
+
+\input{Capitulos/ModeloNolineal}
 
 \input{Capitulos/SimulacionHibrida}
 
@@ -145,6 +154,10 @@
 \input{Capitulos/IntroMatlab}
 
 \input{Capitulos/IntroSimulink}
+
+\input{Capitulos/TopicosAnalisisNumerico}
+
+\printbibliography[heading=bibintoc]
 
 \end{document}
 

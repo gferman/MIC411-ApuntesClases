@@ -1,6 +1,6 @@
 \chapter{Análisis clásico de sistemas lineales}
 
-\section{Problema de valores propios generalizado}
+\section{Ecuación característica de la EDM}
 
 \emph{En desarrollo.}
 
@@ -62,15 +62,36 @@ Notar que el FRF se puede obtener al reemplazar $s=j\omega$ en la TF:
 \begin{align*}
     H(\omega)=\frac{1}{(j\omega-\lambda_1)(j\omega-\lambda_1^*)}
 \end{align*}
-\begin{itemize}
-    \item $\{\}^*$: conjugado del número complejo
-\end{itemize}
+
 \begin{align*}
-    \lambda_1, \lambda_1^*=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}~\text{: polos del sistema}
+    \lambda_{1,2}=-\xi\omega_n\pm\omega_n\sqrt{1-\xi^2}~\text{: polos del sistema}
 \end{align*}
 
+donde: 
+
+$$ \lambda_{2} = \lambda_{1}^{*}$$
+
+\begin{itemize}
+    \item $(\cdot)^{*}$: conjugado del número complejo
+\end{itemize}
+
+\section{Valores propios de matriz de estados}
+
+\begin{subequations}
+    \begin{align}
+        A v = \lambda v \\
+        (\lambda I - A)v=0\\
+        \det(\lambda I-A) = 0 \\
+        \Delta_A(\lambda) = \lambda^n + \alpha_{n-1} \lambda^{n-1} + \alpha_{n-2} \lambda^{n-2} + \cdots + \alpha_{1} \lambda + \alpha_{0} = 0
+    \end{align}
+\end{subequations}
+
+$\lambda$ y $v$ son los valores y vectores propios de $A$.
+
 \section{Función impulso (Delta Dirac)}
+
 La función \textit{Delta de Dirac} se denota como:
+
 \begin{align*}
     \delta(t)=   \left\{
 \begin{array}{ll}
@@ -282,11 +303,13 @@ Los ceros $z_i$ y polos $p_j$ son puntos sobre el plano complejo
 \includegraphics[scale=0.7]{polos_ceros.png}
 \end{figure}
 
-\newpage
+
 $|H(s)|$ representa una ``superficie'' sobre el plano complejo
+
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{magHs.png}
+    \centering
+    \includegraphics[width = 5in]{magH3D.png}
+    \caption{Efecto de polos y ceros en la magnitud de función de transferencia $H(s)$}    
 \end{figure}
 
 \underline{Aparte}: Recordar que $H(s)$ corresponde a: $H(s)=\mathcal{L}\{h(t)\}$ ($h(t)$ es FRI), por ende, $h(t)=\mathcal{L}^{-1}\{H(s)\}$. Por lo tanto, los polos nos dan información del FRI.\\
@@ -358,11 +381,26 @@ Un sistema es estable en el sentido BIBO, si y sólo si el sistema posee todos s
     \item \textcolor{red}{Si el sistema posee al menos un polo cuyo $Re(p_i)=\alpha_i>0$, entonces el sistema es inestable}
 \end{itemize}
 
+\section{Respuesta escalón}
+
+Si queremos transicionar de un estado $x(t_0)$ a $x(t_1)$, la respuesta no es instantánea y existe una respuesta transiente que hay que limitar.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{step.png}
+\end{figure}
+\underline{Definición}:
+\begin{itemize}
+    \item \underline{Tiempo de subida} (``rise time'', $t_r$): tiempo que toma subir. Ej.: ir desde 10\% hasta 90\% de respuesta, o de 0\% a 100\%.
+    \item \underline{Sobreimpulso} (``overshoot'', $M_p$): exceso de respuesta transitoria sobre la referencia deseada.
+    \item \underline{Tiempo de asentamiento} (``settling time'', $t_s$): tiempo que toma el sistema en decaer hasta 1\%
+\end{itemize}
+
 \section{Implementación utilizando Matlab/Simulink}
 
 En matlab se puede trabajar con sistemas dinámicos utilizando \emph{variables tipo sistema}. Estas variables se puede crear si se cuenta con la información de alguna de las representaciones vistas anteriormente. \\
 
-Para State-Space se requieren las matrices $\tenq{A}$, $\tenq{B}$, $\tenq{C}$, $\tenq{D} \Longrightarrow$ matrices de tipo ``double'' \\
+Para State-Space se requieren las matrices ${A}$, ${B}$, ${C}$, ${D} \Longrightarrow$ matrices de tipo ``double'' \\
 
 \par Para construir un sistema desde representación espacio-estado, se utiliza el siguiente comando:
 \begin{minted}[]{matlab}

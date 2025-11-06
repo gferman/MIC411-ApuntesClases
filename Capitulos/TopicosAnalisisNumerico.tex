@@ -1,0 +1,62 @@
+\chapter{T\'opicos de An\'alisis N\'umerico}\label{ch:AnalNum}
+
+\section{Ecuaciones nolineales}
+
+\textcite{heath2002scientificcomputing}
+
+\section{Optimizaci\'on}
+
+\subsection{}
+
+\section{M\'etodos de integraci\'on n\'umerica de EDOs}
+
+\subsection{Paso temporal fijo}
+
+\subsection{Paso temporal variable}
+
+\section{Descomposici\'on de valores singulares (SVD)}
+
+Referencia: \textcite[Cap. 1]{brunton_data-driven_2019}
+
+Dado $X \in \mathbb{C}^{n \times m}$:
+
+\begin{equation}
+    X = U \Sigma V^*
+\end{equation}
+
+\noindent donde $U  \in \mathbb{C}^{n \times n} $ y $V \in \mathbb{C}^{m \times m}$ son matrices unitarias con columnas ortogonales (es decir, $U U^* = I$ y $V V^* = I$), y $\Sigma \in \mathbb{R}^{n \times m}$ es una matriz con entradas no-negativas y reales en la diagonal, y ceros fuera de la diagonal. Las columnas de $U$ se denominan los \emph{vectores singulares izquierdos} de $X$, y las columnas de $V$ son los \emph{vectores singulares derechos} de $X$.
+
+Cuando $n \geq m$, se puede escribir la operación SVD económica:
+
+\begin{equation}
+    X = U \Sigma V^* =
+    \begin{bmatrix}
+        \hat{U} & \hat{U}^{\perp}    
+    \end{bmatrix}
+    \begin{bmatrix}
+        \hat{\Sigma} \\ 0    
+    \end{bmatrix}
+    V^*
+\end{equation}
+
+donde $\hat{\Sigma} \in \mathbb{R}^{m \times m}$ es la matriz de valores singulares.
+
+En Matlab, se utiliza la función \texttt{svd()}
+
+\begin{lstlisting}[style=Matlab-editor,frame=single,numbers=left]
+    X = rand(5,3);
+    [U,S,V] = svd(X);
+    [Uhat,Shat,V] = svd(X,'econ');
+\end{lstlisting}
+
+Una interpretación matemática es que las matrices de correlación $X X^*$ y $X X^*$ cumple las siguientes relaciones:
+
+\begin{align}
+    (X X^*) U & = U \begin{bmatrix} \hat{\Sigma}^2 & 0 \\ 0 & 0\end{bmatrix}\\
+    (X^* X) V & = V \hat{\Sigma}^2\\
+\end{align}
+
+Entonces, los valores singulares de $X$ corresponden a los valores propios (\emph{eigenvalues}) de las matrices de correlación $X X^*$ y $X X^*$. También, las columnas de $U$ son los vectores propios (\emph{eigenvectors}) de la matriz $X X^*$, y las columnas de $V$ son los vectores propios de la matriz $X^* X$.
+
+\section{Fast Fourier Transform}
+

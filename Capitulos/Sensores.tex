@@ -1,13 +1,17 @@
-\chapter{Tecnología de Sensores y Adquisición Digital de Datos}
+\chapter{Tecnología de Sensores}
 
 % NOTA: Utilizar apuntes de Spencer como guía
 
+Referencia: \textcite[Cap. 11]{desilva2000vibrationfundamentals}
+
 \section{Fundamentos de sensores}
-\subsection{Qué es un sensor}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.15]{Figuras/acelerometros.png}
-\end{figure}
+
+\subsection{¿Qué es un sensor?}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.15]{Figuras/acelerometros.png}
+% \end{figure}
 
 \begin{figure}[H]
     \centering
@@ -22,10 +26,11 @@
 El output que genera el sensor es una señal eléctrica (voltaje, corriente) que es proporcional a $w(t)$.\\
 
 Sobre la utilidad de un sensor, fijarse en el rango de frecuencia y en el rango de aceleraciones. \\
-Ej.: Sensor con rangos $[5; 10000]Hz$ y $[-10; 10]g$ no podría medir frecuencias de $1[Hz]$.
+
+Ej.: Sensor con rangos de frecuencia $[5; 10000]$ Hz y de amplitud $[-10; 10]$ g no podría medir frecuencias de $1$ [Hz], y dependiendo de la resolución, probablemente no detecta microvibraciones, por ejemplo $1$ mg = $\frac{1}{1000}$ g.
 
 \subsection{Diseño de Sensores}
-Supongamos tenemos un sensor con un oscilador SDOF sin amortiguamiento
+Supongamos tenemos un sensor que se modela como un oscilador SDOF sin amortiguamiento:
 
 \begin{align*}
     \ddot{w} + \omega_s^2 w = -\ddot{z}
@@ -36,25 +41,29 @@ La FRF de este oscilador es:
     H_{WZ}(\Omega) = \frac{1}{1-\frac{\omega_s}{\Omega}^2}\\
     H_{W\ddot{Z}}(\Omega) = \frac{1}{\Omega^2 - \omega_s^2}
 \end{align*}
+
 \begin{itemize}
     \item Si quiero que $w(t)$ se parezca a $z(t)$. Ocupar rigidez alta.
     \item Si quiero que $w(t)$ se parezca a $\ddot{z}(t)$. Ocupar rigidez baja.
 \end{itemize}
+
 % agregar FRF del ppt sensores?
+
 Generalmente la respuesta transiente de $w(t)$ (que contiene información del sensor) decae rápido
 
 \section{Fundamentos básicos de electrónica}
+
 \subsection{Resistencia}
+
 Relación deformación vs voltaje
 
 \subsection{Capacitancia}
 Es la propiedad de algunos materiales o dispositivos para almacenar carga eléctrica cuando se les aplica una diferencia de potencial.
 
-
 \subsection{Piezoelectricidad}
-Del griego \emph{piezo} (apretar/presión). Es la propiedad de algunos materiales que, al ser sometidos a tensiones o deformaciones, generan diferencias de potencial y cargas eléctricas. De manera inversa, si se les aplica una diferencia de potencial, estos materiales se deforman. \\
+Del griego \emph{piezo} (apretar/presión). Es la propiedad de algunos materiales que, al ser sometidos a tensiones o deformaciones, generan diferencias de potencial y cargas eléctricas. De manera inversa, si se les aplica una diferencia de potencial, estos materiales se deforman.
 
-Ejemplos de materiales piezoelétricos: Sal de Rochello, Tourmalina, cristales de cuarzo.
+Ejemplos de materiales piezoelétricos: Sal de Rochell, Tourmalina, cristales de cuarzo.
 
 % \ section{Fundamentos de sensores de vibración}
 
@@ -95,6 +104,7 @@ Tienen la ventaja de ser simples, económicos y de fácil acondicionamiento de s
 
 \begin{figure}[h!]
     \centering
+    \fbox{\rule{0pt}{6cm} \rule{10cm}{0pt}}
     % \includegraphics[width=0.6\textwidth]{placeholder_acelerometro_resistivo.png}
     \caption{Ejemplo de principio de funcionamiento de un acelerómetro resistivo.}
 \end{figure}
@@ -112,17 +122,22 @@ Existen configuraciones de \textbf{compresión}, \textbf{flexión} y \textbf{cor
 
 \begin{figure}[h!]
     \centering
+    \fbox{\rule{0pt}{6cm} \rule{10cm}{0pt}}
     % \includegraphics[width=0.6\textwidth]{placeholder_acelerometro_piezoelectrico.png}
     \caption{Ejemplo de acelerómetro piezoeléctrico y su principio de funcionamiento.}
 \end{figure}
 
 \subsection{\emph{Strain gages}}
+
 Las galgas extensiométricas (\emph{strain gages}) miden la deformación de un material a través de la variación de resistencia eléctrica de un filamento conductor.  
+
 Al adherirlas a un elemento estructural, permiten medir su deformación y, a partir de ésta, estimar esfuerzos o fuerzas aplicadas.  
+
 Se utilizan ampliamente en pruebas de laboratorio y monitoreo estructural.
 
 \begin{figure}[h!]
     \centering
+    \fbox{\rule{0pt}{6cm} \rule{10cm}{0pt}}
     % \includegraphics[width=0.6\textwidth]{placeholder_strain_gage.png}
     \caption{Strain gage adherido a un elemento estructural.}
 \end{figure}
@@ -141,6 +156,7 @@ Estos sensores miden movimiento o desplazamiento lineal/rotacional. Entre los m�
 
 \begin{figure}[h!]
     \centering
+    \fbox{\rule{0pt}{6cm} \rule{10cm}{0pt}}
     % \includegraphics[width=0.6\textwidth]{placeholder_lvdt_encoder.png}
     \caption{Ejemplos de transductores de desplazamiento: LVDT y encoder rotacional.}
 \end{figure}
@@ -157,23 +173,24 @@ Existen tecnologías avanzadas que permiten medir movimiento, vibración o rotac
 
 \begin{figure}[h!]
     \centering
+    \fbox{\rule{0pt}{6cm} \rule{10cm}{0pt}}
     % \includegraphics[width=0.6\textwidth]{placeholder_otros_sensores.png}
     \caption{Ejemplos de sensores avanzados: giroscopio MEMS, fibra óptica y geófono.}
 \end{figure}
 
-\section{Adquisición Digital de Datos}
+% \section{Adquisición Digital de Datos}
 
-\subsection{Muestreo (\emph{sampling})}
+% \subsection{Muestreo (\emph{sampling})}
 
-\emph{En desarrollo}
+% \emph{En desarrollo}
 
-\subsection{Cuantización}
+% \subsection{Cuantización}
 
-\emph{En desarrollo}
+% \emph{En desarrollo}
 
-\subsection{Filtros \emph{Anti-Aliasing}}
+% \subsection{Filtros \emph{Anti-Aliasing}}
 
-\emph{En desarrollo}
+% \emph{En desarrollo}
 
 
 

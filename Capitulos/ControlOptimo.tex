@@ -2,10 +2,13 @@
 
 \section{Planteamiento}
 Dado un sistema dinámico:
+
 \begin{align*}
     \dot{x}(t)=f\big( x(t),u(t),t\big) 
 \end{align*}
+
 Problema es encontrar $u(t)$, para llevar el estado $x(t)$ hasta $x(t_1)$, para un tiempo finito $t\in[t_0,t_1]$, tal que se cumpla la siguiente condición, donde $J(u)$ es el funcional de desempeño:
+
 \begin{align*}
     J(u)=\int_{t_0}^{t_1}l\big(x(t),u(t),t\big)dt+m\big(x(t_1)\big)
 \end{align*}
@@ -14,11 +17,15 @@ Problema es encontrar $u(t)$, para llevar el estado $x(t)$ hasta $x(t_1)$, para 
     \item $\int_{t_0}^{t_1}l\big(x(t),u(t),t\big)dt$: ``Costo de viaje'' (running cost)
     \item $m\big(x(t_1)\big)$: costo terminal
 \end{itemize}
+
 El problema de control óptimo se define como:
+
 \begin{align*}
     u^o=\text{arg min}_{u_{[t_0,t_1]}}J(u)
 \end{align*}
+
 Se define la \textcolor{red}{función de valor V} como el mínimo costo posible para la trayectoria del sistema dinámico para todos los controles posibles $u_{[t_0,t_1]}$:
+
 \begin{align*}
     V(x_0,t_0) = \min_{u_{[t_0,t_1]}}J(u) = \min\Big\{\int_{t_0}^{t_1}l\big(x(t),u(t),t\big)dt+m\big(x(t_1)\big)  \Big\}
 \end{align*}
@@ -258,7 +265,7 @@ Elegir $Q$ y $R$ matrices diagonales. Cada componente de $q_{ii}$ y $r_{ii}$ est
 
 
 
-\section{Filtro de Kalman (continuo)}
+\section{Filtro de Kalman (tiempo contínuo)}
 Sea el sistema LTI
 \begin{align*}
     \dot{x} &= Ax+B_u u +B_\omega \omega(t)\\

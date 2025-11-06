@@ -80,7 +80,9 @@ donde $u = \{u_1,u_2, \ldots,u_n\}^T$ son los grados de libertad del sistema.
 
 \section{Funciones de respuesta en frecuencia (FRF)}
 
-\emph{En desarrollo}
+Considere la EDM de un sistema de 1GDL:
+
+$$m \ddot{u} + c \dot{u} + k u = p(t)$$
 
 \section{Función de transferencia (TF)}
 
@@ -148,15 +150,15 @@ Entonces, la función de transferencia (\emph{transfer function, TF}) del sistem
 
 
 \begin{align*}
-    \tend{F}(s) &= \mathcal{L}\{\tend{f}(t)\} ~: \text{input en dominio complejo (excitación)}\\
-    \tend{U}(s) &= \mathcal{L}\{\tend{u}(t)\}~: \text{output en dominio complejo (respuesta)}\\
-    \tenq{H}(s) &= \left[s^2M + s\tenq{C}+\tenq{K} \right]^{-1} ~:\text{TF para un sistema MGDL}
+    {F}(s) &= \mathcal{L}\{{f}(t)\} ~: \text{input en dominio complejo (excitación)}\\
+    {U}(s) &= \mathcal{L}\{{u}(t)\}~: \text{output en dominio complejo (respuesta)}\\
+    {H}(s) &= \left[s^2M + s{C}+{K} \right]^{-1} ~:\text{TF para un sistema MGDL}
 \end{align*}
 
 Notar que para encontrar los polos se debe resolver las raíces polinomio:
 \begin{align*}
-    s^2\tenq{M}+s\tenq{C}+\tenq{K} = \tend{0} ~/ \text{$\cdot\tend{\phi}$ yasumiendo $\tenq{C}=\tenq{0}$} \\
-    \Longrightarrow (s^2\tenq{M}+\tenq{K})\tend{\phi} = \tend{0} ~\text{: Problema de valores propios generalizado}
+    s^2{M}+s{C}+{K} = {0} ~/ \text{$\cdot{\phi}$ yasumiendo ${C}={0}$} \\
+    \Longrightarrow (s^2{M}+{K}){\phi} = {0} ~\text{: Problema de valores propios generalizado}
 \end{align*}
 
 
@@ -165,14 +167,14 @@ Notar que para encontrar los polos se debe resolver las raíces polinomio:
 La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordinarias cuyas matrices contienen toda la información dinámica del sistema.
 
 \begin{align*}
-    \text{EDM: }~\tenq{M}\tend{\ddot{u}}+\tenq{C}\tend{\dot{u}}+\tenq{K}\tend{u}&=\tenq{G}\tend{p}(t) 
+    \text{EDM: }~{M}{\ddot{u}}+{C}{\dot{u}}+{K}{u}&={G}{p}(t) 
 \end{align*}
 
 \begin{align*}
 \left .
 \begin{array}{rr}
-\tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}\\
-\tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} 
+{\dot{x}}={A_s}{x}+{B_s}{p}\\
+{y}={C_s}{x}+{D_s}{p} 
 \end{array}
 \right \} \Longrightarrow 
 \begin{array} {|r|r|}
@@ -190,72 +192,72 @@ La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordin
 \underline{Ecuación de estado}
 
 \begin{align*}
-    \tend{\dot{x}}=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p}
+    {\dot{x}}={A_s}{x}+{B_s}{p}
 \end{align*}
 
 Donde:
 \begin{itemize}
-    \item Vector de Estado: $\tend{x}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\end{bmatrix} \Longrightarrow \tend{\dot{x}}=\begin{bmatrix}\tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
-    \item Matriz de estado: $\tenq{A_s}=\begin{bmatrix}\tenq{0} & \tenq{I}\\ -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
-    \item Matriz de influencia de excitación: $\tenq{B_s}=\begin{bmatrix}\tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
+    \item Vector de Estado: ${x}=\begin{bmatrix}{u} \\ {\dot{u}}\end{bmatrix} \Longrightarrow {\dot{x}}=\begin{bmatrix}{\dot{u}}\\ {\ddot{u}}\end{bmatrix}$
+    \item Matriz de estado: ${A_s}=\begin{bmatrix}{0} & {I}\\ -{M}^{-1}{K} & -{M}^{-1}{C}\end{bmatrix}$
+    \item Matriz de influencia de excitación: ${B_s}=\begin{bmatrix}{0}\\ {M}^{-1}{G}\end{bmatrix}$
 \end{itemize}
 
 \underline{Ecuación de respuesta} \\
 
 \begin{align*}
-    \tend{y}=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p}
+    {y}={C_s}{x}+{D_s}{p}
 \end{align*}
 
 Donde (este es un ejemplo):
 \begin{itemize}
-    \item Vector de respuesta: $\tend{y}=\begin{bmatrix}\tend{u} \\ \tend{\dot{u}}\\ \tend{\ddot{u}}\end{bmatrix}$
+    \item Vector de respuesta: ${y}=\begin{bmatrix}{u} \\ {\dot{u}}\\ {\ddot{u}}\end{bmatrix}$
 
-    \item $\tenq{C_s}=\begin{bmatrix}\tenq{I} & \tenq{0}\\
-    \tenq{0} & \tenq{I}\\ 
-    -\tenq{M}^{-1}\tenq{K} & -\tenq{M}^{-1}\tenq{C}\end{bmatrix}$
-    \item ``Feedthrough'': $\tenq{D_s}=\begin{bmatrix}\tenq{0}\\
-    \tenq{0}\\ \tenq{M}^{-1}\tenq{G}\end{bmatrix}$
+    \item ${C_s}=\begin{bmatrix}{I} & {0}\\
+    {0} & {I}\\ 
+    -{M}^{-1}{K} & -{M}^{-1}{C}\end{bmatrix}$
+    \item ``Feedthrough'': ${D_s}=\begin{bmatrix}{0}\\
+    {0}\\ {M}^{-1}{G}\end{bmatrix}$
 \end{itemize}
 
 
 \subsection{Relación entre State-Space y TF}
 
-Asumiendo condiciones iniciales de reposo: $\tend{x}(0) = \tend{0} \longrightarrow \text{Estados}$\\
+Asumiendo condiciones iniciales de reposo: ${x}(0) = {0} \longrightarrow \text{Estados}$\\
 
 Entonces, aplicando la transformada de laplace a la ecuación de estado:
 \begin{align*} \label{eq:ss2tf_1}
-    \tend{\dot{x}}&=\tenq{A_s}\tend{x}+\tenq{B_s}\tend{p} ~/\mathcal{L}\{\cdot\}\\
-    \Longrightarrow s\tend{X}(s)&= \tenq{A_s}\tend{X}(s)+\tenq{B_s}\tend{P}(s)\\
-    \Longrightarrow (s\tenq{I}-\tenq{A_s})\tend{X}(s)&=\tenq{B_s}\tend{P}(s)
+    {\dot{x}}&={A_s}{x}+{B_s}{p} ~/\mathcal{L}\{\cdot\}\\
+    \Longrightarrow s{X}(s)&= {A_s}{X}(s)+{B_s}{P}(s)\\
+    \Longrightarrow (s{I}-{A_s}){X}(s)&={B_s}{P}(s)
 \end{align*}
 \begin{align}
-    \Longrightarrow \tend{X}(s)&=(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)
+    \Longrightarrow {X}(s)&=(s{I}-{A_s})^{-1}{B_s}{P}(s)
 \end{align}
 
 Luego, aplicando la transformada de Laplace a la ecuación de respuesta:
 
 \begin{align*}
-    \tend{y}(t)=\tenq{C_s}\tend{x}+\tenq{D_s}\tend{p} ~/\mathcal{L}\{\cdot\}\\
+    {y}(t)={C_s}{x}+{D_s}{p} ~/\mathcal{L}\{\cdot\}\\
 \end{align*}
 \begin{align}\label{eq:ss2tf_2}
-    \Longrightarrow \tend{Y}(s)&=\tenq{C_s}\tend{X}(s)+\tenq{D_s}\tend{P}(s)
+    \Longrightarrow {Y}(s)&={C_s}{X}(s)+{D_s}{P}(s)
 \end{align} 
 
 Reemplazando la ecuación \ref{eq:ss2tf_1} en \ref{eq:ss2tf_2}:
 \begin{align*}
-    \tend{Y}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\tend{P}(s)+\tenq{D_s}\tend{P}(s)\\
-    \tend{Y}(s)&=[\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}]\tend{P}(s)\\
-    \Longrightarrow \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}+\tenq{D_s}
+    {Y}(s)&={C_s}(s{I}-{A_s})^{-1}{B_s}{P}(s)+{D_s}{P}(s)\\
+    {Y}(s)&=[{C_s}(s{I}-{A_s})^{-1}{B_s}+{D_s}]{P}(s)\\
+    \Longrightarrow {H}(s)&={C_s}(s{I}-{A_s})^{-1}{B_s}+{D_s}
 \end{align*}
 
-\underline{Aparte}: Asumiendo $\tenq{D_s}=0$:
+\underline{Aparte}: Asumiendo ${D_s}=0$:
 \begin{align*}
-    \tenq{H}(s)&=\tenq{C_s}(s\tenq{I}-\tenq{A_s})^{-1}\tenq{B_s}\\
-    \tenq{H}(s)&=\frac{1}{\det(s\tenq{I}-\tenq{A_s})}\tenq{C_s}\text{ adj}(s\tenq{I}-\tenq{A_s})\tenq{B_s} \\
-    \Longrightarrow\det(s\tenq{I}-\tenq{A_s})&=0 ~\text{: Problema de valores propios de }\tenq{A_s}
+    {H}(s)&={C_s}(s{I}-{A_s})^{-1}{B_s}\\
+    {H}(s)&=\frac{1}{\det(s{I}-{A_s})}{C_s}\text{ adj}(s{I}-{A_s}){B_s} \\
+    \Longrightarrow\det(s{I}-{A_s})&=0 ~\text{: Problema de valores propios de }{A_s}
 \end{align*}
 
-Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de $\tenq{H}(s)$, o, por los valores propios de $\tenq{A_s}$.
+Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de ${H}(s)$, o, por los valores propios de ${A_s}$.
 
 
 
