@@ -1,0 +1,48 @@
+name: Compilar LaTeX y Publicar en GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Cambia a 'master' si tu rama principal se llama así
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener el código fuente
+        uses: actions/checkout@v4
+
+      - name: Instalar TeX Live y Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-lang-spanish \
+            pandoc
+
+      - name: Compilar archivo PDF
+        run: |
+          pdflatex -interaction=nonstopmode main.tex
+          pdflatex -interaction=nonstopmode main.tex # Segunda pasada para referencias cruzadas
+
+      - name: Compilar archivo HTML con Pandoc
+        run: |
+          pandoc main.tex -s --mathjax -o index.html --metadata title="Apuntes de Clase"
+
+      - name: Organizar archivos para publicación
+        run: |
+          mkdir public
+          mv main.pdf public/apuntes.pdf
+          mv index.html public/index.html
+          # Si tu documento usa imágenes en una carpeta (ej: /figuras), desmarca la siguiente línea:
+          # cp -r figuras public/ || true
+
+      - name: Publicar en GitHub Pages
+        uses: peaceiris/
