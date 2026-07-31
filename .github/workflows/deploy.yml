@@ -1,4 +1,4 @@
-name: Compilar LaTeX y Publicar en GitHub Pages
+name: Compilar HTML con Pandoc
 
 on:
   push:
@@ -9,28 +9,17 @@ permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  build-html:
     runs-on: ubuntu-latest
 
     steps:
       - name: Obtener el código fuente
         uses: actions/checkout@v4
 
-      - name: Instalar Dependencias (TeX, Biber, Pandoc, Pygments)
+      - name: Instalar Pandoc
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            texlive-full \
-            biber \
-            pandoc \
-            python3-pygments
-
-      - name: Compilar archivo PDF (con permisos para minted)
-        run: |
-          pdflatex -interaction=nonstopmode -shell-escape MIC411apuntes.tex
-          biber MIC411apuntes || true
-          pdflatex -interaction=nonstopmode -shell-escape MIC411apuntes.tex
-          pdflatex -interaction=nonstopmode -shell-escape MIC411apuntes.tex
+          sudo apt-get install -y pandoc
 
       - name: Compilar archivo HTML con Pandoc
         run: |
@@ -39,6 +28,11 @@ jobs:
       - name: Organizar archivos para publicación
         run: |
           mkdir public
-          mv MIC411apuntes.pdf public/apuntes.pdf
           mv index.html public/index.html
-          # Copiar la carpeta de figuras para que el HTML pueda mostrarlas
+          cp -r Figuras public/Figuras || true
+
+      - name: Publicar en la rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
