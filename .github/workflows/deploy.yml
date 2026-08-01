@@ -19,7 +19,7 @@ jobs:
       - name: Instalar TeX Live Completo y utilidades
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-full biber make4ht python3-pygments
+          sudo apt-get install -y texlive-full biber python3-pygments
 
       - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
