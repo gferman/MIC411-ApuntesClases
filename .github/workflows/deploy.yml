@@ -21,9 +21,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-full biber python3-pygments
 
+      - name: Parchear bug de tex4ht con minted
+        run: |
+          # Reemplaza \newcommand con \renewcommand en el archivo conflictivo del sistema para evitar el error "already defined"
+          sudo sed -i 's/\\newcommand{\\:/\\renewcommand{\\:/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
+
       - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
-          # Fíjate en los espacios vacíos ("" ""). Son clave para que el -shell-escape llegue a pdflatex.
           make4ht -u -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
           
       - name: Procesar Bibliografía
