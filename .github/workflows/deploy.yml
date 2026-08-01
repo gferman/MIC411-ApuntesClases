@@ -23,12 +23,21 @@ jobs:
 
       - name: Parchear bug de tex4ht con minted
         run: |
-          # Solución quirúrgica: "olvidar" (\let...\relax) solo el comando conflictivo antes de que tex4ht intente definirlo.
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
+
+      - name: Crear archivo de configuración para imágenes
+        run: |
+          cat << 'EOF' > config.cfg
+          \Preamble{xhtml}
+          \Configure{Gin-dim}{}
+          \Css{img { max-width: 100\%; height: auto !important; display: block; margin: 1em auto; }}
+          \begin{document}
+          \EndPreamble
+          EOF
 
       - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
-          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
+          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
           
       - name: Procesar Bibliografía
         run: |
@@ -36,7 +45,7 @@ jobs:
           
       - name: Recompilar para generar enlaces cruzados
         run: |
-          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
+          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
       - name: Configurar página de inicio y organizar figuras
         run: |
