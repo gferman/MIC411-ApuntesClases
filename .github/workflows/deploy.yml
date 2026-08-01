@@ -23,8 +23,8 @@ jobs:
 
       - name: Parchear bug de tex4ht con minted
         run: |
-          # Reemplaza \newcommand con \renewcommand en el archivo conflictivo del sistema para evitar el error "already defined"
-          sudo sed -i 's/\\newcommand{\\:/\\renewcommand{\\:/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
+          # Solución quirúrgica: "olvidar" (\let...\relax) solo el comando conflictivo antes de que tex4ht intente definirlo.
+          sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
       - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
