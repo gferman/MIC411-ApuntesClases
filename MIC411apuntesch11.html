@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='es' xml:lang='es'> 
-<head><title>11 Teor´ıa de Control ´ Optimo</title> 
+<head><title>11 Control ´ Optimo de Sistemas Lineales</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -9,171 +9,144 @@
 <script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 </head><body>
-   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>prev</a>] [<a href='MIC411apuntesch10.html#tailMIC411apuntesch10.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch11.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch11.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='teoria-de-control-optimo'><span class='titlemark'>Capítulo 11</span><br /><a id='x17-18600011'></a>Teoría de Control Óptimo</h2>
-   <h3 class='sectionHead' id='planteamiento'><span class='titlemark'>11.1.   </span> <a id='x17-18700011.1'></a>Planteamiento</h3>
-<!-- l. 4 --><p class='noindent'>Dado un sistema dinámico:
-</p><!-- l. 8 --><p class='indent'>   \begin {align*}  \dot {x}(t)=f\big ( x(t),u(t),t\big )  \end {align*}
-</p><!-- l. 10 --><p class='indent'>   Problema es encontrar \(u(t)\), para llevar el estado \(x(t)\) hasta \(x(t_1)\), para un tiempo finito \(t\in [t_0,t_1]\), tal que se cumpla la siguiente
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>prev</a>] [<a href='MIC411apuntesch10.html#tailMIC411apuntesch10.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch11.html'>tail</a>] [<a href='MIC411apuntespa3.html#MIC411apuntesch11.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='control-optimo-de-sistemas-lineales'><span class='titlemark'>Capítulo 11</span><br /><a id='x18-19500011'></a>Control Óptimo de Sistemas Lineales</h2>
+   <h3 class='sectionHead' id='planteamiento-caso-particular'><span class='titlemark'>11.1.   </span> <a id='x18-19600011.1'></a>Planteamiento (caso particular)</h3>
+<!-- l. 5 --><p class='noindent'>Dado un sistema dinámico LTI:
+</p><!-- l. 9 --><p class='indent'>   \begin {align*}  \dot {x}(t) = A x(t) + B u(t)  \end {align*}
+</p><!-- l. 11 --><p class='indent'>   Asumiendo que el sistema LTI es:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>estable y controlable, o
+     </li>
+     <li class='itemize'>inestable, pero los estados inestables son controlables \(\Longrightarrow \) estados estabilizables.</li></ul>
+<!-- l. 18 --><p class='indent'>   El problema es encontrar \(u(t)\), para llevar el estado \(x(t)\) hasta \(x(t_1)\), para un tiempo finito \(t\in [t_0,t_1]\), tal que se cumpla la siguiente
 condición, donde \(J(u)\) es el funcional de desempeño:
-</p><!-- l. 14 --><p class='indent'>   \begin {align*}  J(u)=\int _{t_0}^{t_1}l\big (x(t),u(t),t\big )dt+m\big (x(t_1)\big )  \end {align*}
+</p><!-- l. 22 --><p class='indent'>   \begin {align*}  J(u) = \int _{t_0}^{t_1} l \big ( x(t), u(t), t \big ) dt + m \big ( x(t_1) \big )  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>\(\int _{t_0}^{t_1}l\big (x(t),u(t),t\big )dt\): “Costo de viaje” (running cost)
      </li>
      <li class='itemize'>\(m\big (x(t_1)\big )\): costo terminal</li></ul>
-<!-- l. 21 --><p class='indent'>   El problema de control óptimo se define como:
-</p><!-- l. 25 --><p class='indent'>   \begin {align*}  u^o=\text {arg min}_{u_{[t_0,t_1]}}J(u)  \end {align*}
-</p><!-- l. 27 --><p class='indent'>   Se define la <span id='textcolor403'>función de valor V</span> como el mínimo costo posible para la trayectoria del sistema dinámico para todos los
-controles posibles \(u_{[t_0,t_1]}\):
-</p><!-- l. 31 --><p class='indent'>   \begin {align*}  V(x_0,t_0) = \min _{u_{[t_0,t_1]}}J(u) = \min \Big \{\int _{t_0}^{t_1}l\big (x(t),u(t),t\big )dt+m\big (x(t_1)\big ) \Big \}  \end {align*}
-</p><!-- l. 33 --><p class='noindent'>
+<!-- l. 29 --><p class='indent'>   El problema de control óptimo se define como:
+</p><!-- l. 33 --><p class='indent'>   \begin {align*}  u^\star = \arg \min _u J(u)  \end {align*}
+</p><!-- l. 35 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='principio-de-optimalidad'><span class='titlemark'>11.2.   </span> <a id='x17-18800011.2'></a>Principio de Optimalidad</h3>
-<!-- l. 34 --><p class='noindent'>Para cada \(t\in [t_0,t_1)\) y \(x\in \mathbb {R}^n\), y para \(\Delta t\in [0,t_1-t)\), la función de valor \(V(x,t)\) satisface la relación:
-</p><!-- l. 38 --><p class='indent'>   \begin {align*}  V(x,t) = \min _{u_{[t,t+\Delta t]}} \Big \{ \int _t^{t+\Delta t} l\big (x(s),u(s),s\big )ds+V\big (x(t+\Delta t),t+\Delta t\big )\Big \}  \end {align*}
+   <h3 class='sectionHead' id='control-lqr-de-horizonte-infinito-tiempo-continuo'><span class='titlemark'>11.2.   </span> <a id='x18-19700011.2'></a>Control LQR de horizonte infinito (tiempo contínuo)</h3>
+<!-- l. 37 --><p class='noindent'>Dado el sistema dinámico LTI de tiempo contínuo:
+</p><!-- l. 41 --><p class='indent'>   \begin {align*}  \dot {x} = A x(t) + B u(t), \qquad x(0) = x_0  \end {align*}
+</p><!-- l. 43 --><p class='indent'>   Ahora el problema es encontrar \(u(t)\), para llevar los estados \(x(t)\) hasta \(0\) en un horizonte de tiempo infinito \(t \in [0,\infty )\), tal que el
+funcional de desempeño:
+</p><!-- l. 47 --><p class='indent'>   \begin {align*}  J(u)=\int _{0}^{\infty } \left (x^T Q x+u^T R u \right ) dt  \end {align*}
+</p><!-- l. 49 --><p class='indent'>   se mininice:
+</p><!-- l. 53 --><p class='indent'>   \begin {align*}  u^\star = \arg \min _u J(u)  \end {align*}
+</p><!-- l. 55 --><p class='indent'>   donde \(Q\) y \(R\) son matrices definidas positivas y simétricas. Notar que en este caso de LQR de horizonte infinito se
+asume que el costo terminal es cero.<br class='newline' />
+</p><!-- l. 57 --><p class='indent'>   Cabe mencionar que matrices \(Q\) y \(R\) penalizan los estados y control, respectivamente, en el cálculo del funcional de
+desempeño. Esto quiere decir que valores grandes de \(Q\) priorizan más la minimización de los estados, mientras
+que valores grandes de \(R\) priorizan señales de control con menor esfuerzo (por ejemplo, menor consumo
+energético).
+                                                                                         
+                                                                                         
+</p><!-- l. 59 --><p class='indent'>   Supongamos que la matriz \(P\) es cuadrada, simétrica (\(P = P^T\)) y definida positiva (\(P \succ 0\)), y que se agrega el término \(x_0^T P x_0\)
+explícitamente al funcional de desempeño sin cambiar su estructura original:
+</p><!-- l. 64 --><p class='indent'>   \begin {align*}  J(u) &amp;= \underbrace {\left ( x_0^T P x_0 - x_0^T P x_0 \right )}_{=0} + \int _{0}^{\infty } \left (x^T Q x+u^T R u \right ) dt \\ &amp; = x_0^T P x_0 - x_0^T P x_0 + \int _{0}^{\infty } \left (x^T Q x+u^T R u \right ) dt  \end {align*}
+</p><!-- l. 66 --><p class='indent'>   Ahora, utilizando el <span class='cmti-10'>teorema fundamental del c</span>á<span class='cmti-10'>lculo</span>, la siguiente igualdad se cumple:
 </p>
-     <ul class='itemize1'>
-     <li class='itemize'>\(\int _t^{t+\Delta t} l\big (x(s),u(s),s\big )ds\): costo asociado al intervalo \([t+\Delta t]\)
+   <div class='subequations'>\begin {subequations}  \begin {align} \int _{0}^{\infty } \frac {d}{dt}\left ( x^T P x\right ) dt &amp;= x_\infty ^T P x_\infty - x_0^T P x_0 \\ &amp;= 0 - x_0^T P x_0 \end {align}  \end {subequations}</div>
+<!-- l. 75 --><p class='indent'>   Reemplazando en el funcional de desempeño:
+</p><!-- l. 79 --><p class='indent'>   \begin {align}  J(u) &amp;= x_0^T P x_0 + \int _{0}^{\infty } \left [\frac {d}{dt}\left ( x^T P x\right ) + x ^T Q x+u^T R u \right ] dt  \end {align}
+</p><!-- l. 81 --><p class='indent'>   Desarrollando el primer término dentro de la integral utilizando la regla de la cadena:
+</p><!-- l. 85 --><p class='indent'>   \begin {align}  \frac {d}{dt}\left ( x^T P x\right ) = \dot {x}^T P x + x^T P \dot {x}  \end {align}
+</p><!-- l. 87 --><p class='indent'>   Reemplazando la ecuación de estados:
+</p><!-- l. 93 --><p class='indent'>   \begin {align}  \frac {d}{dt}\left ( x^T P x\right ) &amp;= \left (A x + B u\right )^T P x + x^T P \left (A x + B u\right )\\ &amp;= x^T A^T P x + u^T B^T P x + x^T P A x + x^T P B u \\ &amp;= x^T \left ( A^T P + PA\right ) x + 2 u^T B^T P x \\  \end {align}
+</p><!-- l. 95 --><p class='indent'>   Reemplazando en el funcional de desempeño:
+</p><!-- l. 99 --><p class='indent'>   \begin {align}  J(u) &amp;= x_0^T P x_0 + \int _{0}^{\infty } \left [ x^T \left ( A^T P + PA + Q\right ) x + u^T R u + 2 u^T B^T P x \right ] dt  \end {align}
+</p><!-- l. 101 --><p class='indent'>   Utilizando la técnica de “completar los cuadrados”:
+</p>
+   <div class='subequations'>\begin {subequations}  \begin {align} \left ( u + K x\right )^T R \left ( u + K x\right ) = u^T R u + 2 u^T R K x + x^T K^T R K x \\ \Rightarrow u^T R u + 2 u^T R K x = \left ( u + K x\right )^T R \left ( u + K x\right ) - x^T K^T R K x \end {align}  \end {subequations}</div>
+<!-- l. 110 --><p class='indent'>   Igualando \(K = R^{-1} B^T P\):
+</p><!-- l. 114 --><p class='indent'>   \begin {align}  u^T R u + 2 u^T B^T P x = \left ( u + R^{-1} B^T P x\right )^T R \left ( u + R^{-1} B^T P x\right ) - x^T \left (P^T B R^{-1} B^T P \right ) x  \end {align}
+</p><!-- l. 116 --><p class='indent'>   Nuevamente reemplazamos en el funcional de desempeño:
+</p><!-- l. 120 --><p class='indent'>   \begin {align}  J(u) &amp;= x_0^T P x_0 + \int _{0}^{\infty } \left [ x^T \left ( A^T P + PA + Q - P^T B R^{-1} B^T P\right ) x + \left ( u + R^{-1} B^T P x\right )^T R \left ( u + R^{-1} B^T P x\right ) \right ] dt  \end {align}
+</p><!-- l. 122 --><p class='indent'>   Notas:
+</p><!-- l. 124 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x18-197002x1'>Término fuera de la integral \(x_0^T P x_0\) es constante, y solo depende de las condiciones iniciales.
      </li>
-     <li class='itemize'>\(V\big (x(t+\Delta t),t+\Delta t\big )\): “costo a seguir” mínimo partiendo en \(x(t+\Delta t)\) y \(t+\Delta t\) \(\Longrightarrow \) costo asociado al intervalo \([t+\Delta t,t_1]\)</li></ul>
-<!-- l. 44 --><p class='indent'>   <span class='underline'>Intuición</span>: </p><figure class='figure'> 
+<li class='enumerate' id='x18-197004x2'>Ambos términos dentro de la integral son formas cuadráticas.
+     </li>
+<li class='enumerate' id='x18-197006x3'>Si \(A^T P + PA + Q - P^T B R^{-1} B^T P \succeq 0\), entonces primer término de la integral es mayor o igual que cero.
+     </li>
+<li class='enumerate' id='x18-197008x4'>Dado que \(R \succ 0\) (definida positiva), el segundo término de la integral ya es mayor o igual que cero.
+     </li>
+<li class='enumerate' id='x18-197010x5'>Por lo tanto, el funcional de desempeño \(J(u) \geq x_0^T P x_0\).
+     </li>
+<li class='enumerate' id='x18-197012x6'>Minimizar \(J(u)\) implica que los términos de la integral deben ser cero.
+                                                                                         
+                                                                                         
+     </li>
+<li class='enumerate' id='x18-197014x7'>Primer término es cero ssi \(A^T P + PA + Q - P^T B R^{-1} B^T P = 0, \forall x(t) \neq 0\).
+     </li>
+<li class='enumerate' id='x18-197016x8'>Segundo término es cero ssi \(u(t) - R^{-1} B^T P x(t) =0\), ya que \(R \succ 0\).</li></ol>
+<!-- l. 135 --><p class='indent'>   Finalmente derivamos las ecuaciones que deben cumplirse para el control óptimo LQR de horizonte
+infinito:
+</p><!-- l. 141 --><p class='indent'>   \begin {align}  J(u^\star (t)) = x_0^T P x_0 \\ u^\star (t) = - K x(t) \\ A^T P + PA + Q - P^T B R^{-1} B^T P = 0 \label {eq:ARE}  \end {align}
+</p><!-- l. 143 --><p class='indent'>   Entonces, la ganancia del controlador LQR horizonte infinito, \(K = R^{-1} B^T P\), se calcula resolviendo primero la ecuación
+algebraica de Ricatti (<span class='cmbx-10'>??</span>) para obtener el valor de \(P\). <br class='newline' />
+</p><!-- l. 145 --><p class='indent'>   En Matlab, se utiliza la función <span class='cmtt-10'>lqr()</span>.
+</p>
+   <figure class='figure'> 
 
                                                                                          
                                                                                          
                                                                                          
                                                                                          
-<!-- l. 47 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/optimalidad.png' width='50' />
+<!-- l. 149 --><p class='noindent'><img alt='PIC' height='216' src='Figuras/statefeedback.png' width='216' />
                                                                                          
                                                                                          
 </p>
    </figure>
-   <h3 class='sectionHead' id='ecuacion-hjb-hamiltonjacobibellman'><span class='titlemark'>11.3.   </span> <a id='x17-18900011.3'></a>Ecuación HJB (Hamilton-Jacobi-Bellman)</h3>
-<!-- l. 51 --><p class='noindent'>Esta ecuación resuelve \(V(x,t)\) y se obtiene de la siguiente forma:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x17-189002x1'>Principio de Optimalidad
-     </li>
-<li class='enumerate' id='x17-189004x2'>Realizar una expansión de Taylor de \(V(x+\Delta x,t+\Delta t)\) con respecto a \(V(x,t)\)
-     </li>
-<li class='enumerate' id='x17-189006x3'>Combinar 1. y 2. y dividir por \(\Delta t\)
-     </li>
-<li class='enumerate' id='x17-189008x4'>Calcular límite para \(\Delta t\to 0\)</li></ol>
-
-<!-- l. 61 --><p class='indent'>   \begin {align*}  \text {Ec. HJB: } \quad -V_t(x,t) = \min _{u \in \mathcal {U}} \left \{ l(x,u,t) + \left ( \nabla _x V(x,t) \right )^T f(x,u,t) \right \}  \end {align*}
-</p><!-- l. 63 --><p class='indent'>   donde \(V_t=\frac {\partial V}{\partial t}\), \(\nabla _xV=\frac {\partial V}{\partial \tend {x}}\) <br class='newline' />
-</p><!-- l. 64 --><p class='indent'>   Notar que la ecuación HJB es una ec. diferencial parcial. Por lo tanto, para resolver necesitamos condiciones de
-borde: \begin {align*}  V\big (x(t_1),t_1\big )=m\big (x(t_1)\big )  \end {align*}
-</p><!-- l. 69 --><p class='indent'>   <span class='underline'>Definición</span>: Hamiltoniano \begin {align*}  H(x,p,u,t) = l(x,u,t)+p^\top (x,t)f(x,u,t)  \end {align*}
-</p><!-- l. 73 --><p class='indent'>   donde \(p(x,t)=\nabla _x V(x,t)\)<br class='newline' />
-</p><!-- l. 75 --><p class='indent'>   Entonces, la ex. HJB se reduce a: \begin {align*}  -V_t(x,t)=\min _{u\in \mathcal {U}}H(x,p,u,t)  \end {align*}
-</p><!-- l. 79 --><p class='indent'>   Con estas herramientas, formulamos el siguiente algoritmo para diseñar controladores óptimos:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x17-189010x1'>Construir el Hamiltoniano
-     </li>
-<li class='enumerate' id='x17-189012x2'>Construir la ec. HJB
-     </li>
-<li class='enumerate' id='x17-189014x3'>Buscar \(u^o=\text {arg min}_u H(x,p,u,t)\)
-                                                                                         
-                                                                                         
-     </li>
-<li class='enumerate' id='x17-189016x4'>Substituir \(u^o\) en la expresión HJB \begin {align*}  -V_t=H(x,p,u^o,t)  \end {align*}
-     </li>
-<li class='enumerate' id='x17-189018x5'>Resolver la ec. dif. parcial para determinar \(u^o\)</li></ol>
-<!-- l. 91 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='control-lqr-linear-quadratic-regulator'><span class='titlemark'>11.4.   </span> <a id='x17-19000011.4'></a>Control LQR (Linear Quadratic Regulator)</h3>
-<!-- l. 92 --><p class='noindent'>Sea el sistema LTI: \begin {align*}  \dot {x}=Ax+Bu=f(x,u)  \end {align*}
-</p><!-- l. 96 --><p class='indent'>   y el funcional de desempeño: \begin {align*}  J(u)=\int _{t_0}^{t_1}[x^\top Q x+u^\top Ru]dt+x^\top (t_1)Mx(t_1)  \end {align*}
-</p><!-- l. 100 --><p class='indent'>   Requisitos: \(Q\), \(R\), \(M\) son matrices definidas positivas y simétricas.<br class='newline' />
-</p><!-- l. 101 --><p class='indent'>   Utilizando el algoritmo para resolver la ec. HJB:
-     </p><ol class='enumerate1'>
-<li class='enumerate' id='x17-190001x11.4'> Hamiltoniano: \begin {align*}  H(x,u,V_x,t)=x^\top Qx+u^\top Ru+V^\top _x(Ax+Bu)  \end {align*}
-     </li>
-<li class='enumerate' id='x17-190002x11.4'> Buscar \(u^o\): \(u^o=\text {arg min}_u H(x,u,V_x,t)\) \begin {align*}  \Longrightarrow \frac {\partial H}{\partial u}=0 \Longrightarrow \frac {\partial }{\partial u}[[x^\top Q x+u^\top Ru +V_x^\top (Ax+Bu)]=0\\ \Longrightarrow 2Ru+B^\top V_x=0\\ \Longrightarrow u^o=\frac {-1}{2}R^{-1}B^\top V_x(x,t)  \end {align*}
-     </li>
-<li class='enumerate' id='x17-190003x11.4'>
-     <!-- l. 113 --><p class='noindent'> \begin {align*}  -V_t(x,t) &amp;= H(x,u^o,V_t,t)\\ \Longrightarrow -V_t &amp;= x^\top Qx+(u^o)^\top Ru^o+V_x^\top (Ax+Bu^o)  \end {align*}
-     </p><!-- l. 119 --><p class='noindent'>\begin {align}  \Longrightarrow -V_t &amp;= x^\top Qx-\frac {1}{4}V_x^\top BR^{-1}B^\top V_x+V_x^\top Ax  \end {align}
-</p>
-     </li></ol>
-<!-- l. 122 --><p class='indent'>   Suponga que: \(V(x,t)=x^\top P(t)x\), \(P(t)\in \mathbb {R}^{n\times n}\), \(P^\top (t)=P(t)\), \(P(t)\succ 0\) \begin {align*}  V_t &amp;= x^\top \dot {P}(t)x\\ V_x &amp;= 2P(t)x  \end {align*}
-</p><!-- l. 128 --><p class='indent'>   Sustituyendo en (12): \begin {align*}  -x^\top \dot {P}x &amp;= x^\top Qx-\frac {1}{4}(2Px)^\top BR^{-1}B^\top (2Px)+(2Px)^\top Ax\\ \Longrightarrow -x^\top \dot {P}x &amp;= x^\top \left [Q +PA+A^\top P-P^\top BR^{-1}B^\top P \right ]x\\ \Longrightarrow \dot {P} &amp;= Q +PA+A^\top P-P^\top BR^{-1}B^\top P \quad \text {Ec. diferencial de Riccati}  \end {align*}
-</p><!-- l. 135 --><p class='indent'>   Resuelto \(P(t)\Longrightarrow V(x,t)=x^\top P(t)x\) \begin {align*}  V_x(x,t) &amp;= 2P(t)x\\ \Longrightarrow u^o &amp;= 1\frac {1}{2}R^{-1}B^\top V_x(x,t) = -1\frac {1}{2}R^{-1}B^\top (2P(t)x)\\ u^o &amp;= -R^{-1}B^\top P(t)x\\ u^o &amp;= -K(t)x  \end {align*}
-</p><!-- l. 143 --><p class='indent'>   donde \(K(t)=R^{-1}B^\top P(t) \Longrightarrow \) Control óptimo LQR de horizonte finito (gains variable en el tiempo) </p><figure class='figure'> 
-
-                                                                                         
-                                                                                         
-                                                                                         
-                                                                                         
-<!-- l. 146 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/LQR.png' width='50' />
-                                                                                         
-                                                                                         
-</p>
-   </figure>
-   <h3 class='sectionHead' id='control-lqr-de-horizonte-infinito'><span class='titlemark'>11.5.   </span> <a id='x17-19100011.5'></a>Control LQR de horizonte infinito</h3>
-<!-- l. 150 --><p class='noindent'>Dado el sistema LTI: \begin {align*}  \dot {x}=Ax+Bu  \end {align*}
-</p><!-- l. 154 --><p class='indent'>   Asumiendo que el sistema es: </p>
-     <ul class='itemize1'>
-     <li class='itemize'>estable y controlable, o
-     </li>
-     <li class='itemize'>inestable, pero los estados inestables son controlables \(\Longrightarrow \) estados estabilizables.</li></ul>
-<!-- l. 160 --><p class='indent'>   El problema de control óptimo LQR en horizonte infinito minimiza el siguiente funcional: \begin {align*}  J(u) = \lim _{t_1\to \infty } \left [\int _0^{t_1}(x^\top Qx+u^\top Ru)dt \right ]  \end {align*}
-</p><!-- l. 164 --><p class='indent'>   <span class='underline'>Nota</span>: En este caso, el costo terminal se asume igual a 0.<br class='newline' />
-</p><!-- l. 165 --><p class='indent'>   Según la lección anterior: \begin {align*}  V^{t_1}(x,t)=x^\top P(t,t_1)x \quad \text {: Función de valor para horizonte finito ``$t_1$''}  \end {align*}
-</p><!-- l. 170 --><p class='indent'>   Para resolver \(P(t,t_1)\), utilizamos la DRE (Differential Riccati Equation): \begin {align*}  -\dot {P}=Q+PA+A^\top P-P^\top BR^{-1}B^\top P  \end {align*}
-</p><!-- l. 174 --><p class='indent'>   Con condiciones de borde: \(P(t_1,t_1)=m(x(t_1))=0\) (costo terminal)<br class='newline' />
-</p><!-- l. 175 --><p class='indent'>   Finalmente: \(u^o(t,t_1)=-R^{-1}B^\top P(t,t_1)x(t)\), con \(K(t,t_1)=R^{-1}B^\top \).<br class='newline' />
-</p><!-- l. 176 --><p class='indent'>   En el límite cuando \(t_1\to \infty \), \(P(t)\) tiende a una solución de estado estacionario: \begin {align*}  \lim _{t_1\to \infty }P(t,t_1)&amp;=P=\text {constante}\\ \lim _{t_1\to \infty }\dot {P}(t,t_1)&amp;=0  \end {align*}
-</p><!-- l. 182 --><p class='indent'>   Entonces, aplicando este supuesto sobre la DRE: \begin {align*}  \lim _{t_1\to \infty } \Big [-\dot {P}(t,t_1) &amp;= P(t,t_1)A+A^\top P(t,t_1)+A-P^\top (t,t_1)BR^{-1}B^\top P(t,t_1) \Big ] \\ \Longrightarrow 0 &amp;= PA+A^\top P+Q-P^\top BR^{-1}B^\top P \quad \text {: Ecuación Algrebaica de Riccati (ARE)}  \end {align*}
-</p><!-- l. 188 --><p class='indent'>   Entonces, la función de valor para horizonte infinito: \begin {align*}  \hat {V}(x)=x^\top Px  \end {align*}
-</p><!-- l. 192 --><p class='indent'>   donde \(P\) es la solución de ARE. \begin {align*}  \Longrightarrow u^o &amp;= -R^{-1}B^\top Px(t)\\ &amp;= -K(t)x(t)  \end {align*}
-</p>
-     <ul class='itemize1'>
-     <li class='itemize'>\(K=R^{-1}B^\top P\): Gain control LQR horizonte infinito.</li></ul>
-<!-- l. 200 --><p class='noindent'>Finalmente, se puede demostrar que: \begin {align*}  V^{t_1}(x,t) \leq J(u)  \end {align*}
-</p>
-     <ul class='itemize1'>
-     <li class='itemize'>\(V^{t_1}(x,t)\): Función de valor para horizonte finito \(t_1\).
-     </li>
-     <li class='itemize'>\(J(u)\): Funcional de desempeño para horizonte infinito.</li></ul>
-                                                                                         
-                                                                                         
-<!-- l. 209 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='heuristica-de-diseno'><span class='titlemark'>11.5.1.   </span> <a id='x17-19200011.5.1'></a>Heurística de diseño</h4>
-<!-- l. 210 --><p class='noindent'>P: ¿Cómo elijo los valores de \(Q\) y \(R\)?
-</p><!-- l. 211 --><p class='indent'>   R: Recordar que \begin {align*}  J(u) = \int _0^\infty \Big ( x^\top Qx+u^\top Ru\Big ) dt  \end {align*}
-</p><!-- l. 215 --><p class='indent'>   Recordar que en sistemas estructurales: \begin {align*}  x = \left [ \begin {array}{c} \dot {z} \\ \dot {z} \end {array}\right ]  \end {align*}
+   <h3 class='sectionHead' id='heuristica-de-diseno'><span class='titlemark'>11.3.   </span> <a id='x18-19800011.3'></a>Heurística de diseño</h3>
+<!-- l. 154 --><p class='noindent'>P: ¿Cómo elijo los valores de \(Q\) y \(R\)?
+</p><!-- l. 155 --><p class='indent'>   R: Recordar que
+</p><!-- l. 159 --><p class='indent'>   \begin {align*}  J(u) = \int _0^\infty \Big ( x^T Qx+u^T Ru\Big ) dt  \end {align*}
+</p><!-- l. 161 --><p class='indent'>   Recordar que en sistemas estructurales:
+</p><!-- l. 168 --><p class='indent'>   \begin {align*}  x = \left [ \begin {array}{c} \dot {z} \\ \dot {z} \end {array}\right ]  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>\(z\): desplazamiento
      </li>
      <li class='itemize'>\(\dot {z}\): velocidad</li></ul>
-<!-- l. 228 --><p class='indent'>   Podemos escribir la forma cuadrática \(x^\top Q x\) de manera tal que le asignamos un significado físico: \begin {align*}  \frac {1}{2}x^\top Qx=\frac {1}{2}\left [ \begin {array}{cc} \dot {z} &amp; \dot {z} \end {array}\right ] \left [ \begin {array}{cc} K_s &amp; \emptyset \\ \emptyset &amp; M_s \end {array}\right ] \left [ \begin {array}{c} \dot {z} \\ \dot {z} \end {array}\right ] = \frac {1}{2}z^\top K_s z+\frac {1}{2}\dot {z}^\top M\dot {z}  \end {align*}
+<!-- l. 175 --><p class='indent'>   Podemos escribir la forma cuadrática \(x^T Q x\) de manera tal que le asignamos un significado físico:
+</p><!-- l. 188 --><p class='indent'>   \begin {align*}  \frac {1}{2}x^T Qx=\frac {1}{2}\left [ \begin {array}{cc} \dot {z} &amp; \dot {z} \end {array}\right ] \left [ \begin {array}{cc} K_s &amp; 0 \\ 0 &amp; M_s \end {array}\right ] \left [ \begin {array}{c} \dot {z} \\ \dot {z} \end {array}\right ] = \frac {1}{2}z^T K_s z+\frac {1}{2}\dot {z}^T M\dot {z}  \end {align*}
 </p>
      <ul class='itemize1'>
-     <li class='itemize'>\(\frac {1}{2}z^\top K_s z\): Energía potencial
+     <li class='itemize'>\(\frac {1}{2}z^T K_s z\): Energía potencial
      </li>
-     <li class='itemize'>\(\frac {1}{2}\dot {z}^\top M\dot {z}\): Energía cinética</li></ul>
-<!-- l. 246 --><p class='indent'>   Por otra parte: \(u^\top Ru\): energía consumida por el controlador.
-</p><!-- l. 247 --><p class='indent'>   <span class='underline'>Comentario</span>: No importan los valores absolutos de \(Q\) y \(R\) en el resultado del control óptimo. Lo que s;i importan son
-los valores relativos de \(Q\) respecto a \(R\) (o viceversa). \begin {align*}  J(u)=\int _0^\infty (x^\top Qx+u^\top Ru)dt  \end {align*}
+     <li class='itemize'>\(\frac {1}{2}\dot {z}^T M \dot {z}\): Energía cinética</li></ul>
+<!-- l. 195 --><p class='indent'>   Por otra parte: \(u^T Ru\): energía consumida por el controlador.
+</p><!-- l. 197 --><p class='indent'>   <span class='underline'>Comentario</span>: No importan los valores absolutos de \(Q\) y \(R\) en el resultado del control óptimo. Lo que s;i importan son
+los valores relativos de \(Q\) respecto a \(R\) (o viceversa).
+</p><!-- l. 201 --><p class='indent'>   \begin {align*}  J(u)=\int _0^\infty (x^T Q x + u^T R u)dt  \end {align*}
 </p>
      <ul class='itemize1'>
-     <li class='itemize'>\(Q\) es mayor que \(R\): resultado es sensible a los estados. <br class='newline' /><span class='underline'>Nota</span>: Si \(R\to 0\): control “barato” (cheap) LQR. No es recomendable. <br class='newline' />\(K=R^{-1}B^\top P\): valor muy grande.
+     <li class='itemize'>\(Q\) es mayor que \(R\): resultado es sensible a los estados. <br class='newline' /><span class='underline'>Nota</span>: Si \(R\to 0\): control “barato” (cheap) LQR. No es recomendable. <br class='newline' />\(K=R^{-1}B^T P\): valor muy grande.
      </li>
      <li class='itemize'>\(R\) es mayor que \(Q\): resultado es sensible a la señal de control.</li></ul>
-<!-- l. 259 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='regla-de-bryson'><span class='titlemark'>11.5.2.   </span> <a id='x17-19300011.5.2'></a>Regla de Bryson</h4>
-<!-- l. 260 --><p class='noindent'>Elegir \(Q\) y \(R\) matrices diagonales. Cada componente de \(q_{ii}\) y \(r_{ii}\) están dados por: \begin {align*}  q_{ii} &amp;= \frac {1}{\text {máx valor aceptable de }x_i^2}\\ r_{ii} &amp;= \frac {1}{\text {máx valor aceptable de }u_i^2}  \end {align*}
                                                                                          
                                                                                          
-</p><!-- l. 268 --><p class='noindent'>
+<!-- l. 210 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='filtro-de-kalman-tiempo-continuo'><span class='titlemark'>11.6.   </span> <a id='x17-19400011.6'></a>Filtro de Kalman (tiempo contínuo)</h3>
-<!-- l. 269 --><p class='noindent'>Sea el sistema LTI \begin {align*}  \dot {x} &amp;= Ax+B_u u +B_\omega \omega (t)\\ y &amp;= Cx+v(t)  \end {align*}
-</p><!-- l. 275 --><p class='indent'>   donde \(\omega \) es la perturbación sobre el sistema y \(v\) es el ruido de la medición.<br class='newline' />
+   <h4 class='subsectionHead' id='regla-de-bryson'><span class='titlemark'>11.3.1.   </span> <a id='x18-19900011.3.1'></a>Regla de Bryson</h4>
+<!-- l. 212 --><p class='noindent'>Elegir \(Q\) y \(R\) matrices diagonales. Cada componente de \(q_{ii}\) y \(r_{ii}\) están dados por:
+</p><!-- l. 217 --><p class='indent'>   \begin {align*}  q_{ii} &amp;= \frac {1}{\text {máx valor aceptable de }x_i^2}\\ r_{ii} &amp;= \frac {1}{\text {máx valor aceptable de }u_i^2}  \end {align*}
+</p><!-- l. 219 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='filtro-de-kalman-tiempo-continuo'><span class='titlemark'>11.4.   </span> <a id='x18-20000011.4'></a>Filtro de Kalman (tiempo contínuo)</h3>
+<!-- l. 221 --><p class='noindent'>Sea el sistema LTI de tiempo contínuo:
+</p><!-- l. 226 --><p class='indent'>   \begin {align*}  \dot {x} &amp;= Ax+B_u u +B_w w(t)\\ y &amp;= Cx+v(t)  \end {align*}
+</p><!-- l. 228 --><p class='indent'>   donde \(w(t)\) es la perturbación sobre el sistema y \(v(t)\) es el ruido de la medición.<br class='newline' />
 </p>
    <figure class='figure'> 
 
@@ -181,70 +154,61 @@ los valores relativos de \(Q\) respecto a \(R\) (o viceversa). \begin {align*}  
                                                                                          
                                                                                          
                                                                                          
-<!-- l. 279 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/wv.png' width='50' />
+<!-- l. 232 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/wv.png' width='50' />
                                                                                          
                                                                                          
 </p>
    </figure>
-<!-- l. 282 --><p class='indent'>   <span class='underline'>Objetivo</span>: Estimar los estados \(x\) utilizando un observador.<br class='newline' />
-</p><!-- l. 283 --><p class='indent'>   <span class='underline'>Condición</span>: </p>
+<!-- l. 235 --><p class='indent'>   <span class='underline'>Objetivo</span>: Estimar los estados \(x\) utilizando un observador óptimo \(\Longrightarrow \) Filtro de Kalman.<br class='newline' />
+</p><!-- l. 237 --><p class='indent'>   <span class='underline'>Condición</span>:
+</p>
      <ul class='itemize1'>
-     <li class='itemize'>(C,A) es observable
+     <li class='itemize'>\((C,A)\) es observable
      </li>
-     <li class='itemize'>A es Hurwitz
+     <li class='itemize'>\(A\) es Hurwitz
      </li>
      <li class='itemize'>\(\Longrightarrow \) Estados detectables</li></ul>
-<!-- l. 290 --><p class='indent'>   Asumir que \(\omega (t)\) y \(v(t)\) son p.e. Gaussianos, w.s.s., y de media cero:
+<!-- l. 245 --><p class='indent'>   Asumir que \(w(t)\) y \(v(t)\) son p.e. Gaussianos, w.s.s., y de media cero:
 </p>
      <ul class='itemize1'>
      <li class='itemize'>
-     <!-- l. 293 --><p class='noindent'>Perturbación, \(\omega (t)\): </p>
+     <!-- l. 248 --><p class='noindent'>Perturbación, \(w(t)\): </p>
          <ul class='itemize2'>
-         <li class='itemize'>\(\mathbb {E}\{\omega (t)\}=0\)
+         <li class='itemize'>\(\mathbb {E}\{w(t)\}=0\)
          </li>
-         <li class='itemize'>\(\mathbb {E}\{\omega (t) \omega ^\top (s)\}=Q_\omega \delta (t-s)\)</li></ul>
+         <li class='itemize'>\(\mathbb {E}\{w(t) w^T (s)\}=Q_w \delta (t-s)\)</li></ul>
      </li>
      <li class='itemize'>
-     <!-- l. 297 --><p class='noindent'>Ruido, \(v(t)\): </p>
+     <!-- l. 252 --><p class='noindent'>Ruido, \(v(t)\): </p>
          <ul class='itemize2'>
-         <li class='itemize'>\(\mathbb {E}\{v (t)\}=0\)
+         <li class='itemize'>\(\mathbb {E}\{v(t)\}=0\)
          </li>
-         <li class='itemize'>\(\mathbb {E}\{v (t) v^\top (s)\}=R_v \delta (t-s)\)</li></ul>
+         <li class='itemize'>\(\mathbb {E}\{v(t) v^T (s)\}=R_v \delta (t-s)\)</li></ul>
      </li></ul>
-<!-- l. 303 --><p class='indent'>   Asumir en el caso particular que:
+<!-- l. 258 --><p class='indent'>   Asumir en el caso particular que:
+</p><!-- l. 260 --><p class='indent'>
                                                                                          
                                                                                          
-                                             \[\mathbb {E}\{\omega (t)v^\top (s)\}=0 \Longrightarrow \text {$\omega (t)$ y $v(t)$ están descorrelacionados} \]
-</p><!-- l. 306 --><p class='indent'>   Diseñar un observador óptimo \(\Longrightarrow \) Filtro de Kalman.
-</p>
-   <figure class='figure'> 
-
-                                                                                         
-                                                                                         
-                                                                                         
-                                                                                         
-<!-- l. 310 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Kalman.png' width='50' />
-                                                                                         
-                                                                                         
-</p>
-   </figure>
-<!-- l. 313 --><p class='indent'>   Problema: \begin {align*}  \text {Minimizar } \tilde {y} &amp;= y-\hat {y}\\ \Leftrightarrow \text {Minimizar } \tilde {x} &amp;= x-\hat {x}  \end {align*}
-</p><!-- l. 319 --><p class='indent'>   <span class='underline'>Definición</span>: Matriz de autocovarianza del error de estado \(\tilde {x}\) (en estado estacionario)
-</p><!-- l. 323 --><p class='indent'>   \begin {align*}  \Gamma =\mathbb {E}\{\tilde {x}\tilde {x}^\top \} \text {: matriz cuadrada, simétrica, definida positiva}  \end {align*}
-</p><!-- l. 325 --><p class='indent'>   <span class='underline'>Problema</span>: \(\min J\), \(J=\text {trace}(\Gamma ^\top \Gamma )\)
+                                             \[\mathbb {E}\{w(t)v^T (s)\}=0 \Longrightarrow \text {$w(t)$ y $v(t)$ están descorrelacionados.}\]
+</p><!-- l. 267 --><p class='indent'>   Problema de optimización:
+</p><!-- l. 272 --><p class='indent'>   \begin {align*}  \text {Minimizar } \tilde {y} &amp;= y-\hat {y}\\ \Leftrightarrow \text {Minimizar } \tilde {x} &amp;= x - \hat {x}  \end {align*}
+</p><!-- l. 274 --><p class='indent'>   <span class='underline'>Definición</span>: Matriz de autocovarianza del error de estado \(\tilde {x}\) (en estado estacionario)
+</p><!-- l. 278 --><p class='indent'>   \begin {align*}  \Gamma =\mathbb {E}\{\tilde {x}\tilde {x}^T \} \text {: matriz cuadrada, simétrica, definida positiva}  \end {align*}
+</p><!-- l. 280 --><p class='indent'>   <span class='underline'>Problema</span>: \(\min J\), \(J=\text {trace}(\Gamma ^T \Gamma )\)
+</p><!-- l. 282 --><p class='indent'>
                                              \[J=\mathbb {E} \Bigl \{[x_i-\hat {x}_i][x_i-\hat {x}_i]\Bigr \} \]
-</p><!-- l. 328 --><p class='indent'>   Los pasos a seguir son análogos al problema de control óptimo LQR de horizonte infinito.
+</p><!-- l. 284 --><p class='indent'>   Los pasos a seguir son análogos al problema de control óptimo LQR de horizonte infinito.
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x17-194002x1'>La ganancia de Kalman se define como: \(L_{KAL}=\Gamma C^\top R_v ^{-1}\)
+<li class='enumerate' id='x18-200002x1'>La ganancia de Kalman se define como: \(L = \Gamma C^T R_v ^{-1}\)
      </li>
-<li class='enumerate' id='x17-194004x2'>\(\Gamma \) se obtiene de resolver la siguiente ecuación algebraica de Riccati:
-                                               \[A\Gamma +\Gamma A^\top +\bigl (B_\omega Q_\omega B_\omega ^\top -\Gamma C^\top R_v^{-1}C\Gamma \bigr )=0 \]
-     </li></ol>
-<!-- l. 335 --><p class='indent'>   En términos prácticos, este problema se resuelve en Matlab mediante el comando <span class='cmtt-10'>Kalman()</span>
-                                                                                         
-                                                                                         
+<li class='enumerate' id='x18-200004x2'>\(\Gamma \) se obtiene de resolver la siguiente ecuación algebraica de Riccati.</li></ol>
+
+<!-- l. 293 --><p class='indent'>   \begin {align}  A \Gamma + \Gamma A^T + B_w Q_w B_w^T - \Gamma C^T R_v^{-1} C \Gamma = 0  \end {align}
+</p><!-- l. 295 --><p class='indent'>   En términos prácticos, este problema se resuelve en Matlab mediante el comando <span class='cmtt-10'>kalman()</span>
+</p><!-- l. 297 --><p class='indent'>
                                              \[(L_{KAL},\Gamma )=\text {Kalman}(A,C,Q_\omega ,R_v) \]
-</p><!-- l. 338 --><p class='indent'>   Finalmente: \begin {align*}  \dot {\hat {x}} &amp;= A\hat {x}+B_u u+L_{KAL}(y-\hat {y})\\ \hat {y} &amp;= C\hat {x}  \end {align*}
+</p><!-- l. 299 --><p class='indent'>   Finalmente:
+</p><!-- l. 304 --><p class='indent'>   \begin {align*}  \dot {\hat {x}} &amp;= A \hat {x} + B_u u + L \tilde {y} \\ \hat {y} &amp;= C\hat {x}  \end {align*}
 </p>
    <figure class='figure'> 
 
@@ -252,16 +216,17 @@ los valores relativos de \(Q\) respecto a \(R\) (o viceversa). \begin {align*}  
                                                                                          
                                                                                          
                                                                                          
-<!-- l. 346 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Kalman2.png' width='50' />
+<!-- l. 308 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/kalman_v2.png' width='361' />
                                                                                          
                                                                                          
 </p>
    </figure>
-   <h3 class='sectionHead' id='control-lqg'><span class='titlemark'>11.7.   </span> <a id='x17-19500011.7'></a>Control LQG</h3>
-<!-- l. 350 --><p class='noindent'>LQG = Linear Quadratic Gaussian<br class='newline' />
-</p><!-- l. 351 --><p class='indent'>   Suponga el sistema LTI: \begin {align*}  \dot {x} &amp;= Ax+B_u u+B_\omega \omega \\ y &amp;= Cx+v  \end {align*}
-</p><!-- l. 357 --><p class='indent'>   <span class='underline'>Objetivo</span>: diseñar un controlador óptimo con información de la respuesta.
-</p><!-- l. 361 --><p class='indent'>   \begin {align*}  \text {Control óptimo (LQR)} + \text {Obervador óptimo (Kalman)} \overset {\text {Principio de superposición}}{=} LQG  \end {align*}
+   <h3 class='sectionHead' id='control-lqg-tiempo-continuo'><span class='titlemark'>11.5.   </span> <a id='x18-20100011.5'></a>Control LQG (tiempo contínuo)</h3>
+<!-- l. 313 --><p class='noindent'>LQG = Linear Quadratic Gaussian<br class='newline' />
+</p><!-- l. 315 --><p class='indent'>   Suponga el sistema LTI:
+</p><!-- l. 320 --><p class='indent'>   \begin {align*}  \dot {x} &amp;= Ax + B_u u +B_w w\\ y &amp;= C x + v  \end {align*}
+</p><!-- l. 322 --><p class='indent'>   <span class='underline'>Objetivo</span>: diseñar un controlador óptimo con información de la respuesta.
+</p><!-- l. 326 --><p class='indent'>   \begin {align*}  \text {Control óptimo (LQR)} + \text {Obervador óptimo (Kalman)} \overset {\text {Principio de superposición}}{=} LQG  \end {align*}
 </p>
    <figure class='figure'> 
 
@@ -269,27 +234,16 @@ los valores relativos de \(Q\) respecto a \(R\) (o viceversa). \begin {align*}  
                                                                                          
                                                                                          
                                                                                          
-<!-- l. 366 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/LQG.png' width='50' />
+<!-- l. 330 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/LQG.png' width='50' />
                                                                                          
                                                                                          
 </p>
    </figure>
-<!-- l. 369 --><p class='indent'>   <span class='underline'>Parámetros LQG</span>: \(Q\), \(R\), \(Q_\omega \), \(R_v\).<br class='newline' />
+<!-- l. 333 --><p class='indent'>   <span class='underline'>Parámetros LQG</span>: \(Q\), \(R\), \(Q_w\), \(R_v\).<br class='newline' />
+                                                                                         
+                                                                                         
 </p>
-   <h3 class='sectionHead' id='topicos-especiales-en-control'><span class='titlemark'>11.8.   </span> <a id='x17-19600011.8'></a>Tópicos especiales en control</h3>
-     <ul class='itemize1'>
-     <li class='itemize'>Control robusto (LTR, \(H_2\), \(H_\infty \), etc.)
-     </li>
-     <li class='itemize'>Control adaptivo
-     </li>
-     <li class='itemize'>Control híbrido
-     </li>
-     <li class='itemize'>Control nolineal
-     </li>
-     <li class='itemize'>Reinforcement learning</li></ul>
-                                                                                         
-                                                                                         
-   <!-- l. 142 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>prev</a>] [<a href='MIC411apuntesch10.html#tailMIC411apuntesch10.html'>prev-tail</a>] [<a href='MIC411apuntesch11.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch11.html'>up</a>] </p></div>
-<!-- l. 142 --><p class='indent'>   <a id='tailMIC411apuntesch11.html'></a>  </p> 
+   <!-- l. 144 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>prev</a>] [<a href='MIC411apuntesch10.html#tailMIC411apuntesch10.html'>prev-tail</a>] [<a href='MIC411apuntesch11.html'>front</a>] [<a href='MIC411apuntespa3.html#MIC411apuntesch11.html'>up</a>] </p></div>
+<!-- l. 144 --><p class='indent'>   <a id='tailMIC411apuntesch11.html'></a>  </p> 
 </body> 
 </html>

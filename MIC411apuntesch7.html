@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='es' xml:lang='es'> 
-<head><title>7 Tecnolog´ıa de Sensores</title> 
+<head><title>7 Procesamiento Digital de Senales</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -9,214 +9,603 @@
 <script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 </head><body>
-   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='#tailMIC411apuntesch7.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='tecnologia-de-sensores'><span class='titlemark'>Capítulo 7</span><br /><a id='x13-1090007'></a>Tecnología de Sensores</h2>
-<!-- l. 5 --><p class='noindent'>Referencia: <a id='x13-109001'></a>de Silva (<a href='MIC411apuntesli4.html#cite.0@desilva2000vibrationfundamentals'>2000</a>, Cap. 11)
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='MIC411apuntesch6.html'>prev</a>] [<a href='MIC411apuntesch6.html#tailMIC411apuntesch6.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch7.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='procesamiento-digital-de-senales'><span class='titlemark'>Capítulo 7</span><br /><a id='x13-1070007'></a>Procesamiento Digital de Señales</h2>
+   <h3 class='sectionHead' id='sistemas-discretos'><span class='titlemark'>7.1.   </span> <a id='x13-1080007.1'></a>Sistemas discretos</h3>
+<!-- l. 5 --><p class='noindent'>Es necesario convertir una señal análoga a discreta.
 </p>
-   <h3 class='sectionHead' id='fundamentos-de-sensores'><span class='titlemark'>7.1.   </span> <a id='x13-1100007.1'></a>Fundamentos de sensores</h3>
-                                                                                         
-                                                                                         
-<!-- l. 9 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='que-es-un-sensor'><span class='titlemark'>7.1.1.   </span> <a id='x13-1110007.1.1'></a>¿Qué es un sensor?</h4>
    <figure class='figure'> 
 
                                                                                          
                                                                                          
                                                                                          
                                                                                          
-<!-- l. 18 --><p class='noindent'><img alt='PIC' height='234' src='Figuras/funcionamientoSensor.png' width='234' />
+<!-- l. 9 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sist_discreto.png' width='50' />
                                                                                          
                                                                                          
 </p>
    </figure>
+<!-- l. 12 --><p class='indent'>   Razón: Queremos realizar calculos de la señal en un computador.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 16 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sistema_discret.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='muestreo'><span class='titlemark'>7.1.1.   </span> <a id='x13-1090007.1.1'></a>Muestreo</h4>
+<!-- l. 21 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x13-109002x1'>Muestreo en el tiempo \(\Longrightarrow \) Sampling
+     </li>
+<li class='enumerate' id='x13-109004x2'>Muestreo en amplitud \(\Longrightarrow \) Quantization</li></ol>
+<!-- l. 26 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='cuantizacion'><span class='titlemark'>7.1.2.   </span> <a id='x13-1100007.1.2'></a>Cuantización</h4>
+<!-- l. 28 --><p class='noindent'>En el contexto de la conversión analógica a digital (ADC, Analog-to-Digital Conversion), la cuantización
+(quantization) es el proceso mediante el cual se convierte un valor analógico continuo en un valor digital
+discreto.
+</p><!-- l. 30 --><p class='indent'>   Por ejemplo, una máquina 8 bits \(\Longrightarrow \) Números utilizando \(2^{8}\) cifras significativas.
+</p><!-- l. 38 --><p class='indent'>   \begin {align*}  \text {Bit} = \left \{ \begin {array}{l} 0 \\ 1 \end {array} \right . \Longrightarrow 256 \text { niveles}  \end {align*}
+</p><!-- l. 40 --><p class='indent'>   Durante la cuantización, cada valor analógico medido se aproxima al nivel más cercano de entre esos 256
+niveles.
+</p><!-- l. 42 --><p class='indent'>   Por ejemplo, si el rango es \(0 - 5\) V, cada nivel representa un salto de \(\Delta = 5/256 \approx 0.0195\) V. Si el valor analógico real es \(1.23\) V, el ADC lo
+“cuantiza” al nivel más cercano, por ejemplo \(1.22\) V.
+</p><!-- l. 44 --><p class='indent'>   Esta aproximación introduce un error de cuantización, que es la diferencia entre el valor analógico real y el valor
+cuantizado. Este error es inevitable y depende de la resolución del ADC: a mayor número de bits, menor error de
+cuantización. (<span class='cmti-10'>Nota</span>: Computadores representan números utilizando dígitos binarios (bits almacenados en
+flip-flops).)<br class='newline' />
+</p><!-- l. 46 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='implementacion-en-matlabsimulink'><a id='x13-111000'></a>Implementación en Matlab/Simulink</h5>
+<!-- l. 48 --><p class='noindent'>Definiendo el rango \(R\) de valores de entrada \(u\) que puede medir el ADC:
+</p><!-- l. 52 --><p class='indent'>   \begin {equation}  R = |u_{\max } - u_{\min }|  \end {equation}<a id='x13-111001r1'></a>
+</p><!-- l. 54 --><p class='indent'>   El intervalo de cuantización se define como:
+</p><!-- l. 58 --><p class='indent'>   \begin {equation}  q = \frac {R}{2^B}  \end {equation}<a id='x13-111002r2'></a>
+</p><!-- l. 60 --><p class='indent'>   donde \(B\) es el número de bits del ADC. Por ejemplo, si \(u_{\max } = 1g\), \(u_{\min } = -1g\), y \(B = 8\), entonces:
+</p><!-- l. 64 --><p class='indent'>   \begin {equation}  q = \frac {2g}{2^{8}} = 0.0078125 g  \end {equation}<a id='x13-111003r3'></a>
+</p><!-- l. 66 --><p class='indent'>   Por lo tanto, el cuantizador en Simulink funciona de la siguiente forma:
+</p><!-- l. 70 --><p class='indent'>   \begin {equation}  y = q \times \text {round}(u/q)  \end {equation}<a id='x13-111004r4'></a>
+</p><!-- l. 72 --><p class='indent'>   donde \(y\) es la señal de salida cuantizada, y \(u\) es la señal de entrada.
+                                                                                         
+                                                                                         
+</p><!-- l. 76 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='senal-en-tiempo-discreto'><span class='titlemark'>7.1.3.   </span> <a id='x13-1120007.1.3'></a>Señal en tiempo discreto</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 80 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/AD.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 86 --><p class='indent'>   \begin {align*}  x[n]=x_a(nT_s)  \end {align*}
+</p><!-- l. 88 --><p class='noindent'>donde \(x[n]\) es la señal en tiempo discreto, \(T_s\) es el paso temporal de muestreo, y \(n\) es el índice temporal (número
+entero).<br class='newline' />
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 92 --><p class='noindent'><img alt='PIC' height='289' src='Figuras/senaldiscreta.png' width='289' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 95 --><p class='indent'>   La representación matemática del muestreo se puede realizar utilizando la <span class='underline'>Función pulso unitario</span>:
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 99 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/pulso_unitario.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 108 --><p class='indent'>   \begin {align*}  \delta [n] = \begin {cases} 1, &amp; n=0\\ 0,&amp; n \neq 0 \end {cases}  \end {align*}
+</p><!-- l. 112 --><p class='indent'>   \begin {align*}  x[n]=\sum _{k=0}^{N-1} x_k \delta [n-k]=x_0\delta [n]+x_1\delta [n-1]+x_2\delta [n-2]+...+x_{N-1}\delta [n-(N-1)]  \end {align*}
+</p><!-- l. 116 --><p class='indent'>   \begin {align*}  \{x_n\}_0^{N-1}=\{x_0,x_1,x_2,...,x_{N-1}\} \Longrightarrow \text {Arreglo de N puntos (vector)}  \end {align*}
+</p>
+   <h3 class='sectionHead' id='analisis-en-frecuencia'><span class='titlemark'>7.2.   </span> <a id='x13-1130007.2'></a>Análisis en frecuencia</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 123 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/analisis_frec.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 126 --><p class='noindent'><span class='cmti-10'>Nota:</span> \(j = \sqrt {-1}\) es el número complejo.<br class='newline' />
+</p>
+   <h4 class='subsectionHead' id='continuoustime-fourier-transform-ctft'><span class='titlemark'>7.2.1.   </span> <a id='x13-1140007.2.1'></a>Continuous-Time Fourier Transform (CTFT)</h4>
+<!-- l. 133 --><p class='noindent'>\begin {align*}  X(\Omega ) &amp;= \int _{-\infty }^{+\infty }x_a(t)e^{-j\Omega t}dt \quad \text {(CTFT)}\\ x_a(t) &amp;= \frac {1}{2\pi }\int _{-\infty }^{+\infty }X(\Omega )e^{+j\Omega t}d\Omega \quad \text {(inverse CTFT)}  \end {align*}
+</p><!-- l. 135 --><p class='noindent'>\(t, \Omega \in \mathbb {R}\), \(x_a(t)\in \mathbb {R}\), \(X(\Omega )\in \mathbb {C}\)<br class='newline' />
+</p><!-- l. 137 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='discretetime-fourier-transform-dtft'><span class='titlemark'>7.2.2.   </span> <a id='x13-1150007.2.2'></a>Discrete-time Fourier Transform (DTFT)</h4>
+<!-- l. 139 --><p class='noindent'>Supongamos que la señal \(x(t)\) es discretizada en el tiempo, \(x[n] = x(n T_s)\), donde \(T_s\) es el período de muestreo. Entonces, el DTFT se
+define:
+</p><!-- l. 144 --><p class='indent'>   \begin {align*}  X_d(\omega ) &amp;= \sum _{n=-\infty }^{\infty }x[n]e^{-j\omega n} \quad \text {(DTFT)}\\ x[n] &amp;= \frac {1}{2\pi }\int _{-\infty }^{\infty }X_d(\omega )e^{+j\omega n}d\omega \quad \text {(inverse DTFT)}  \end {align*}
+</p><!-- l. 146 --><p class='indent'>   donde \(\omega \in \mathbb {R}\), \(n \in \mathbb {Z}\).
+</p><!-- l. 148 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='discrete-fourier-transform-dft'><span class='titlemark'>7.2.3.   </span> <a id='x13-1160007.2.3'></a>Discrete Fourier Transform (DFT)</h4>
+<!-- l. 150 --><p class='noindent'>La DFT opera sobre una secuencia de \(N\) puntos en tiempo, \(x[n], n \in \{0,1,2,\ldots ,N-1\}\), y produce una secuencia de \(N\) puntos en frecuencia,
+\(X[m], m \in \{0,1,2,\ldots ,N-1\}\).
+</p><!-- l. 155 --><p class='indent'>   \begin {align*}  X[m] &amp;= \sum _{n=0}^{N-1} x_ne^{-j\frac {2\pi }{N}nm} \quad \text {(DFT)}\\ x[n] &amp;= \frac {1}{N}\sum _{m=0}^{N-1}X_me^{+j\frac {2\pi }{N}nm} \quad \text {(Inverse DFT)}  \end {align*}
+</p><!-- l. 157 --><p class='indent'>   donde \(n,m \in \{0,1,2,\ldots ,N-1\}\).<br class='newline' />
+</p><!-- l. 159 --><p class='indent'>   <span class='cmti-10'>Nota 1</span>: Se asume que la secuencia \(x[n]\) es periódica.<br class='newline' />
+</p><!-- l. 161 --><p class='indent'>   <span class='cmti-10'>Nota 2</span>: Fast Fourier Transform (FFT) es un algoritmo computacional muy eficiente para calcular el DFT.
+Revisar Sección <a href='MIC411apuntesap1.html#fast-fourier-transform-fft'>A.5<!-- tex4ht:ref: s:FFT  --></a> para más información.<br class='newline' />
+</p><!-- l. 163 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='relacion-entre-dft-y-dtft'><span class='titlemark'>7.2.4.   </span> <a id='x13-1170007.2.4'></a>Relación entre DFT y DTFT</h4>
+<!-- l. 167 --><p class='noindent'>\begin {align*}  X[m]=X_d(\omega )\bigg |_{\omega =\frac {2\pi }{N}m}  \end {align*}
+</p><!-- l. 169 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='relacion-entre-dtft-y-ctft'><span class='titlemark'>7.2.5.   </span> <a id='x13-1180007.2.5'></a>Relación entre DTFT y CTFT</h4>
+<!-- l. 173 --><p class='noindent'>\begin {align*}  X_d(\omega ) = \frac {1}{T} \sum _{l=-\infty }^{+\infty } X \left (\underbrace {\frac {\omega + 2\pi l}{T}}_{= \Omega } \right )  \end {align*}
+                                                                                         
+                                                                                         
+</p><!-- l. 175 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='criterio-de-muestreo-de-nyquist'><span class='titlemark'>7.3.   </span> <a id='x13-1190007.3'></a>Criterio de muestreo de Nyquist</h3>
+<!-- l. 177 --><p class='noindent'>En DSP, queremos muestrear la señal sin pérdida de información (“lossless”). Entonces, hay que elegir correctamente el
+intervalo de muestreo \(T_s\) (sampling time).<br class='newline' />
+</p>
+   <div class='newtheorem'>
+<!-- l. 179 --><p class='noindent'><span class='head'>
+<a id='x13-119001r7'></a>
+<span class='cmbx-10'>Teorema 7 </span>(Teorema de Nyquist)<span class='cmbx-10'>.</span>  </span><span class='cmti-10'>La frecuencia de muestreo de una se</span>ñ<span class='cmti-10'>al digital debe ser al menos el doble
+de la m</span>á<span class='cmti-10'>xima frecuencia de la se</span>ñ<span class='cmti-10'>al an</span>á<span class='cmti-10'>loga:</span>
+                                             \[F_s &gt; 2 f_{\max }\]
+</p>
+   </div>
+<!-- l. 182 --><p class='indent'>
+</p><!-- l. 184 --><p class='indent'>   Esto quiere decir que la máxima frecuencia de la señal que se quiere medir, \(f_{\max }\), no debe ser mayor que la frecuencia de
+Nyquist, \(F_N = F_s/2\):
+</p><!-- l. 186 --><p class='indent'>
+                                             \[ f_{\max } &lt; F_n \]
+</p><!-- l. 188 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='aliasing'><span class='titlemark'>7.4.   </span> <a id='x13-1200007.4'></a>Aliasing</h3>
+<!-- l. 190 --><p class='noindent'>Aliasing es un fenómeno que ocure cuando el terorema de Nyquist no se cumple, es decir, \(f_{\max } &gt; F_N\). Como consecuencia, la
+señal análoga no puede ser reconstruida por la señal digitalizada.<br class='newline' />
+</p><!-- l. 192 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Video del “helicoptero mágico” <a class='url' href='https://www.chrisfay.de/helicopter-video'>https://www.chrisfay.de/helicopter-video</a>.
+                                                                                         
+                                                                                         
+</p><!-- l. 194 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='aliasing-en-dominio-del-tiempo'><span class='titlemark'>7.4.1.   </span> <a id='x13-1210007.4.1'></a>Aliasing en dominio del tiempo</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 198 --><p class='noindent'><img alt='PIC' height='433' src='Figuras/AliasingTimeExample.png' width='433' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='aliasing-en-dominio-de-frecuencia'><span class='titlemark'>7.4.2.   </span> <a id='x13-1220007.4.2'></a>Aliasing en dominio de frecuencia</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 205 --><p class='noindent'><img alt='PIC' height='433' src='Figuras/aliasing_frequency_folding.png' width='433' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h5 class='subsubsectionHead' id='sin-aliasing'><a id='x13-123000'></a>Sin Aliasing</h5>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 214 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sin_aliasing.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 220 --><p class='indent'>   \begin {align*}  F_s &amp;&gt; 2f_{max}\\ f_{max} &amp;&lt; \frac {F_s}{2}=F_N \quad \text {(frecuencia de Nyquist)}  \end {align*}
+</p>
+   <h5 class='subsubsectionHead' id='con-aliasing'><a id='x13-124000'></a>Con Aliasing</h5>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 226 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/con_aliasing.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 229 --><p class='indent'>   Ejemplo: PSD de respuesta estructural de un sistema 3DOF
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 233 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/AAexample.png' width='361' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 236 --><p class='indent'>   Solución: utilizar filtros anti-aliasing (AA)
+</p>
+   <h4 class='subsectionHead' id='filtros-lowpass'><span class='titlemark'>7.4.3.   </span> <a id='x13-1250007.4.3'></a>Filtros low-pass</h4>
      <ul class='itemize1'>
-     <li class='itemize'>\(z(t)\): desplazamiento de la estructura
+     <li class='itemize'>Filtro anti-aliasing (AA) de paso bajo (low-pass) es utilizado para eliminar el “aliasing” de la respuesta
+     en frecuencia.
      </li>
-     <li class='itemize'>\(u(t)\): desplazamiento del SDOF del sensor
+     <li class='itemize'>Filtro AA tiene que ser aplicado antes del muestreo en el tiempo.</li></ul>
+<!-- l. 250 --><p class='noindent'>Por ejemplo, utilizamos el comando <span class='cmtt-10'>ellip() </span>en Matlab para construir un filtro low-pass de tipo elíptico. El siguiente
+comando construye un filtro elíptico análogo, de orden 8, bandpass 0.01 dB, bandstop -80 dB, y frecuencia de corte 50
+Hz:
+</p>
+   <!-- l. 252 -->
+
+<pre class='lstlisting' id='listing-1'><span class='label'><a id='x13-125001r1'></a>1</span><span style='color:#000000'><span class='cmtt-10'>n</span></span><span style='color:#000000'> <span class='cmtt-10'>= 8;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>orden del filtro eliptico</span> 
+</span><span class='label'><a id='x13-125002r2'></a>2</span><span style='color:#000000'><span class='cmtt-10'>Rp</span></span><span style='color:#000000'> <span class='cmtt-10'>= 0.01;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>bandpass (dB)</span> 
+</span><span class='label'><a id='x13-125003r3'></a>3</span><span style='color:#000000'><span class='cmtt-10'>Rs</span></span><span style='color:#000000'> <span class='cmtt-10'>= 80;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>bandstop (dB)</span> 
+</span><span class='label'><a id='x13-125004r4'></a>4</span><span style='color:#000000'><span class='cmtt-10'>fc</span></span><span style='color:#000000'> <span class='cmtt-10'>= 50;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>frecuencia corte (Hz)</span> 
+</span><span class='label'><a id='x13-125005r5'></a>5</span><span style='color:#000000'><span class='cmtt-10'>wc</span></span><span style='color:#000000'> <span class='cmtt-10'>= 2*pi*fc;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>frecuencia corte (rad/s)</span> 
+</span><span class='label'><a id='x13-125006r6'></a>6</span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>b</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'> <span class='cmtt-10'>a] = ellip(n, Rp, Rs, wc, "s" );</span> 
+</span><span class='label'><a id='x13-125007r7'></a>7</span><span style='color:#000000'><span class='cmtt-10'>AAfilt</span></span><span style='color:#000000'> <span class='cmtt-10'>= tf(b,a);</span> 
+</span><span class='label'><a id='x13-125008r8'></a>8</span><span style='color:#000000'><span class='cmtt-10'>bode</span></span><span style='color:#000000'><span class='cmtt-10'>(</span></span><span style='color:#000000'><span class='cmtt-10'>AAfilt</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span></pre>
+<!-- l. 263 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='convertidor-analogodigital-adc'><span class='titlemark'>7.5.   </span> <a id='x13-1260007.5'></a>Convertidor análogo-digital (ADC)</h3>
+<!-- l. 265 --><p class='noindent'>Los ADC estan constituidos generalmente por tres módulos: (i) filtro anti-aliasing; (ii) sample &amp; hold; y (iii)
+quantizer. Cada uno de estos módulos se fabrica con componentes y circuitos eléctricos.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 269 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/ADCmodel.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 272 --><p class='indent'>   Existen distintas arquitecturas de ADC, dependiendo de la velocidad de muestreo y la resolución. Por ejemplo,
+arquitecturas \(\Sigma -\Delta \) se ocupa en medición de vibraciones estructurales, por su excelente resolución para bajas frecuencias (\(&lt; 1000\)
+Hz).
+</p>
+   <figure class='figure' id='-arquitecturas-de-adc-url-httpswwwanalogcomenresourcesanalogdialoguearticlestherightadcarchitecturehtml'> 
+
+                                                                                         
+                                                                                         
+<a id='x13-126001r1'></a>
+                                                                                         
+                                                                                         
+<!-- l. 276 --><p class='noindent'><img alt='PIC' height='289' src='Figuras/ADC-architectures.png' width='289' />
+</p>
+<figcaption class='caption'><span class='id'>Figura 7.1:                       </span><span class='content'>Arquitecturas                       de                       ADC.                       URL:
+<a class='url' href='https://www.analog.com/en/resources/analog-dialogue/articles/the-right-adc-architecture.html'>https://www.analog.com/en/resources/analog-dialogue/articles/the-right-adc-architecture.html</a></span></figcaption><!-- tex4ht:label?: x13-126001r1  -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class='sectionHead' id='spectral-leakage'><span class='titlemark'>7.6.   </span> <a id='x13-1270007.6'></a>Spectral Leakage</h3>
+<!-- l. 282 --><p class='noindent'>La transformada de Fourier (CTFT o DTFT) asume que la señal es infinita, o al menos es finita pero periódioca. Es
+decir, que la señal se repite luego de un periodo \(T\) indefinidamente:
+</p><!-- l. 284 --><p class='indent'>
+                                             \[ x(t) = x(t+kT), \quad \forall k\in \mathbb {Z} \]
+</p><!-- l. 286 --><p class='indent'>   Si la señal es finita pero no es periódica, ocurren saltos abruptos.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 290 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/FT.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 295 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/DFT.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 298 --><p class='indent'>   Este salto abrupto es semejante a una función escalón. Recordar que una función escalón se puede escribir como una
+Serie de Fourier que es una suma de armónicas con distinta frecuencia. Por lo tanto, al calcular \(X[m]\) (DFT de \(x[n]\))
+surge el fenómeno de “spectral leakage”, donde se agregan armónicas artificiales producto del escalón
+generado.<br class='newline' />
+</p><!-- l. 310 --><p class='indent'>   <span class='underline'>Ejemplo</span>:
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 314 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/ejemplo_leakage.png' width='361' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 317 --><p class='indent'>   Para resolver el <span class='cmti-10'>spectral leakage </span>se pueden utilizar <span class='cmti-10'>Periodogramas </span>con distintos tipos de <span class='cmti-10'>ventanas</span>.
+</p>
+   <h3 class='sectionHead' id='ventanas'><span class='titlemark'>7.7.   </span> <a id='x13-1280007.7'></a>Ventanas</h3>
+<!-- l. 321 --><p class='noindent'>Referencia: Window Functions in DSP - From Theory to MATLAB (URL: <a class='url' href='https://youtu.be/vyZrezB2NPo?si=2Z9BbdEGRo-NzyEy'>https://youtu.be/vyZrezB2NPo?si=2Z9BbdEGRo-NzyEy</a>).
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 325 --><p class='noindent'><img alt='PIC' height='469' src='Figuras/solucion_leakage.png' width='469' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 328 --><p class='indent'>   Ventanas más utilizadas:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Hanning
      </li>
-     <li class='itemize'>\(w(t)\): desplazamiento relativo entre sensor y estructura \(w(t) = u(t) - z(t)\)</li></ul>
-<!-- l. 26 --><p class='indent'>   El output que genera el sensor es una señal eléctrica (voltaje, corriente) que es proporcional a \(w(t)\).<br class='newline' />
-</p><!-- l. 28 --><p class='indent'>   Sobre la utilidad de un sensor, fijarse en el rango de frecuencia y en el rango de aceleraciones.
+     <li class='itemize'>Hamming
+     </li>
+     <li class='itemize'>Kaiser
+     </li>
+     <li class='itemize'>Blackman-Harris
+     </li>
+     <li class='itemize'>Chebyshev</li></ul>
+   <h3 class='sectionHead' id='estimacion-de-psd-utilizando-periodogramas'><span class='titlemark'>7.8.   </span> <a id='x13-1290007.8'></a>Estimación de PSD utilizando periodogramas</h3>
+<!-- l. 340 --><p class='noindent'>Referencia: <a id='x13-129001'></a>Hayes (<a href='MIC411apuntesli4.html#cite.0@Hayes1996'>1996</a>, Cap. 8).<br class='newline' />
+</p><!-- l. 342 --><p class='indent'>   En el caso de que \(x(t)\) sea un p.e. w.s.s., su PSD se puede calcular de la siguiente forma:
+</p><!-- l. 347 --><p class='indent'>   \begin {align*}  S_{X}(\Omega ) &amp;= \mathcal {F}\{R_{X}(\tau )\} \quad \text {(Caso contínuo, CTFT)}  \end {align*}
+</p><!-- l. 349 --><p class='indent'>   En cambio, si \(x[k]\) un p.e. w.s.s., señal digital con un intervalo de muestreo \(T_s\). Podemos estimar \(S_{X}(\omega )\) (continua) utilizando
+estimadores de valor medio y la definición de DTFT.
+</p><!-- l. 353 --><p class='indent'>   \begin {align*}  \hat {S}_{X}(\omega ) = \sum _{k=-\infty }^{+\infty }\hat {r}_x[k]e^{-j\omega k}  \end {align*}
+</p><!-- l. 355 --><p class='indent'>   donde el estimador de autocorrelación \(\hat {r}_{X}[k]\), \(n\) es el índice temporal, y \(k\) es el índice para el retraso.
+</p><!-- l. 359 --><p class='indent'>   \begin {align*}  \hat {r}_{X}[k] = \frac {1}{N} \sum _{n=0}^{N-1} x[n] x^*[n+k], \qquad k \in \{0,1,2,\ldots ,N-1\}  \end {align*}
+</p><!-- l. 361 --><p class='indent'>   Alcance para la estimación del PSD:
+</p><!-- l. 363 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x13-129003x1'>Calcular DTFT (o DFT), y utilizar una forma de calcular el promedio de manera insesgada.
+     </li>
+<li class='enumerate' id='x13-129005x2'>Distintas realizaciones de \(x(t)\) (de \(x[k]\)) nos entegan disintas estimaciones del PSD. <br class='newline' />Cada estimación del PSD es una realización de un proceso estocástico.</li></ol>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 370 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/PSD_realizaciones.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 373 --><p class='indent'>   Estrategia para caracterizar el PSD:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x13-129007x1'>Queremos que la media del PSD se acerque al valor real del PSD.
+     </li>
+<li class='enumerate' id='x13-129009x2'>Queremos que la varianza del PSD sea pequeña.</li></ol>
+<!-- l. 379 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Considere el siguiente p.e.: \begin {align*}  x[n]=A+w[n]  \end {align*}
+</p><!-- l. 384 --><p class='indent'>   donde \(A\) es una constante; \(w[n] = w(nT_s)\) es ruido blanco, \(\mu _W(t) = 0\) y \(\sigma _W^2(t) = \sigma ^2\). Entonces, \(\mu _X(t) = A\) y \(\sigma _X^2(t) = \sigma ^2\).<br class='newline' />
+</p><!-- l. 386 --><p class='indent'>   Dada una realización finita \(\{x[0],x[1]...,x[N-1]\}\). Un estimador razonable para la media \(A\) es la “media muestral de A”
+(promedio).
+</p><!-- l. 390 --><p class='indent'>   \begin {align*}  \hat {A} = \frac {1}{N} \sum _{n=0}^{N-1}x[n]  \end {align*}
+</p><!-- l. 392 --><p class='indent'>   Entonces, queremos dos cosas:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x13-129011x1'>
+     <!-- l. 395 --><p class='noindent'>Que \(\hat {A}\) sea insesgado, es decir, que converja al valor correcto de \(A\):
+     </p><!-- l. 397 --><p class='noindent'>
+                                               \[\mathbb {E}\{\hat {A}\}=A\]
+     </p><!-- l. 399 --><p class='noindent'>Si \(\hat {A}\) es sesgado. Que al menos cumpla con ser un estimador asintóticamente insesgado:
+     </p><!-- l. 401 --><p class='noindent'>
+                                               \[\lim _{N\to \infty } \mathbb {E}\{\hat {A}\}=A\]
+                                                                                         
+                                                                                         
+     </p></li>
+<li class='enumerate' id='x13-129013x2'>
+     <!-- l. 403 --><p class='noindent'>La varianza de \(\hat {A}\) sea pequeña
+     </p><!-- l. 405 --><p class='noindent'>
+                                               \[\text {var}\{\hat {A}\} = \frac {\sigma ^2}{N}\]
+     </p><!-- l. 407 --><p class='noindent'>En este sentido, la dispersión de \(\hat {A}\) disminuye en la medida que \(N\) aumenta:
+     </p><!-- l. 409 --><p class='noindent'>
+                                               \[\lim _{N\to \infty } \text {var}\{\hat {A}\} = 0\]
+</p>
+     </li></ol>
+<!-- l. 414 --><p class='indent'>   <span class='underline'>Objetivos</span>: Estimar \(\hat {S}_X(\omega )\) tal que:
+                                             \[\mathbb {E}\{\hat {S}_X(\omega )\}=S_X(\omega ) \]
+ y
+                                                                                         
+                                                                                         
+                                             \[\text {var}\{\hat {S}_X(\omega )\}=\text {pequeño} \]
+</p>
+   <h4 class='subsectionHead' id='periodograma'><span class='titlemark'>7.8.1.   </span> <a id='x13-1300007.8.1'></a>Periodograma</h4>
+<!-- l. 420 --><p class='noindent'><span class='underline'>Definición</span>:
+</p><!-- l. 422 --><p class='indent'>   Usando DTFT:
+</p><!-- l. 429 --><p class='indent'>   \begin {align*}  \hat {S}_{PER}(\omega ) &amp;= \frac {1}{N} \left | \sum _{n=0}^{N-1} x[n] e^{-j \omega n} \right |^2 \\ &amp; = \frac {1}{N} |X(\omega )|^2\\ &amp; = \frac {1}{N} X(\omega ) X^*(\omega )  \end {align*}
+</p><!-- l. 431 --><p class='indent'>   Usando DFT:
+</p><!-- l. 437 --><p class='indent'>   \begin {align*}  \hat {S}_{PER}[k] &amp;= \frac {1}{N} \left | \sum _{n=0}^{N-1} x[n] e^{-j 2 \pi n k /N} \right |^2 \\ &amp; = \frac {1}{N} \left | X[k] \right |^2\\ &amp; = \frac {1}{N} X[k] X^*[k]  \end {align*}
+</p><!-- l. 439 --><p class='indent'>   <span class='underline'>Nota</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 443 --><p class='noindent'>\(\hat {S}_{PER}[k]\) es sesgado, pero es asintóticamente insesgado
+     </p><!-- l. 447 --><p class='noindent'>\begin {align*}  \lim _{N\to \infty }\mathbb {E}\{\hat {S}_{PER}[k]\}=S_X[k]  \end {align*}
+     </p></li>
+     <li class='itemize'>
+     <!-- l. 449 --><p class='noindent'>Varianza de \(\hat {S}_{PER}[k]\) no tiende a cero para \(N\to \infty \) \(\Longrightarrow \) Problema
+     </p><!-- l. 453 --><p class='noindent'>\begin {align*}  \text {var}\{\hat {S}_X(\omega )\}=\sigma ^4  \end {align*}
+     </p><!-- l. 455 --><p class='noindent'>donde \(\sigma ^2=\frac {S_0 \omega _c}{\pi }\) si \(x[n]\) es un ruido blanco.<br class='newline' />
+</p>
+     </li></ul>
+<!-- l. 459 --><p class='indent'>   Principales problemas del periodograma:
+</p><!-- l. 461 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x13-130002x1'>Estimación sesgada
+     </li>
+<li class='enumerate' id='x13-130004x2'>Varianza no decrece con aumento \(N\)
+     </li>
+<li class='enumerate' id='x13-130006x3'>
+     <!-- l. 464 --><p class='noindent'>Fluctuaciones rápidas </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/fluct.png' width='50' /> </figure>
+     </li></ol>
+                                                                                         
+                                                                                         
+<!-- l. 471 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='periodograma-modificado'><span class='titlemark'>7.8.2.   </span> <a id='x13-1310007.8.2'></a>Periodograma Modificado</h4>
+<!-- l. 473 --><p class='noindent'>Métodos que modifican el periodograma clásico, para resolver obtener estimadores con menor varianza.<br class='newline' />
+</p><!-- l. 475 --><p class='indent'>   <span class='cmti-10'>Nota: </span>Periodogramas modificados utilizan ventanas (distintas a rectangular) para mejorar la estimación y reducir
+el efecto de spectral leakage (¡causado por una ventana rectangular en un principio!).
+</p><!-- l. 477 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='periodograma-modificada'><a id='x13-132000'></a>Periodograma modificada</h5>
+<!-- l. 479 --><p class='noindent'>Uso de ventanas, que reduce el efecto del sesgo, pero sacrificando resolución.
+</p><!-- l. 481 --><p class='indent'>
+                                             \[\hat {S}_{MP}(\omega )=\frac {1}{N U} \left | \sum _{n=0}^{N-1} x[n]w[n]e^{-j\omega n} \right | ^2 \]
+</p><!-- l. 483 --><p class='indent'>   donde \(w[n]\): ventana en el dominio del tiempo y \(U\) es un factor de escala.
+</p><!-- l. 485 --><p class='indent'>
+                                             \[U=\frac {1}{N}\sum _{n=0}^{N-1} w[n]^2\]
+</p><!-- l. 487 --><p class='indent'>   Nota: \(U=1\) si la ventana es rectangular.
+</p><!-- l. 489 --><p class='indent'>   Desempeño:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Reduce sesgo, pero sigue siendo una estimación sesgada.
+     </li>
+     <li class='itemize'>Es asintóticamente insesgada.
+                                                                                         
+                                                                                         
+     </li>
+     <li class='itemize'>La varianza es bastante cercana a la del periodograma.</li></ul>
+<!-- l. 497 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='metodo-de-bartlett'><a id='x13-133000'></a>Método de Bartlett</h5>
+<!-- l. 499 --><p class='noindent'>Utiliza el promedio de periodogramas. Dividir la señal de \(N\) puntos en \(K\) bloques de \(L\) muestras cada uno:
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 503 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/ventana1.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 506 --><p class='indent'>   Definición de bloque:
+</p><!-- l. 508 --><p class='indent'>
+                                             \[ x_i[n] = x[n + iL], \qquad \begin {cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end {cases} \]
+</p><!-- l. 516 --><p class='indent'>   La cantidad de bloques resultante se puede calcular con la siguiente formula:
+</p><!-- l. 518 --><p class='indent'>
+                                             \[K = \text {floor}\left (\frac {N-L}{L}\right ) + 1\]
+</p><!-- l. 520 --><p class='indent'>   Entonces, la estimación del PSD es:
+</p><!-- l. 522 --><p class='indent'>
+                                             \[\hat {S}_B(\omega )=\frac {1}{K}\sum _{i=0}^{K-1} \left \{\frac {1}{L} \left |\sum _{n=0}^{L-1}x_i[n]e^{-j\omega n} \right |^2 \right \} \]
+</p><!-- l. 524 --><p class='indent'>   donde \(i\) esta asociado al bloque \(i\) de tamaño \(L\).
+</p><!-- l. 526 --><p class='indent'>   La varianza de la estimación del PSD es inversamente proporcional a la cantidad de bloques \(K\):
+</p><!-- l. 528 --><p class='indent'>
+                                                                                         
+                                                                                         
+                                             \[\text {var}\{\hat {S}_B(\omega )\} \propto \frac {1}{K}\]
+</p><!-- l. 530 --><p class='indent'>   Es decir, que mientras más bloques se escogan (mayor \(K\)) más nos acercamos al objetivo de que la varianza sea \(0\).
 <br class='newline' />
-</p><!-- l. 30 --><p class='indent'>   Ej.: Sensor con rangos de frecuencia \([5; 10000]\) Hz y de amplitud \([-10; 10]\) g no podría medir frecuencias de \(1\) [Hz], y dependiendo de
-la resolución, probablemente no detecta microvibraciones, por ejemplo \(1\) mg = \(\frac {1}{1000}\) g.
+</p><!-- l. 532 --><p class='indent'>   El problema es que como \(N = KL\), si se definen más bloques (aumentar \(K\)), significa que los bloques son más cortos (\(L\)
+disminuye) y bloques cortos implican una resolución en frecuencia baja, es decir, \(\Delta \omega \) es grande.
+</p><!-- l. 536 --><p class='indent'>   \(\Longrightarrow \) “Trade-off”: Varianza vs resolución.
 </p>
-   <h4 class='subsectionHead' id='diseno-de-sensores'><span class='titlemark'>7.1.2.   </span> <a id='x13-1120007.1.2'></a>Diseño de Sensores</h4>
-<!-- l. 33 --><p class='noindent'>Supongamos tenemos un sensor que se modela como un oscilador SDOF sin amortiguamiento:
-</p><!-- l. 37 --><p class='indent'>   \begin {align*}  \ddot {w} + \omega _s^2 w = -\ddot {z}  \end {align*}
-</p><!-- l. 39 --><p class='indent'>   La FRF de este oscilador es: \begin {align*}  H_{WZ}(\Omega ) = \frac {1}{1-\frac {\omega _s}{\Omega }^2}\\ H_{W\ddot {Z}}(\Omega ) = \frac {1}{\Omega ^2 - \omega _s^2}  \end {align*}
+   <h5 class='subsubsectionHead' id='metodo-de-welch'><a id='x13-134000'></a>Método de Welch</h5>
+<!-- l. 540 --><p class='noindent'>Utiliza el promedio de periodogramas con ventanas traslapadas.
 </p>
-     <ul class='itemize1'>
-     <li class='itemize'>Si quiero que \(w(t)\) se parezca a \(z(t)\). Ocupar rigidez alta.
-     </li>
-     <li class='itemize'>Si quiero que \(w(t)\) se parezca a \(\ddot {z}(t)\). Ocupar rigidez baja.</li></ul>
-<!-- l. 52 --><p class='indent'>   Generalmente la respuesta transiente de \(w(t)\) (que contiene información del sensor) decae rápido
-</p><!-- l. 54 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='fundamentos-basicos-de-electronica'><span class='titlemark'>7.2.   </span> <a id='x13-1130007.2'></a>Fundamentos básicos de electrónica</h3>
-<!-- l. 56 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='resistencia'><span class='titlemark'>7.2.1.   </span> <a id='x13-1140007.2.1'></a>Resistencia</h4>
-<!-- l. 58 --><p class='noindent'>Relación deformación vs voltaje
-                                                                                         
-                                                                                         
-</p><!-- l. 60 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='capacitancia'><span class='titlemark'>7.2.2.   </span> <a id='x13-1150007.2.2'></a>Capacitancia</h4>
-<!-- l. 61 --><p class='noindent'>Es la propiedad de algunos materiales o dispositivos para almacenar carga eléctrica cuando se les aplica una
-diferencia de potencial.
-</p><!-- l. 63 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='piezoelectricidad'><span class='titlemark'>7.2.3.   </span> <a id='x13-1160007.2.3'></a>Piezoelectricidad</h4>
-<!-- l. 64 --><p class='noindent'>Del griego <span class='cmti-10'>piezo </span>(apretar/presión). Es la propiedad de algunos materiales que, al ser sometidos a tensiones o
-deformaciones, generan diferencias de potencial y cargas eléctricas. De manera inversa, si se les aplica una diferencia
-de potencial, estos materiales se deforman.
-</p><!-- l. 66 --><p class='indent'>   Ejemplos de materiales piezoelétricos: Sal de Rochell, Tourmalina, cristales de cuarzo.
-</p><!-- l. 75 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='especificaciones-de-sensores'><span class='titlemark'>7.3.   </span> <a id='x13-1170007.3'></a>Especificaciones de sensores</h3>
-<!-- l. 77 --><p class='noindent'><span class='underline'>sensitividad</span>: Cantidad de voltaje que se genera por unidad de medida de vibración (ej: de aceleración).
-</p><!-- l. 81 --><p class='indent'>   \begin {align*}  S = \frac {\text {output (voltaje)}}{\text {input (vibración)}}  \end {align*}
-</p><!-- l. 83 --><p class='indent'>   <span class='underline'>Resolución</span>: Cantidad mínima de input para generar algún voltaje (se relacióna con el ruido/contaminación de la señal).
-<br class='newline' />
-</p><!-- l. 85 --><p class='indent'>   <span class='underline'>Rango de Frecuencias</span>: Rango de frecuencias que el sensor es capaz de medir. Si la respuesta que quiero medir
-contiene una frecuencia fuera de este rango, no se estaría midiendo la respuesta real de la estructura.
-<br class='newline' />
-</p><!-- l. 87 --><p class='indent'>   <span class='underline'>Linealidad</span>: Que tan lineal es la respuesta que estoy midiendo con la señal eléctrica.
-</p><!-- l. 91 --><p class='indent'>   \begin {align*}  \text {medición} = C \times (\text {señal})  \end {align*}
-</p><!-- l. 93 --><p class='indent'>   Generalmente, los sensores tienen \(R^2 \approx 0.99\)
-</p><!-- l. 95 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='tipos-de-sensores'><span class='titlemark'>7.4.   </span> <a id='x13-1180007.4'></a>Tipos de sensores</h3>
-<!-- l. 97 --><p class='noindent'>En ingeniería estructural y mecánica, los sensores permiten medir variables físicas como aceleración, desplazamiento,
-fuerza o deformación. La correcta selección del sensor depende de la magnitud de interés, el rango de operación, la
-frecuencia de muestreo requerida y la robustez necesaria para el ambiente de trabajo.
-</p><!-- l. 100 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='acelerometros-resistivos'><span class='titlemark'>7.4.1.   </span> <a id='x13-1190007.4.1'></a>Acelerómetros resistivos</h4>
-<!-- l. 101 --><p class='noindent'>Estos sensores generan un voltaje proporcional a la aceleración aplicada al sensor. Funcionan generalmente con un
-elemento sensible resistivo (como un puente de Wheatstone) acoplado a una masa interna que se desplaza frente a la
-aceleración. Tienen la ventaja de ser simples, económicos y de fácil acondicionamiento de señal, pero suelen tener
-limitaciones de frecuencia y son sensibles al ruido eléctrico.
-</p>
-   <figure class='figure' id='-ejemplo-de-principio-de-funcionamiento-de-un-acelerometro-resistivo'> 
+   <figure class='figure'> 
 
                                                                                          
                                                                                          
-<a id='x13-119001r1'></a>
                                                                                          
                                                                                          
-<div class='fbox'>                                                       </div>
-<figcaption class='caption'><span class='id'>Figura 7.1: </span><span class='content'>Ejemplo de principio de funcionamiento de un acelerómetro resistivo.</span></figcaption><!-- tex4ht:label?: x13-119001r1  -->
+<!-- l. 544 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/ventana2.png' width='50' />
                                                                                          
                                                                                          
+</p>
    </figure>
-   <h4 class='subsectionHead' id='acelerometros-capacitivos'><span class='titlemark'>7.4.2.   </span> <a id='x13-1200007.4.2'></a>Acelerómetros capacitivos</h4>
-<!-- l. 113 --><p class='noindent'>Estos sensores utilizan la variación de capacitancia provocada por el movimiento de una masa interna. La
-señal de salida se obtiene mediante técnicas de modulación, generalmente cambiando la frecuencia de un
-puente capacitivo (<span class='cmti-10'>capacitive bridge</span>). Se caracterizan por su alta sensibilidad a bajas frecuencias, bajo
-consumo de energía y bajo costo. Sin embargo, son frágiles frente a impactos fuertes y su rango dinámico es
-limitado.
-</p><!-- l. 118 --><p class='noindent'>
+<!-- l. 547 --><p class='indent'>   Definición de bloque:
+</p><!-- l. 549 --><p class='indent'>
+                                             \[ x_i[n] = x[n + i(L-D)], \qquad \begin {cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end {cases} \]
+</p><!-- l. 557 --><p class='indent'>   donde la cantidad de puntos de traslape es \(D\):
+</p><!-- l. 559 --><p class='indent'>
+                                             \[ \begin {cases} D = 0, &amp; \text {sin traslape} \\ D = L/4, &amp; \text {25\% traslape} \\ D = L/2, &amp; \text {50\% traslape (más común)} \end {cases} \]
+</p><!-- l. 567 --><p class='indent'>   La cantidad de bloques resultante se puede calcular con la siguiente formula:
+</p><!-- l. 569 --><p class='indent'>
+                                             \[K = \text {floor}\left (\frac {N-L}{L - D}\right ) + 1\]
+</p><!-- l. 571 --><p class='indent'>   Entonces, el estimador de Welch se calcula como:
+</p><!-- l. 573 --><p class='indent'>
+                                                                                         
+                                                                                         
+                                             \[\hat {S}_W (\omega ) =\frac {1}{K}\sum _{i=0}^{K-1} \left \{ \frac {1}{LU}\left | \sum _{n=0}^{L-1} x_i[n]w[n]e^{-j\omega n} \right |^2 \right \}\]
+</p><!-- l. 579 --><p class='indent'>   Comparado con método de Bartlett (sin traslape), para el mismo valor de \(N\) y \(L\), el método de Welch con traslape
+50\(\m@th \,\)% resulta en casi un 50\(\m@th \,\)% de reducción en varianza del estimador del PSD:
+</p><!-- l. 581 --><p class='indent'>
+                                             \[\text {var}\{\hat {S}_W (\omega )\} \approx \frac {9}{16} \text {var}\{\hat {S}_B (\omega )\} \]
 </p>
-   <h4 class='subsectionHead' id='acelerometros-piezoelectricos'><span class='titlemark'>7.4.3.   </span> <a id='x13-1210007.4.3'></a>Acelerómetros piezoeléctricos</h4>
-<!-- l. 119 --><p class='noindent'>Estos sensores emplean cristales piezoeléctricos que generan carga eléctrica proporcional a la fuerza
-inercial aplicada. A diferencia de los acelerómetros resistivos o capacitivos, los piezoeléctricos son muy
-robustos frente a altas frecuencias y choques, lo que los hace ideales para aplicaciones dinámicas. Existen
-configuraciones de <span class='cmbx-10'>compresi</span>ó<span class='cmbx-10'>n</span>, <span class='cmbx-10'>flexi</span>ó<span class='cmbx-10'>n </span>y <span class='cmbx-10'>corte</span>, cada una con distinta sensibilidad a vibraciones y ruidos
-ambientales.
+   <h4 class='subsectionHead' id='implementacion-en-matlab'><span class='titlemark'>7.8.3.   </span> <a id='x13-1350007.8.3'></a>Implementación en Matlab</h4>
+<!-- l. 587 --><p class='noindent'>En <span class='cmti-10'>MATLAB</span>, las funciones <span class='cmtt-10'>pwelch() </span>(auto PSD) y <span class='cmtt-10'>cpsd() </span>(cross PSD) ambas utilizan el método de
+Welch.
 </p>
-   <figure class='figure' id='-ejemplo-de-acelerometro-piezoelectrico-y-su-principio-de-funcionamiento'> 
+   <!-- l. 589 -->
 
+<pre class='lstlisting' id='listing-2'><span class='label'><a id='x13-135001r1'></a>1</span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Muestras de senal digital</span> 
+</span><span class='label'><a id='x13-135002r2'></a>2</span><span style='color:#000000'><span class='cmtt-10'>Td</span></span><span style='color:#000000'> <span class='cmtt-10'>= 500;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Duration in seconds</span> 
+</span><span class='label'><a id='x13-135003r3'></a>3</span><span style='color:#000000'><span class='cmtt-10'>fs</span></span><span style='color:#000000'> <span class='cmtt-10'>= 20;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Sampling frequency in Hz</span> 
+</span><span class='label'><a id='x13-135004r4'></a>4</span><span style='color:#000000'><span class='cmtt-10'>t</span></span><span style='color:#000000'> <span class='cmtt-10'>= 0:1/fs:Td;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Time vector</span> 
+</span><span class='label'><a id='x13-135005r5'></a>5</span><span style='color:#000000'><span class='cmtt-10'>N</span></span><span style='color:#000000'> <span class='cmtt-10'>= size(t,1);</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Sample size</span> 
+</span><span class='label'><a id='x13-135006r6'></a>6</span> 
+<span class='label'><a id='x13-135007r7'></a>7</span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Definir bloques, ventanas, traslape y puntos FFT</span> 
+</span><span class='label'><a id='x13-135008r8'></a>8</span><span style='color:#000000'><span class='cmtt-10'>L</span></span><span style='color:#000000'> <span class='cmtt-10'>= 1000;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Window size</span> 
+</span><span class='label'><a id='x13-135009r9'></a>9</span><span style='color:#000000'><span class='cmtt-10'>noverlap</span></span><span style='color:#000000'> <span class='cmtt-10'>= L/2;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Number of overlapped points</span> 
+</span><span class='label'><a id='x13-135010r10'></a>10</span><span style='color:#000000'><span class='cmtt-10'>nfft</span></span><span style='color:#000000'> <span class='cmtt-10'>= 2^nextpow2(L);</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Define number of FFT points</span> 
+</span><span class='label'><a id='x13-135011r11'></a>11</span><span style='color:#000000'><span class='cmtt-10'>window</span></span><span style='color:#000000'> <span class='cmtt-10'>= hamming(L);</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Define window for pwelch (hamming, hann, etc.)</span> 
+</span><span class='label'><a id='x13-135012r12'></a>12</span><span style='color:#000000'><span class='cmtt-10'>B</span></span><span style='color:#000000'> <span class='cmtt-10'>= floor((N-L)/(L - noverlap)) + 1;</span> </span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Cantidad de ventanas con traslape</span> 
+</span><span class='label'><a id='x13-135013r13'></a>13</span><span style='color:#000000'><span class='cmtt-10'>fprintf</span></span><span style='color:#000000'><span class='cmtt-10'>(</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>N</span></span><span style='color:#A020F0'> <span class='cmtt-10'>=</span> \(\m@th \,\)<span class='cmtt-10'>%d, L =</span> \(\m@th \,\)<span class='cmtt-10'>%d, noverlap =</span> \(\m@th \,\)<span class='cmtt-10'>%d, B =</span> \(\m@th \,\)<span class='cmtt-10'>%d, nfft =</span> \(\m@th \,\)<span class='cmtt-10'>%d\n</span><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>N</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>L</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>noverlap</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>B</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>nfft</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span> 
+<span class='label'><a id='x13-135014r14'></a>14</span> 
+<span class='label'><a id='x13-135015r15'></a>15</span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Calcular auto PSD de senal u</span> 
+</span><span class='label'><a id='x13-135016r16'></a>16</span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>pxx</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'> ĩ<span class='cmtt-10'>] = cpsd(u, u, window, noverlap, nfft, fs);</span> 
+</span><span class='label'><a id='x13-135017r17'></a>17</span> 
+<span class='label'><a id='x13-135018r18'></a>18</span><span style='color:#228B22'>\(\m@th \,\)<span class='cmtt-10'>%</span></span><span style='color:#228B22'> <span class='cmtt-10'>Calcular cross PSD entre senales y &amp; u</span> 
+</span><span class='label'><a id='x13-135019r19'></a>19</span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>pyx</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'> <span class='cmtt-10'>f] = cpsd(y, u, window, noverlap, nfft, fs);</span></span></pre>
                                                                                          
                                                                                          
-<a id='x13-121001r2'></a>
-                                                                                         
-                                                                                         
-<div class='fbox'>                                                       </div>
-<figcaption class='caption'><span class='id'>Figura 7.2: </span><span class='content'>Ejemplo de acelerómetro piezoeléctrico y su principio de funcionamiento.</span></figcaption><!-- tex4ht:label?: x13-121001r2  -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class='subsectionHead' id='-strain-gages'><span class='titlemark'>7.4.4.   </span> <a id='x13-1220007.4.4'></a><span class='cmti-10'>Strain gages</span></h4>
-<!-- l. 132 --><p class='noindent'>Las galgas extensiométricas (<span class='cmti-10'>strain gages</span>) miden la deformación de un material a través de la variación de resistencia
-eléctrica de un filamento conductor.
-</p><!-- l. 134 --><p class='indent'>   Al adherirlas a un elemento estructural, permiten medir su deformación y, a partir de ésta, estimar esfuerzos o
-fuerzas aplicadas.
-</p><!-- l. 136 --><p class='indent'>   Se utilizan ampliamente en pruebas de laboratorio y monitoreo estructural.
-</p>
-   <figure class='figure' id='-strain-gage-adherido-a-un-elemento-estructural'> 
-
-                                                                                         
-                                                                                         
-<a id='x13-122001r3'></a>
-                                                                                         
-                                                                                         
-<div class='fbox'>                                                       </div>
-<figcaption class='caption'><span class='id'>Figura 7.3: </span><span class='content'>Strain gage adherido a un elemento estructural.</span></figcaption><!-- tex4ht:label?: x13-122001r3  -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class='subsectionHead' id='celdas-de-carga'><span class='titlemark'>7.4.5.   </span> <a id='x13-1230007.4.5'></a>Celdas de carga</h4>
-<!-- l. 146 --><p class='noindent'>Las celdas de carga son transductores que convierten fuerzas en señales eléctricas, generalmente usando <span class='cmti-10'>strain gages </span>en
-configuración de puente de Wheatstone. Se emplean en balanzas, bancos de pruebas y sistemas de monitoreo de
-cargas estructurales.
-</p><!-- l. 149 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='transductores-de-desplazamiento'><span class='titlemark'>7.4.6.   </span> <a id='x13-1240007.4.6'></a>Transductores de desplazamiento</h4>
-<!-- l. 150 --><p class='noindent'>Estos sensores miden movimiento o desplazamiento lineal/rotacional. Entre los más comunes están: </p>
-     <ul class='itemize1'>
-     <li class='itemize'><span class='cmbx-10'>Potenci</span>ó<span class='cmbx-10'>metros: </span>Miden desplazamiento mediante variación resistiva; son económicos pero tienen desgaste
-     mecánico.
-     </li>
-     <li class='itemize'><span class='cmbx-10'>LVDT (Linear Variable Differential Transformer): </span>Utilizan inducción electromagnética para medir
-     desplazamiento lineal con alta precisión.
-     </li>
-     <li class='itemize'><span class='cmbx-10'>Encoders: </span>Miden desplazamiento angular o velocidad de rotación mediante lectura óptica o magnética.</li></ul>
-   <figure class='figure' id='-ejemplos-de-transductores-de-desplazamiento-lvdt-y-encoder-rotacional'> 
-
-                                                                                         
-                                                                                         
-<a id='x13-124001r4'></a>
-                                                                                         
-                                                                                         
-<div class='fbox'>                                                       </div>
-<figcaption class='caption'><span class='id'>Figura 7.4: </span><span class='content'>Ejemplos de transductores de desplazamiento: LVDT y encoder rotacional.</span></figcaption><!-- tex4ht:label?: x13-124001r4  -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class='subsectionHead' id='otros-sensores'><span class='titlemark'>7.4.7.   </span> <a id='x13-1250007.4.7'></a>Otros sensores</h4>
-<!-- l. 165 --><p class='noindent'>Existen tecnologías avanzadas que permiten medir movimiento, vibración o rotación en aplicaciones especializadas:
-</p>
-     <ul class='itemize1'>
-     <li class='itemize'><span class='cmbx-10'>Interfer</span>ó<span class='cmbx-10'>metros   l</span>á<span class='cmbx-10'>ser:  </span>Permiten   medir   desplazamientos   con   resolución   nanométrica   mediante
-     interferencia de luz coherente.
-     </li>
-     <li class='itemize'><span class='cmbx-10'>Giroscopios: </span>Sensan velocidad angular; existen versiones mecánicas, ópticas y MEMS.
-     </li>
-     <li class='itemize'><span class='cmbx-10'>Sensores de fibra </span>ó<span class='cmbx-10'>ptica: </span>Basados en variaciones de intensidad o interferometría, útiles para monitoreo
-     estructural distribuido.
-     </li>
-     <li class='itemize'><span class='cmbx-10'>MEMS (Micro-Electro-Mechanical Systems): </span>Integran sensores de aceleración, giro y presión en
-     tamaño muy reducido.
-     </li>
-     <li class='itemize'><span class='cmbx-10'>Ge</span>ó<span class='cmbx-10'>fonos: </span>Detectan vibraciones en el suelo, ampliamente usados en geotecnia y monitoreo sísmico.</li></ul>
-   <figure class='figure' id='-ejemplos-de-sensores-avanzados-giroscopio-mems-fibra-optica-y-geofono'> 
-
-                                                                                         
-                                                                                         
-<a id='x13-125001r5'></a>
-                                                                                         
-                                                                                         
-<div class='fbox'>                                                       </div>
-<figcaption class='caption'><span class='id'>Figura 7.5: </span><span class='content'>Ejemplos de sensores avanzados: giroscopio MEMS, fibra óptica y geófono.</span></figcaption><!-- tex4ht:label?: x13-125001r5  -->
-                                                                                         
-                                                                                         
-   </figure>
-                                                                                         
-                                                                                         
-   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='MIC411apuntesch7.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='MIC411apuntesch6.html'>prev</a>] [<a href='MIC411apuntesch6.html#tailMIC411apuntesch6.html'>prev-tail</a>] [<a href='MIC411apuntesch7.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
 <!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch7.html'></a>   </p> 
 </body> 
 </html>

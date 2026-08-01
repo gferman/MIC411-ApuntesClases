@@ -1,65 +1,1085 @@
 <!DOCTYPE html> 
-<html lang='es' xml:lang='es'> 
-<head><title>C Topicos de Analisis Numerico</title> 
-<meta charset='utf-8' /> 
-<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
-<meta content='width=device-width,initial-scale=1' name='viewport' /> 
-<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
-<meta content='MIC411apuntes.tex' name='src' /> 
+<html lang="es" xml:lang="es" > 
+<head><title>C Introducci´on a Simulink</title> 
+<meta  charset="utf-8" /> 
+<meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
+<meta name="viewport" content="width=device-width,initial-scale=1" /> 
+<link rel="stylesheet" type="text/css" href="MIC411apuntes.css" /> 
+<meta name="src" content="MIC411apuntes.tex" /> 
 <script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
- <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
-</head><body>
-   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesli4.html'>next</a>] [<a href='MIC411apuntesap2.html'>prev</a>] [<a href='MIC411apuntesap2.html#tailMIC411apuntesap2.html'>prev-tail</a>] [<a href='#tailMIC411apuntesap3.html'>tail</a>] [<a href='MIC411apuntespa4.html#MIC411apuntesap3.html'>up</a>] </p></div>
-   <h2 class='appendixHead' id='topicos-de-analisis-numerico'><span class='titlemark'>Apéndice C</span><br /><a id='x25-272000C'></a>Tópicos de Análisis Númerico</h2>
-   <h3 class='sectionHead' id='ecuaciones-nolineales'><span class='titlemark'>C.1.   </span> <a id='x25-273000C.1'></a>Ecuaciones nolineales</h3>
-<!-- l. 5 --><p class='noindent'><a id='x25-273001'></a>Heath (<a href='MIC411apuntesli4.html#cite.0@heath2002scientificcomputing'>2002</a>)
-</p><!-- l. 7 --><p class='noindent'>
+ <script type="text/javascript" async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>  
+</head><body 
+>
+   <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="MIC411apuntesli4.html" >next</a>] [<a 
+href="MIC411apuntesap2.html" >prev</a>] [<a 
+href="MIC411apuntesap2.html#tailMIC411apuntesap2.html" >prev-tail</a>] [<a 
+href="#tailMIC411apuntesap3.html">tail</a>] [<a 
+href="MIC411apuntespa5.html#MIC411apuntesap3.html" >up</a>] </p></div>
+   <h2 class="appendixHead"><span class="titlemark">Apéndice C</span><br /><a 
+ id="x27-279000C"></a>Introducción a Simulink</h2>
+   <h3 class="sectionHead"><span class="titlemark">C.1.   </span> <a 
+ id="x27-280000C.1"></a>Generalidades</h3>
+<!--l. 5--><p class="noindent" >Simulink es una herramienta de <span 
+class="cmti-10">MATLAB </span>que permite modelar, simular y analizar sistemas dinámicos mediante un
+enfoque de programación gráfica.
+</p><!--l. 7--><p class="indent" >   El usuario construye el modelo conectando bloques que representan operaciones matemáticas, sistemas físicos o
+funciones lógicas. Las conexiones entre bloques representan señales, que transmiten información en forma de variables
+que evolucionan en el tiempo.
+</p><!--l. 10--><p class="indent" >   En Simulink, una <span 
+class="cmbx-10">se</span>ñ<span 
+class="cmbx-10">al </span>puede ser escalar, vectorial o matricial. Su <span 
+class="cmti-10">dimensi</span>ó<span 
+class="cmti-10">n </span>y tipo de dato dependen del bloque
+que la genera y de la configuración del modelo. En términos generales, puede pensarse como un arreglo que cambia con
+el tiempo.
+</p><!--l. 12--><p class="indent" >   La Figura <a 
+href="#x27-280001r1">C.1<!--tex4ht:ref: fig:simulink-ej --></a> muestra un ejemplo sencillo de un modelo en Simulink.
 </p>
-   <h3 class='sectionHead' id='optimizacion'><span class='titlemark'>C.2.   </span> <a id='x25-274000C.2'></a>Optimización</h3>
-<!-- l. 9 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id=''><span class='titlemark'>C.2.1.   </span> <a id='x25-275000C.2.1'></a></h4>
-<!-- l. 11 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='metodos-de-integracion-numerica-de-edos'><span class='titlemark'>C.3.   </span> <a id='x25-276000C.3'></a>Métodos de integración númerica de EDOs</h3>
-<!-- l. 13 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='paso-temporal-fijo'><span class='titlemark'>C.3.1.   </span> <a id='x25-277000C.3.1'></a>Paso temporal fijo</h4>
-<!-- l. 15 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='paso-temporal-variable'><span class='titlemark'>C.3.2.   </span> <a id='x25-278000C.3.2'></a>Paso temporal variable</h4>
-<!-- l. 17 --><p class='noindent'>
-</p>
-   <h3 class='sectionHead' id='descomposicion-de-valores-singulares-svd'><span class='titlemark'>C.4.   </span> <a id='x25-279000C.4'></a>Descomposición de valores singulares (SVD)</h3>
-<!-- l. 19 --><p class='noindent'>Referencia: <a id='x25-279001'></a>Brunton y Kutz (<a href='MIC411apuntesli4.html#cite.0@brunton_data-driven_2019'>2019</a>, Cap. 1)
-</p><!-- l. 21 --><p class='indent'>   Dado \(X \in \mathbb {C}^{n \times m}\):
-</p><!-- l. 25 --><p class='indent'>   \begin {equation}  X = U \Sigma V^*  \end {equation}<a id='x25-279002r1'></a>
-</p><!-- l. 27 --><p class='noindent'>donde \(U \in \mathbb {C}^{n \times n} \) y \(V \in \mathbb {C}^{m \times m}\) son matrices unitarias con columnas ortogonales (es decir, \(U U^* = I\) y \(V V^* = I\)), y \(\Sigma \in \mathbb {R}^{n \times m}\) es una matriz con entradas no-negativas
-y reales en la diagonal, y ceros fuera de la diagonal. Las columnas de \(U\) se denominan los <span class='cmti-10'>vectores singulares izquierdos</span>
-de \(X\), y las columnas de \(V\) son los <span class='cmti-10'>vectores singulares derechos </span>de \(X\).
-</p><!-- l. 29 --><p class='indent'>   Cuando \(n \geq m\), se puede escribir la operación SVD económica:
-</p><!-- l. 40 --><p class='indent'>   \begin {equation}  X = U \Sigma V^* = \begin {bmatrix} \hat {U} &amp; \hat {U}^{\perp } \end {bmatrix} \begin {bmatrix} \hat {\Sigma } \\ 0 \end {bmatrix} V^*  \end {equation}<a id='x25-279003r2'></a>
-</p><!-- l. 42 --><p class='indent'>   donde \(\hat {\Sigma } \in \mathbb {R}^{m \times m}\) es la matriz de valores singulares.
-</p><!-- l. 44 --><p class='indent'>   En Matlab, se utiliza la función <span class='cmtt-10'>svd()</span>
-</p>
-   <!-- l. 46 -->
-                                                                                         
-                                                                                         
+   <figure class="figure"> 
 
-<pre class='lstlisting' id='listing-1'><span class='label'><a id='x25-279004r1'></a>1</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>X</span></span><span style='color:#000000'> <span class='cmtt-10'>= rand(5,3);</span> 
-</span><span class='label'><a id='x25-279005r2'></a>2</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>U</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>S</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X);</span> 
-</span><span class='label'><a id='x25-279006r3'></a>3</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>Uhat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>Shat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X,</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>econ</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span><span style='color:#000000'><span class='cmtt-10'>;</span></span></pre>
-<!-- l. 52 --><p class='indent'>   Una interpretación matemática es que las matrices de correlación \(X X^*\) y \(X X^*\) cumple las siguientes relaciones:
-</p><!-- l. 57 --><p class='indent'>   \begin {align}  (X X^*) U &amp; = U \begin {bmatrix} \hat {\Sigma }^2 &amp; 0 \\ 0 &amp; 0\end {bmatrix}\\ (X^* X) V &amp; = V \hat {\Sigma }^2\\  \end {align}
-</p><!-- l. 59 --><p class='indent'>   Entonces, los valores singulares de \(X\) corresponden a los valores propios (<span class='cmti-10'>eigenvalues</span>) de las matrices de correlación \(X X^*\)
-y \(X X^*\). También, las columnas de \(U\) son los vectores propios (<span class='cmti-10'>eigenvectors</span>) de la matriz \(X X^*\), y las columnas de \(V\) son los
-vectores propios de la matriz \(X^* X\).
-</p><!-- l. 61 --><p class='noindent'>
+                                                                                         
+                                                                                         
+<a 
+ id="x27-280001r1"></a>
+                                                                                         
+                                                                                         
+<!--l. 16--><p class="noindent" ><img 
+src="Figuras/placeholder_generalidades.png" alt="PIC"  
+width="328" height="328"  />
 </p>
-   <h3 class='sectionHead' id='fast-fourier-transform'><span class='titlemark'>C.5.   </span> <a id='x25-280000C.5'></a>Fast Fourier Transform</h3>
+<figcaption class="caption" ><span class="id">Figura C.1: </span><span  
+class="content">Ejemplo de modelo simple en Simulink.</span></figcaption><!--tex4ht:label?: x27-280001r1 -->
                                                                                          
                                                                                          
-   <!-- l. 160 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesli4.html'>next</a>] [<a href='MIC411apuntesap2.html'>prev</a>] [<a href='MIC411apuntesap2.html#tailMIC411apuntesap2.html'>prev-tail</a>] [<a href='MIC411apuntesap3.html'>front</a>] [<a href='MIC411apuntespa4.html#MIC411apuntesap3.html'>up</a>] </p></div>
-<!-- l. 160 --><p class='indent'>   <a id='tailMIC411apuntesap3.html'></a>  </p> 
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.2.   </span> <a 
+ id="x27-281000C.2"></a>Entradas</h3>
+<!--l. 22--><p class="noindent" >Las entradas permiten excitar el sistema o modelo. Simulink ofrece diversos bloques para generar señales de
+entrada.
+</p><!--l. 24--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">C.2.1.   </span> <a 
+ id="x27-282000C.2.1"></a>Constante</h4>
+<!--l. 25--><p class="noindent" >El bloque <span 
+class="cmbx-10">Constant </span>genera una señal con valor constante durante toda la simulación, como se muestra en la Figura
+<a 
+href="#x27-282001r2">C.2<!--tex4ht:ref: fig:simulink-cte --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-282001r2"></a>
+                                                                                         
+                                                                                         
+<!--l. 29--><p class="noindent" ><img 
+src="Figuras/bloque constant.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.2: </span><span  
+class="content">Bloque de entrada constante.</span></figcaption><!--tex4ht:label?: x27-282001r2 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.2.2.   </span> <a 
+ id="x27-283000C.2.2"></a>Seno</h4>
+<!--l. 35--><p class="noindent" >El bloque <span 
+class="cmbx-10">Sine Wave </span>genera una señal sinusoidal con amplitud, frecuencia y fase configurables, como se muestra en
+las Figuras <a 
+href="#x27-283001r3">C.3<!--tex4ht:ref: fig:simulink-sine --></a> y <a 
+href="#x27-283002r4">C.4<!--tex4ht:ref: fig:simulink-prop-sine --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-283001r3"></a>
+                                                                                         
+                                                                                         
+<!--l. 39--><p class="noindent" ><img 
+src="Figuras/bloque seno.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.3: </span><span  
+class="content">Bloque de entrada Seno.</span></figcaption><!--tex4ht:label?: x27-283001r3 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-283002r4"></a>
+                                                                                         
+                                                                                         
+<!--l. 46--><p class="noindent" ><img 
+src="Figuras/parametros seno.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.4: </span><span  
+class="content">Parámetros de entrada Seno.</span></figcaption><!--tex4ht:label?: x27-283002r4 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.2.3.   </span> <a 
+ id="x27-284000C.2.3"></a>Rampa</h4>
+<!--l. 52--><p class="noindent" >El bloque <span 
+class="cmti-10">Ramp </span>produce una señal de tipo rampa lineal, útil para representar entradas que crecen con pendiente
+constante, donde, como se muestra en la Figura <a 
+href="#x27-284002r6">C.6<!--tex4ht:ref: fig:simulink-para-ramp --></a> se puede configurar tanto la pendiente como el intervalo donde
+inicia la señal. El bloque se muestra en la Figura <a 
+href="#x27-284001r5">C.5<!--tex4ht:ref: fig:simulink-ramp --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-284001r5"></a>
+                                                                                         
+                                                                                         
+<!--l. 56--><p class="noindent" ><img 
+src="Figuras/bloque ramp.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.5: </span><span  
+class="content">Bloque Ramp.</span></figcaption><!--tex4ht:label?: x27-284001r5 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-284002r6"></a>
+                                                                                         
+                                                                                         
+<!--l. 63--><p class="noindent" ><img 
+src="Figuras/parametros ramp.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.6: </span><span  
+class="content">Parámetros Ramp.</span></figcaption><!--tex4ht:label?: x27-284002r6 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.2.4.   </span> <a 
+ id="x27-285000C.2.4"></a>Ruido blanco</h4>
+<!--l. 69--><p class="noindent" >El bloque <span 
+class="cmbx-10">Band-Limited White Noise </span>permite generar ruido blanco, empleado en análisis de respuesta a señales
+aleatorias. Como se muestra en la Figura <a 
+href="#x27-285001r7">C.7<!--tex4ht:ref: fig:simulink-blwn --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-285001r7"></a>
+                                                                                         
+                                                                                         
+<!--l. 73--><p class="noindent" ><img 
+src="Figuras/bloque ruido blanco.png" alt="PIC"  
+width="117" height="117"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.7: </span><span  
+class="content">Bloque de entrada Ruido Blanco de Banda Limitada.</span></figcaption><!--tex4ht:label?: x27-285001r7 -->
+                                                                                         
+                                                                                         
+   </figure>
+<!--l. 78--><p class="indent" >   Para emplear este bloque es necesario contar con la densidad espectral de potencia, la frecuencia de muestro
+asociada y un valor de semilla que permita generar el ruido no correlacionado. Como se Muestra en la Figura
+<a 
+href="#x27-285002r8">C.8<!--tex4ht:ref: fig:simulink-parameterblwn --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-285002r8"></a>
+                                                                                         
+                                                                                         
+<!--l. 82--><p class="noindent" ><img 
+src="Figuras/parametros ruido blanco.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.8: </span><span  
+class="content">parámetros de entrada Ruido Blanco de Banda Limitada.</span></figcaption><!--tex4ht:label?: x27-285002r8 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.2.5.   </span> <a 
+ id="x27-286000C.2.5"></a><span 
+class="cmti-10">From workspace</span></h4>
+<!--l. 88--><p class="noindent" >Este bloque permite incorporar variables previamente definidas en el espacio de trabajo (<span 
+class="cmti-10">workspace</span>) de MATLAB y
+asignar como señales en <span 
+class="cmti-10">Simulink</span>, facilitando la simulación con datos experimentales o precomputados. La variable
+cargada desde el espacio de trabajo debe estructurarse como una matriz de dos columnas: la primera
+indica los instantes de tiempo y la segunda los valores de la señal. Si la duración de la simulación excede el
+rango temporal de los datos, los valores deben prolongarse como cero, evitando en todo momento
+el uso de la opción de “extrapolación”. El bloque y sus parámetros se muestran en las Figuras <a 
+href="#x27-286001r9">C.9<!--tex4ht:ref: fig:simulink-workspace --></a> y
+<a 
+href="#x27-286002r10">C.10<!--tex4ht:ref: fig:simulink-para-workspace --></a>
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-286001r9"></a>
+                                                                                         
+                                                                                         
+<!--l. 93--><p class="noindent" ><img 
+src="Figuras/bloque from workspace.png" alt="PIC"  
+width="117" height="117"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.9: </span><span  
+class="content">Bloque de entrada del Espacio de Trabajo.</span></figcaption><!--tex4ht:label?: x27-286001r9 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-286002r10"></a>
+                                                                                         
+                                                                                         
+<!--l. 100--><p class="noindent" ><img 
+src="Figuras/parametros from workspace.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.10: </span><span  
+class="content">Parámetros de entrada del Espacio de Trabajo.</span></figcaption><!--tex4ht:label?: x27-286002r10 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.3.   </span> <a 
+ id="x27-287000C.3"></a>Operaciones</h3>
+<!--l. 106--><p class="noindent" >Los bloques de operaciones permiten transformar señales mediante operaciones matemáticas básicas.
+</p><!--l. 108--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">C.3.1.   </span> <a 
+ id="x27-288000C.3.1"></a>Suma</h4>
+<!--l. 109--><p class="noindent" >El bloque <span 
+class="cmbx-10">Sum </span>combina varias señales mediante suma o resta, dependiendo de la configuración de sus entradas. Como
+se muestra en la Figura <a 
+href="#x27-288001r11">C.11<!--tex4ht:ref: fig:simulink-suma --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-288001r11"></a>
+                                                                                         
+                                                                                         
+<!--l. 113--><p class="noindent" ><img 
+src="Figuras/bloque sum.png" alt="PIC"  
+width="117" height="117"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.11: </span><span  
+class="content">Bloque de Suma.</span></figcaption><!--tex4ht:label?: x27-288001r11 -->
+                                                                                         
+                                                                                         
+   </figure>
+<!--l. 118--><p class="indent" >   El número de entradas, su posición dentro del bloque y su signo pueden modificarse agregando los símbolos ‘+’, ‘–’
+y ’<span 
+class="cmsy-10">|</span>’
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">C.3.2.   </span> <a 
+ id="x27-289000C.3.2"></a>Multiplicación</h4>
+<!--l. 121--><p class="noindent" >El bloque <span 
+class="cmbx-10">Product </span>multiplica dos señales entre sí. Es posible configurarlo para modificar el número de entradas y
+definir si la operación entre ellas corresponde a una multiplicación escalar o matricial. Como se muestra en la Figura
+<a 
+href="#x27-289001r12">C.12<!--tex4ht:ref: fig:simulink-product --></a>
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-289001r12"></a>
+                                                                                         
+                                                                                         
+<!--l. 125--><p class="noindent" ><img 
+src="Figuras/bloque product.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.12: </span><span  
+class="content">Bloque Producto.</span></figcaption><!--tex4ht:label?: x27-289001r12 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.3.3.   </span> <a 
+ id="x27-290000C.3.3"></a>Gain</h4>
+<!--l. 131--><p class="noindent" >El bloque <span 
+class="cmbx-10">Gain </span>aplica una ganancia constante a una señal de entrada, mostrado en la Figura <a 
+href="#x27-290001r13">C.13<!--tex4ht:ref: fig:simulink-gain --></a>. Este bloque, al
+igual que <span 
+class="cmbx-10">Product</span>, admite multiplicación escalar o matricial, con la opción adicional de cambiar el orden en la
+operación matricial. Como se muestra en la Figura <a 
+href="#x27-290002r14">C.14<!--tex4ht:ref: fig:simulink-parametros-gain --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-290001r13"></a>
+                                                                                         
+                                                                                         
+<!--l. 135--><p class="noindent" ><img 
+src="Figuras/bloque gain.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.13: </span><span  
+class="content">Bloque Ganancia.</span></figcaption><!--tex4ht:label?: x27-290001r13 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-290002r14"></a>
+                                                                                         
+                                                                                         
+<!--l. 142--><p class="noindent" ><img 
+src="Figuras/parametros gain.png" alt="PIC"  
+width="281" height="281"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.14: </span><span  
+class="content">Parámetros Ganancia.</span></figcaption><!--tex4ht:label?: x27-290002r14 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.3.4.   </span> <a 
+ id="x27-291000C.3.4"></a>Integración</h4>
+<!--l. 148--><p class="noindent" >El bloque <span 
+class="cmbx-10">Integrator</span>, mostrado en la Figura <a 
+href="#x27-291001r15">C.15<!--tex4ht:ref: fig:simulink-int --></a>. calcula la integral de la señal de entrada, representando sistemas
+dinámicos como masas, resortes o cargas acumuladas. Este bloque permite definir la condición inicial de la integración,
+ofrece la posibilidad de establecer límites superior e inferior mediante saturación, y cuenta con configuraciones
+adicionales para el manejo de la salida y la opción de reiniciar el integrador. Como se muestra en la Figura
+<a 
+href="#x27-291002r16">C.16<!--tex4ht:ref: fig:simulink-para-int --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-291001r15"></a>
+                                                                                         
+                                                                                         
+<!--l. 152--><p class="noindent" ><img 
+src="Figuras/bloque integrator.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.15: </span><span  
+class="content">Bloque Integración.</span></figcaption><!--tex4ht:label?: x27-291001r15 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-291002r16"></a>
+                                                                                         
+                                                                                         
+<!--l. 159--><p class="noindent" ><img 
+src="Figuras/parametros integrator.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.16: </span><span  
+class="content">Parámetros bloque integración.</span></figcaption><!--tex4ht:label?: x27-291002r16 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.4.   </span> <a 
+ id="x27-292000C.4"></a>Sistemas</h3>
+<!--l. 165--><p class="noindent" >Simulink ofrece bloques para representar modelos dinámicos en distintas formas matemáticas.
+</p><!--l. 167--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">C.4.1.   </span> <a 
+ id="x27-293000C.4.1"></a>State-space</h4>
+<!--l. 168--><p class="noindent" >El bloque <span 
+class="cmbx-10">State-Space </span>permite implementar un sistema LTI en representación de variables de estado, definido por
+las matrices \(A\), \(B\), \(C\) y \(D\). Como se muestra en las Figuras <a 
+href="#x27-293001r17">C.17<!--tex4ht:ref: fig:simulink-ss --></a>. y <a 
+href="#x27-293002r18">C.18<!--tex4ht:ref: fig:simulink-para-ss --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-293001r17"></a>
+                                                                                         
+                                                                                         
+<!--l. 172--><p class="noindent" ><img 
+src="Figuras/bloque espacio estado.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.17: </span><span  
+class="content">Bloque Espacio-estado.</span></figcaption><!--tex4ht:label?: x27-293001r17 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-293002r18"></a>
+                                                                                         
+                                                                                         
+<!--l. 179--><p class="noindent" ><img 
+src="Figuras/parametros espacio estado.png" alt="PIC"  
+width="281" height="281"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.18: </span><span  
+class="content">Parámetros Espacio-estado.</span></figcaption><!--tex4ht:label?: x27-293002r18 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.4.2.   </span> <a 
+ id="x27-294000C.4.2"></a>Transfer function</h4>
+<!--l. 187--><p class="noindent" >El bloque <span 
+class="cmbx-10">Transfer Function </span>implementa sistemas definidos mediante funciones de transferencia, expresadas como
+el cociente de polinomios en \(s\), como se muestra en la Figura <a 
+href="#x27-294001r19">C.19<!--tex4ht:ref: fig:simulink-tf --></a>. Los parámetros a ingresar en el bloque se muestran
+en la Figura <a 
+href="#x27-294002r20">C.20<!--tex4ht:ref: fig:simulink-parametrostf --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-294001r19"></a>
+                                                                                         
+                                                                                         
+<!--l. 191--><p class="noindent" ><img 
+src="Figuras/bloque transfer funtion.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.19: </span><span  
+class="content">Bloque Función de transferencia.</span></figcaption><!--tex4ht:label?: x27-294001r19 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-294002r20"></a>
+                                                                                         
+                                                                                         
+<!--l. 198--><p class="noindent" ><img 
+src="Figuras/parametros trans fun.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.20: </span><span  
+class="content">Parámetros Trasnsfer Function.</span></figcaption><!--tex4ht:label?: x27-294002r20 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.4.3.   </span> <a 
+ id="x27-295000C.4.3"></a>Matlab Function</h4>
+<!--l. 204--><p class="noindent" >En algunos casos, es necesario generar señales complejas o no lineales que no pueden obtenerse sólo con bloques
+estándar. El bloque <span 
+class="cmbx-10">MATLAB Function </span>permite definir una función que recibe una señal de entrada y produce una
+salida calculada en código MATLAB. El bloque se muestra en la Figura <a 
+href="#x27-295001r21">C.21<!--tex4ht:ref: fig:simulink-matfun --></a>.
+</p><!--l. 207--><p class="indent" >   Este bloque permite integrar funciones escritas en MATLAB directamente en un modelo, ejecutando código
+personalizado durante la simulación. Su sintaxis se muestra en la Figura <a 
+href="#x27-295002r22">C.22<!--tex4ht:ref: fig:simulink-para-matfun --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-295001r21"></a>
+                                                                                         
+                                                                                         
+<!--l. 211--><p class="noindent" ><img 
+src="Figuras/bloque mat fun.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.21: </span><span  
+class="content">Bloque Función de Matlab.</span></figcaption><!--tex4ht:label?: x27-295001r21 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-295002r22"></a>
+                                                                                         
+                                                                                         
+<!--l. 218--><p class="noindent" ><img 
+src="Figuras/parametros mat fun.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.22: </span><span  
+class="content">Parámetros Bloque Función de Matlab.</span></figcaption><!--tex4ht:label?: x27-295002r22 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.5.   </span> <a 
+ id="x27-296000C.5"></a>Salidas</h3>
+<!--l. 224--><p class="noindent" >Las salidas permiten visualizar, registrar o exportar los resultados de la simulación.
+</p><!--l. 226--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">C.5.1.   </span> <a 
+ id="x27-297000C.5.1"></a>Scope</h4>
+<!--l. 227--><p class="noindent" >El bloque <span 
+class="cmbx-10">Scope </span>es un osciloscopio virtual que muestra la evolución temporal de las señales durante la simulación. La
+Figura <a 
+href="#x27-297002r24">C.24<!--tex4ht:ref: fig:simulink-ver-scope --></a> muestra una señal sinusoidal de entrada..
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-297001r23"></a>
+                                                                                         
+                                                                                         
+<!--l. 231--><p class="noindent" ><img 
+src="Figuras/bloque scope.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.23: </span><span  
+class="content">Bloque Scope.</span></figcaption><!--tex4ht:label?: x27-297001r23 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-297002r24"></a>
+                                                                                         
+                                                                                         
+<!--l. 238--><p class="noindent" ><img 
+src="Figuras/parametros scope.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.24: </span><span  
+class="content">Visualización Scope.</span></figcaption><!--tex4ht:label?: x27-297002r24 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.5.2.   </span> <a 
+ id="x27-298000C.5.2"></a><span 
+class="cmti-10">To workspace</span></h4>
+<!--l. 244--><p class="noindent" >Este bloque permite exportar las señales al <span 
+class="cmti-10">workspace </span>de MATLAB, para su posterior análisis o graficación. Como se
+muestra en la Figura <a 
+href="#x27-298001r25">C.25<!--tex4ht:ref: fig:simulink-toworkspace --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-298001r25"></a>
+                                                                                         
+                                                                                         
+<!--l. 248--><p class="noindent" ><img 
+src="Figuras/bloque to workspace.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.25: </span><span  
+class="content">Bloque To workspace.</span></figcaption><!--tex4ht:label?: x27-298001r25 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.6.   </span> <a 
+ id="x27-299000C.6"></a>Propiedades simulación</h3>
+<!--l. 254--><p class="noindent" >Antes de ejecutar un modelo, es necesario configurar sus parámetros de simulación: tiempo inicial \(t_\text {init}\), tiempo final \(t_\text {end}\) y
+paso de integración \(t_\text {step}\). Simulink ofrece distintos métodos de integración (<span 
+class="cmti-10">fixed-step </span>y <span 
+class="cmti-10">variable-step</span>) y algoritmos como
+Runge-Kutta de cuarto orden (<span 
+class="cmtt-10">ode4</span>). Esta configuración se encuentra en la sección mostrada en la Figura
+<a 
+href="#x27-299004r26">C.26<!--tex4ht:ref: fig:simulink-parametros-simulacion --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-299004r26"></a>
+                                                                                         
+                                                                                         
+<a 
+ id="x27-299001r1"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"></td></tr></table></div><img 
+src="Figuras/propiedades1.png" alt="PIC"  
+width="469" height="469"  />
+<a 
+ id="x27-299002r2"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"></td></tr></table></div><img 
+src="Figuras/propiedades2.png" alt="PIC"  
+width="469" height="469"  />
+<a 
+ id="x27-299003r3"></a>
+<div class="subfigure"><table><tr><td style="text-align:left"></td></tr></table></div><img 
+src="Figuras/propiedades3.png" alt="PIC"  
+width="469" height="469"  />
+<figcaption class="caption" ><span class="id">Figura C.26: </span><span  
+class="content">Configuración parámetros de Simulación</span></figcaption><!--tex4ht:label?: x27-299004r26 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.7.   </span> <a 
+ id="x27-300000C.7"></a>Bloques especiales</h3>
+<!--l. 285--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">C.7.1.   </span> <a 
+ id="x27-301000C.7.1"></a>Mux/Demux</h4>
+<!--l. 286--><p class="noindent" >Los bloques <span 
+class="cmbx-10">Mux </span>y <span 
+class="cmbx-10">Demux </span>permiten agrupar y desagrupar señales, respectivamente. Son útiles para manejar señales
+vectoriales en diagramas complejos. Ambos bloques se muestran en la Figura <a 
+href="#x27-301001r27">C.27<!--tex4ht:ref: fig:simulink-mux-demux --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-301001r27"></a>
+                                                                                         
+                                                                                         
+<!--l. 291--><p class="noindent" ><img 
+src="Figuras/bloque mux demux.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.27: </span><span  
+class="content">Bloque Mux y Demux.</span></figcaption><!--tex4ht:label?: x27-301001r27 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.7.2.   </span> <a 
+ id="x27-302000C.7.2"></a>Selector</h4>
+<!--l. 297--><p class="noindent" >El bloque <span 
+class="cmbx-10">Selector </span>permite extraer componentes específicas de una señal vectorial o matricial, como se muestra en la
+Figura <a 
+href="#x27-302001r28">C.28<!--tex4ht:ref: fig:simulink-selector --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-302001r28"></a>
+                                                                                         
+                                                                                         
+<!--l. 301--><p class="noindent" ><img 
+src="Figuras/bloque selector.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.28: </span><span  
+class="content">Bloque Selector.</span></figcaption><!--tex4ht:label?: x27-302001r28 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class="subsectionHead"><span class="titlemark">C.7.3.   </span> <a 
+ id="x27-303000C.7.3"></a><span 
+class="cmti-10">Zero-order hold </span>(ZOH)</h4>
+<!--l. 307--><p class="noindent" >El bloque <span 
+class="cmbx-10">Zero-Order Hold </span>convierte señales continuas en discretas manteniendo el último valor de muestreo, lo que
+es esencial en sistemas mixtos continuo. El paso temporal se define en los parámetros como se muestra en la Figura
+<a 
+href="#x27-303002r30">C.30<!--tex4ht:ref: fig:simulink-para-zoh --></a>. Este bloque se muestra en la Figura <a 
+href="#x27-303001r29">C.29<!--tex4ht:ref: fig:simulink-zoh --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-303001r29"></a>
+                                                                                         
+                                                                                         
+<!--l. 311--><p class="noindent" ><img 
+src="Figuras/bloque zoh.png" alt="PIC"  
+width="93" height="93"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.29: </span><span  
+class="content">Bloque Zoh.</span></figcaption><!--tex4ht:label?: x27-303001r29 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-303002r30"></a>
+                                                                                         
+                                                                                         
+<!--l. 318--><p class="noindent" ><img 
+src="Figuras/parametros zoh.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.30: </span><span  
+class="content">Parámetros Zoh.</span></figcaption><!--tex4ht:label?: x27-303002r30 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">C.8.   </span> <a 
+ id="x27-304000C.8"></a>Ejemplo</h3>
+<!--l. 325--><p class="noindent" >Se realiza el ejemplo de un modelo de un grado de libertad sometido a una aceleración basal. Inicialmente se definen
+los parámetros del sistema dinámico, masa, frecuencia natural y razón de amortiguamiento.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-43">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb52"><a 
+ id="x27-304002r1"></a><span id="textcolor363"><span 
+class="cmitt-10">%% Definir parametros</span></span> 
+<a 
+ id="x27-304004r2"></a> 
+<a 
+ id="x27-304006r3"></a><span 
+class="cmtt-10">fn = 2; </span><span id="textcolor364"><span 
+class="cmitt-10">% Hz</span></span> 
+<a 
+ id="x27-304008r4"></a><span 
+class="cmtt-10">m = 1000; </span><span id="textcolor365"><span 
+class="cmitt-10">% kg</span></span> 
+<a 
+ id="x27-304010r5"></a><span 
+class="cmtt-10">zeta = 0.05;</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 336--><p class="indent" >   A partir de los parámetros definidos se obtienen los coeficientes de la ecuación diferencial de movimiento
+asociada.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-44">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb53"><a 
+ id="x27-304012r1"></a><span id="textcolor366"><span 
+class="cmitt-10">%% Obtener EDM</span></span> 
+<a 
+ id="x27-304014r2"></a><span id="textcolor367"><span 
+class="cmitt-10">% m*ddu + c*du + k*u =</span> <span 
+class="cmitt-10">-</span><span 
+class="cmitt-10">m*ddug</span></span> 
+<a 
+ id="x27-304016r3"></a> 
+<a 
+ id="x27-304018r4"></a><span 
+class="cmtt-10">wn = 2*pi*fn; </span><span id="textcolor368"><span 
+class="cmitt-10">% rad/s</span></span> 
+<a 
+ id="x27-304020r5"></a><span 
+class="cmtt-10">k = wn</span><span id="textcolor369"><span 
+class="cmtt-10">^</span></span><span 
+class="cmtt-10">2*m; </span><span id="textcolor370"><span 
+class="cmitt-10">% N/m</span></span> 
+<a 
+ id="x27-304022r6"></a><span 
+class="cmtt-10">c = 2*zeta*m*wn; </span><span id="textcolor371"><span 
+class="cmitt-10">% N</span><span 
+class="cmitt-10">-</span><span 
+class="cmitt-10">s/m</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 347--><p class="indent" >   Luego se escribe en función de las ecuaciones de espacio estado. En este caso particular se quiere como salida el
+desplazamiento relativo, la velocidad relativa y la aceleración absoluta.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-45">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb54"><a 
+ id="x27-304024r1"></a><span id="textcolor372"><span 
+class="cmitt-10">%% Representacion Espacio Estado</span></span> 
+<a 
+ id="x27-304026r2"></a><span id="textcolor373"><span 
+class="cmitt-10">% dx = As*x + Bs*ddug</span></span> 
+<a 
+ id="x27-304028r3"></a><span id="textcolor374"><span 
+class="cmitt-10">%  y = Cs*x + Ds*ddug</span></span> 
+<a 
+ id="x27-304030r4"></a> 
+<a 
+ id="x27-304032r5"></a><span 
+class="cmtt-10">Ass = [0 1;</span> <span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">k/m</span> <span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">c/m];</span> 
+<a 
+ id="x27-304034r6"></a><span 
+class="cmtt-10">Bss = [0;</span> <span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">m/m];</span> 
+<a 
+ id="x27-304036r7"></a><span 
+class="cmtt-10">Css = [1 0; 0 1;</span> <span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">k/m</span> <span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">c/m];</span> 
+<a 
+ id="x27-304038r8"></a><span 
+class="cmtt-10">Dss = [0; 0; 0];</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 360--><p class="indent" >   Después se lee el registro de aceleración y se crea una matriz con tiempo-aceleración.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-46">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb55"><a 
+ id="x27-304040r1"></a><span id="textcolor375"><span 
+class="cmitt-10">%% Leer registro aceleracion</span></span> 
+<a 
+ id="x27-304042r2"></a> 
+<a 
+ id="x27-304044r3"></a><span 
+class="cmtt-10">record = importdata(&#x0027;RegistroNorthridge1994</span><span id="textcolor376"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">TarzanaCH1.txt&#x0027;);</span> 
+<a 
+ id="x27-304046r4"></a><span 
+class="cmtt-10">record.dt = 0.02;</span> 
+<a 
+ id="x27-304048r5"></a><span 
+class="cmtt-10">record.N = length(record.data);</span> 
+<a 
+ id="x27-304050r6"></a><span 
+class="cmtt-10">time = linspace(0,(record.N</span><span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">1)*record.dt,record.N)&#x0027;;</span> 
+<a 
+ id="x27-304052r7"></a> 
+<a 
+ id="x27-304054r8"></a><span 
+class="cmtt-10">acel = record.data/100; </span><span id="textcolor377"><span 
+class="cmitt-10">% en m/s2</span></span> 
+<a 
+ id="x27-304056r9"></a><span 
+class="cmtt-10">acel</span><span id="textcolor378"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">simu = [time,acel];</span> 
+<a 
+ id="x27-304058r10"></a></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 375--><p class="indent" >   Se ajustan los parámetros de simulación, considerando un paso temporal de 0.001 s y se ajusta el tiempo de
+simulación al tiempo del registro de aceleración.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-47">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb56"><a 
+ id="x27-304060r1"></a><span id="textcolor379"><span 
+class="cmitt-10">%% Simulacion</span></span> 
+<a 
+ id="x27-304062r2"></a> 
+<a 
+ id="x27-304064r3"></a><span 
+class="cmtt-10">t</span><span id="textcolor380"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">muestreo = time(end); </span><span id="textcolor381"><span 
+class="cmitt-10">% tiempo final del registro sismico</span></span> 
+<a 
+ id="x27-304066r4"></a><span 
+class="cmtt-10">dt = 1/1000; </span><span id="textcolor382"><span 
+class="cmitt-10">% s</span></span> 
+<a 
+ id="x27-304068r5"></a></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 385--><p class="indent" >   Ya con los parámetros definidos se ingresan en la configuración de Simulink, se utiliza Runge-Kutta (ode4), como
+se muestra en la Figura <a 
+href="#x27-304069r31">C.31<!--tex4ht:ref: fig:simulink-para-ejem --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-304069r31"></a>
+                                                                                         
+                                                                                         
+<!--l. 389--><p class="noindent" ><img 
+src="Figuras/parametros simulacion ejemplo.png" alt="PIC"  
+width="375" height="375"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.31: </span><span  
+class="content">Parámetros Simulación de Ejemplo.</span></figcaption><!--tex4ht:label?: x27-304069r31 -->
+                                                                                         
+                                                                                         
+   </figure>
+<!--l. 394--><p class="indent" >   Luego se modela la entrada como un bloque <span 
+class="cmbx-10">from workspace</span>, como se muestra en la Figura <a 
+href="#x27-304070r32">C.32<!--tex4ht:ref: fig:simulink-acel --></a>. El sistema
+dinámico utilizando el bloque <span 
+class="cmbx-10">state-space</span>,como se muestra en la Figura <a 
+href="#x27-304071r33">C.33<!--tex4ht:ref: fig:simulink-ss-ejemplo --></a>, donde las salidas se separan utilizando
+un bloque <span 
+class="cmbx-10">demux </span>para finalmente ser enviadas al espacio de trabajo utilizando el bloque <span 
+class="cmbx-10">to workspace</span>. El sistema
+completo se muestra en la Figura <a 
+href="#x27-304072r34">C.34<!--tex4ht:ref: fig:simulink-ejemplo --></a>.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-304070r32"></a>
+                                                                                         
+                                                                                         
+<!--l. 398--><p class="noindent" ><img 
+src="Figuras/aceleracion ejemplo.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.32: </span><span  
+class="content">Registro de Aceleración.</span></figcaption><!--tex4ht:label?: x27-304070r32 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-304071r33"></a>
+                                                                                         
+                                                                                         
+<!--l. 405--><p class="noindent" ><img 
+src="Figuras/espacio estado ejemplo.png" alt="PIC"  
+width="234" height="234"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.33: </span><span  
+class="content">Parámetros Espacio Estado ejemplo.</span></figcaption><!--tex4ht:label?: x27-304071r33 -->
+                                                                                         
+                                                                                         
+   </figure>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+<a 
+ id="x27-304072r34"></a>
+                                                                                         
+                                                                                         
+<!--l. 412--><p class="noindent" ><img 
+src="Figuras/modelo simulink ejemplo.png" alt="PIC"  
+width="469" height="469"  />
+</p>
+<figcaption class="caption" ><span class="id">Figura C.34: </span><span  
+class="content">Modelo Simulink ejemplo.</span></figcaption><!--tex4ht:label?: x27-304072r34 -->
+                                                                                         
+                                                                                         
+   </figure>
+<!--l. 417--><p class="indent" >   Aparte se incorporan bloques <span 
+class="cmbx-10">scope </span>en todas las señales para poder observarlas antes de llevar los datos al
+espacio de trabajo.
+</p><!--l. 419--><p class="indent" >   Finalmente, para llamar las variables desde el espacio de trabajo y correr la simulación se utiliza el siguiente
+código.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-48">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb57"><a 
+ id="x27-304074r1"></a><span id="textcolor383"><span 
+class="cmitt-10">%% Cargar el modelo de Simulink</span></span> 
+<a 
+ id="x27-304076r2"></a> 
+<a 
+ id="x27-304078r3"></a><span 
+class="cmtt-10">modelo = &#x0027;ejemplo</span><span id="textcolor384"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">Dinav&#x0027;; </span><span id="textcolor385"><span 
+class="cmitt-10">% Nombre del archivo sin la extensi</span>ó<span 
+class="cmitt-10">n .slx</span></span> 
+<a 
+ id="x27-304080r4"></a><span 
+class="cmtt-10">load</span><span id="textcolor386"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">system(modelo);</span> 
+<a 
+ id="x27-304082r5"></a><span id="textcolor387"><span 
+class="cmitt-10">% Ejecutar la simulaci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x27-304084r6"></a><span 
+class="cmtt-10">simOut = sim(modelo);</span> 
+<a 
+ id="x27-304086r7"></a><span id="textcolor388"><span 
+class="cmitt-10">% soluci</span>ó<span 
+class="cmitt-10">n numerica</span></span> 
+<a 
+ id="x27-304088r8"></a><span 
+class="cmtt-10">d = simOut.desplazamiento.Data;</span> 
+<a 
+ id="x27-304090r9"></a><span 
+class="cmtt-10">v = simOut.velocidad.Data;</span> 
+<a 
+ id="x27-304092r10"></a><span 
+class="cmtt-10">a = simOut.aceleracion.Data;</span> 
+<a 
+ id="x27-304094r11"></a></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+                                                                                         
+                                                                                         
+   <!--l. 164--><div class="crosslinks"><p class="noindent">[<a 
+href="MIC411apuntesli4.html" >next</a>] [<a 
+href="MIC411apuntesap2.html" >prev</a>] [<a 
+href="MIC411apuntesap2.html#tailMIC411apuntesap2.html" >prev-tail</a>] [<a 
+href="MIC411apuntesap3.html" >front</a>] [<a 
+href="MIC411apuntespa5.html#MIC411apuntesap3.html" >up</a>] </p></div>
+<!--l. 164--><p class="indent" >   <a 
+ id="tailMIC411apuntesap3.html"></a>  </p> 
 </body> 
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang="es" xml:lang="es" > 
-<head><title>B Introducci´on a Simulink</title> 
+<head><title>B Introducci´on a Matlab</title> 
 <meta  charset="utf-8" /> 
 <meta name="generator" content="TeX4ht (https://tug.org/tex4ht/)" /> 
 <meta name="viewport" content="width=device-width,initial-scale=1" /> 
@@ -15,1057 +15,193 @@ href="MIC411apuntesap3.html" >next</a>] [<a
 href="MIC411apuntesap1.html" >prev</a>] [<a 
 href="MIC411apuntesap1.html#tailMIC411apuntesap1.html" >prev-tail</a>] [<a 
 href="#tailMIC411apuntesap2.html">tail</a>] [<a 
-href="MIC411apuntespa4.html#MIC411apuntesap2.html" >up</a>] </p></div>
+href="MIC411apuntespa5.html#MIC411apuntesap2.html" >up</a>] </p></div>
    <h2 class="appendixHead"><span class="titlemark">Apéndice B</span><br /><a 
- id="x24-246000B"></a>Introducción a Simulink</h2>
+ id="x26-242000B"></a>Introducción a Matlab</h2>
    <h3 class="sectionHead"><span class="titlemark">B.1.   </span> <a 
- id="x24-247000B.1"></a>Generalidades</h3>
-<!--l. 5--><p class="noindent" >Simulink es una herramienta de <span 
-class="cmti-10">MATLAB </span>que permite modelar, simular y analizar sistemas dinámicos mediante un
-enfoque de programación gráfica.
-</p><!--l. 7--><p class="indent" >   El usuario construye el modelo conectando bloques que representan operaciones matemáticas, sistemas físicos o
-funciones lógicas. Las conexiones entre bloques representan señales, que transmiten información en forma de variables
-que evolucionan en el tiempo.
-</p><!--l. 10--><p class="indent" >   En Simulink, una <span 
-class="cmbx-10">se</span>ñ<span 
-class="cmbx-10">al </span>puede ser escalar, vectorial o matricial. Su <span 
-class="cmti-10">dimensi</span>ó<span 
-class="cmti-10">n </span>y tipo de dato dependen del bloque
-que la genera y de la configuración del modelo. En términos generales, puede pensarse como un arreglo que cambia con
-el tiempo.
-</p><!--l. 12--><p class="indent" >   La Figura <a 
-href="#x24-247001r1">B.1<!--tex4ht:ref: fig:simulink-ej --></a> muestra un ejemplo sencillo de un modelo en Simulink.
+ id="x26-243000B.1"></a>Introducción</h3>
+<!--l. 5--><p class="noindent" ><span 
+class="cmbx-10">MATLAB </span>(<span 
+class="cmbx-10">MAT</span>rix <span 
+class="cmbx-10">LAB</span>oratory) es un entorno y lenguaje de programación. Su ventaja es su capacidad para
+realizar operaciones de arreglos multidimensionales como vectores (\(n \times 1\)), matrices (\(n \times m\)), etc. de manera rápida y sencilla.
+<br 
+class="newline" />
+</p><!--l. 7--><p class="noindent" >MATLAB tiene documentación para todas sus funciones. Dentro del mismo entorno se puede consultar cómo utilizar
+una función escribiendo <span 
+class="cmti-10">help nombre</span><span 
+class="cmti-10">_funci</span>ó<span 
+class="cmti-10">n </span>en la ventana de comandos o consultando su página web, la cual contiene
+ejemplos:
+</p><!--l. 9--><p class="noindent" >
 </p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-247001r1"></a>
-                                                                                         
-                                                                                         
-<!--l. 16--><p class="noindent" ><img 
-src="Figuras/placeholder_generalidades.png" alt="PIC"  
-width="328" height="328"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.1: </span><span  
-class="content">Ejemplo de modelo simple en Simulink.</span></figcaption><!--tex4ht:label?: x24-247001r1 -->
-                                                                                         
-                                                                                         
-   </figure>
    <h3 class="sectionHead"><span class="titlemark">B.2.   </span> <a 
- id="x24-248000B.2"></a>Entradas</h3>
-<!--l. 22--><p class="noindent" >Las entradas permiten excitar el sistema o modelo. Simulink ofrece diversos bloques para generar señales de
-entrada.
-</p><!--l. 24--><p class="noindent" >
+ id="x26-244000B.2"></a>Crear Variables</h3>
+<!--l. 10--><p class="noindent" >Las variables se utilizan para almacenar datos. Hay diversas estructuras de datos para almacenarlos, como escalares,
+vectores, matrices, también, cadenas de texto (string), celdas (cells), estructuras (struct) a las que se les asignan
+letras o variables:
+</p><!--l. 12--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">B.2.1.   </span> <a 
- id="x24-249000B.2.1"></a>Constante</h4>
-<!--l. 25--><p class="noindent" >El bloque <span 
-class="cmbx-10">Constant </span>genera una señal con valor constante durante toda la simulación, como se muestra en la Figura
-<a 
-href="#x24-249001r2">B.2<!--tex4ht:ref: fig:simulink-cte --></a>.
+ id="x26-245000B.2.1"></a>Crear arreglos</h4>
+<!--l. 13--><p class="noindent" >Un arreglo es un escalar, vector, o un tensor multidimensional, con dimensiones \(p \times q \times r \times s \times ...\) <br 
+class="newline" />
+</p><!--l. 15--><p class="indent" >   Ej: Crear las siguientes variables: \(a = 1\), \(b = \begin {bmatrix} 1 \\ 2 \\ 3 \end {bmatrix} \) y \(c = \begin {bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end {bmatrix} \)
 </p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-249001r2"></a>
-                                                                                         
-                                                                                         
-<!--l. 29--><p class="noindent" ><img 
-src="Figuras/bloque constant.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.2: </span><span  
-class="content">Bloque de entrada constante.</span></figcaption><!--tex4ht:label?: x24-249001r2 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.2.2.   </span> <a 
- id="x24-250000B.2.2"></a>Seno</h4>
-<!--l. 35--><p class="noindent" >El bloque <span 
-class="cmbx-10">Sine Wave </span>genera una señal sinusoidal con amplitud, frecuencia y fase configurables, como se muestra en
-las Figuras <a 
-href="#x24-250001r3">B.3<!--tex4ht:ref: fig:simulink-sine --></a> y <a 
-href="#x24-250002r4">B.4<!--tex4ht:ref: fig:simulink-prop-sine --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-250001r3"></a>
-                                                                                         
-                                                                                         
-<!--l. 39--><p class="noindent" ><img 
-src="Figuras/bloque seno.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.3: </span><span  
-class="content">Bloque de entrada Seno.</span></figcaption><!--tex4ht:label?: x24-250001r3 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-250002r4"></a>
-                                                                                         
-                                                                                         
-<!--l. 46--><p class="noindent" ><img 
-src="Figuras/parametros seno.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.4: </span><span  
-class="content">Parámetros de entrada Seno.</span></figcaption><!--tex4ht:label?: x24-250002r4 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.2.3.   </span> <a 
- id="x24-251000B.2.3"></a>Rampa</h4>
-<!--l. 52--><p class="noindent" >El bloque <span 
-class="cmti-10">Ramp </span>produce una señal de tipo rampa lineal, útil para representar entradas que crecen con pendiente
-constante, donde, como se muestra en la Figura <a 
-href="#x24-251002r6">B.6<!--tex4ht:ref: fig:simulink-para-ramp --></a> se puede configurar tanto la pendiente como el intervalo donde
-inicia la señal. El bloque se muestra en la Figura <a 
-href="#x24-251001r5">B.5<!--tex4ht:ref: fig:simulink-ramp --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-251001r5"></a>
-                                                                                         
-                                                                                         
-<!--l. 56--><p class="noindent" ><img 
-src="Figuras/bloque ramp.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.5: </span><span  
-class="content">Bloque Ramp.</span></figcaption><!--tex4ht:label?: x24-251001r5 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-251002r6"></a>
-                                                                                         
-                                                                                         
-<!--l. 63--><p class="noindent" ><img 
-src="Figuras/parametros ramp.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.6: </span><span  
-class="content">Parámetros Ramp.</span></figcaption><!--tex4ht:label?: x24-251002r6 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.2.4.   </span> <a 
- id="x24-252000B.2.4"></a>Ruido blanco</h4>
-<!--l. 69--><p class="noindent" >El bloque <span 
-class="cmbx-10">Band-Limited White Noise </span>permite generar ruido blanco, empleado en análisis de respuesta a señales
-aleatorias. Como se muestra en la Figura <a 
-href="#x24-252001r7">B.7<!--tex4ht:ref: fig:simulink-blwn --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-252001r7"></a>
-                                                                                         
-                                                                                         
-<!--l. 73--><p class="noindent" ><img 
-src="Figuras/bloque ruido blanco.png" alt="PIC"  
-width="117" height="117"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.7: </span><span  
-class="content">Bloque de entrada Ruido Blanco de Banda Limitada.</span></figcaption><!--tex4ht:label?: x24-252001r7 -->
-                                                                                         
-                                                                                         
-   </figure>
-<!--l. 78--><p class="indent" >   Para emplear este bloque es necesario contar con la densidad espectral de potencia, la frecuencia de muestro
-asociada y un valor de semilla que permita generar el ruido no correlacionado. Como se Muestra en la Figura
-<a 
-href="#x24-252002r8">B.8<!--tex4ht:ref: fig:simulink-parameterblwn --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-252002r8"></a>
-                                                                                         
-                                                                                         
-<!--l. 82--><p class="noindent" ><img 
-src="Figuras/parametros ruido blanco.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.8: </span><span  
-class="content">parámetros de entrada Ruido Blanco de Banda Limitada.</span></figcaption><!--tex4ht:label?: x24-252002r8 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.2.5.   </span> <a 
- id="x24-253000B.2.5"></a><span 
-class="cmti-10">From workspace</span></h4>
-<!--l. 88--><p class="noindent" >Este bloque permite incorporar variables previamente definidas en el espacio de trabajo (<span 
-class="cmti-10">workspace</span>) de MATLAB y
-asignar como señales en <span 
-class="cmti-10">Simulink</span>, facilitando la simulación con datos experimentales o precomputados. La variable
-cargada desde el espacio de trabajo debe estructurarse como una matriz de dos columnas: la primera
-indica los instantes de tiempo y la segunda los valores de la señal. Si la duración de la simulación excede el
-rango temporal de los datos, los valores deben prolongarse como cero, evitando en todo momento
-el uso de la opción de “extrapolación”. El bloque y sus parámetros se muestran en las Figuras <a 
-href="#x24-253001r9">B.9<!--tex4ht:ref: fig:simulink-workspace --></a> y
-<a 
-href="#x24-253002r10">B.10<!--tex4ht:ref: fig:simulink-para-workspace --></a>
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-253001r9"></a>
-                                                                                         
-                                                                                         
-<!--l. 93--><p class="noindent" ><img 
-src="Figuras/bloque from workspace.png" alt="PIC"  
-width="117" height="117"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.9: </span><span  
-class="content">Bloque de entrada del Espacio de Trabajo.</span></figcaption><!--tex4ht:label?: x24-253001r9 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-253002r10"></a>
-                                                                                         
-                                                                                         
-<!--l. 100--><p class="noindent" ><img 
-src="Figuras/parametros from workspace.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.10: </span><span  
-class="content">Parámetros de entrada del Espacio de Trabajo.</span></figcaption><!--tex4ht:label?: x24-253002r10 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h3 class="sectionHead"><span class="titlemark">B.3.   </span> <a 
- id="x24-254000B.3"></a>Operaciones</h3>
-<!--l. 106--><p class="noindent" >Los bloques de operaciones permiten transformar señales mediante operaciones matemáticas básicas.
-</p><!--l. 108--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">B.3.1.   </span> <a 
- id="x24-255000B.3.1"></a>Suma</h4>
-<!--l. 109--><p class="noindent" >El bloque <span 
-class="cmbx-10">Sum </span>combina varias señales mediante suma o resta, dependiendo de la configuración de sus entradas. Como
-se muestra en la Figura <a 
-href="#x24-255001r11">B.11<!--tex4ht:ref: fig:simulink-suma --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-255001r11"></a>
-                                                                                         
-                                                                                         
-<!--l. 113--><p class="noindent" ><img 
-src="Figuras/bloque sum.png" alt="PIC"  
-width="117" height="117"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.11: </span><span  
-class="content">Bloque de Suma.</span></figcaption><!--tex4ht:label?: x24-255001r11 -->
-                                                                                         
-                                                                                         
-   </figure>
-<!--l. 118--><p class="indent" >   El número de entradas, su posición dentro del bloque y su signo pueden modificarse agregando los símbolos ‘+’, ‘–’
-y ’<span 
-class="cmsy-10">|</span>’
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">B.3.2.   </span> <a 
- id="x24-256000B.3.2"></a>Multiplicación</h4>
-<!--l. 121--><p class="noindent" >El bloque <span 
-class="cmbx-10">Product </span>multiplica dos señales entre sí. Es posible configurarlo para modificar el número de entradas y
-definir si la operación entre ellas corresponde a una multiplicación escalar o matricial. Como se muestra en la Figura
-<a 
-href="#x24-256001r12">B.12<!--tex4ht:ref: fig:simulink-product --></a>
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-256001r12"></a>
-                                                                                         
-                                                                                         
-<!--l. 125--><p class="noindent" ><img 
-src="Figuras/bloque product.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.12: </span><span  
-class="content">Bloque Producto.</span></figcaption><!--tex4ht:label?: x24-256001r12 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.3.3.   </span> <a 
- id="x24-257000B.3.3"></a>Gain</h4>
-<!--l. 131--><p class="noindent" >El bloque <span 
-class="cmbx-10">Gain </span>aplica una ganancia constante a una señal de entrada, mostrado en la Figura <a 
-href="#x24-257001r13">B.13<!--tex4ht:ref: fig:simulink-gain --></a>. Este bloque, al
-igual que <span 
-class="cmbx-10">Product</span>, admite multiplicación escalar o matricial, con la opción adicional de cambiar el orden en la
-operación matricial. Como se muestra en la Figura <a 
-href="#x24-257002r14">B.14<!--tex4ht:ref: fig:simulink-parametros-gain --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-257001r13"></a>
-                                                                                         
-                                                                                         
-<!--l. 135--><p class="noindent" ><img 
-src="Figuras/bloque gain.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.13: </span><span  
-class="content">Bloque Ganancia.</span></figcaption><!--tex4ht:label?: x24-257001r13 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-257002r14"></a>
-                                                                                         
-                                                                                         
-<!--l. 142--><p class="noindent" ><img 
-src="Figuras/parametros gain.png" alt="PIC"  
-width="281" height="281"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.14: </span><span  
-class="content">Parámetros Ganancia.</span></figcaption><!--tex4ht:label?: x24-257002r14 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.3.4.   </span> <a 
- id="x24-258000B.3.4"></a>Integración</h4>
-<!--l. 148--><p class="noindent" >El bloque <span 
-class="cmbx-10">Integrator</span>, mostrado en la Figura <a 
-href="#x24-258001r15">B.15<!--tex4ht:ref: fig:simulink-int --></a>. calcula la integral de la señal de entrada, representando sistemas
-dinámicos como masas, resortes o cargas acumuladas. Este bloque permite definir la condición inicial de la integración,
-ofrece la posibilidad de establecer límites superior e inferior mediante saturación, y cuenta con configuraciones
-adicionales para el manejo de la salida y la opción de reiniciar el integrador. Como se muestra en la Figura
-<a 
-href="#x24-258002r16">B.16<!--tex4ht:ref: fig:simulink-para-int --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-258001r15"></a>
-                                                                                         
-                                                                                         
-<!--l. 152--><p class="noindent" ><img 
-src="Figuras/bloque integrator.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.15: </span><span  
-class="content">Bloque Integración.</span></figcaption><!--tex4ht:label?: x24-258001r15 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-258002r16"></a>
-                                                                                         
-                                                                                         
-<!--l. 159--><p class="noindent" ><img 
-src="Figuras/parametros integrator.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.16: </span><span  
-class="content">Parámetros bloque integración.</span></figcaption><!--tex4ht:label?: x24-258002r16 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h3 class="sectionHead"><span class="titlemark">B.4.   </span> <a 
- id="x24-259000B.4"></a>Sistemas</h3>
-<!--l. 165--><p class="noindent" >Simulink ofrece bloques para representar modelos dinámicos en distintas formas matemáticas.
-</p><!--l. 167--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">B.4.1.   </span> <a 
- id="x24-260000B.4.1"></a>State-space</h4>
-<!--l. 168--><p class="noindent" >El bloque <span 
-class="cmbx-10">State-Space </span>permite implementar un sistema LTI en representación de variables de estado, definido por
-las matrices \(A\), \(B\), \(C\) y \(D\). Como se muestra en las Figuras <a 
-href="#x24-260001r17">B.17<!--tex4ht:ref: fig:simulink-ss --></a>. y <a 
-href="#x24-260002r18">B.18<!--tex4ht:ref: fig:simulink-para-ss --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-260001r17"></a>
-                                                                                         
-                                                                                         
-<!--l. 172--><p class="noindent" ><img 
-src="Figuras/bloque espacio estado.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.17: </span><span  
-class="content">Bloque Espacio-estado.</span></figcaption><!--tex4ht:label?: x24-260001r17 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-260002r18"></a>
-                                                                                         
-                                                                                         
-<!--l. 179--><p class="noindent" ><img 
-src="Figuras/parametros espacio estado.png" alt="PIC"  
-width="281" height="281"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.18: </span><span  
-class="content">Parámetros Espacio-estado.</span></figcaption><!--tex4ht:label?: x24-260002r18 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.4.2.   </span> <a 
- id="x24-261000B.4.2"></a>Transfer function</h4>
-<!--l. 187--><p class="noindent" >El bloque <span 
-class="cmbx-10">Transfer Function </span>implementa sistemas definidos mediante funciones de transferencia, expresadas como
-el cociente de polinomios en \(s\), como se muestra en la Figura <a 
-href="#x24-261001r19">B.19<!--tex4ht:ref: fig:simulink-tf --></a>. Los parámetros a ingresar en el bloque se muestran
-en la Figura <a 
-href="#x24-261002r20">B.20<!--tex4ht:ref: fig:simulink-parametrostf --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-261001r19"></a>
-                                                                                         
-                                                                                         
-<!--l. 191--><p class="noindent" ><img 
-src="Figuras/bloque transfer funtion.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.19: </span><span  
-class="content">Bloque Función de transferencia.</span></figcaption><!--tex4ht:label?: x24-261001r19 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-261002r20"></a>
-                                                                                         
-                                                                                         
-<!--l. 198--><p class="noindent" ><img 
-src="Figuras/parametros trans fun.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.20: </span><span  
-class="content">Parámetros Trasnsfer Function.</span></figcaption><!--tex4ht:label?: x24-261002r20 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.4.3.   </span> <a 
- id="x24-262000B.4.3"></a>Matlab Function</h4>
-<!--l. 204--><p class="noindent" >En algunos casos, es necesario generar señales complejas o no lineales que no pueden obtenerse sólo con bloques
-estándar. El bloque <span 
-class="cmbx-10">MATLAB Function </span>permite definir una función que recibe una señal de entrada y produce una
-salida calculada en código MATLAB. El bloque se muestra en la Figura <a 
-href="#x24-262001r21">B.21<!--tex4ht:ref: fig:simulink-matfun --></a>.
-</p><!--l. 207--><p class="indent" >   Este bloque permite integrar funciones escritas en MATLAB directamente en un modelo, ejecutando código
-personalizado durante la simulación. Su sintaxis se muestra en la Figura <a 
-href="#x24-262002r22">B.22<!--tex4ht:ref: fig:simulink-para-matfun --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-262001r21"></a>
-                                                                                         
-                                                                                         
-<!--l. 211--><p class="noindent" ><img 
-src="Figuras/bloque mat fun.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.21: </span><span  
-class="content">Bloque Función de Matlab.</span></figcaption><!--tex4ht:label?: x24-262001r21 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-262002r22"></a>
-                                                                                         
-                                                                                         
-<!--l. 218--><p class="noindent" ><img 
-src="Figuras/parametros mat fun.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.22: </span><span  
-class="content">Parámetros Bloque Función de Matlab.</span></figcaption><!--tex4ht:label?: x24-262002r22 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h3 class="sectionHead"><span class="titlemark">B.5.   </span> <a 
- id="x24-263000B.5"></a>Salidas</h3>
-<!--l. 224--><p class="noindent" >Las salidas permiten visualizar, registrar o exportar los resultados de la simulación.
-</p><!--l. 226--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">B.5.1.   </span> <a 
- id="x24-264000B.5.1"></a>Scope</h4>
-<!--l. 227--><p class="noindent" >El bloque <span 
-class="cmbx-10">Scope </span>es un osciloscopio virtual que muestra la evolución temporal de las señales durante la simulación. La
-Figura <a 
-href="#x24-264002r24">B.24<!--tex4ht:ref: fig:simulink-ver-scope --></a> muestra una señal sinusoidal de entrada..
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-264001r23"></a>
-                                                                                         
-                                                                                         
-<!--l. 231--><p class="noindent" ><img 
-src="Figuras/bloque scope.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.23: </span><span  
-class="content">Bloque Scope.</span></figcaption><!--tex4ht:label?: x24-264001r23 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-264002r24"></a>
-                                                                                         
-                                                                                         
-<!--l. 238--><p class="noindent" ><img 
-src="Figuras/parametros scope.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.24: </span><span  
-class="content">Visualización Scope.</span></figcaption><!--tex4ht:label?: x24-264002r24 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.5.2.   </span> <a 
- id="x24-265000B.5.2"></a><span 
-class="cmti-10">To workspace</span></h4>
-<!--l. 244--><p class="noindent" >Este bloque permite exportar las señales al <span 
-class="cmti-10">workspace </span>de MATLAB, para su posterior análisis o graficación. Como se
-muestra en la Figura <a 
-href="#x24-265001r25">B.25<!--tex4ht:ref: fig:simulink-toworkspace --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-265001r25"></a>
-                                                                                         
-                                                                                         
-<!--l. 248--><p class="noindent" ><img 
-src="Figuras/bloque to workspace.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.25: </span><span  
-class="content">Bloque To workspace.</span></figcaption><!--tex4ht:label?: x24-265001r25 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h3 class="sectionHead"><span class="titlemark">B.6.   </span> <a 
- id="x24-266000B.6"></a>Propiedades simulación</h3>
-<!--l. 254--><p class="noindent" >Antes de ejecutar un modelo, es necesario configurar sus parámetros de simulación: tiempo inicial \(t_\text {init}\), tiempo final \(t_\text {end}\) y
-paso de integración \(t_\text {step}\). Simulink ofrece distintos métodos de integración (<span 
-class="cmti-10">fixed-step </span>y <span 
-class="cmti-10">variable-step</span>) y algoritmos como
-Runge-Kutta de cuarto orden (<span 
-class="cmtt-10">ode4</span>). Esta configuración se encuentra en la sección mostrada en la Figura
-<a 
-href="#x24-266004r26">B.26<!--tex4ht:ref: fig:simulink-parametros-simulacion --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-266004r26"></a>
-                                                                                         
-                                                                                         
-<a 
- id="x24-266001r1"></a>
-<div class="subfigure"><table><tr><td style="text-align:left"></td></tr></table></div><img 
-src="Figuras/propiedades1.png" alt="PIC"  
-width="469" height="469"  />
-<a 
- id="x24-266002r2"></a>
-<div class="subfigure"><table><tr><td style="text-align:left"></td></tr></table></div><img 
-src="Figuras/propiedades2.png" alt="PIC"  
-width="469" height="469"  />
-<a 
- id="x24-266003r3"></a>
-<div class="subfigure"><table><tr><td style="text-align:left"></td></tr></table></div><img 
-src="Figuras/propiedades3.png" alt="PIC"  
-width="469" height="469"  />
-<figcaption class="caption" ><span class="id">Figura B.26: </span><span  
-class="content">Configuración parámetros de Simulación</span></figcaption><!--tex4ht:label?: x24-266004r26 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h3 class="sectionHead"><span class="titlemark">B.7.   </span> <a 
- id="x24-267000B.7"></a>Bloques especiales</h3>
-<!--l. 285--><p class="noindent" >
-</p>
-   <h4 class="subsectionHead"><span class="titlemark">B.7.1.   </span> <a 
- id="x24-268000B.7.1"></a>Mux/Demux</h4>
-<!--l. 286--><p class="noindent" >Los bloques <span 
-class="cmbx-10">Mux </span>y <span 
-class="cmbx-10">Demux </span>permiten agrupar y desagrupar señales, respectivamente. Son útiles para manejar señales
-vectoriales en diagramas complejos. Ambos bloques se muestran en la Figura <a 
-href="#x24-268001r27">B.27<!--tex4ht:ref: fig:simulink-mux-demux --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-268001r27"></a>
-                                                                                         
-                                                                                         
-<!--l. 291--><p class="noindent" ><img 
-src="Figuras/bloque mux demux.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.27: </span><span  
-class="content">Bloque Mux y Demux.</span></figcaption><!--tex4ht:label?: x24-268001r27 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.7.2.   </span> <a 
- id="x24-269000B.7.2"></a>Selector</h4>
-<!--l. 297--><p class="noindent" >El bloque <span 
-class="cmbx-10">Selector </span>permite extraer componentes específicas de una señal vectorial o matricial, como se muestra en la
-Figura <a 
-href="#x24-269001r28">B.28<!--tex4ht:ref: fig:simulink-selector --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-269001r28"></a>
-                                                                                         
-                                                                                         
-<!--l. 301--><p class="noindent" ><img 
-src="Figuras/bloque selector.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.28: </span><span  
-class="content">Bloque Selector.</span></figcaption><!--tex4ht:label?: x24-269001r28 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h4 class="subsectionHead"><span class="titlemark">B.7.3.   </span> <a 
- id="x24-270000B.7.3"></a><span 
-class="cmti-10">Zero-order hold </span>(ZOH)</h4>
-<!--l. 307--><p class="noindent" >El bloque <span 
-class="cmbx-10">Zero-Order Hold </span>convierte señales continuas en discretas manteniendo el último valor de muestreo, lo que
-es esencial en sistemas mixtos continuo. El paso temporal se define en los parámetros como se muestra en la Figura
-<a 
-href="#x24-270002r30">B.30<!--tex4ht:ref: fig:simulink-para-zoh --></a>. Este bloque se muestra en la Figura <a 
-href="#x24-270001r29">B.29<!--tex4ht:ref: fig:simulink-zoh --></a>.
-</p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-270001r29"></a>
-                                                                                         
-                                                                                         
-<!--l. 311--><p class="noindent" ><img 
-src="Figuras/bloque zoh.png" alt="PIC"  
-width="93" height="93"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.29: </span><span  
-class="content">Bloque Zoh.</span></figcaption><!--tex4ht:label?: x24-270001r29 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-270002r30"></a>
-                                                                                         
-                                                                                         
-<!--l. 318--><p class="noindent" ><img 
-src="Figuras/parametros zoh.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.30: </span><span  
-class="content">Parámetros Zoh.</span></figcaption><!--tex4ht:label?: x24-270002r30 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <h3 class="sectionHead"><span class="titlemark">B.8.   </span> <a 
- id="x24-271000B.8"></a>Ejemplo</h3>
-<!--l. 325--><p class="noindent" >Se realiza el ejemplo de un modelo de un grado de libertad sometido a una aceleración basal. Inicialmente se definen
-los parámetros del sistema dinámico, masa, frecuencia natural y razón de amortiguamiento.
-</p>
-   <div class="tcolorbox tcolorbox" id="tcolobox-43">     
+   <div class="tcolorbox tcolorbox" id="tcolobox-1">     
 <div class="tcolorbox-title">
    </div> 
-<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb53"><a 
- id="x24-271002r1"></a><span id="textcolor641"><span 
-class="cmitt-10">%% Definir parametros</span></span> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb10"><a 
+ id="x26-245002r1"></a><span 
+class="cmtt-10">a = 1;                          </span><span id="textcolor126"><span 
+class="cmitt-10">% n</span>ú<span 
+class="cmitt-10">mero escalar (o arreglo de 1 dimensi</span>ó<span 
+class="cmitt-10">n)</span></span> 
 <a 
- id="x24-271004r2"></a> 
+ id="x26-245004r2"></a><span 
+class="cmtt-10">b = [1; 2; 3];                  </span><span id="textcolor127"><span 
+class="cmitt-10">% vector de n</span>ú<span 
+class="cmitt-10">meros (o arreglo 3x1)</span></span> 
 <a 
- id="x24-271006r3"></a><span 
-class="cmtt-10">fn = 2; </span><span id="textcolor642"><span 
-class="cmitt-10">% Hz</span></span> 
-<a 
- id="x24-271008r4"></a><span 
-class="cmtt-10">m = 1000; </span><span id="textcolor643"><span 
-class="cmitt-10">% kg</span></span> 
-<a 
- id="x24-271010r5"></a><span 
-class="cmtt-10">zeta = 0.05;</span></pre>
+ id="x26-245006r3"></a><span 
+class="cmtt-10">c = [1 2 3; 4 5 6; 7 8 9];      </span><span id="textcolor128"><span 
+class="cmitt-10">% matriz de n</span>ú<span 
+class="cmitt-10">meros (o arreglo 3x3)</span></span></pre>
  
 </div> 
 </div>                                                                                       
 </div> 
 </div>
-<!--l. 336--><p class="indent" >   A partir de los parámetros definidos se obtienen los coeficientes de la ecuación diferencial de movimiento
-asociada.
+<!--l. 33--><p class="noindent" >Los comentarios van con signo de porcentaje\(\m@th \,\)<span 
+class="cmtt-10">%</span>. Para no mostrar la asignación de la variable en la ventana de
+comandos, escribir el símbolo <span 
+class="cmtt-10">; </span>al final de la asignación.
+</p><!--l. 35--><p class="noindent" >
 </p>
-   <div class="tcolorbox tcolorbox" id="tcolobox-44">     
+   <h5 class="subsubsectionHead"><a 
+ id="x26-246000"></a>Inicializar arreglos</h5>
+<!--l. 36--><p class="noindent" >Es una buena practica primero inicializar un vector/matriz vacío (llenos de ceros o unos) ya que MATLAB primero
+asigna un espacio en la memoria, por lo que si se desea añadir un nuevo elemento al arreglo, se tendría que reasignar el
+espacio en la memoria todas las veces que se modifica.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-2">     
 <div class="tcolorbox-title">
    </div> 
-<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb54"><a 
- id="x24-271012r1"></a><span id="textcolor644"><span 
-class="cmitt-10">%% Obtener EDM</span></span> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb11"><a 
+ id="x26-246002r1"></a><span 
+class="cmtt-10">A = zeros(3,4); </span><span id="textcolor129"><span 
+class="cmitt-10">% Inicializar matriz con ceros, 3 filas y 4 columnas</span></span> 
 <a 
- id="x24-271014r2"></a><span id="textcolor645"><span 
-class="cmitt-10">% m*ddu + c*du + k*u =</span> <span 
-class="cmitt-10">-</span><span 
-class="cmitt-10">m*ddug</span></span> 
+ id="x26-246004r2"></a><span 
+class="cmtt-10">v = zeros(3,1); </span><span id="textcolor130"><span 
+class="cmitt-10">% Inicializar vector con ceros, 3 filas</span></span> 
 <a 
- id="x24-271016r3"></a> 
-<a 
- id="x24-271018r4"></a><span 
-class="cmtt-10">wn = 2*pi*fn; </span><span id="textcolor646"><span 
-class="cmitt-10">% rad/s</span></span> 
-<a 
- id="x24-271020r5"></a><span 
-class="cmtt-10">k = wn</span><span id="textcolor647"><span 
-class="cmtt-10">^</span></span><span 
-class="cmtt-10">2*m; </span><span id="textcolor648"><span 
-class="cmitt-10">% N/m</span></span> 
-<a 
- id="x24-271022r6"></a><span 
-class="cmtt-10">c = 2*zeta*m*wn; </span><span id="textcolor649"><span 
-class="cmitt-10">% N</span><span 
-class="cmitt-10">-</span><span 
-class="cmitt-10">s/m</span></span></pre>
+ id="x26-246006r3"></a><span 
+class="cmtt-10">A = ones(5,5);  </span><span id="textcolor131"><span 
+class="cmitt-10">% Inicializar vector con unos, 5 filas y 5 columnas</span></span></pre>
  
 </div> 
 </div>                                                                                       
 </div> 
 </div>
-<!--l. 347--><p class="indent" >   Luego se escribe en función de las ecuaciones de espacio estado. En este caso particular se quiere como salida el
-desplazamiento relativo, la velocidad relativa y la aceleración absoluta.
+                                                                                         
+                                                                                         
+<!--l. 44--><p class="noindent" >
 </p>
-   <div class="tcolorbox tcolorbox" id="tcolobox-45">     
+   <h5 class="subsubsectionHead"><a 
+ id="x26-247000"></a>Vectores desde rango</h5>
+<!--l. 45--><p class="noindent" >Ej: Vector de tiempos para una simulación: </p> <div class="tcolorbox tcolorbox" id="tcolobox-3">     
 <div class="tcolorbox-title">
    </div> 
-<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb55"><a 
- id="x24-271024r1"></a><span id="textcolor650"><span 
-class="cmitt-10">%% Representacion Espacio Estado</span></span> 
-<a 
- id="x24-271026r2"></a><span id="textcolor651"><span 
-class="cmitt-10">% dx = As*x + Bs*ddug</span></span> 
-<a 
- id="x24-271028r3"></a><span id="textcolor652"><span 
-class="cmitt-10">%  y = Cs*x + Ds*ddug</span></span> 
-<a 
- id="x24-271030r4"></a> 
-<a 
- id="x24-271032r5"></a><span 
-class="cmtt-10">Ass = [0 1;</span> <span 
-class="cmtt-10">-</span><span 
-class="cmtt-10">k/m</span> <span 
-class="cmtt-10">-</span><span 
-class="cmtt-10">c/m];</span> 
-<a 
- id="x24-271034r6"></a><span 
-class="cmtt-10">Bss = [0;</span> <span 
-class="cmtt-10">-</span><span 
-class="cmtt-10">m/m];</span> 
-<a 
- id="x24-271036r7"></a><span 
-class="cmtt-10">Css = [1 0; 0 1;</span> <span 
-class="cmtt-10">-</span><span 
-class="cmtt-10">k/m</span> <span 
-class="cmtt-10">-</span><span 
-class="cmtt-10">c/m];</span> 
-<a 
- id="x24-271038r8"></a><span 
-class="cmtt-10">Dss = [0; 0; 0];</span></pre>
- 
-</div> 
-</div>                                                                                       
-</div> 
-</div>
-<!--l. 360--><p class="indent" >   Después se lee el registro de aceleración y se crea una matriz con tiempo-aceleración.
-</p>
-   <div class="tcolorbox tcolorbox" id="tcolobox-46">     
-<div class="tcolorbox-title">
-   </div> 
-<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb56"><a 
- id="x24-271040r1"></a><span id="textcolor653"><span 
-class="cmitt-10">%% Leer registro aceleracion</span></span> 
-<a 
- id="x24-271042r2"></a> 
-<a 
- id="x24-271044r3"></a><span 
-class="cmtt-10">record = importdata(&#x0027;RegistroNorthridge1994</span><span id="textcolor654"><span 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb12"><a 
+ id="x26-247002r1"></a><span 
+class="cmtt-10">t</span><span id="textcolor132"><span 
 class="cmtt-10">_</span></span><span 
-class="cmtt-10">TarzanaCH1.txt&#x0027;);</span> 
-<a 
- id="x24-271046r4"></a><span 
-class="cmtt-10">record.dt = 0.02;</span> 
-<a 
- id="x24-271048r5"></a><span 
-class="cmtt-10">record.N = length(record.data);</span> 
-<a 
- id="x24-271050r6"></a><span 
-class="cmtt-10">time = linspace(0,(record.N</span><span 
-class="cmtt-10">-</span><span 
-class="cmtt-10">1)*record.dt,record.N)&#x0027;;</span> 
-<a 
- id="x24-271052r7"></a> 
-<a 
- id="x24-271054r8"></a><span 
-class="cmtt-10">acel = record.data/100; </span><span id="textcolor655"><span 
-class="cmitt-10">% en m/s2</span></span> 
-<a 
- id="x24-271056r9"></a><span 
-class="cmtt-10">acel</span><span id="textcolor656"><span 
-class="cmtt-10">_</span></span><span 
-class="cmtt-10">simu = [time,acel];</span> 
-<a 
- id="x24-271058r10"></a></pre>
- 
-</div> 
-</div>                                                                                       
-</div> 
-</div>
-<!--l. 375--><p class="indent" >   Se ajustan los parámetros de simulación, considerando un paso temporal de 0.001 s y se ajusta el tiempo de
-simulación al tiempo del registro de aceleración.
-</p>
-   <div class="tcolorbox tcolorbox" id="tcolobox-47">     
-<div class="tcolorbox-title">
-   </div> 
-<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb57"><a 
- id="x24-271060r1"></a><span id="textcolor657"><span 
-class="cmitt-10">%% Simulacion</span></span> 
-<a 
- id="x24-271062r2"></a> 
-<a 
- id="x24-271064r3"></a><span 
-class="cmtt-10">t</span><span id="textcolor658"><span 
-class="cmtt-10">_</span></span><span 
-class="cmtt-10">muestreo = time(end); </span><span id="textcolor659"><span 
-class="cmitt-10">% tiempo final del registro sismico</span></span> 
-<a 
- id="x24-271066r4"></a><span 
-class="cmtt-10">dt = 1/1000; </span><span id="textcolor660"><span 
+class="cmtt-10">inicio = 0; </span><span id="textcolor133"><span 
 class="cmitt-10">% s</span></span> 
 <a 
- id="x24-271068r5"></a></pre>
+ id="x26-247004r2"></a><span 
+class="cmtt-10">t</span><span id="textcolor134"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">final = 10; </span><span id="textcolor135"><span 
+class="cmitt-10">% s</span></span> 
+<a 
+ id="x26-247006r3"></a><span 
+class="cmtt-10">paso</span><span id="textcolor136"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">tiempo = 0.1; </span><span id="textcolor137"><span 
+class="cmitt-10">% s</span></span> 
+<a 
+ id="x26-247008r4"></a><span 
+class="cmtt-10">t = (t</span><span id="textcolor138"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">inicio:paso</span><span id="textcolor139"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">tiempo:t</span><span id="textcolor140"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">final); </span><span id="textcolor141"><span 
+class="cmitt-10">% vector fila</span></span></pre>
  
 </div> 
 </div>                                                                                       
 </div> 
 </div>
-<!--l. 385--><p class="indent" >   Ya con los parámetros definidos se ingresan en la configuración de Simulink, se utiliza Runge-Kutta (ode4), como
-se muestra en la Figura <a 
-href="#x24-271069r31">B.31<!--tex4ht:ref: fig:simulink-para-ejem --></a>.
+<!--l. 53--><p class="noindent" >
 </p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-271069r31"></a>
-                                                                                         
-                                                                                         
-<!--l. 389--><p class="noindent" ><img 
-src="Figuras/parametros simulacion ejemplo.png" alt="PIC"  
-width="375" height="375"  />
+   <h5 class="subsubsectionHead"><a 
+ id="x26-248000"></a>Recorrer arreglos</h5>
+<!--l. 54--><p class="noindent" >Para observar qué contiene un arreglo (vector o matriz) en una posición específica:
 </p>
-<figcaption class="caption" ><span class="id">Figura B.31: </span><span  
-class="content">Parámetros Simulación de Ejemplo.</span></figcaption><!--tex4ht:label?: x24-271069r31 -->
-                                                                                         
-                                                                                         
-   </figure>
-<!--l. 394--><p class="indent" >   Luego se modela la entrada como un bloque <span 
-class="cmbx-10">from workspace</span>, como se muestra en la Figura <a 
-href="#x24-271070r32">B.32<!--tex4ht:ref: fig:simulink-acel --></a>. El sistema
-dinámico utilizando el bloque <span 
-class="cmbx-10">state-space</span>,como se muestra en la Figura <a 
-href="#x24-271071r33">B.33<!--tex4ht:ref: fig:simulink-ss-ejemplo --></a>, donde las salidas se separan utilizando
-un bloque <span 
-class="cmbx-10">demux </span>para finalmente ser enviadas al espacio de trabajo utilizando el bloque <span 
-class="cmbx-10">to workspace</span>. El sistema
-completo se muestra en la Figura <a 
-href="#x24-271072r34">B.34<!--tex4ht:ref: fig:simulink-ejemplo --></a>.
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 57--><p class="noindent" ><span 
+class="cmti-10">matriz(i, j) </span>para ver el elemento en fila i, columna j
+     </p></li>
+     <li class="itemize">
+     <!--l. 58--><p class="noindent" ><span 
+class="cmti-10">matriz(i, :) </span>para ver la fila i (todas las columnas), vector fila
+     </p></li>
+     <li class="itemize">
+     <!--l. 59--><p class="noindent" ><span 
+class="cmti-10">matriz(:, j) </span>para ver columna j (todas las filas), vector columna
+     </p></li>
+     <li class="itemize">
+     <!--l. 60--><p class="noindent" ><span 
+class="cmti-10">matriz(:, :) </span>toda la matriz
+     </p></li>
+     <li class="itemize">
+     <!--l. 61--><p class="noindent" ><span 
+class="cmti-10">matriz(i:e, j:k) </span>para ver matriz entre las filas i y e y las columnas j y k
+     </p></li>
+     <li class="itemize">
+     <!--l. 62--><p class="noindent" ><span 
+class="cmti-10">vector(j: end) </span>para ver elemetos en vector desde la fila j en adelante.
+     </p></li>
+     <li class="itemize">
+     <!--l. 63--><p class="noindent" ><span 
+class="cmti-10">arreglo(i, j, k) </span>para ver la matriz k en la fila i columna j (se puede ver como un vector de matrices)</p></li></ul>
+<!--l. 66--><p class="noindent" >
 </p>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-271070r32"></a>
-                                                                                         
-                                                                                         
-<!--l. 398--><p class="noindent" ><img 
-src="Figuras/aceleracion ejemplo.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.32: </span><span  
-class="content">Registro de Aceleración.</span></figcaption><!--tex4ht:label?: x24-271070r32 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-271071r33"></a>
-                                                                                         
-                                                                                         
-<!--l. 405--><p class="noindent" ><img 
-src="Figuras/espacio estado ejemplo.png" alt="PIC"  
-width="234" height="234"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.33: </span><span  
-class="content">Parámetros Espacio Estado ejemplo.</span></figcaption><!--tex4ht:label?: x24-271071r33 -->
-                                                                                         
-                                                                                         
-   </figure>
-   <figure class="figure"> 
-
-                                                                                         
-                                                                                         
-<a 
- id="x24-271072r34"></a>
-                                                                                         
-                                                                                         
-<!--l. 412--><p class="noindent" ><img 
-src="Figuras/modelo simulink ejemplo.png" alt="PIC"  
-width="469" height="469"  />
-</p>
-<figcaption class="caption" ><span class="id">Figura B.34: </span><span  
-class="content">Modelo Simulink ejemplo.</span></figcaption><!--tex4ht:label?: x24-271072r34 -->
-                                                                                         
-                                                                                         
-   </figure>
-<!--l. 417--><p class="indent" >   Aparte se incorporan bloques <span 
-class="cmbx-10">scope </span>en todas las señales para poder observarlas antes de llevar los datos al
-espacio de trabajo.
-</p><!--l. 419--><p class="indent" >   Finalmente, para llamar las variables desde el espacio de trabajo y correr la simulación se utiliza el siguiente
-código.
-</p>
-   <div class="tcolorbox tcolorbox" id="tcolobox-48">     
+   <h5 class="subsubsectionHead"><a 
+ id="x26-249000"></a>Filtrar arreglos</h5>
+   <div class="tcolorbox tcolorbox" id="tcolobox-4">     
 <div class="tcolorbox-title">
    </div> 
-<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb58"><a 
- id="x24-271074r1"></a><span id="textcolor661"><span 
-class="cmitt-10">%% Cargar el modelo de Simulink</span></span> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb13"><a 
+ id="x26-249002r1"></a><span 
+class="cmtt-10">vector = [1; 0; 2; 0; 3; 4; 0; 5; 0];</span> 
 <a 
- id="x24-271076r2"></a> 
-<a 
- id="x24-271078r3"></a><span 
-class="cmtt-10">modelo = &#x0027;ejemplo</span><span id="textcolor662"><span 
+ id="x26-249004r2"></a><span 
+class="cmtt-10">filtro</span><span id="textcolor142"><span 
 class="cmtt-10">_</span></span><span 
-class="cmtt-10">Dinav&#x0027;; </span><span id="textcolor663"><span 
-class="cmitt-10">% Nombre del archivo sin la extensi</span>ó<span 
-class="cmitt-10">n .slx</span></span> 
+class="cmtt-10">1 = vector(vector != 0) </span><span id="textcolor143"><span 
+class="cmitt-10">% tomar todo lo que no es 0, esto retorna filtro_1 = [1; 2; 3; 4; 5]</span></span> 
 <a 
- id="x24-271080r4"></a><span 
-class="cmtt-10">load</span><span id="textcolor664"><span 
+ id="x26-249006r3"></a><span 
+class="cmtt-10">filtro</span><span id="textcolor144"><span 
 class="cmtt-10">_</span></span><span 
-class="cmtt-10">system(modelo);</span> 
-<a 
- id="x24-271082r5"></a><span id="textcolor665"><span 
-class="cmitt-10">% Ejecutar la simulaci</span>ó<span 
-class="cmitt-10">n</span></span> 
-<a 
- id="x24-271084r6"></a><span 
-class="cmtt-10">simOut = sim(modelo);</span> 
-<a 
- id="x24-271086r7"></a><span id="textcolor666"><span 
-class="cmitt-10">% soluci</span>ó<span 
-class="cmitt-10">n numerica</span></span> 
-<a 
- id="x24-271088r8"></a><span 
-class="cmtt-10">d = simOut.desplazamiento.Data;</span> 
-<a 
- id="x24-271090r9"></a><span 
-class="cmtt-10">v = simOut.velocidad.Data;</span> 
-<a 
- id="x24-271092r10"></a><span 
-class="cmtt-10">a = simOut.aceleracion.Data;</span> 
-<a 
- id="x24-271094r11"></a></pre>
+class="cmtt-10">2 = vector(vector == 1) </span><span id="textcolor145"><span 
+class="cmitt-10">% toma todo lo que es 1, esto es [1]</span></span></pre>
  
 </div> 
 </div>                                                                                       
@@ -1073,13 +209,1553 @@ class="cmtt-10">a = simOut.aceleracion.Data;</span>
 </div>
                                                                                          
                                                                                          
+<!--l. 73--><p class="noindent" >
+</p>
+   <h5 class="subsubsectionHead"><a 
+ id="x26-250000"></a>Eliminar elementos</h5>
+   <div class="tcolorbox tcolorbox" id="tcolobox-5">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb14"><a 
+ id="x26-250002r1"></a><span 
+class="cmtt-10">v(5) = [ ];     </span><span id="textcolor146"><span 
+class="cmitt-10">% Borrar quinto elemento de un vector</span></span> 
+<a 
+ id="x26-250004r2"></a><span 
+class="cmtt-10">M(5, :) = [ ];  </span><span id="textcolor147"><span 
+class="cmitt-10">% Borrar la quinta fila de una matriz</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 79--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.2.2.   </span> <a 
+ id="x26-251000B.2.2"></a>Números complejos</h4>
+   <div class="tcolorbox tcolorbox" id="tcolobox-6">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb15"><a 
+ id="x26-251002r1"></a><span 
+class="cmtt-10">num</span><span id="textcolor148"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">complejo = 1 + 3i;  </span><span id="textcolor149"><span 
+class="cmitt-10">% crear numero complejo</span></span> 
+<a 
+ id="x26-251004r2"></a><span 
+class="cmtt-10">real(num</span><span id="textcolor150"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">complejo)      </span><span id="textcolor151"><span 
+class="cmitt-10">% parte real del NC, retorna 1</span></span> 
+<a 
+ id="x26-251006r3"></a><span 
+class="cmtt-10">imag(num</span><span id="textcolor152"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">complejo)      </span><span id="textcolor153"><span 
+class="cmitt-10">% parte imaginaria del NC, retorna 3</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 86--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.2.3.   </span> <a 
+ id="x26-252000B.2.3"></a>Variables simbólicas</h4>
+<!--l. 87--><p class="noindent" >Si se desea trabajar con expresiones algebraicas se pueden crear <span 
+class="cmti-10">variables simb</span>ó<span 
+class="cmti-10">licas</span>. No es recomendable trabajar
+con variables simbólicas ya que MATLAB es ineficiente para trabajar con este tipo de variables:
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-7">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb16"><a 
+ id="x26-252002r1"></a><span 
+class="cmtt-10">syms t          </span><span id="textcolor154"><span 
+class="cmitt-10">% crear variable &#x0027;t&#x0027; (t es una variable tipo simb</span>ó<span 
+class="cmitt-10">lica)</span></span> 
+<a 
+ id="x26-252004r2"></a><span 
+class="cmtt-10">x = 1 + 3*t;    </span><span id="textcolor155"><span 
+class="cmitt-10">% x es una variable tipo simb</span>ó<span 
+class="cmitt-10">lica</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 94--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.2.4.   </span> <a 
+ id="x26-253000B.2.4"></a>Serie de caracteres</h4>
+<!--l. 95--><p class="noindent" >Las series de caracteres se dividen en <span 
+class="cmti-10">strings </span>y <span 
+class="cmti-10">chars</span>, cada una tiene sus propias funciones para operar con ellas: </p> <div class="tcolorbox tcolorbox" id="tcolobox-8">   
+ 
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb17"><a 
+ id="x26-253002r1"></a><span 
+class="cmtt-10">caracteres = &#x0027;abcdfghijk&#x0027;;      </span><span id="textcolor156"><span 
+class="cmitt-10">% char</span></span> 
+<a 
+ id="x26-253004r2"></a><span 
+class="cmtt-10">caracteres</span><span id="textcolor157"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2 = &#x0022;qwertyuiop&#x0022;;    </span><span id="textcolor158"><span 
+class="cmitt-10">% string</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 101--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.2.5.   </span> <a 
+ id="x26-254000B.2.5"></a>Structs</h4>
+<!--l. 102--><p class="noindent" >Para almacenar diferentes tipos de datos en una misma variable, se puede utilizar un <span 
+class="cmti-10">struct </span>(similar a diccionarios
+en python):<br 
+class="newline" />
+</p><!--l. 104--><p class="indent" >   Ej: Para 10 registros sísmicos, guardar los vectores de aceleración del registro, tiempo del registro, aceleración
+espectral, periodos de la aceleración espectral, duración del registro. </p> <div class="tcolorbox tcolorbox" id="tcolobox-9">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb18"><a 
+ id="x26-254002r1"></a><span 
+class="cmtt-10">n</span><span id="textcolor159"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">registros = 10;</span> 
+<a 
+ id="x26-254004r2"></a><span 
+class="cmtt-10">dataRegistros = struct()                </span><span id="textcolor160"><span 
+class="cmitt-10">% inicializar un struct</span></span> 
+<a 
+ id="x26-254006r3"></a><span 
+class="cmtt-10">for i =  1:n</span><span id="textcolor161"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">registros                  </span><span id="textcolor162"><span 
+class="cmitt-10">% para cada registro...</span></span> 
+<a 
+ id="x26-254008r4"></a>    <span 
+class="cmtt-10">[reg, t] = importReg(registro(i));  </span><span id="textcolor163"><span 
+class="cmitt-10">% Suponga tenemos funci</span>ó<span 
+class="cmitt-10">n para importar registros</span></span> 
+<a 
+ id="x26-254010r5"></a>    <span id="textcolor164"><span 
+class="cmitt-10">% Guardar datos en struct</span></span> 
+<a 
+ id="x26-254012r6"></a>    <span 
+class="cmtt-10">dataRegistros(i).registro = reg;</span> 
+<a 
+ id="x26-254014r7"></a>    <span 
+class="cmtt-10">dataRegistros(i).tiempo = t;</span> 
+<a 
+ id="x26-254016r8"></a>    <span 
+class="cmtt-10">dataRegistros(i).Sa = computeSa(reg, t, T, xi);</span> 
+<a 
+ id="x26-254018r9"></a>    <span 
+class="cmtt-10">dataRegistros(i).duracion = max(t); </span><span id="textcolor165"><span 
+class="cmitt-10">% o t(end)</span></span> 
+<a 
+ id="x26-254020r10"></a><span 
+class="cmtt-10">end</span> 
+<a 
+ id="x26-254022r11"></a><span id="textcolor166"><span 
+class="cmitt-10">%  Entonces, para consultar sobre el tiempo del tercer registro</span></span> 
+<a 
+ id="x26-254024r12"></a><span 
+class="cmtt-10">vector</span><span id="textcolor167"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">tiempo</span><span id="textcolor168"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">3er</span><span id="textcolor169"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">registro = dataRegistro(3).tiempo;</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 120--><p class="noindent" >Los <span 
+class="cmti-10">structs </span>organizan y estructuran datos de manera coherente en el código y se utilizan especialmente para
+simplificar las funciones al reducir la cantidad de inputs necesarios. En lugar de escribir múltiples inputs, se utiliza
+solo uno que luego se descompone dentro de la función.
+                                                                                         
+                                                                                         
+</p><!--l. 122--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">B.3.   </span> <a 
+ id="x26-255000B.3"></a>Operaciones</h3>
+<!--l. 123--><p class="noindent" >Para saber que tipo de variable es una variable, comando <span 
+class="cmti-10">class()</span> </p> <div class="tcolorbox tcolorbox" id="tcolobox-10">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb19"><a 
+ id="x26-255002r1"></a><span 
+class="cmtt-10">A = [1;2;3];</span> 
+<a 
+ id="x26-255004r2"></a><span 
+class="cmtt-10">class(A)  </span><span id="textcolor170"><span 
+class="cmitt-10">% retorna &#x0027;A is double&#x0027;</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 129--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.3.1.   </span> <a 
+ id="x26-256000B.3.1"></a>Operaciones Básicas</h4>
+<!--l. 130--><p class="noindent" >Las operaciones funcionan igual que las operaciones matriciales y vectoriales. <br 
+class="newline" />
+</p><!--l. 132--><p class="indent" >   Sumar arreglos (matlab suma componentes (i,j) de cada arreglo) </p> <div class="tcolorbox tcolorbox" id="tcolobox-11">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb20"><a 
+ id="x26-256002r1"></a><span 
+class="cmtt-10">suma</span><span id="textcolor171"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">matrices = matriz</span><span id="textcolor172"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1 + matriz</span><span id="textcolor173"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2;</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 137--><p class="indent" >   Sumar elementos del arreglo </p> <div class="tcolorbox tcolorbox" id="tcolobox-12">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb21"><a 
+ id="x26-256004r1"></a><span 
+class="cmtt-10">suma</span><span id="textcolor174"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">vector = sum(vector</span><span id="textcolor175"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 142--><p class="indent" >   Restar (matlab resta componentes (i,j) de cada arreglo) </p> <div class="tcolorbox tcolorbox" id="tcolobox-13">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb22"><a 
+ id="x26-256006r1"></a><span 
+class="cmtt-10">resta</span><span id="textcolor176"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">matrices = matriz</span><span id="textcolor177"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1</span> <span 
+class="cmtt-10">-</span> <span 
+class="cmtt-10">matriz</span><span id="textcolor178"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2;</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 147--><p class="indent" >   Multiplicar </p> <div class="tcolorbox tcolorbox" id="tcolobox-14">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb23"><a 
+ id="x26-256008r1"></a><span 
+class="cmtt-10">matriz</span><span id="textcolor179"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">por</span><span id="textcolor180"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">matriz = matriz</span><span id="textcolor181"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1*matriz</span><span id="textcolor182"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2;</span> 
+<a 
+ id="x26-256010r2"></a><span 
+class="cmtt-10">vector</span><span id="textcolor183"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">por</span><span id="textcolor184"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">vector</span><span id="textcolor185"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">componente = vector</span><span id="textcolor186"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1.*vector</span><span id="textcolor187"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2;</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 153--><p class="indent" >   Invertir matrices \(matriz^{-1}\) </p> <div class="tcolorbox tcolorbox" id="tcolobox-15">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb24"><a 
+ id="x26-256012r1"></a><span 
+class="cmtt-10">matriz</span><span id="textcolor188"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">invertida = matriz</span><span id="textcolor189"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1</span><span id="textcolor190"><span 
+class="cmtt-10">^</span></span><span 
+class="cmtt-10">-</span><span 
+class="cmtt-10">1; </span><span id="textcolor191"><span 
+class="cmitt-10">% o inv(matriz)</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 158--><p class="indent" >   Trasponer matrices \(matriz^T\) </p> <div class="tcolorbox tcolorbox" id="tcolobox-16">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb25"><a 
+ id="x26-256014r1"></a><span 
+class="cmtt-10">matriz</span><span id="textcolor192"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">traspuesta = matriz</span><span id="textcolor193"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1.&#x0027;;</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 163--><p class="indent" >   Diferenciar e integrar </p> <div class="tcolorbox tcolorbox" id="tcolobox-17">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb26"><a 
+ id="x26-256016r1"></a><span 
+class="cmtt-10">vector</span><span id="textcolor194"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">diferenciado = diff(vector</span><span id="textcolor195"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1);</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 168--><p class="indent" >   Suma acumulada </p> <div class="tcolorbox tcolorbox" id="tcolobox-18">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb27"><a 
+ id="x26-256018r1"></a><span 
+class="cmtt-10">vector</span><span id="textcolor196"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">suma</span><span id="textcolor197"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">acumulada = cumsum(vector</span><span id="textcolor198"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1);</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 173--><p class="noindent" >Además, MATLAB también incluye las funciones de operaciones matemáticas básicas </p>
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 175--><p class="noindent" ><span 
+class="cmtt-10">log() </span>y <span 
+class="cmtt-10">exp() </span>- Logaritmo natural y exponencial
+     </p></li>
+     <li class="itemize">
+     <!--l. 176--><p class="noindent" ><span 
+class="cmtt-10">sqrt() </span>y <span 
+class="cmtt-10">()</span><img 
+src="MIC411apuntes1x.svg" alt="^  "  class="hat"  /><span 
+class="cmtt-10">x </span>- Raíces y Potencias
+                                                                                         
+                                                                                         
+     </p></li>
+     <li class="itemize">
+     <!--l. 177--><p class="noindent" ><span 
+class="cmtt-10">sin() </span>y <span 
+class="cmtt-10">cos() </span>- Seno y coseno
+     </p></li>
+     <li class="itemize">
+     <!--l. 178--><p class="noindent" >\(x = A\setminus B\) - Solución de \(Ax = B\)
+     </p></li>
+     <li class="itemize">
+     <!--l. 180--><p class="noindent" ><span 
+class="cmtt-10">diag() </span>- de vector a matriz diagonal o extraer diagonal de una matriz</p></li></ul>
+<!--l. 183--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.3.2.   </span> <a 
+ id="x26-257000B.3.2"></a>Función por partes</h4>
+<!--l. 184--><p class="noindent" >Para crear una función por partes se utiliza la función <span 
+class="cmti-10">piecewise()</span>.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-19">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb28"><a 
+ id="x26-257002r1"></a><span 
+class="cmtt-10">func</span><span id="textcolor199"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">por</span><span id="textcolor200"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">partes = piecewise(condicion</span><span id="textcolor201"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1, valor</span><span id="textcolor202"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">1, condicion</span><span id="textcolor203"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2, valor</span><span id="textcolor204"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">2, ...);</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 190--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.3.3.   </span> <a 
+ id="x26-258000B.3.3"></a>Problema de vectores y valores propios</h4>
+<!--l. 191--><p class="noindent" >MATLAB cuenta con la función <span 
+class="cmti-10">eig() </span>para resolver el problema de vectores y valores propios generalizado.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-20">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb29"><a 
+ id="x26-258002r1"></a><span 
+class="cmtt-10">[vectores</span><span id="textcolor205"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">propios, valores</span><span id="textcolor206"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">propios] = eig(A, B)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 197--><p class="noindent" >\(vectores\_propios\) es una matriz donde cada columna es un vector propio y \(valores\_propios\) es un vector donde cada elemento es un valor
+propio.
+</p><!--l. 199--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.3.4.   </span> <a 
+ id="x26-259000B.3.4"></a>Funciones estadísticas</h4>
+<!--l. 200--><p class="noindent" >Valor esperado o media \(\mu \) </p> <div class="tcolorbox tcolorbox" id="tcolobox-21">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb30"><a 
+ id="x26-259002r1"></a><span 
+class="cmtt-10">media = mean(datos</span><span id="textcolor207"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 205--><p class="indent" >   Desviación estandar \(\sigma \) </p> <div class="tcolorbox tcolorbox" id="tcolobox-22">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb31"><a 
+ id="x26-259004r1"></a><span 
+class="cmtt-10">desv</span><span id="textcolor208"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">est = std(datos</span><span id="textcolor209"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 210--><p class="indent" >   Varianza </p> <div class="tcolorbox tcolorbox" id="tcolobox-23">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb32"><a 
+ id="x26-259006r1"></a><span 
+class="cmtt-10">varianza = var(datos</span><span id="textcolor210"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 215--><p class="indent" >   Otros </p> <div class="tcolorbox tcolorbox" id="tcolobox-24">     
+<div class="tcolorbox-title">
+                                                                                         
+                                                                                         
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb33"><a 
+ id="x26-259008r1"></a><span id="textcolor211"><span 
+class="cmitt-10">% Autocorrelaci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-259010r2"></a><span 
+class="cmtt-10">autocorr</span><span id="textcolor212"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">xy = xcorr(datos</span><span id="textcolor213"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x, datos</span><span id="textcolor214"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y) </span><span id="textcolor215"><span 
+class="cmitt-10">% cross correlation</span></span> 
+<a 
+ id="x26-259012r3"></a><span id="textcolor216"><span 
+class="cmitt-10">% Autocovarianza</span></span> 
+<a 
+ id="x26-259014r4"></a><span 
+class="cmtt-10">autocov</span><span id="textcolor217"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">xy = xcov(datos</span><span id="textcolor218"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x, datos</span><span id="textcolor219"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y) </span><span id="textcolor220"><span 
+class="cmitt-10">% cross covariance</span></span> 
+<a 
+ id="x26-259016r5"></a><span id="textcolor221"><span 
+class="cmitt-10">% Coeficiente de correlaci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-259018r6"></a><span 
+class="cmtt-10">coefic</span><span id="textcolor222"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">correl = coff</span><span id="textcolor223"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">corr(datos</span><span id="textcolor224"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x, datos</span><span id="textcolor225"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 225--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.3.5.   </span> <a 
+ id="x26-260000B.3.5"></a>Realizaciones de Variables Aleatorias</h4>
+<!--l. 226--><p class="noindent" >Dependiendo de la distribución se pueden crear realizaciones de variables aleatorias: <br 
+class="newline" />
+</p><!--l. 228--><p class="indent" >   Ej: 1000 realizaciones de distribución normal estándar \(X \sim N(0,1)\) </p> <div class="tcolorbox tcolorbox" id="tcolobox-25">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb34"><a 
+ id="x26-260002r1"></a><span 
+class="cmtt-10">realizaciones = randn(1000,1); </span><span id="textcolor226"><span 
+class="cmitt-10">% vector (1000 x 1)</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 233--><p class="indent" >   Ej: 1000 realizaciones de la masa de personas si \(M \sim N(79.91, 14.89)\) </p> <div class="tcolorbox tcolorbox" id="tcolobox-26">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb35"><a 
+ id="x26-260004r1"></a><span 
+class="cmtt-10">mu = 79.91;                 </span><span id="textcolor227"><span 
+class="cmitt-10">% media</span></span> 
+<a 
+ id="x26-260006r2"></a><span 
+class="cmtt-10">sigma = 14.89;              </span><span id="textcolor228"><span 
+class="cmitt-10">% desviaci</span>ó<span 
+class="cmitt-10">n est</span>á<span 
+class="cmitt-10">ndar</span></span> 
+<a 
+ id="x26-260008r3"></a><span 
+class="cmtt-10">n</span><span id="textcolor229"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">realizaciones  = 1000;    </span><span id="textcolor230"><span 
+class="cmitt-10">% cantidad de realizaciones</span></span> 
+<a 
+ id="x26-260010r4"></a><span 
+class="cmtt-10">realizaciones</span><span id="textcolor231"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">masas = normrnd(mu, sigma, n</span><span id="textcolor232"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">realizaciones, 1);</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 241--><p class="indent" >   Ej: Realizaciones de la siguiente medida de intensidad de registro sísmico: \(IM = Sa(T=1[sec], xi = 5\%)\), donde \(IM \sim lognormal(0.2, 0.57)\) </p> <div class="tcolorbox tcolorbox" id="tcolobox-27">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb36"><a 
+ id="x26-260012r1"></a><span 
+class="cmtt-10">mu</span><span id="textcolor233"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">ln = 0.2;            </span><span id="textcolor234"><span 
+class="cmitt-10">% g, desde GMPE</span></span> 
+<a 
+ id="x26-260014r2"></a><span 
+class="cmtt-10">sigma</span><span id="textcolor235"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">ln = 0.57;        </span><span id="textcolor236"><span 
+class="cmitt-10">% g, desde GMPE</span></span> 
+<a 
+ id="x26-260016r3"></a><span 
+class="cmtt-10">n</span><span id="textcolor237"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">realizaciones  = 1000;</span> 
+<a 
+ id="x26-260018r4"></a> 
+<a 
+ id="x26-260020r5"></a><span 
+class="cmtt-10">realizaciones</span><span id="textcolor238"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">IM = exp(mu</span><span id="textcolor239"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">ln + sigma</span><span id="textcolor240"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">ln*randn(n</span><span id="textcolor241"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">realizaciones, 1));</span> 
+<a 
+ id="x26-260022r6"></a><span id="textcolor242"><span 
+class="cmitt-10">% desde la media moverse sigma_ln*numero_aleatorio_normal_estandar veces</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 251--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">B.4.   </span> <a 
+ id="x26-261000B.4"></a>Ciclos, iteraciones y condicionales</h3>
+<!--l. 252--><p class="noindent" >Los ciclos (loops) permiten repetir un mismo algoritmo. A pesar de que uno tienda a realizar todo con ciclos, operar
+vectores y matrices de forma inteligente es más eficiente.
+</p><!--l. 254--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.4.1.   </span> <a 
+ id="x26-262000B.4.1"></a>Ciclo for</h4>
+<!--l. 255--><p class="noindent" >El ciclo for sirve para repetir el mismo procedimiento un número determinado de veces. <br 
+class="newline" />
+</p><!--l. 257--><p class="indent" >   Ej: Suponga que tenemos las matrices de la EDM en coordenadas modales \(Mn\), \(Cn\), \(Kn\), el vector con las frecuencias de
+vibrar de cada modo \(wn\). Obtener la fracción de amortiguamiento modal. </p> <div class="tcolorbox tcolorbox" id="tcolobox-28">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb37"><a 
+ id="x26-262002r1"></a><span 
+class="cmtt-10">xi</span><span id="textcolor243"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">n = zeros(5,1) </span><span id="textcolor244"><span 
+class="cmitt-10">% vector vac</span>í<span 
+class="cmitt-10">o para pre asignar la memoria en tama</span>ñ<span 
+class="cmitt-10">o correspondiente</span></span> 
+<a 
+ id="x26-262004r2"></a><span 
+class="cmtt-10">for n = 1:5 </span><span id="textcolor245"><span 
+class="cmitt-10">% 5 modos, n es el n</span>ú<span 
+class="cmitt-10">mero del modo</span></span> 
+<a 
+ id="x26-262006r3"></a>    <span 
+class="cmtt-10">xi</span><span id="textcolor246"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">n(n) = Cn(n,n)/(2*Mn(n,n)*wn(n))</span> 
+<a 
+ id="x26-262008r4"></a><span 
+class="cmtt-10">end</span> 
+<a 
+ id="x26-262010r5"></a><span id="textcolor247"><span 
+class="cmitt-10">% Nota, vectorialmente: xi_n = diag(Cn)./(2*diag(Mn).*wn)</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 266--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.4.2.   </span> <a 
+ id="x26-263000B.4.2"></a>Ciclo while</h4>
+<!--l. 267--><p class="noindent" >Repetir el mismo procedimiento hasta que se cumpla una condición. <br 
+class="newline" />
+</p><!--l. 269--><p class="indent" >   Ej: Contar hasta 100 y mostrar números en pantalla </p> <div class="tcolorbox tcolorbox" id="tcolobox-29">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb38"><a 
+ id="x26-263002r1"></a><span 
+class="cmtt-10">contador = 0;</span> 
+<a 
+ id="x26-263004r2"></a><span 
+class="cmtt-10">while contador </span><span 
+class="cmmi-10">&#x003C; </span><span 
+class="cmtt-10">100</span> 
+<a 
+ id="x26-263006r3"></a>    <span 
+class="cmtt-10">fprintf(&#x0027;El contador es: </span><span id="textcolor248"><span 
+class="cmtt-10">\%</span></span><span 
+class="cmtt-10">.0f </span><span id="textcolor249"><span 
+class="cmtt-10">\n</span></span><span 
+class="cmtt-10">&#x0027;, contador)</span> 
+<a 
+ id="x26-263008r4"></a>    <span 
+class="cmtt-10">contador = contador + 1; </span><span id="textcolor250"><span 
+class="cmitt-10">% Aumentar el valor del contador</span></span> 
+<a 
+ id="x26-263010r5"></a><span 
+class="cmtt-10">end</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 278--><p class="indent" >
+                                                                                         
+                                                                                         
+</p><!--l. 279--><p class="indent" >   Ej: Encontrar carga última cuando se alcanza una deformación crítica de 20[cm] utilizando una carga monotónica y
+un modelo bilineal del material.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-30">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb39"><a 
+ id="x26-263012r1"></a><span id="textcolor251"><span 
+class="cmitt-10">% Inputs</span></span> 
+<a 
+ id="x26-263014r2"></a><span 
+class="cmtt-10">delta</span><span id="textcolor252"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">cr = 200;, delta</span><span id="textcolor253"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y = 50; </span><span id="textcolor254"><span 
+class="cmitt-10">% mm, deformaciones critica y fluencia</span></span> 
+<a 
+ id="x26-263016r3"></a><span 
+class="cmtt-10">deltas = (0:0.1:400).&#x0027;; </span><span id="textcolor255"><span 
+class="cmitt-10">% mm, vector de deformaciones</span></span> 
+<a 
+ id="x26-263018r4"></a><span 
+class="cmtt-10">k1 = 200; </span><span id="textcolor256"><span 
+class="cmitt-10">% kN/mm rigidez primer tramo</span></span> 
+<a 
+ id="x26-263020r5"></a><span 
+class="cmtt-10">alfa = 0.2; </span><span id="textcolor257"><span 
+class="cmitt-10">% factor de reducci</span>ó<span 
+class="cmitt-10">n de rigidez para segundo tramo</span></span> 
+<a 
+ id="x26-263022r6"></a><span id="textcolor258"><span 
+class="cmitt-10">% Previo</span></span> 
+<a 
+ id="x26-263024r7"></a><span 
+class="cmtt-10">k = zeros(length(deltas), 1);</span> 
+<a 
+ id="x26-263026r8"></a><span 
+class="cmtt-10">k(deltas </span><span 
+class="cmmi-10">&#x003C;</span><span 
+class="cmtt-10">= delta</span><span id="textcolor259"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y) = k1;, </span><span id="textcolor260"><span 
+class="cmitt-10">% tramo 1 modelo bilineal</span></span> 
+<a 
+ id="x26-263028r9"></a><span 
+class="cmtt-10">k(deltas </span><span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmtt-10">delta</span><span id="textcolor261"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y) = alfa*k1; </span><span id="textcolor262"><span 
+class="cmitt-10">% tramo 2 modelo bilineal</span></span> 
+<a 
+ id="x26-263030r10"></a><span 
+class="cmtt-10">P</span><span id="textcolor263"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y = k1*delta</span><span id="textcolor264"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y; </span><span id="textcolor265"><span 
+class="cmitt-10">% Carga de fluencia</span></span> 
+<a 
+ id="x26-263032r11"></a><span 
+class="cmtt-10">P = zeros(length(deltas),1);, i = 1;, delta</span><span id="textcolor266"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual = 0;</span> 
+<a 
+ id="x26-263034r12"></a><span id="textcolor267"><span 
+class="cmitt-10">% Ciclo while</span></span> 
+<a 
+ id="x26-263036r13"></a><span 
+class="cmtt-10">while delta</span><span id="textcolor268"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual </span><span 
+class="cmmi-10">&#x003C;</span><span 
+class="cmtt-10">= delta</span><span id="textcolor269"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">cr </span><span id="textcolor270"><span 
+class="cmitt-10">% Repetir siclo hasta cumplir condici</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-263038r14"></a>    <span 
+class="cmtt-10">k</span><span id="textcolor271"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual = k(i);</span> 
+<a 
+ id="x26-263040r15"></a>    <span 
+class="cmtt-10">if delta</span><span id="textcolor272"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual </span><span 
+class="cmmi-10">&#x003C; </span><span 
+class="cmtt-10">delta</span><span id="textcolor273"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y </span><span id="textcolor274"><span 
+class="cmitt-10">% tramo 1</span></span> 
+<a 
+ id="x26-263042r16"></a>        <span 
+class="cmtt-10">P</span><span id="textcolor275"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual = k</span><span id="textcolor276"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual*delta</span><span id="textcolor277"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual;</span> 
+<a 
+ id="x26-263044r17"></a>    <span 
+class="cmtt-10">elseif delta</span><span id="textcolor278"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual </span><span 
+class="cmmi-10">&#x003E;</span><span 
+class="cmtt-10">= delta</span><span id="textcolor279"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y </span><span id="textcolor280"><span 
+class="cmitt-10">% tramo 2</span></span> 
+<a 
+ id="x26-263046r18"></a>        <span 
+class="cmtt-10">P</span><span id="textcolor281"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual = P</span><span id="textcolor282"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y + k</span><span id="textcolor283"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual*(delta</span><span id="textcolor284"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual</span> <span 
+class="cmtt-10">-</span> <span 
+class="cmtt-10">delta</span><span id="textcolor285"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y);</span> 
+<a 
+ id="x26-263048r19"></a>    <span 
+class="cmtt-10">end</span> 
+<a 
+ id="x26-263050r20"></a>    <span 
+class="cmtt-10">P(i) = P</span><span id="textcolor286"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual;            </span><span id="textcolor287"><span 
+class="cmitt-10">% guardar carga en vector</span></span> 
+<a 
+ id="x26-263052r21"></a>    <span 
+class="cmtt-10">i = i + 1;                  </span><span id="textcolor288"><span 
+class="cmitt-10">% para siguiente iteraci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-263054r22"></a>    <span 
+class="cmtt-10">delta</span><span id="textcolor289"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">actual = deltas(i);   </span><span id="textcolor290"><span 
+class="cmitt-10">% para siguiente iteraci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-263056r23"></a><span 
+class="cmtt-10">end</span> 
+<a 
+ id="x26-263058r24"></a><span 
+class="cmtt-10">P</span><span id="textcolor291"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">simu = P(1:i);                </span><span id="textcolor292"><span 
+class="cmitt-10">% cargas simuladas</span></span> 
+<a 
+ id="x26-263060r25"></a><span 
+class="cmtt-10">deltas</span><span id="textcolor293"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">simu = deltas(1:i);      </span><span id="textcolor294"><span 
+class="cmitt-10">% deformaciones simuladas</span></span> 
+<a 
+ id="x26-263062r26"></a><span 
+class="cmtt-10">P</span><span id="textcolor295"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">cr = P</span><span id="textcolor296"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">simu(end);             </span><span id="textcolor297"><span 
+class="cmitt-10">% carga cr</span>í<span 
+class="cmitt-10">tica</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+   <h4 class="subsectionHead"><span class="titlemark">B.4.3.   </span> <a 
+ id="x26-264000B.4.3"></a>Condicionales</h4>
+<!--l. 311--><p class="noindent" >Una declaración condicional permite decidir si ejecutar un algoritmo o no si es que se cumple con una condición
+(cuando booleano es True). <br 
+class="newline" />
+</p><!--l. 313--><p class="indent" >   Ej: Verificar si una sección cumple con diseño a flexión </p> <div class="tcolorbox tcolorbox" id="tcolobox-31">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb40"><a 
+ id="x26-264002r1"></a><span 
+class="cmtt-10">phiMn = 20;     </span><span id="textcolor298"><span 
+class="cmitt-10">% tonf</span><span 
+class="cmitt-10">-</span><span 
+class="cmitt-10">m Momento flector nominal de la secci</span>ó<span 
+class="cmitt-10">n reducido.</span></span> 
+<a 
+ id="x26-264004r2"></a><span 
+class="cmtt-10">Mu = 18;        </span><span id="textcolor299"><span 
+class="cmitt-10">% tonf</span><span 
+class="cmitt-10">-</span><span 
+class="cmitt-10">m Momento </span>ú<span 
+class="cmitt-10">ltimo que act</span>ú<span 
+class="cmitt-10">a en la secci</span>ó<span 
+class="cmitt-10">n.</span></span> 
+<a 
+ id="x26-264006r3"></a> 
+<a 
+ id="x26-264008r4"></a><span id="textcolor300"><span 
+class="cmitt-10">% Condicional</span></span> 
+<a 
+ id="x26-264010r5"></a><span 
+class="cmtt-10">if phiMn </span><span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmtt-10">Mu</span> 
+<a 
+ id="x26-264012r6"></a>    <span 
+class="cmtt-10">disp(&#x0027;cumple&#x0027;)</span> 
+<a 
+ id="x26-264014r7"></a><span 
+class="cmtt-10">else</span> 
+<a 
+ id="x26-264016r8"></a>    <span 
+class="cmtt-10">disp(&#x0027;no cumple&#x0027;)</span> 
+<a 
+ id="x26-264018r9"></a><span 
+class="cmtt-10">end</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 326--><p class="indent" >   Ej: Calcular el factor de longitud efectiva de la zona de compresión del hormigón \(\beta _1\) de la norma ACI318, utilizando
+condicional ïf”: </p> <div class="tcolorbox tcolorbox" id="tcolobox-32">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb41"><a 
+ id="x26-264020r1"></a><span 
+class="cmtt-10">fc = 30; </span><span id="textcolor301"><span 
+class="cmitt-10">% MPa, resistencia hormig</span>ó<span 
+class="cmitt-10">n fc = 300 kgf/cm^2</span></span> 
+<a 
+ id="x26-264022r2"></a><span 
+class="cmtt-10">if fc </span><span 
+class="cmmi-10">&#x003E;</span><span 
+class="cmtt-10">= 17 </span><span id="textcolor302"><span 
+class="cmtt-10">&#x0026;&#x0026;</span></span> <span 
+class="cmtt-10">fc </span><span 
+class="cmmi-10">&#x003C;</span><span 
+class="cmtt-10">= 28 </span><span id="textcolor303"><span 
+class="cmitt-10">% probar con primer rango</span></span> 
+<a 
+ id="x26-264024r3"></a>    <span 
+class="cmtt-10">beta1 = 0.85;</span> 
+<a 
+ id="x26-264026r4"></a><span 
+class="cmtt-10">elseif fc </span><span 
+class="cmmi-10">&#x003E; </span><span 
+class="cmtt-10">28 </span><span id="textcolor304"><span 
+class="cmtt-10">&#x0026;&#x0026;</span></span> <span 
+class="cmtt-10">fc </span><span 
+class="cmmi-10">&#x003C; </span><span 
+class="cmtt-10">55 </span><span id="textcolor305"><span 
+class="cmitt-10">% si no est</span>á <span 
+class="cmitt-10">en primer rango, probar con segundo rango</span></span> 
+<a 
+ id="x26-264028r5"></a>    <span 
+class="cmtt-10">beta1 = 0.85</span> <span 
+class="cmtt-10">-</span> <span 
+class="cmtt-10">(0.05/7)*(fc</span> <span 
+class="cmtt-10">-</span> <span 
+class="cmtt-10">28);</span> 
+<a 
+ id="x26-264030r6"></a><span 
+class="cmtt-10">else </span><span id="textcolor306"><span 
+class="cmitt-10">% si no est</span>á <span 
+class="cmitt-10">en ninguno</span></span> 
+<a 
+ id="x26-264032r7"></a>    <span 
+class="cmtt-10">beta1 = 0.65;</span> 
+<a 
+ id="x26-264034r8"></a><span 
+class="cmtt-10">end</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 338--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">B.5.   </span> <a 
+ id="x26-265000B.5"></a>Funciones</h3>
+<!--l. 339--><p class="noindent" >Las funciones en MATLAB toman variables input, trabajan con ellas y retornan variables output. Las funciones son
+fundamentales para organizar los scripts (para no escribir lo mismo muchas veces), lo que facilita su comprensión.
+<br 
+class="newline" />
+</p><!--l. 341--><p class="noindent" >Las funciones se pueden crear ya sea en archivos <span 
+class="cmti-10">.m </span>separados del script general o escribiéndolas al
+final del código. Si se crean en archivos, el nombre del archivo debe ser el mismo nombre de la función.
+<br 
+class="newline" />
+</p><!--l. 343--><p class="indent" >   Ej: Crear una función para calcular \(Sa_{avg}\) de un registro sísmico (una medida de intensidad): </p> <div class="tcolorbox tcolorbox" id="tcolobox-33">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb42"><a 
+ id="x26-265002r1"></a><span 
+class="cmtt-10">function [Sa</span><span id="textcolor307"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">avg] = computeSaAvg(Sa, T</span><span id="textcolor308"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">vect, T, c1, c2, dT)</span> 
+<a 
+ id="x26-265004r2"></a>    <span id="textcolor309"><span 
+class="cmitt-10">% Interpolaci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-265006r3"></a>    <span 
+class="cmtt-10">T</span><span id="textcolor310"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">interp = (c1*T:dT:c2*T).&#x0027;;</span> 
+<a 
+ id="x26-265008r4"></a>    <span 
+class="cmtt-10">Sa</span><span id="textcolor311"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">interp = interp1(T</span><span id="textcolor312"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">vect, Sa, T</span><span id="textcolor313"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">interp, &#x0027;linear&#x0027;, &#x0027;extrap&#x0027;);</span> 
+<a 
+ id="x26-265010r5"></a> 
+<a 
+ id="x26-265012r6"></a>    <span id="textcolor314"><span 
+class="cmitt-10">% Calcular Sa_avg (aplicar log() a ecuaci</span>ó<span 
+class="cmitt-10">n de Eads et al 2015)</span></span> 
+<a 
+ id="x26-265014r7"></a>    <span 
+class="cmtt-10">Sa</span><span id="textcolor315"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">avg = exp(1/length(Sa</span><span id="textcolor316"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">interp)*sum(log(Sa</span><span id="textcolor317"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">interp)));</span> 
+<a 
+ id="x26-265016r8"></a><span 
+class="cmtt-10">end</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 355--><p class="noindent" >El archivo que contiene la función debe guardarse con el mismo nombre de la función, en este caso el nombre del
+archivo debería ser <span 
+class="cmti-10">computeSaAvg.m</span>. <br 
+class="newline" />
+</p><!--l. 357--><p class="noindent" >Luego, para llamar la función desde el script de matlab, se debe escribir el mismo nombre y los inputs.
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-34">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb43"><a 
+ id="x26-265018r1"></a><span id="textcolor318"><span 
+class="cmitt-10">% Suponga que ya se obtuvieron Sa y sus periodos respectivos T_vect de un registro s</span>í<span 
+class="cmitt-10">smico</span></span> 
+<a 
+ id="x26-265020r2"></a><span 
+class="cmtt-10">T = 1;      </span><span id="textcolor319"><span 
+class="cmitt-10">% s, Periodo de estudio</span></span> 
+<a 
+ id="x26-265022r3"></a><span 
+class="cmtt-10">dT = ;      </span><span id="textcolor320"><span 
+class="cmitt-10">% s, Espaciamiento deseado para la interpolaci</span>ó<span 
+class="cmitt-10">n de T_vect</span></span> 
+<a 
+ id="x26-265024r4"></a><span 
+class="cmtt-10">c1 = 0.2;   </span><span id="textcolor321"><span 
+class="cmitt-10">% Para T_min para calcular Sa_avg</span></span> 
+<a 
+ id="x26-265026r5"></a><span 
+class="cmtt-10">c2 = 3;     </span><span id="textcolor322"><span 
+class="cmitt-10">% para T_max para calcular Sa_avg</span></span> 
+<a 
+ id="x26-265028r6"></a> 
+<a 
+ id="x26-265030r7"></a><span id="textcolor323"><span 
+class="cmitt-10">% Llamar a la funci</span>ó<span 
+class="cmitt-10">n y guardar resultado en una variable</span></span> 
+<a 
+ id="x26-265032r8"></a><span 
+class="cmtt-10">Sa</span><span id="textcolor324"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">avg = computeSaAvg(Sa, T</span><span id="textcolor325"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">vect, T, c1, c2, dT)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 370--><p class="indent" >
+                                                                                         
+                                                                                         
+</p>
+   <h3 class="sectionHead"><span class="titlemark">B.6.   </span> <a 
+ id="x26-266000B.6"></a>Importar y exportar datos</h3>
+<!--l. 372--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.6.1.   </span> <a 
+ id="x26-267000B.6.1"></a>Importar</h4>
+<!--l. 373--><p class="noindent" >Matlab permite importar datos desde una gran variedad de archivos (.txt, .csv, .xlsx, ...). Dependiendo del
+formato en el que estén los datos en los archivos existen diversas funciones. Las más importantes son las
+siguientes:
+</p>
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 376--><p class="noindent" >readmatrix() - genera una matriz
+     </p></li>
+     <li class="itemize">
+     <!--l. 377--><p class="noindent" >readtable() - genera una tabla
+     </p></li>
+     <li class="itemize">
+     <!--l. 378--><p class="noindent" >load() - carga datos</p></li></ul>
+<!--l. 381--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.6.2.   </span> <a 
+ id="x26-268000B.6.2"></a>Exportar</h4>
+<!--l. 382--><p class="noindent" >Para exportar datos también existen funciones: </p>
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 384--><p class="noindent" >writematrix()
+     </p></li>
+     <li class="itemize">
+     <!--l. 385--><p class="noindent" >writetable()</p></li></ul>
+<!--l. 388--><p class="noindent" >Revisar la documentación de matlab para entender cómo utilizar las funciones.
+</p><!--l. 390--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">B.7.   </span> <a 
+ id="x26-269000B.7"></a>Figuras</h3>
+<!--l. 391--><p class="noindent" >Para graficar en matlab se ocupan series de datos como vectores o matrices:
+                                                                                         
+                                                                                         
+</p><!--l. 393--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.7.1.   </span> <a 
+ id="x26-270000B.7.1"></a>Plot</h4>
+<!--l. 394--><p class="noindent" >Ej: Tomando los resultados del pushover de 4.2, graficar la curva de carga vs desplazamiento </p> <div class="tcolorbox tcolorbox" id="tcolobox-35">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb44"><a 
+ id="x26-270002r1"></a><span id="textcolor326"><span 
+class="cmitt-10">% P_simu: vector de cargas simuladas</span></span> 
+<a 
+ id="x26-270004r2"></a><span id="textcolor327"><span 
+class="cmitt-10">% deltas_simu = vector de deformaciones simuladas</span></span> 
+<a 
+ id="x26-270006r3"></a> 
+<a 
+ id="x26-270008r4"></a><span 
+class="cmtt-10">figure  </span><span id="textcolor328"><span 
+class="cmitt-10">% Crea una nueva ventana/figura</span></span> 
+<a 
+ id="x26-270010r5"></a><span 
+class="cmtt-10">plot(deltas</span><span id="textcolor329"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">simu, P</span><span id="textcolor330"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">simu,&#x0027;linewidth&#x0027;,2,&#x0027;color&#x0027;,&#x0027;r&#x0027;)</span> 
+<a 
+ id="x26-270012r6"></a><span 
+class="cmtt-10">hold on                 </span><span id="textcolor331"><span 
+class="cmitt-10">% para poner m</span>á<span 
+class="cmitt-10">s que un gr</span>á<span 
+class="cmitt-10">fico en la figura</span></span> 
+<a 
+ id="x26-270014r7"></a><span 
+class="cmtt-10">xline(delta</span><span id="textcolor332"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">cr)         </span><span id="textcolor333"><span 
+class="cmitt-10">% Incluir l</span>í<span 
+class="cmitt-10">nea vertical</span></span> 
+<a 
+ id="x26-270016r8"></a><span 
+class="cmtt-10">yline(P</span><span id="textcolor334"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">cr)             </span><span id="textcolor335"><span 
+class="cmitt-10">% Incluir linea horizontal</span></span> 
+<a 
+ id="x26-270018r9"></a><span 
+class="cmtt-10">hold off                </span><span id="textcolor336"><span 
+class="cmitt-10">% para dejar de incluir graficos a la figura</span></span> 
+<a 
+ id="x26-270020r10"></a><span 
+class="cmtt-10">xlim([0 deltas(end)])   </span><span id="textcolor337"><span 
+class="cmitt-10">% limitar ancho de ventana</span></span> 
+<a 
+ id="x26-270022r11"></a><span 
+class="cmtt-10">grid on                 </span><span id="textcolor338"><span 
+class="cmitt-10">% encender grilla</span></span> 
+<a 
+ id="x26-270024r12"></a><span 
+class="cmtt-10">xlabel(&#x0027;deformaci</span>ó<span 
+class="cmtt-10">n </span><span id="textcolor339"><span 
+class="cmtt-10">\delta</span></span> <span 
+class="cmtt-10">[mm]&#x0027;)</span> 
+<a 
+ id="x26-270026r13"></a><span 
+class="cmtt-10">ylabel(&#x0027;Carga P [kN]&#x0027;)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 413--><p class="noindent" ><img 
+src="Figuras/curvCapacidad.png" alt="PIC"  
+width="258" height="258"  />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!--l. 416--><p class="noindent" >En la figura, haciendo click en file ¿export setup, se puede configurar la vista de la figura para exportar.
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.7.2.   </span> <a 
+ id="x26-271000B.7.2"></a>Dispersión</h4>
+   <div class="tcolorbox tcolorbox" id="tcolobox-36">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb45"><a 
+ id="x26-271002r1"></a><span 
+class="cmtt-10">figure</span> 
+<a 
+ id="x26-271004r2"></a><span 
+class="cmtt-10">scatter(data</span><span id="textcolor340"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">x, data</span><span id="textcolor341"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">y)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 424--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.7.3.   </span> <a 
+ id="x26-272000B.7.3"></a>Histogramas</h4>
+   <div class="tcolorbox tcolorbox" id="tcolobox-37">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb46"><a 
+ id="x26-272002r1"></a><span 
+class="cmtt-10">figure</span> 
+<a 
+ id="x26-272004r2"></a><span 
+class="cmtt-10">histogram(vector</span><span id="textcolor342"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">data)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 430--><p class="noindent" >También se pueden normalizar los histogramas y hacer ajustes a distribuciones
+</p>
+   <div class="tcolorbox tcolorbox" id="tcolobox-38">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb47"><a 
+ id="x26-272006r1"></a><span 
+class="cmtt-10">mu = 79.91;</span> 
+<a 
+ id="x26-272008r2"></a><span 
+class="cmtt-10">sigma = 14.89;</span> 
+<a 
+ id="x26-272010r3"></a><span 
+class="cmtt-10">cantidad</span><span id="textcolor343"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">realizaciones = 1000;</span> 
+<a 
+ id="x26-272012r4"></a><span 
+class="cmtt-10">realizaciones</span><span id="textcolor344"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">masas = normrnd(mu, sigma, cantidad</span><span id="textcolor345"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">realizaciones, 1);</span> 
+<a 
+ id="x26-272014r5"></a> 
+<a 
+ id="x26-272016r6"></a><span id="textcolor346"><span 
+class="cmitt-10">% Histograma normalizado a pdf</span></span> 
+<a 
+ id="x26-272018r7"></a><span 
+class="cmtt-10">figure</span> 
+<a 
+ id="x26-272020r8"></a><span 
+class="cmtt-10">histogram(realizaciones</span><span id="textcolor347"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">masas, &#x0027;normalization&#x0027;, &#x0027;pdf&#x0027;)</span> 
+<a 
+ id="x26-272022r9"></a> 
+<a 
+ id="x26-272024r10"></a><span id="textcolor348"><span 
+class="cmitt-10">% Histograma con ajuste de distribuci</span>ó<span 
+class="cmitt-10">n</span></span> 
+<a 
+ id="x26-272026r11"></a><span 
+class="cmtt-10">figure</span> 
+<a 
+ id="x26-272028r12"></a><span 
+class="cmtt-10">histfit(realizaciones</span><span id="textcolor349"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">masas, 20, &#x0027;normal&#x0027;)</span> 
+<a 
+ id="x26-272030r13"></a></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 448--><p class="indent" >
+                                                                                         
+                                                                                         
+</p><!--l. 449--><p class="noindent" >El resultado de aplicar <span 
+class="cmti-10">histfit() </span>con las 1000 realizaciones (simulaciones) de la distribución normal.
+</p><figure class="figure"> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 452--><p class="noindent" ><img 
+src="Figuras/histogramFitting.png" alt="PIC"  
+width="258" height="258"  />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">B.8.   </span> <a 
+ id="x26-273000B.8"></a>Instalar Toolbox</h3>
+<!--l. 456--><p class="noindent" >Para instalar un toolbox, dentro de MATLAB ir a Home ¿Add-Ons ¿Get Add-Ons, lo que abrirá una pestaña para
+buscar e instalar toolbox.
+</p>
+   <figure class="figure"> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 460--><p class="noindent" ><img 
+src="Figuras/AddOnsButton.png" alt="PIC"  
+width="220" height="220"  />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!--l. 463--><p class="indent" >   Un toolbox necesario para el curso es el <span 
+class="cmti-10">Control System</span>. Instalarlo. </p><figure class="figure"> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 466--><p class="noindent" ><img 
+src="Figuras/controlSystemToolbox.png" alt="PIC"  
+width="352" height="352"  />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class="sectionHead"><span class="titlemark">B.9.   </span> <a 
+ id="x26-274000B.9"></a>Funciones útiles para el curso</h3>
+<!--l. 470--><p class="noindent" >Muchos de los conceptos que se aprenden en cátedra, pueden realizarse en MATLAB con una función.
+<br 
+class="newline" />
+</p><!--l. 472--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.9.1.   </span> <a 
+ id="x26-275000B.9.1"></a>Representación de sistemas</h4>
+<!--l. 473--><p class="noindent" >Para trabajar con sistemas en MATLAB, existen las <span 
+class="cmti-10">Variables tipo sistema </span>que pueden ser creadas con alguna de las
+repreentaciones vistas en clases (y más). <br 
+class="newline" />
+</p><!--l. 475--><p class="indent" >   Espacio-Estado (State-Space, SS) </p> <div class="tcolorbox tcolorbox" id="tcolobox-39">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb48"><a 
+ id="x26-275002r1"></a><span id="textcolor350"><span 
+class="cmitt-10">% Ass, Bss, Css, Dss son las matrices de la representaci</span>ó<span 
+class="cmitt-10">n espacio</span><span 
+class="cmitt-10">-</span><span 
+class="cmitt-10">estado de un sistema</span></span> 
+<a 
+ id="x26-275004r2"></a><span 
+class="cmtt-10">sys</span><span id="textcolor351"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">ss = ss(Ass, Bss, Css, Dss)</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 481--><p class="indent" >   Función de Transferencia (Transfer Function, TF) </p> <div class="tcolorbox tcolorbox" id="tcolobox-40">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb49"><a 
+ id="x26-275006r1"></a><span id="textcolor352"><span 
+class="cmitt-10">% num: vector con los coeficientes del polinomio del numerador de la TF</span></span> 
+<a 
+ id="x26-275008r2"></a><span id="textcolor353"><span 
+class="cmitt-10">% den: vector con los coeficientes del polinomio del denominador de la TF</span></span> 
+<a 
+ id="x26-275010r3"></a><span 
+class="cmtt-10">sys</span><span id="textcolor354"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">tf = tf(num, den);</span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 488--><p class="indent" >   Desde State-Space a Transfer Function y viceversa </p> <div class="tcolorbox tcolorbox" id="tcolobox-41">     
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb50"><a 
+ id="x26-275012r1"></a><span 
+class="cmtt-10">sys = ss(sys</span><span id="textcolor355"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">tf);       </span><span id="textcolor356"><span 
+class="cmitt-10">% desde sistema en representaci</span>ó<span 
+class="cmitt-10">n TF a SS</span></span> 
+<a 
+ id="x26-275014r2"></a><span 
+class="cmtt-10">sys = tf(sys</span><span id="textcolor357"><span 
+class="cmtt-10">_</span></span><span 
+class="cmtt-10">ss);       </span><span id="textcolor358"><span 
+class="cmitt-10">% desde sistema en representaci</span>ó<span 
+class="cmitt-10">n SS a TF</span></span> 
+<a 
+ id="x26-275016r3"></a><span 
+class="cmtt-10">sys = ss2tf(A,B,C,D)    </span><span id="textcolor359"><span 
+class="cmitt-10">% tf desde matrices ss</span></span> 
+<a 
+ id="x26-275018r4"></a><span 
+class="cmtt-10">sys = tf2ss(num, den)   </span><span id="textcolor360"><span 
+class="cmitt-10">% ss desde coeficientes tf</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 496--><p class="noindent" >Da exactamente el mismo sistema si se utiliza la representación state-space o transfer function. <br 
+class="newline" />
+</p><!--l. 498--><p class="noindent" >Notar que la variable tipo sistema tiene toda la información del sistema. Para mostrarla se puede escribir \(sys\) en la
+ventana de comandos o \(disp(sys)\)
+</p><!--l. 500--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.9.2.   </span> <a 
+ id="x26-276000B.9.2"></a>Excitar sistemas</h4>
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 502--><p class="noindent" ><span 
+class="cmti-10">impulse(sys)</span>: aplicar impulso al sistema
+     </p></li>
+     <li class="itemize">
+     <!--l. 503--><p class="noindent" ><span 
+class="cmti-10">ramp(sys)</span>: aplicar excitación de rampa al sistema
+     </p></li>
+     <li class="itemize">
+     <!--l. 504--><p class="noindent" ><span 
+class="cmti-10">step(sys)</span>: aplicar excitación de escalón al sistema</p></li></ul>
+                                                                                         
+                                                                                         
+<!--l. 507--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.9.3.   </span> <a 
+ id="x26-277000B.9.3"></a>Subsistemas</h4>
+<!--l. 508--><p class="noindent" >Si se desea extraer la información del sistema que relaciona el output \(i\) con el input \(j\), se puede utilizar \(sys(i,j)\) </p> <div class="tcolorbox tcolorbox" id="tcolobox-42">   
+ 
+<div class="tcolorbox-title">
+   </div> 
+<div class="tcolorbox-content"><pre class="fancyvrb" id="fancyvrb51"><a 
+ id="x26-277002r1"></a><span 
+class="cmtt-10">bode(sys(i,j)) </span><span id="textcolor361"><span 
+class="cmitt-10">% grafica s</span>ó<span 
+class="cmitt-10">lo el bode (i,j)</span></span> 
+<a 
+ id="x26-277004r2"></a><span 
+class="cmtt-10">impulse(sys(i,j)) </span><span id="textcolor362"><span 
+class="cmitt-10">% grafica la respuesta del output &#x0022;i&#x0022; cuando input &#x0022;j&#x0022; es un impulso</span></span></pre>
+ 
+</div> 
+</div>                                                                                       
+</div> 
+</div>
+<!--l. 514--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">B.9.4.   </span> <a 
+ id="x26-278000B.9.4"></a>Otras funciones útiles para el curso</h4>
+     <ul class="itemize1">
+     <li class="itemize">
+     <!--l. 516--><p class="noindent" ><span 
+class="cmti-10">damp() </span>- Polos, frecuencia, amortiguamiento
+     </p></li>
+     <li class="itemize">
+     <!--l. 517--><p class="noindent" ><span 
+class="cmti-10">bode(), bodeplot() </span>- Bode
+     </p></li>
+     <li class="itemize">
+     <!--l. 518--><p class="noindent" ><span 
+class="cmti-10">rootlocus() </span>- Root-locus
+     </p></li>
+     <li class="itemize">
+     <!--l. 519--><p class="noindent" ><span 
+class="cmti-10">pzmap() </span>- Mapa de polos y ceros
+     </p></li>
+     <li class="itemize">
+     <!--l. 520--><p class="noindent" ><span 
+class="cmti-10">fft(), shiftfft() </span>- Fast Fourier Transform
+     </p></li>
+     <li class="itemize">
+     <!--l. 521--><p class="noindent" ><span 
+class="cmti-10">ode45() </span>- Integración numérica Runge-Kutta Ode4
+     </p></li>
+     <li class="itemize">
+     <!--l. 522--><p class="noindent" ><span 
+class="cmti-10">expm()</span>
+     </p></li>
+     <li class="itemize">
+     <!--l. 523--><p class="noindent" ><span 
+class="cmti-10">repmat()</span></p></li></ul>
+<!--l. 526--><p class="noindent" >Revisar la documentación de estas funciones
+                                                                                         
+                                                                                         
+</p>
    <!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
 href="MIC411apuntesap3.html" >next</a>] [<a 
 href="MIC411apuntesap1.html" >prev</a>] [<a 
 href="MIC411apuntesap1.html#tailMIC411apuntesap1.html" >prev-tail</a>] [<a 
 href="MIC411apuntesap2.html" >front</a>] [<a 
-href="MIC411apuntespa4.html#MIC411apuntesap2.html" >up</a>] </p></div>
+href="MIC411apuntespa5.html#MIC411apuntesap2.html" >up</a>] </p></div>
 <!--l. 1--><p class="indent" >   <a 
- id="tailMIC411apuntesap2.html"></a>  </p> 
+ id="tailMIC411apuntesap2.html"></a>   </p> 
 </body> 
 </html>
