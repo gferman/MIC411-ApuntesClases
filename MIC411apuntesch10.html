@@ -1,0 +1,687 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>10 Teor´ıa de Control Cl´asico</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch11.html'>next</a>] [<a href='MIC411apuntesch9.html'>prev</a>] [<a href='MIC411apuntesch9.html#tailMIC411apuntesch9.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch10.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch10.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='teoria-de-control-clasico'><span class='titlemark'>Capítulo 10</span><br /><a id='x16-16000010'></a>Teoría de Control Clásico</h2>
+   <h3 class='sectionHead' id='openloop-vs-closedloop-control'><span class='titlemark'>10.1.   </span> <a id='x16-16100010.1'></a>Open-loop vs closed-loop control</h3>
+<!-- l. 4 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='openloop-feedforward'><span class='titlemark'>10.1.1.   </span> <a id='x16-16200010.1.1'></a>Open-loop (feedforward)</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 7 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/open-loop.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+     <ul class='itemize1'>
+     <li class='itemize'> \(Y(s)=G(s)[U(s)+D(s)]\), si asumimos \(D(s)=0\)
+     </li>
+     <li class='itemize'> \(U(s)=C(s)R(s)\)</li></ul>
+<!-- l. 15 --><p class='indent'>   Reemplazar (2) en (1):
+                                             \[Y(s)=G(s)C(s)R(s)=L(s)R(s)\]
+ Donde \(L(s)=G(s)C(s)\) es el sistema abierto “open-loop system” en representación función de transferencia.<br class='newline' />
+</p><!-- l. 18 --><p class='indent'>   Si buscamos: \begin {align*}  y(t)&amp;=r(t) ~/\mathcal {L}\{\cdot \}\\ Y(s)&amp;=R(s)\\ \Longrightarrow L(s)&amp;=1\\ \Longrightarrow C(s)&amp;=\frac {1}{G(s)} ~\text {``control inverso''}  \end {align*}
+</p><!-- l. 26 --><p class='indent'>   <span class='underline'>Nota</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Muy simple y “barato” (no hay necesidad de sensores)
+     </li>
+     <li class='itemize'>No es robusto \(\Longrightarrow \) si hay incertidumbre en \(G(s)\) \begin {align*}  L(s)&amp;=G(s)C(s)\neq 1\\ &amp;=[\hat {G}(s)+\Delta (s)]\frac {1}{\hat {G}(s)}\\ &amp;=1+\frac {\Delta (s)}{\hat {G}(s)}  \end {align*}
+</li></ul>
+<!-- l. 36 --><p class='noindent'><span class='underline'>Nota</span>: podría ser útil en RTHS, porque la respuesta es instantánea.
+</p>
+   <h4 class='subsectionHead' id='closedloop-feedback-control'><span class='titlemark'>10.1.2.   </span> <a id='x16-16300010.1.2'></a>Closed-loop (feedback) control</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 41 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/closed-loop.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 47 --><p class='indent'>   \begin {align*}  \Longrightarrow &amp; \text {Error: }~e(t)=r(t)-y(t)\\ &amp; \text {Si }e(t)=0\longrightarrow y(t)=r(t)  \end {align*}
+</p><!-- l. 49 --><p class='indent'>   <span class='underline'>Nota</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Más robusto que feedforward \(\Longrightarrow \) instalar sensores y “alimentar” la información de respuesta al controlador
+     </li>
+     <li class='itemize'>Más complicada y cara que open-loop
+     </li>
+     <li class='itemize'>Puede causar sistema estable o inestable
+     </li>
+     <li class='itemize'>Respuesta va a ser lenta \(\Longrightarrow \) Real-time hybrid simulation</li></ul>
+   <h5 class='subsubsectionHead' id='diagrama-de-bloque'><a id='x16-164000'></a>Diagrama de Bloque</h5>
+<!-- l. 58 --><p class='noindent'>Cuando se añade un dispositivo de control al sistema dinámico estructural, se genera un nuevo sistema dinámico con
+propiedades distintas.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 62 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Diagrama_bloque.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 65 --><p class='indent'>   Desde el diagrama de bloques, se observa que: \begin {align*}  Y(s) = G(s)U(s)  \end {align*}
+</p><!-- l. 70 --><p class='indent'>   Pero, la señal de entrada \(U(s)\) es la señal de salida del controlador: \begin {align*}  U(s) = C(s)E(s)  \end {align*}
+</p><!-- l. 75 --><p class='indent'>   Reemplazando, se obtiene que : \begin {align*}  Y(s) = G(s)C(s)E(s)  \end {align*}
+</p><!-- l. 80 --><p class='indent'>   Notar que la función de transferencia para este subsistema es \(G(s)C(s)\). Siguiendo con el mísmo método reemplazando la señal
+de entrada por la multiplicación de su TF con su entrada (considerandola como salida): \begin {align*}  Y(s)&amp;=L(s)E(s)=G(s)C(s)E(s)\\ E(s)&amp;=R(s)-Y(s)  \end {align*}
+</p><!-- l. 86 --><p class='indent'>   Reemplzando (2) en (1): \begin {align*}  \Longrightarrow Y(s)&amp;=G(s)C(s)[R(s)-Y(s)]\\ \Longrightarrow [1+G(s)C(s)]Y(s)&amp;=G(s)C(s)R(s)\\ \Longrightarrow Y(s)&amp;= \bigg [\frac {G(s)C(s)}{1+G(s)C(s)}\bigg ]R(s)\\ \Longrightarrow Y(s)&amp;= G_{CL}(s)R(s)  \end {align*}
+</p><!-- l. 94 --><p class='indent'>   \(\therefore G_{CL} = \bigg [\frac {G(s)C(s)}{1+G(s)C(s)}\bigg ]\) es la función de transferencia del nuevo sistema que incorpora al controlador.
+</p>
+   <h3 class='sectionHead' id='sistema-estructural-con-active-mass-damper-amd'><span class='titlemark'>10.2.   </span> <a id='x16-16500010.2'></a>Sistema estructural con Active Mass Damper (AMD)</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 101 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/AMD.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 105 --><p class='indent'>   \begin {align*}  \text {EDM: }~ m\ddot {z}+c\dot {z}+kz=f_a(u)+\cancelto {\text {Asuma=0}}{d}  \end {align*}
+</p><!-- l. 106 --><p class='indent'>   \(u\): señal control (voltaje)<br class='newline' />El objetivo es diseñar un <span class='underline'>algoritmo de control</span> \(f_a(u,t)\) para mitigar \(z(t)\) y mejorar el desempeño.
+</p>
+   <h3 class='sectionHead' id='teorema-del-limite-final'><span class='titlemark'>10.3.   </span> <a id='x16-16600010.3'></a>Teorema del Límite Final</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 126 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/planta2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 128 --><p class='indent'>   Respuesta Estado Estacionario: \(y_\infty =\lim _{t\to \infty } y(t)\)<br class='newline' />
+</p><!-- l. 129 --><p class='indent'>   Válido si y solo si \(G(s)\) es estable.<br class='newline' />
+</p><!-- l. 130 --><p class='indent'>   <span class='underline'>Teorema</span>: Si todos los polos de \(G(s)\) se encuentran a la izquierda del plano complejo, entonces: \begin {align*}  \lim _{t\to \infty } y(t)=\lim _{s\to 0} sY(s)  \end {align*}
+</p>
+   <h3 class='sectionHead' id='requisitos-de-control'><span class='titlemark'>10.4.   </span> <a id='x16-16700010.4'></a>Requisitos de control</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 139 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Planta.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 141 --><p class='indent'>   \(\Longrightarrow \) Generar un set de requisitos de respuesta de planta \(\Longrightarrow \) Especificaciones de respuesta transiente ante un escalón
+unitario </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(t_r\) (tiempo de subida)
+     </li>
+     <li class='itemize'>\(M_p\) (sobreimpulso)
+     </li>
+     <li class='itemize'>\(t_s\) (tiempo de asentamiento)</li></ul>
+   <h4 class='subsectionHead' id='especificaciones-de-respuesta-transiente'><span class='titlemark'>10.4.1.   </span> <a id='x16-16800010.4.1'></a>Especificaciones de Respuesta Transiente</h4>
+<!-- l. 149 --><p class='noindent'>Suponiendo un sistema LTI-SISO:<br class='newline' />\begin {align*}  \text {EDM: }~ m\ddot {u}+c\dot {u}+ku &amp;= f\\ \Longrightarrow H_{UF}(s) &amp;= \frac {1/m}{s^2+2\xi \omega _n s+\omega _n^2}  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 156 --><p class='noindent'><img alt='PIC' height='36' src='Figuras/transiente.png' width='36' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 159 --><p class='indent'>   Fórmulas para estimar la respuesta transiente para el caso de excitación escalón: </p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='underline'>Tiempo subida, \(t_r\)</span>: Asumiento \(\xi =2\%\),
+                                               \[t_r\approx \frac {1.6}{\omega _n}\]
+     </li>
+     <li class='itemize'><span class='underline'>Sobreimpulso, \(M_p\)</span>:
+                                               \[-\log \left (\frac {M_p}{\pi } \right ) \approx \tan (\theta )\]
+     </li>
+     <li class='itemize'><span class='underline'>Tiempo asentamiento, \(t_s\)</span>: Asumiendo 2\(\m@th \,\)% de respuesta esperada en “steady-state”,
+                                               \[t_s\approx \frac {4}{\xi \omega _n} \]
+     </li></ul>
+                                                                                         
+                                                                                         
+   <h4 class='subsectionHead' id='pole-placement-ubicacion-de-polos'><span class='titlemark'>10.4.2.   </span> <a id='x16-16900010.4.2'></a>“Pole placement”, ubicación de polos</h4>
+<!-- l. 170 --><p class='noindent'>Dadas las especificaciones transientes: \(t_r\), \(M_p\), \(t_s\) \begin {align*}  \color {VioletRed}{t_s}&amp;&lt;(t_s)_{lim}=\frac {4}{(\xi \omega _n)_{lim}}\\ \color {BurntOrange}{t_r}&amp;&lt;(t_r)_{lim}\approx \frac {1.6}{\omega _n}\\ \color {LimeGreen}{M_p}&amp;&lt;(M_p)_{lim}=e^{-\pi \tan (\theta )}  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 179 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/pole_placement.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='control-pid'><span class='titlemark'>10.5.   </span> <a id='x16-17000010.5'></a>Control PID</h3>
+<!-- l. 184 --><p class='noindent'>El control PID es un <span class='underline'>algoritmo de control</span> para diseñar la señal de control \(u(t)\) para definir nuestra fuerza de control \(f_a(u,t)\) es el
+control PID. \begin {align*}  u(t)&amp;=K_pe(t)+K_D\frac {de(t)}{dt}+K_I\int e(t)dt\\ \Longleftrightarrow U(s) &amp;= K_pE(s)+K_DsE(s)+K_I\frac {E(s)}{s} \\ \Longleftrightarrow U(s) &amp;= \left (K_P + K_Ds + \frac {K_I}{s}\right )E(s)  \end {align*}
+</p><!-- l. 191 --><p class='indent'>   Si definimos \(C(s) = K_P + K_Ds + \frac {K_I}{s}\) \begin {align*}  U(s) = C(s)E(s)  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(K_p\): control proporcional
+     </li>
+     <li class='itemize'>\(K_D\): control derivativo
+     </li>
+     <li class='itemize'>\(K_I\): control integral
+     </li>
+     <li class='itemize'>\(K_pe(t)\): error instantáneo
+     </li>
+     <li class='itemize'>\(K_D\frac {de(t)}{dt}\): error futuro
+     </li>
+     <li class='itemize'>\(K_I\int e(t)dt\): error pasado
+     </li>
+     <li class='itemize'>\(e(t) = r(t) - y(t)\)</li></ul>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 207 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/controlador.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 212 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/PID2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 214 --><p class='indent'>   \(C(s)\) se diseña tal que \(e(t)\to 0\)
+                                             \[C(s)=K_p+\frac {K_I}{s}+K_Ds\]
+ </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(Y(s)=G(s)U(s)\)
+     </li>
+     <li class='itemize'>\(U(s)=C(s)E(S)\)
+     </li>
+     <li class='itemize'>\(E(s)=R(s)-Y(s)\)</li></ul>
+
+<!-- l. 226 --><p class='noindent'>\begin {align*}  Y(s)&amp;=G(s)C(s)[R(s)-Y(s)]\\ \Longrightarrow Y(s)&amp;=\frac {G(s)C(s)}{1+G(s)C(s)}R(s)\\ &amp;=G_{CL}R(s)\\ &amp;=G_{yr}R(s)  \end {align*}
+</p>
+   <h4 class='subsectionHead' id='control-p'><span class='titlemark'>10.5.1.   </span> <a id='x16-17100010.5.1'></a>Control P</h4>
+<!-- l. 229 --><p class='noindent'>Si se considera únicamente el control P (proporcional), se puede obtener la función de transferencia del sistema
+cerrado. \begin {align*}  &amp; C(s)=K_p\\ \Longrightarrow &amp; G(s)=\frac {1}{ms^2+cs+k}=\frac {1/m}{s^2+2\xi \omega _n s+\omega _n^2}=\frac {c}{s^2+as+b}\\ \Longrightarrow &amp; G_{CL}(s)=\frac {K_p\frac {c}{s^2+bs+c}}{1+K_p\frac {c}{s^2+bs+c}} \\ \Longrightarrow &amp; G_{CL}(s)=\frac {K_p c}{s^2+as+(b+K_p\cdot c)} \longrightarrow \text {Función de transferencia Closed-loop}  \end {align*}
+</p><!-- l. 237 --><p class='indent'>   Al tener la misma forma de un sistema 1GDL, se pueden definir propiedades equivalentes: \begin {align*}  \Longrightarrow &amp; \omega _{n,CL}= \sqrt {b+K_p\cdot c}\\ \Longrightarrow &amp; \xi _{CL}= \frac {a}{2\omega _{n,CL}}=\frac {a}{2\sqrt {b+K_p\cdot c}}  \end {align*}
+</p><!-- l. 243 --><p class='indent'>   Notar que: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Aumentar \(K_p\) hace que \(\omega _{n,CL}\) aumente (sistema rígido)
+     </li>
+     <li class='itemize'>Aumentar \(K_p\) hace que \(\xi \) disminuya</li></ul>
+<!-- l. 249 --><p class='indent'>   En términos de la respuesta \(y_{\infty }\): \begin {align*}  y_{\infty }=\lim _{s\to 0}sY_{CL}(s)=\lim _{s\to 0} sG_{CL}(s)R(s)  \end {align*}
+</p><!-- l. 253 --><p class='indent'>   Con \(R(s)\): escalón unitario
+</p><!-- l. 257 --><p class='indent'>   \begin {align*}  \Longrightarrow y_{\infty }=\lim _{s\to 0} s\frac {K_p\cdot c}{s^2+as+(b+K_p\cdot c)}\cdot \frac {1}{s}=\frac {K_p\cdot c}{b+K_p \cdot c}\neq 1  \end {align*}
+</p><!-- l. 258 --><p class='indent'>   Valores pequeños de \(K_p\Longrightarrow \) error en estado estacionario </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 261 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/controlP.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='control-pd'><span class='titlemark'>10.5.2.   </span> <a id='x16-17200010.5.2'></a>Control PD</h4>
+<!-- l. 265 --><p class='noindent'>Análogamente al control P, se puede obtener la función de transferencia de un sistema estructural con control PD
+\begin {align*}  G_{CL}(s)&amp;=\frac {G(s)C(s)}{1+G(s)C(s)}=\frac {\left (\frac {c}{s^2+as+b}\right )C(s)}{1+\left (\frac {c}{s^2+as+b}\right )C(s)}\\ &amp; = \frac {c\cdot C(s)}{a^2+as+\left ( b+c \cdot C(s) \right )}  \end {align*}
+</p><!-- l. 271 --><p class='indent'>   Si el controlador es PD, entonces se obtiene la expresión para el sistema cerrado: \begin {align*}  C(s) &amp;= K_p+K_Ds=K_p(1+T_Ds)\\ \Longrightarrow G_{CL} &amp;= \frac {cK_p(1+T_Ds)}{s^2+(a+cbK_pT_D)s+b(1+K_p)}  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Aparece un “cero” en el numerador
+     </li>
+     <li class='itemize'>Podemos controlar \(\omega _{n,CL}\) mediante \(K_p\)
+     </li>
+     <li class='itemize'>Podemos controlar \(\xi _{CL}\) mediante una combinación de \(K_p\) y \(T_D\)</li></ul>
+<!-- l. 283 --><p class='indent'>   \(\Longrightarrow y_{\infty }\), no hay cambio en el error de estado estacionario<br class='newline' />
+</p><!-- l. 284 --><p class='indent'>   \(\Longrightarrow \) Con PD podemos ubicar los polos del sistema cerrado donde nosotros queramos<br class='newline' />
+</p><!-- l. 285 --><p class='indent'>   <span class='underline'>Advertencia</span>: Control D amplifica el ruido eléctrico en la señal de respuesta \(\Longrightarrow \) Nunca utilizar control
+D.
+</p><!-- l. 287 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='control-pi'><span class='titlemark'>10.5.3.   </span> <a id='x16-17300010.5.3'></a>Control PI</h4>
+<!-- l. 292 --><p class='noindent'>\begin {align*}  \Longrightarrow G_{CL}(s) &amp;= \frac {c\cdot C(s)}{s^2+as+\left (b+c \cdot C(s)\right )}\\ \Longrightarrow C(s) &amp;= K_p +\frac {K_I}{s}=K_P\left (1+\frac {T_I}{2}\right )\\ \Longrightarrow G_{CL} &amp;= \frac {cK_p(s+T_I)}{s^3+as^2+(b+cK_p)s+cK_pT_I}  \end {align*}
+</p><!-- l. 296 --><p class='noindent'>\begin {align*}  \Longrightarrow y_{\infty }=\lim _{s\to 0}sY_{CL}(s)=\lim _{s\to 0} s\frac {K_p\cdot c(s+T_I)}{s^3+as^2+(b+cK_p)s+cK_pT_I}\cdot \frac {1}{s}=\frac {T_IK_p\cdot c}{T_IK_p\cdot c}= 1  \end {align*}
+</p><!-- l. 298 --><p class='noindent'><span class='underline'>Nota</span>: El esfuerzo del control I genera una reducción del error en estado estacionario.
+</p><!-- l. 300 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='control-pid1'><span class='titlemark'>10.5.4.   </span> <a id='x16-17400010.5.4'></a>Control PID</h4>
+<!-- l. 304 --><p class='noindent'>\begin {align*}  C(s) &amp;= K_p+\frac {K_I}{s}+K_Ds\\ &amp;= K_p\left (1+\frac {T_I}{s}+T_Ds\right )  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Aumentar \(K_p\): Sistema que responde rápido, pero se genera alto sobreimpulso, y el error estacionario alto.
+     </li>
+     <li class='itemize'>Aumentar \(K_D\): Agregar amortiguameinto al sistema (disminuir sobreimpulso), pero puede amplificar el
+     ruido eléctrico.
+                                                                                         
+                                                                                         
+     </li>
+     <li class='itemize'>Aumentar \(K_I\): Reducir el error en estado estacionario, sistema se vuelve más lento.</li></ul>
+   <div class='table'>
+                                                                                         
+                                                                                         
+<!-- l. 312 --><p class='indent'>   </p><figure class='float'>
+                                                                                         
+                                                                                         
+<div class='tabular'> <table class='tabular' id='TBL-2'><colgroup id='TBL-2-1g'><col id='TBL-2-1' /></colgroup><colgroup id='TBL-2-2g'><col id='TBL-2-2' /></colgroup><colgroup id='TBL-2-3g'><col id='TBL-2-3' /></colgroup><colgroup id='TBL-2-4g'><col id='TBL-2-4' /></colgroup><tr id='TBL-2-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-1-1' style='white-space:nowrap; text-align:center;'>        </td><td class='td11' id='TBL-2-1-2' style='white-space:nowrap; text-align:center;'> \(K_p \uparrow \) </td><td class='td11' id='TBL-2-1-3' style='white-space:nowrap; text-align:center;'> \(K_D \uparrow \) </td><td class='td11' id='TBL-2-1-4' style='white-space:nowrap; text-align:center;'>   \(K_I \uparrow \)   </td></tr><tr class='hline'><td></td><td></td><td></td><td></td></tr><tr id='TBL-2-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-2-1' style='white-space:nowrap; text-align:center;'> error ss </td><td class='td11' id='TBL-2-2-2' style='white-space:nowrap; text-align:center;'>  \(\downarrow \) </td><td class='td11' id='TBL-2-2-3' style='white-space:nowrap; text-align:center;'> - </td><td class='td11' id='TBL-2-2-4' style='white-space:nowrap; text-align:center;'> 0 </td>
+</tr><tr class='hline'><td></td><td></td><td></td><td></td></tr><tr id='TBL-2-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-3-1' style='white-space:nowrap; text-align:center;'>    \(t_r\)    </td><td class='td11' id='TBL-2-3-2' style='white-space:nowrap; text-align:center;'> \(\downarrow \) </td><td class='td11' id='TBL-2-3-3' style='white-space:nowrap; text-align:center;'> -  </td><td class='td11' id='TBL-2-3-4' style='white-space:nowrap; text-align:center;'>  ?   </td>
+</tr><tr class='hline'><td></td><td></td><td></td><td></td></tr><tr id='TBL-2-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-4-1' style='white-space:nowrap; text-align:center;'>    \(t_s\)    </td><td class='td11' id='TBL-2-4-2' style='white-space:nowrap; text-align:center;'> -  </td><td class='td11' id='TBL-2-4-3' style='white-space:nowrap; text-align:center;'> \(\downarrow \) </td><td class='td11' id='TBL-2-4-4' style='white-space:nowrap; text-align:center;'> ? (\(\uparrow \))  </td>
+</tr><tr class='hline'><td></td><td></td><td></td><td></td></tr><tr id='TBL-2-5-' style='vertical-align:baseline;'><td class='td11' id='TBL-2-5-1' style='white-space:nowrap; text-align:center;'>    \(M_p\)    </td><td class='td11' id='TBL-2-5-2' style='white-space:nowrap; text-align:center;'> \(\uparrow \) </td><td class='td11' id='TBL-2-5-3' style='white-space:nowrap; text-align:center;'> \(\downarrow \) </td><td class='td11' id='TBL-2-5-4' style='white-space:nowrap; text-align:center;'> ? (\(\uparrow \))  </td>
+</tr></table>                                                                               </div>
+                                                                                         
+                                                                                         
+   </figure>
+   </div>
+   <h3 class='sectionHead' id='ejemplo-simulacion-control-pid-mediante-simulink'><span class='titlemark'>10.6.   </span> <a id='x16-17500010.6'></a>Ejemplo: Simulación control PID mediante Simulink</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 328 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/simulink_modelo.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 333 --><p class='indent'>   \begin {align*}  \text {EDM: }~ m\ddot {z}+c\dot {z}+kz=-m\ddot {z}_g+gu  \end {align*}
+</p><!-- l. 335 --><p class='indent'>   <span class='underline'>Propiedades de la estructura</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(m=100\) Kg
+     </li>
+     <li class='itemize'>\(c=50\) Ns/m
+     </li>
+     <li class='itemize'>\(k=4000\) N/m
+     </li>
+     <li class='itemize'>\(g=100\) N/V</li></ul>
+<!-- l. 343 --><p class='indent'>   <span class='underline'>Representación espacio-estado</span>: \begin {align*}  {x}=\begin {bmatrix}{z}\\ {\dot {z}}\end {bmatrix}, \quad u_1 =\ddot {z}_g, \quad u_2=u  \end {align*}
+</p><!-- l. 368 --><p class='indent'>   \begin {align*}  {\dot {x}} &amp;= \begin {bmatrix} 0 &amp; 1\\ -k/m &amp; -c/m \end {bmatrix}{x} + \begin {bmatrix} 0 \\ -1 \end {bmatrix}u_1+ \begin {bmatrix} 0 \\ g/m \end {bmatrix}u_2 \\ &amp;= \begin {bmatrix} 0 &amp; 1\\-k/m &amp; -c/m \end {bmatrix}{x} + \begin {bmatrix} 0 &amp; 0\\ -1 &amp; g/m \end {bmatrix} \begin {bmatrix} \ddot {z}_g\\ u \end {bmatrix}  \end {align*}
+</p><!-- l. 375 --><p class='indent'>   \begin {align*}  {y}&amp;=[z]\\ {y}&amp;= \begin {bmatrix}1 &amp; 0 \end {bmatrix}{x}+\begin {bmatrix}0 &amp; 0 \end {bmatrix}\begin {bmatrix} \ddot {z}_g\\ u \end {bmatrix}  \end {align*}
+</p><!-- l. 387 --><p class='indent'>   \begin {align}  {u}=\begin {bmatrix} \ddot {z}_g\\ u \end {bmatrix}\longrightarrow \begin {array} {|r|r|} \hline A &amp; B \\ \hline C &amp; D \\ \hline \end {array} \longrightarrow {y}=[z] \quad \text {Sistema ``MISO''}  \end {align}
+</p><!-- l. 390 --><p class='indent'>   <span class='underline'>Objetivo</span>: Diseñar un control PID para mejorar el desempeño de la estructura sometida al terremoto de Northridge
+1994.<br class='newline' />
+</p><!-- l. 391 --><p class='indent'>   <span class='underline'>Contol PID</span>: \begin {align*}  C(s)&amp;=K_p\bigg (1+\frac {T_I}{s}+T_Ds\bigg )\\ &amp;= K_p+\frac {K_I}{s}+K_Ds, \quad K_I=K_pT_I, \quad K_D=K_pT_D  \end {align*}
+</p>
+   <div class='columns-2'>
+<!-- l. 398 --><p class='indent'>   <span class='underline'>Código Matlab</span>:
+</p>
+   <pre class='fancyvrb' id='fancyvrb10'><a id='x16-175062r1'></a><span id='textcolor124'><span class='cmitt-10x-x-80'>%% Simulacion Control PID</span></span> 
+<a id='x16-175064r2'></a><span id='textcolor125'><span class='cmitt-10x-x-80'>% Gaston Fermandois, 2020</span></span> 
+<a id='x16-175066r3'></a> 
+<a id='x16-175068r4'></a><span id='textcolor126'><span class='cmitt-10x-x-80'>%% Inicializar</span></span> 
+<a id='x16-175070r5'></a><span id='textcolor127'><span class='cmtt-8'>clear</span></span><span id='textcolor128'> </span><span id='textcolor129'><span class='cmtt-8'>all</span></span><span id='textcolor130'><span class='cmtt-8'>,</span></span><span id='textcolor131'> </span><span id='textcolor132'><span class='cmtt-8'>close</span></span><span id='textcolor133'> </span><span id='textcolor134'><span class='cmtt-8'>all</span></span><span id='textcolor135'><span class='cmtt-8'>,</span></span><span id='textcolor136'> </span><span id='textcolor137'><span class='cmtt-8'>clc</span></span> 
+<a id='x16-175072r6'></a> 
+<a id='x16-175074r7'></a><span id='textcolor138'><span class='cmitt-10x-x-80'>%% Parametros</span></span> 
+<a id='x16-175076r8'></a> 
+<a id='x16-175078r9'></a><span id='textcolor139'><span class='cmtt-8'>m</span></span><span id='textcolor140'><span class='cmtt-8'>=</span></span><span id='textcolor141'><span class='cmtt-8'>100</span></span><span id='textcolor142'><span class='cmtt-8'>;</span></span><span id='textcolor143'> </span><span id='textcolor144'><span class='cmitt-10x-x-80'>% masa primer piso, kg</span></span> 
+<a id='x16-175080r10'></a><span id='textcolor145'><span class='cmtt-8'>c</span></span><span id='textcolor146'><span class='cmtt-8'>=</span></span><span id='textcolor147'><span class='cmtt-8'>50</span></span><span id='textcolor148'><span class='cmtt-8'>;</span></span><span id='textcolor149'> </span><span id='textcolor150'><span class='cmitt-10x-x-80'>%Ns/m</span></span> 
+<a id='x16-175082r11'></a><span id='textcolor151'><span class='cmtt-8'>k</span></span><span id='textcolor152'><span class='cmtt-8'>=</span></span><span id='textcolor153'><span class='cmtt-8'>4000</span></span><span id='textcolor154'><span class='cmtt-8'>;</span></span><span id='textcolor155'> </span><span id='textcolor156'><span class='cmitt-10x-x-80'>%N/m</span></span> 
+<a id='x16-175084r12'></a><span id='textcolor157'><span class='cmtt-8'>g</span></span><span id='textcolor158'><span class='cmtt-8'>=</span></span><span id='textcolor159'><span class='cmtt-8'>100</span></span><span id='textcolor160'><span class='cmtt-8'>;</span></span><span id='textcolor161'> </span><span id='textcolor162'><span class='cmitt-10x-x-80'>%cte motor, N/V</span></span> 
+<a id='x16-175086r13'></a> 
+<a id='x16-175088r14'></a><span id='textcolor163'><span class='cmitt-10x-x-80'>%% Control PID</span></span> 
+<a id='x16-175090r15'></a> 
+<a id='x16-175092r16'></a><span id='textcolor164'><span class='cmtt-8'>Kp</span></span><span id='textcolor165'><span class='cmtt-8'>=</span></span><span id='textcolor166'><span class='cmtt-8'>1</span></span><span id='textcolor167'><span class='cmtt-8'>;</span></span> 
+<a id='x16-175094r17'></a><span id='textcolor168'><span class='cmtt-8'>Ti</span></span><span id='textcolor169'><span class='cmtt-8'>=</span></span><span id='textcolor170'><span class='cmtt-8'>1</span></span><span id='textcolor171'><span class='cmtt-8'>/</span></span><span id='textcolor172'><span class='cmtt-8'>10</span></span><span id='textcolor173'><span class='cmtt-8'>;</span></span><span id='textcolor174'> </span><span id='textcolor175'><span class='cmtt-8'>Ki</span></span><span id='textcolor176'><span class='cmtt-8'>=</span></span><span id='textcolor177'><span class='cmtt-8'>Kp</span></span><span id='textcolor178'><span class='cmtt-8'>*</span></span><span id='textcolor179'><span class='cmtt-8'>Ti</span></span><span id='textcolor180'><span class='cmtt-8'>;</span></span> 
+<a id='x16-175096r18'></a><span id='textcolor181'><span class='cmtt-8'>Td</span></span><span id='textcolor182'><span class='cmtt-8'>=</span></span><span id='textcolor183'><span class='cmtt-8'>1</span></span><span id='textcolor184'><span class='cmtt-8'>/</span></span><span id='textcolor185'><span class='cmtt-8'>100</span></span><span id='textcolor186'><span class='cmtt-8'>;</span></span><span id='textcolor187'> </span><span id='textcolor188'><span class='cmtt-8'>Kd</span></span><span id='textcolor189'><span class='cmtt-8'>=</span></span><span id='textcolor190'><span class='cmtt-8'>Kp</span></span><span id='textcolor191'><span class='cmtt-8'>*</span></span><span id='textcolor192'><span class='cmtt-8'>Td</span></span><span id='textcolor193'><span class='cmtt-8'>;</span></span> 
+<a id='x16-175098r19'></a> 
+<a id='x16-175100r20'></a><span id='textcolor194'><span class='cmtt-8'>s</span></span><span id='textcolor195'><span class='cmtt-8'>=</span></span><span id='textcolor196'><span class='cmtt-8'>tf</span></span><span id='textcolor197'><span class='cmtt-8'>(</span></span><span id='textcolor198'><span class='cmtt-8'>'s'</span></span><span id='textcolor199'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175102r21'></a><span id='textcolor200'><span class='cmtt-8'>Cpid</span></span><span id='textcolor201'><span class='cmtt-8'>=</span></span><span id='textcolor202'><span class='cmtt-8'>Kp</span></span><span id='textcolor203'><span class='cmtt-8'>*</span></span><span id='textcolor204'><span class='cmtt-8'>(</span></span><span id='textcolor205'><span class='cmtt-8'>1</span></span><span id='textcolor206'><span class='cmtt-8'>+</span></span><span id='textcolor207'><span class='cmtt-8'>Ti</span></span><span id='textcolor208'><span class='cmtt-8'>/</span></span><span id='textcolor209'><span class='cmtt-8'>s</span></span><span id='textcolor210'><span class='cmtt-8'>+</span></span><span id='textcolor211'><span class='cmtt-8'>Td</span></span><span id='textcolor212'><span class='cmtt-8'>*</span></span><span id='textcolor213'><span class='cmtt-8'>s</span></span><span id='textcolor214'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175104r22'></a> 
+<a id='x16-175106r23'></a><span id='textcolor215'><span class='cmitt-10x-x-80'>%% Espacio estado</span></span> 
+<a id='x16-175108r24'></a> 
+<a id='x16-175110r25'></a><span id='textcolor216'><span class='cmtt-8'>A</span></span><span id='textcolor217'><span class='cmtt-8'>=[</span></span><span id='textcolor218'><span class='cmtt-8'>0</span></span><span id='textcolor219'> </span><span id='textcolor220'><span class='cmtt-8'>1</span></span><span id='textcolor221'><span class='cmtt-8'>;</span></span><span id='textcolor222'><span class='cmtt-8'>-</span></span><span id='textcolor223'><span class='cmtt-8'>k</span></span><span id='textcolor224'><span class='cmtt-8'>/</span></span><span id='textcolor225'><span class='cmtt-8'>m</span></span><span id='textcolor226'> </span><span id='textcolor227'><span class='cmtt-8'>-</span></span><span id='textcolor228'><span class='cmtt-8'>c</span></span><span id='textcolor229'><span class='cmtt-8'>/</span></span><span id='textcolor230'><span class='cmtt-8'>m</span></span><span id='textcolor231'><span class='cmtt-8'>];</span></span> 
+<a id='x16-175112r26'></a><span id='textcolor232'><span class='cmtt-8'>B1</span></span><span id='textcolor233'><span class='cmtt-8'>=[</span></span><span id='textcolor234'><span class='cmtt-8'>0</span></span><span id='textcolor235'><span class='cmtt-8'>;</span></span><span id='textcolor236'><span class='cmtt-8'>-</span></span><span id='textcolor237'><span class='cmtt-8'>1</span></span><span id='textcolor238'><span class='cmtt-8'>];</span></span> 
+<a id='x16-175114r27'></a><span id='textcolor239'><span class='cmtt-8'>B2</span></span><span id='textcolor240'><span class='cmtt-8'>=[</span></span><span id='textcolor241'><span class='cmtt-8'>0</span></span><span id='textcolor242'><span class='cmtt-8'>;</span></span><span id='textcolor243'><span class='cmtt-8'>g</span></span><span id='textcolor244'><span class='cmtt-8'>/</span></span><span id='textcolor245'><span class='cmtt-8'>m</span></span><span id='textcolor246'><span class='cmtt-8'>];</span></span> 
+<a id='x16-175116r28'></a><span id='textcolor247'><span class='cmtt-8'>B</span></span><span id='textcolor248'><span class='cmtt-8'>=[</span></span><span id='textcolor249'><span class='cmtt-8'>B1</span></span><span id='textcolor250'> </span><span id='textcolor251'><span class='cmtt-8'>B2</span></span><span id='textcolor252'><span class='cmtt-8'>];</span></span> 
+<a id='x16-175118r29'></a><span id='textcolor253'><span class='cmtt-8'>C</span></span><span id='textcolor254'><span class='cmtt-8'>=[</span></span><span id='textcolor255'><span class='cmtt-8'>1</span></span><span id='textcolor256'> </span><span id='textcolor257'><span class='cmtt-8'>0</span></span><span id='textcolor258'><span class='cmtt-8'>];</span></span> 
+<a id='x16-175120r30'></a><span id='textcolor259'><span class='cmtt-8'>D1</span></span><span id='textcolor260'><span class='cmtt-8'>=</span></span><span id='textcolor261'><span class='cmtt-8'>0</span></span><span id='textcolor262'><span class='cmtt-8'>;</span></span> 
+<a id='x16-175122r31'></a><span id='textcolor263'><span class='cmtt-8'>D2</span></span><span id='textcolor264'><span class='cmtt-8'>=</span></span><span id='textcolor265'><span class='cmtt-8'>0</span></span><span id='textcolor266'><span class='cmtt-8'>;</span></span> 
+<a id='x16-175124r32'></a><span id='textcolor267'><span class='cmtt-8'>D</span></span><span id='textcolor268'><span class='cmtt-8'>=[</span></span><span id='textcolor269'><span class='cmtt-8'>D1</span></span><span id='textcolor270'> </span><span id='textcolor271'><span class='cmtt-8'>D2</span></span><span id='textcolor272'><span class='cmtt-8'>];</span></span> 
+<a id='x16-175126r33'></a> 
+<a id='x16-175128r34'></a><span id='textcolor273'><span class='cmtt-8'>sys</span></span><span id='textcolor274'><span class='cmtt-8'>=</span></span><span id='textcolor275'><span class='cmtt-8'>ss</span></span><span id='textcolor276'><span class='cmtt-8'>(</span></span><span id='textcolor277'><span class='cmtt-8'>A</span></span><span id='textcolor278'><span class='cmtt-8'>,</span></span><span id='textcolor279'><span class='cmtt-8'>B</span></span><span id='textcolor280'><span class='cmtt-8'>,</span></span><span id='textcolor281'><span class='cmtt-8'>C</span></span><span id='textcolor282'><span class='cmtt-8'>,</span></span><span id='textcolor283'><span class='cmtt-8'>D</span></span><span id='textcolor284'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175130r35'></a> 
+<a id='x16-175132r36'></a><span id='textcolor285'><span class='cmtt-8'>sysyu</span></span><span id='textcolor286'><span class='cmtt-8'>=</span></span><span id='textcolor287'><span class='cmtt-8'>ss</span></span><span id='textcolor288'><span class='cmtt-8'>(</span></span><span id='textcolor289'><span class='cmtt-8'>A</span></span><span id='textcolor290'><span class='cmtt-8'>,</span></span><span id='textcolor291'><span class='cmtt-8'>B2</span></span><span id='textcolor292'><span class='cmtt-8'>,</span></span><span id='textcolor293'><span class='cmtt-8'>C</span></span><span id='textcolor294'><span class='cmtt-8'>,</span></span><span id='textcolor295'><span class='cmtt-8'>D2</span></span><span id='textcolor296'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175134r37'></a> 
+<a id='x16-175136r38'></a><span id='textcolor297'><span class='cmtt-8'>Gyu</span></span><span id='textcolor298'><span class='cmtt-8'>=</span></span><span id='textcolor299'><span class='cmtt-8'>tf</span></span><span id='textcolor300'><span class='cmtt-8'>(</span></span><span id='textcolor301'><span class='cmtt-8'>sysyu</span></span><span id='textcolor302'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175138r39'></a> 
+<a id='x16-175140r40'></a><span id='textcolor303'><span class='cmitt-10x-x-80'>%% Sistema Cerrado</span></span> 
+<a id='x16-175142r41'></a> 
+<a id='x16-175144r42'></a><span id='textcolor304'><span class='cmtt-8'>Gcl</span></span><span id='textcolor305'><span class='cmtt-8'>=</span></span><span id='textcolor306'><span class='cmtt-8'>Gyu</span></span><span id='textcolor307'><span class='cmtt-8'>*</span></span><span id='textcolor308'><span class='cmtt-8'>Cpid</span></span><span id='textcolor309'><span class='cmtt-8'>/</span></span><span id='textcolor310'><span class='cmtt-8'>(</span></span><span id='textcolor311'><span class='cmtt-8'>1</span></span><span id='textcolor312'><span class='cmtt-8'>+</span></span><span id='textcolor313'><span class='cmtt-8'>Gyu</span></span><span id='textcolor314'><span class='cmtt-8'>*</span></span><span id='textcolor315'><span class='cmtt-8'>Cpid</span></span><span id='textcolor316'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175146r43'></a><span id='textcolor317'><span class='cmtt-8'>Gcl</span></span><span id='textcolor318'><span class='cmtt-8'>=</span></span><span id='textcolor319'><span class='cmtt-8'>minreal</span></span><span id='textcolor320'><span class='cmtt-8'>(</span></span><span id='textcolor321'><span class='cmtt-8'>Gcl</span></span><span id='textcolor322'><span class='cmtt-8'>)</span></span><span id='textcolor323'> </span><span id='textcolor324'><span class='cmitt-10x-x-80'>% Cancelaci</span>ó<span class='cmitt-10x-x-80'>n polos y ceros</span></span> 
+<a id='x16-175148r44'></a> 
+<a id='x16-175150r45'></a><span id='textcolor325'><span class='cmtt-8'>figure</span></span><span id='textcolor326'><span class='cmtt-8'>;</span></span> 
+<a id='x16-175152r46'></a><span id='textcolor327'><span class='cmtt-8'>rlocus</span></span><span id='textcolor328'><span class='cmtt-8'>(</span></span><span id='textcolor329'><span class='cmtt-8'>Gcl</span></span><span id='textcolor330'><span class='cmtt-8'>)</span></span> 
+<a id='x16-175154r47'></a> 
+<a id='x16-175156r48'></a><span id='textcolor331'><span class='cmitt-10x-x-80'>%% Simulacion</span></span> 
+<a id='x16-175158r49'></a> 
+<a id='x16-175160r50'></a><span id='textcolor332'><span class='cmtt-8'>Tfinal</span></span><span id='textcolor333'><span class='cmtt-8'>=</span></span><span id='textcolor334'><span class='cmtt-8'>60</span></span><span id='textcolor335'><span class='cmtt-8'>;</span></span><span id='textcolor336'> </span><span id='textcolor337'><span class='cmitt-10x-x-80'>%s</span></span> 
+<a id='x16-175162r51'></a><span id='textcolor338'><span class='cmtt-8'>Fs</span></span><span id='textcolor339'><span class='cmtt-8'>=</span></span><span id='textcolor340'><span class='cmtt-8'>1000</span></span><span id='textcolor341'><span class='cmtt-8'>;</span></span><span id='textcolor342'> </span><span id='textcolor343'><span class='cmitt-10x-x-80'>%Hz</span></span> 
+<a id='x16-175164r52'></a><span id='textcolor344'><span class='cmtt-8'>Ts</span></span><span id='textcolor345'><span class='cmtt-8'>=</span></span><span id='textcolor346'><span class='cmtt-8'>1</span></span><span id='textcolor347'><span class='cmtt-8'>/</span></span><span id='textcolor348'><span class='cmtt-8'>Fs</span></span><span id='textcolor349'><span class='cmtt-8'>;</span></span><span id='textcolor350'> </span><span id='textcolor351'><span class='cmitt-10x-x-80'>%s</span></span> 
+<a id='x16-175166r53'></a> 
+<a id='x16-175168r54'></a><span id='textcolor352'><span class='cmtt-8'>GM</span></span><span id='textcolor353'><span class='cmtt-8'>=</span></span><span id='textcolor354'><span class='cmtt-8'>importdata</span></span><span id='textcolor355'><span class='cmtt-8'>(</span></span><span id='textcolor356'><span class='cmtt-8'>'RegistroNorthridge1994.txt'</span></span><span id='textcolor357'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175170r55'></a><span id='textcolor358'><span class='cmtt-8'>N</span></span><span id='textcolor359'><span class='cmtt-8'>=</span></span><span id='textcolor360'><span class='cmtt-8'>length</span></span><span id='textcolor361'><span class='cmtt-8'>(</span></span><span id='textcolor362'><span class='cmtt-8'>GM</span></span><span id='textcolor363'><span class='cmtt-8'>.</span></span><span id='textcolor364'><span class='cmtt-8'>data</span></span><span id='textcolor365'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175172r56'></a><span id='textcolor366'><span class='cmtt-8'>dt</span></span><span id='textcolor367'><span class='cmtt-8'>=</span></span><span id='textcolor368'><span class='cmtt-8'>0.02</span></span><span id='textcolor369'><span class='cmtt-8'>;</span></span><span id='textcolor370'> </span><span id='textcolor371'><span class='cmitt-10x-x-80'>%s</span></span> 
+<a id='x16-175174r57'></a><span id='textcolor372'><span class='cmtt-8'>t</span></span><span id='textcolor373'><span class='cmtt-8'>=</span></span><span id='textcolor374'><span class='cmtt-8'>linspace</span></span><span id='textcolor375'><span class='cmtt-8'>(</span></span><span id='textcolor376'><span class='cmtt-8'>0</span></span><span id='textcolor377'><span class='cmtt-8'>,</span></span><span id='textcolor378'><span class='cmtt-8'>N</span></span><span id='textcolor379'><span class='cmtt-8'>*</span></span><span id='textcolor380'><span class='cmtt-8'>dt</span></span><span id='textcolor381'><span class='cmtt-8'>,</span></span><span id='textcolor382'><span class='cmtt-8'>N</span></span><span id='textcolor383'><span class='cmtt-8'>);</span></span> 
+<a id='x16-175176r58'></a><span id='textcolor384'><span class='cmtt-8'>ddzg</span></span><span id='textcolor385'><span class='cmtt-8'>=[</span></span><span id='textcolor386'><span class='cmtt-8'>t</span></span><span id='textcolor387'><span class='cmtt-8'>.</span></span><span id='textcolor388'><span class='cmtt-8'>'</span></span><span id='textcolor389'> </span><span id='textcolor390'><span class='cmtt-8'>GM</span></span><span id='textcolor391'><span class='cmtt-8'>.</span></span><span id='textcolor392'><span class='cmtt-8'>data</span></span><span id='textcolor393'><span class='cmtt-8'>/</span></span><span id='textcolor394'><span class='cmtt-8'>100</span></span><span id='textcolor395'><span class='cmtt-8'>];</span></span><span id='textcolor396'> </span><span id='textcolor397'><span class='cmitt-10x-x-80'>%[s m/s2]</span></span> 
+<a id='x16-175178r59'></a> 
+<a id='x16-175180r60'></a><span id='textcolor398'><span class='cmtt-8'>sim</span></span><span id='textcolor399'><span class='cmtt-8'>(</span></span><span id='textcolor400'><span class='cmtt-8'>'AMDctrl_demo_simu'</span></span><span id='textcolor401'><span class='cmtt-8'>)</span></span></pre>
+   </div> <p><span class='underline'>Simulink</span>: </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 465 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Simulink.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='root-locus'><span class='titlemark'>10.7.   </span> <a id='x16-17600010.7'></a>Root Locus</h3>
+<!-- l. 471 --><p class='noindent'>\(\Longrightarrow \) “Migración de polos”, Locus = posición en latín \begin {align*}  \text {Planta: }~ G_{y\ddot {z}_g}(s)&amp;=\frac {1/m}{s^2+2\xi \omega _n s+\omega _n^2}\\ G_{yu}(s) &amp;=\frac {g/m}{s^2+2\xi \omega _n s+\omega _n^2}  \end {align*}
+</p><!-- l. 478 --><p class='indent'>   \begin {align*}  \text {Controlador PID: }~C(s)=K_p(1+\frac {T_I}{s}+T_Ds)  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 482 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/GCL.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 488 --><p class='indent'>   \begin {align*}  G_{CL}(s)&amp;=\frac {G(s)C(s)}{1+G(s)C(s)}\\ G_{CL}(s)&amp;=\frac {G(s)K_p\bigg (1+T_I/s+T_Ds\bigg )}{1+G(s)K_p\bigg (1+T_I/s+T_Ds\bigg )}  \end {align*}
+</p><!-- l. 490 --><p class='indent'>   <span class='underline'>Resumen control PID</span>: </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 493 --><p class='noindent'><img alt='PIC' height='46' src='Figuras/controlPID.png' width='46' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='control-moderno'><span class='titlemark'>10.8.   </span> <a id='x16-17700010.8'></a>Control Moderno</h3>
+<!-- l. 497 --><p class='noindent'>Representación espacio estado, sistema LTI.<br class='newline' />
+</p><!-- l. 498 --><p class='indent'>   Sea: \begin {align*}  {x}&amp;=[x_1,x_2,...,x_N]^\top \\ {u}&amp;=[u_1,u_2,...,u_p]^\top \\ {y}&amp;=[y_1,y_2,...,y_r]^\top  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'> Ecuación de estado:
+                                               \[{\dot {x}}={A}{x}+{B}{u} \]
+     </li>
+     <li class='itemize'> Ecuación de respuesta:
+                                               \[{y}={C}{x}+{D}{u} \]
+     </li></ul>
+<!-- l. 511 --><p class='indent'>   <span class='underline'>Paréntesis</span>: Aplicando la Transformada de Laplace a las ecuaciones de estado y respuesta de la representación
+espacio-estado: \begin {align*}  {\dot {x}}={A}{x}+{B}{u}\xrightarrow []{\mathcal {L}}s{X}(s)={A}{X}(s)+{B}{U}(s)\\ \Longrightarrow {X}(s)=(s{I}-{A})^{-1}{B}{U}(s)\\ G_{xu}(s)=(s{I}-{A})^{-1}{B}  \end {align*}
+</p><!-- l. 522 --><p class='indent'>   \begin {align*}  {y}={C}{x}+{D}{u}\xrightarrow []{\mathcal {L}}s{Y}(s)={C}{X}(s)+{D}{U}(s)\\ {Y}(s)=[{C}(s{I}-{A})^{-1}{B}+{D}]{U}(s)\\ G_{yu}={C}(s{I}-{A})^{-1}{B}+{D}  \end {align*}
+</p><!-- l. 525 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='formas-canonicas'><span class='titlemark'>10.9.   </span> <a id='x16-17800010.9'></a>Formas canónicas</h3>
+                                                                                         
+                                                                                         
+<!-- l. 526 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='forma-canonica-controlable-ccf'><span class='titlemark'>10.9.1.   </span> <a id='x16-17900010.9.1'></a>Forma Canónica Controlable (CCF)</h4>
+<!-- l. 527 --><p class='noindent'>Asumir que \({D}={0}\) (no hay componente “feedthrough” en la salida del sistema). \begin {align*}  {A_c}=\left [ \begin {array}{cccc|c} -a_1 &amp; -a_2 &amp; \dots &amp; -a_{n-1} &amp; -a_n\\ \hline 1 &amp; &amp; &amp; 0 &amp; 0\\ &amp; 1 &amp; &amp; &amp; \vdots \\ &amp; &amp; \ddots &amp; &amp; \\ 0 &amp; &amp; &amp; 1 &amp; 0 \end {array}\right ], \quad {A_c}\in \mathbb {R}^{n\times n}  \end {align*}
+</p><!-- l. 546 --><p class='indent'>   \begin {align*}  {B_c}=\left [ \begin {array}{c} 1 \\ \hline 0\\ \vdots \\ 0 \end {array}\right ], \quad {B_c}\in \mathbb {R}^{n\times 1}  \end {align*}
+</p><!-- l. 552 --><p class='indent'>   \begin {align*}  {C_c}=\left [ \begin {array}{cccc} b_1 &amp; b_2 &amp; \dots &amp; b_n \end {array}\right ], \quad {C_c}\in \mathbb {R}^{1\times n}  \end {align*}
+</p><!-- l. 561 --><p class='indent'>   \begin {align*}  \text {Realización (SISO): }\quad \left \{ \begin {array}{l} {\dot {x}_c}={A_c}{x_c}+{B_c}u \\ y={C_c}{x_c} \\ \end {array} \right .  \end {align*}
+</p><!-- l. 562 --><p class='indent'>   Notar que: \begin {align*}  \dot {x}_1 &amp;= -a_1x_1-a_2x_2 ... -a_nx_n+1\cdot u\\ \dot {x}_2 &amp;= x_1\\ \dot {x}_3 &amp;= x_2\\ \vdots \\ \dot {x}_n &amp;= x_{n-1}  \end {align*}
+</p><!-- l. 571 --><p class='indent'>   Utilizando la transformada de Laplace, se obtiene la siguiente función de transferencia: \begin {align*}  G_{yu}(s)=\frac {b_1s^{n-1}+b_2s^{n-2}+...+b-n}{s^n+a_1s^{n-1}+a_2s^{n-2}+...+a_n} = \frac {\text {numerador orden n-1}}{\text {denominador orden n}} = \text {TF Propia}  \end {align*}
+</p><!-- l. 576 --><p class='indent'>   Se utiliza para diseñar controladores cuando todos los estados del sistema son conocidos.
+</p><!-- l. 578 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='forma-canonica-modal-mcf'><span class='titlemark'>10.9.2.   </span> <a id='x16-18000010.9.2'></a>Forma Canónica Modal (MCF)</h4>
+<!-- l. 579 --><p class='noindent'>Sea \(G(s)=\frac {c_1}{s+p_1}+\frac {c_2}{s+p_2}+...+\frac {c_n}{s+p_n}\), \(G(s)\) se escribe como una expansión de fracción parcial, y los polos \(p_i\) son todos distintos: \begin {align*}  {A_m}=\left [ \begin {array}{cccc} -p_1&amp; &amp; &amp; 0\\ &amp; -p_2 &amp; &amp; \\ &amp; &amp; \ddots &amp; \\ 0 &amp; &amp; &amp; -p_n \end {array}\right ], \quad {A_m}\in \mathbb {R}^{n\times n}  \end {align*}
+</p><!-- l. 597 --><p class='indent'>   \begin {align*}  {B_m}=\left [ \begin {array}{c} 1 \\ 1\\ \vdots \\ 1 \end {array}\right ], \quad {B_m}\in \mathbb {R}^{n\times 1}  \end {align*}
+</p><!-- l. 603 --><p class='indent'>   \begin {align*}  {C_m}=\left [ \begin {array}{cccc} c_1 &amp; c_2 &amp; \dots &amp; c_n \end {array}\right ], \quad {C_m}\in \mathbb {R}^{1\times n}  \end {align*}
+</p><!-- l. 612 --><p class='indent'>   \begin {align*}  \text {Realización (SISO): }\quad \left \{ \begin {array}{l} {\dot {x}_m}={A_m}{x_m}+{B_m}\cancelto {0}{u} \end {array} \right .  \end {align*}
+</p><!-- l. 619 --><p class='indent'>   \begin {align*}  \dot {x}_{m_1} &amp;= \lambda _1x_{m_1}\\ \dot {x}_{m_2} &amp;= \lambda _2x_{m_1}\\ \vdots \\ \dot {x}_{m_n} &amp;= \lambda _nx_{m_n}  \end {align*}
+</p><!-- l. 623 --><p class='indent'>   \begin {align*}  \Longrightarrow {\dot {x}}={A}{x}  \end {align*}
+</p><!-- l. 625 --><p class='indent'>   <span class='underline'>Resolver</span>: \({A}{v}=\lambda {v}\) (Problema de valores propios de \(A\)).<br class='newline' />
+</p><!-- l. 626 --><p class='indent'>   \(T\) es la matriz de transformación modal, \({T}=[{v_1},{v_2},...,{v_n}]\)<br class='newline' />
+</p><!-- l. 628 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='forma-canonica-observable-ocf'><span class='titlemark'>10.9.3.   </span> <a id='x16-18100010.9.3'></a>Forma Canónica Observable (OCF)</h4>
+<!-- l. 629 --><p class='noindent'>Dado \(G(s)=\frac {n(s)}{d(s)}\), con \(a_i\), \(b_i\) conocidos.
+</p><!-- l. 640 --><p class='indent'>   \begin {align*}  {A_o}=\left [ \begin {array}{c|cccc} -a_{n-1} &amp; 1 &amp; &amp; &amp; 0 \\ -a_{n-2} &amp; &amp; 1 &amp; &amp; \\ \vdots &amp; &amp; &amp; \ddots &amp; \\ -a_1 &amp; 0 &amp; &amp; &amp; 1 \\ \hline -a_0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 \end {array}\right ], \quad {A_o}\in \mathbb {R}^{n\times n}  \end {align*}
+</p><!-- l. 650 --><p class='indent'>   \begin {align*}  {B_o}=\left [ \begin {array}{c} b_{n-1} \\ b_{n-2}\\ \vdots \\ b_1 \\ \hline b_0 \end {array}\right ], \quad {B_o}\in \mathbb {R}^{n\times 1}  \end {align*}
+</p><!-- l. 656 --><p class='indent'>   \begin {align*}  {C_o}=\left [ \begin {array}{c|ccc} 1 &amp; 0 &amp; \dots &amp; 0 \end {array}\right ], \quad {C}_o\in \mathbb {R}^{1\times n}  \end {align*}
+</p><!-- l. 658 --><p class='indent'>   Se utiliza para diseñar “observadores”.
+</p><!-- l. 661 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='control-lazo-cerrado-utilizando-estados-state-feedback-control'><span class='titlemark'>10.10.   </span> <a id='x16-18200010.10'></a>Control lazo cerrado utilizando estados (State Feedback Control)</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 665 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/State_feedback.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 667 --><p class='indent'>   <span class='underline'>Objetivo</span>: Diseñar \(K\) tal que \(e=r-x\to 0\) para un tiempo \(t_f\).<br class='newline' />
+</p><!-- l. 668 --><p class='indent'>   <span class='underline'>Definición</span>: El sistema de control “full state feedback” tiene relación con el hecho que el controlador cuenta con
+acceso a todos los estados del sistema.<br class='newline' />
+</p><!-- l. 670 --><p class='indent'>   Veamos la ecuación de estado del sistema: \begin {align*}  \dot {x}=Ax+Bu  \end {align*}
+</p><!-- l. 674 --><p class='indent'>   La señal de control: \begin {align*}  u=Ke  \end {align*}
+</p><!-- l. 678 --><p class='indent'>   La señal de error: \begin {align*}  e=r-x  \end {align*}
+</p><!-- l. 683 --><p class='indent'>   Luego: \begin {align*}  \dot {x} &amp;= Ax+BK(r-x)\\ \dot {x} &amp;= (A-BK)x+BKr\\  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(A_{CL}=A-BK\): matriz de estado del sistema cerrado.
+     </li>
+     <li class='itemize'>\(B_{CL}=BK\)</li></ul>
+
+<!-- l. 694 --><p class='noindent'>\begin {align*}  \dot {x}=A_{CL}x+B_{CL}r  \end {align*}
+</p><!-- l. 695 --><p class='indent'>   Para que el sistema cerrado sea <span id='textcolor402'>ESTABLE</span>, los valores propios de \(A_{CL}\) deben tener partes reales estrictamente
+negativas: \begin {align*}  \text {Re}(eig(A_{CL}))&lt;0  \end {align*}
+</p><!-- l. 700 --><p class='indent'>   Analicemos el diseño de un controlador utilizando una representación CCF: \begin {align*}  {A}=\left [ \begin {array}{cccc|c} -a_1 &amp; -a_2 &amp; \dots &amp; -a_{n-1} &amp; -a_n\\ \hline 1 &amp; &amp; &amp; 0 &amp; 0\\ &amp; 1 &amp; &amp; &amp; \vdots \\ &amp; &amp; \ddots &amp; &amp; \\ 0 &amp; &amp; &amp; 1 &amp; 0 \end {array}\right ]_{n\times n}  \end {align*}
+</p><!-- l. 719 --><p class='indent'>   \begin {align*}  {B}=\left [ \begin {array}{c} 1 \\ \hline 0\\ \vdots \\ 0 \end {array}\right ]_{n\times 1}  \end {align*}
+</p><!-- l. 725 --><p class='indent'>   \begin {align*}  {K}=\left [ \begin {array}{ccccc} k_{n-1} &amp; k_{n-2} &amp; \dots &amp; k_1 &amp; k_0 \end {array}\right ]_{1\times n}  \end {align*}
+</p><!-- l. 727 --><p class='indent'>   Calculemos \(BK\): \begin {align*}  {BK}=\left [ \begin {array}{cccc|c} k_{n-1} &amp; k_{n-2} &amp; \dots &amp; k_1 &amp; k_0\\ \hline &amp; &amp; &amp; &amp; 0\\ &amp; &amp; {0}_{(n-1)\times (n-1)} &amp; &amp; \vdots \\ &amp; &amp; &amp; &amp; 0 \end {array}\right ]_{n\times n}  \end {align*}
+</p><!-- l. 738 --><p class='indent'>   Ahora, calculemos \(A_{CL}=A-BK\) \begin {align*}  {BK}=\left [ \begin {array}{cccc|c} -(a_{n-1}+k_{n-1}) &amp; -(a_{n-2}+k_{n-2}) &amp; \dots &amp; -(a_1+k_1) &amp; -(a_0+k_0)\\ \hline &amp; &amp; &amp; &amp; 0\\ &amp; &amp; {I}_{(n-1)\times (n-1)} &amp; &amp; \vdots \\ &amp; &amp; &amp; &amp; 0 \end {array}\right ]_{n\times n}  \end {align*}
+</p><!-- l. 749 --><p class='indent'>   Queremos encontrar los valores propios de \(A_{CL}\). Escribamos la ecuación característica de \(A_{CL}\) \begin {align*}  \det ({A_{CL}}-\lambda {I})=0  \end {align*}
+</p><!-- l. 763 --><p class='indent'>   \begin {align*}  {BK}=\left [ \begin {array}{cccc|c} -(\lambda +a_{n-1}+k_{n-1}) &amp; -(a_{n-2}+k_{n-2}) &amp; \dots &amp; -(a_1+k_1) &amp; -(a_0+k_0)\\ \hline 1 &amp; -\lambda &amp; &amp; &amp; 0\\ &amp; 1 &amp; -\lambda &amp; &amp; \vdots \\ &amp; &amp; \ddots &amp; \ddots &amp; 0\\ &amp; &amp; &amp; 1 &amp; -\lambda \\ \end {array}\right ]=0  \end {align*}
+</p><!-- l. 765 --><p class='indent'>   La ecuación característica resulta ser: \begin {align*}  \lambda ^n+(a_{n-1}+k_{n-1})\lambda ^{n-1}+(a_{n-2}+k_{n-2})\lambda ^{n-2}+...+(a_{1}+k_{1})\lambda +(a_{0}+k_{0})=0  \end {align*}
+</p><!-- l. 769 --><p class='indent'>   Si queremos ubicar los polos en una posición particular, o sea, queremos fijar los polos de la siguiente
+manera:
+                                             \[ \lambda =\{p_1,p_2,p_3,..,p_n \}\]
+</p><!-- l. 772 --><p class='indent'>   Podemos reescribir la ecuación característica de la siguiente forma:
+                                                                                         
+                                                                                         
+                                             \[(\lambda -p_1)(\lambda -p_2)(\lambda -p_3)...(\lambda -p_n)=0 \]
+</p><!-- l. 775 --><p class='indent'>   Desarrollando el polinomio:
+                                             \[\Longrightarrow \lambda ^n+\alpha _{n-1}\lambda ^{n-1}+...+\alpha _1\lambda +\alpha _0=0 \]
+ Entonces, el controlador \(K\) se define como: \begin {align*}  \alpha _{n-1} = a_{n-1}+k_{n-1} &amp;\Longrightarrow k_{n-1} = \alpha _{n-1}-a_{n-1}\\ \alpha _{n-2} = a_{n-2}+k_{n-2} &amp;\Longrightarrow k_{n-2} = \alpha _{n-2}-a_{n-2}\\ \vdots \\ \alpha _0 = a_0+k_0 &amp;\Longrightarrow k_0 = \alpha _0-a_0\\  \end {align*}
+</p><!-- l. 785 --><p class='indent'>   Donde \(\alpha _i\) se obtiene de la posición deseada de los polos. <br class='newline' />
+</p><!-- l. 787 --><p class='indent'>   Entonces, si el sistema es CCF, podemos diseñar \(K\) al elegir la posición de los polos de manera apropiada \(\Longrightarrow \) <span class='cmbx-10'>POLE
+PLACEMENT</span><br class='newline' />
+</p><!-- l. 789 --><p class='indent'>   <span class='underline'>Nota</span>: Si el sistema no es CCF, entonces se puede transformar a CCF utilizando matriz de transformación \(T\),
+provisto que el sistema sea controlable.<br class='newline' />
+</p><!-- l. 791 --><p class='indent'>   Sea la realización:
+</p><!-- l. 795 --><p class='indent'>   \begin {align*}  {x}=Ax+Bu \xrightarrow []{x=Tz} \dot {z}=A_cz+B_cu  \end {align*}
+</p><!-- l. 796 --><p class='indent'>   Sea \(T \in \mathbb {R}^{n\times n}\), tal que \(T^{-1}\) existe \begin {align*}  \Longrightarrow x&amp;=Tz\\ \Longrightarrow \dot {x}&amp;=T\dot {z}  \end {align*}
+</p><!-- l. 801 --><p class='indent'>   Reemplazando: \begin {align*}  T\dot {z} &amp;= ATz+Bu\\ \Longrightarrow \dot {z}&amp;=T^{-1}ATz+T^{-1}Bu\\ \dot {z} &amp;= A_cz+B_cu  \end {align*}
+</p><!-- l. 808 --><p class='indent'>   “Pole placement”, pasos a seguir:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x16-182002x1'>Buscar \(T\) y transformar a CCF (\(A_c\) y \(B_c\)).
+     </li>
+<li class='enumerate' id='x16-182004x2'>Encontrar \(K_c\) , en base a la ubicación de polos deseados.
+     </li>
+<li class='enumerate' id='x16-182006x3'>Volver al sistema original (asuma \(r=0\))</li></ol>
+
+<!-- l. 820 --><p class='noindent'>\begin {align*}  \Longrightarrow \dot {z} &amp;= (A_c-B_cK_c)z\\ \Longrightarrow T\dot {z} &amp;= TA_cz+TB_cz\\ \Longrightarrow \dot {x} &amp;= TT^{-1}ATz-TT^{-1}BK_cz\\ \Longrightarrow \dot {x} &amp;= Ax-BK_cT^{-1}x\\ \Longrightarrow \dot {x} &amp;= (A-BK)x  \end {align*}
+</p><!-- l. 821 --><p class='indent'>   donde \(K=K_cT^{-1}\), controlador para el sistema original.
+                                                                                         
+                                                                                         
+</p>
+   <h3 class='sectionHead' id='observadores'><span class='titlemark'>10.11.   </span> <a id='x16-18300010.11'></a>Observadores</h3>
+<!-- l. 824 --><p class='noindent'><span class='underline'>Motivación</span>: <br class='newline' />
+</p><!-- l. 826 --><p class='indent'>   Considere el siguiente ejemplo de sistema dinámico: \begin {align*}  \dot {x} &amp;= f(x,u)\\ y &amp;= g(x,u)  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 834 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/nuclear.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 836 --><p class='indent'>   ¿Es posible determinar los estados internos del sistema \(x(t)\) (temperatura de las barras), utilizando solo las señales de
+entrada y salida \(\{u(t), y(t)\}\)? La respuesta es sí, pero con la condición de que el sistema sea <span class='cmbx-10'>observable</span>.<br class='newline' />
+</p><!-- l. 838 --><p class='indent'>   El objetivo de lo que se desarrollará a continuación es <span class='cmti-10'>dise</span>ñ<span class='cmti-10'>ar </span>un <span class='cmti-10'>observador/estimador </span>para poder estimar los
+estados internos \(x(t)\) de un sistema, de tal forma que dependa únicamente de las señales de entrada y salida del
+sistema:
+</p><!-- l. 842 --><p class='indent'>   \begin {align*}  \hat {x}(t) = f(u(t), y(t))  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 846 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/observador2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 849 --><p class='indent'>   <span class='underline'>Notación</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(x(t)\): estados del sistema
+     </li>
+     <li class='itemize'>\(\hat {x}(t)\): estados estimados
+     </li>
+     <li class='itemize'>\(\tilde {x}(t)=x(t)-\hat {x}(t)\): error de estimación</li></ul>
+<!-- l. 856 --><p class='indent'>   La dinámica del sistema de los <span class='cmti-10'>estados estimados</span> \(\hat {x}\) es la misma que la del sistema planta:
+</p><!-- l. 861 --><p class='indent'>   \begin {align*}  &amp;\dot {\hat {x}} = A\hat {x}+Bu \\ &amp;\hat {x}(0) = \hat {x}_0  \end {align*}
+</p><!-- l. 863 --><p class='indent'>   Luego, se puede deducir la dinámica del <span class='cmti-10'>error de estimaci</span>ó<span class='cmti-10'>n</span> \(\tilde {x}\):
+</p><!-- l. 869 --><p class='indent'>   \begin {align*}  \dot {\tilde {x}} &amp;= \frac {d}{dt}(x-\hat {x})=\dot {x}-\dot {\hat {x}}\\ &amp;= (Ax+Bu)-(A\hat {x}+Bu)=A(x-\hat {x}) \\ \Longrightarrow \dot {\tilde {x}} &amp;= A\tilde {x}  \end {align*}
+</p><!-- l. 871 --><p class='indent'>   La estrategia para diseñar el observador es la siguiente: Si los estados decaen a cero, entonces se diseña un
+estimador tal que el error de la estimación decae con la misma tasa que el sistema.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 875 --><p class='noindent'><img alt='PIC' height='57' src='Figuras/observador.png' width='57' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='diseno-de-observador-de-estados'><span class='titlemark'>10.12.   </span> <a id='x16-18400010.12'></a>Diseño de Observador de Estados</h3>
+<!-- l. 879 --><p class='noindent'>De la figura anterior, notar que para estimar los estados del sistema, se requiere de una ganancia \(L\). Lo que se va a
+realizar a continuación es diseñar esta matriz \(L\). <br class='newline' />
+</p><!-- l. 881 --><p class='indent'>   La representación espacio-estado de los estados estimados \(\hat {x}(t)\) incluye la señal del error de estimación \(\tilde {x}\) y su ganancia
+\(L\).
+</p><!-- l. 885 --><p class='indent'>   \begin {align*}  \dot {\hat {x}}(t) = A\hat {x}(t)+Bu(t)+L\tilde {y}(t)  \end {align*}
+</p><!-- l. 886 --><p class='indent'>   donde: \begin {align*}  L=\left [ \begin {array}{c} l_1 \\ l_2\\ \vdots \\ l_n \end {array}\right ], \quad L \in \mathbb {R}^{n\times r}, \quad x,y \in \mathbb {R}^n  \end {align*}
+</p><!-- l. 894 --><p class='indent'>   La ecuación de estado del error de estimación queda de la siguiente forma: \begin {align*}  \dot {\tilde {x}}=\dot {x}-\dot {\hat {x}} &amp;= (Ax+Bu)-(A\hat {x}+Bu+L\tilde {y})\\ &amp;= A\tilde {x}-L(y-\hat {y})\\ &amp;= A\tilde {x}-L(Cx-C\hat {x})\\ &amp;= A\tilde {x}-LC\tilde {x}\\ \dot {\tilde {x}} &amp;= (A-LC)\tilde {x}  \end {align*}
+</p><!-- l. 903 --><p class='indent'>   Por lo tanto, para diseñar \(L\), \((A-LC)\) debe cumplir con estabilidad. Para lograr esta estabilidad, se ubicarán apropiadamente
+los polos de forma que se encuentren al lado izquierdo del plano complejo. A esta estrategia se le conoce como <span class='cmbx-10'>Pole
+Placement</span>. <br class='newline' />
+</p><!-- l. 905 --><p class='indent'>   <span class='underline'>Caso particular</span>:
+</p><!-- l. 907 --><p class='indent'>   Considere el siguiente sistema con \(x\in \mathbb {R}^n\), \(u\in \mathbb {R}\), \(y\in \mathbb {R}\):
+</p><!-- l. 911 --><p class='indent'>   \begin {align*}  G(s) = \frac {b_0}{s^n+a_{n-1}s^{n-1}+...+a_1s+a_0}  \end {align*}
+</p><!-- l. 913 --><p class='indent'>   Su Forma Canónica Observable es:
+</p><!-- l. 924 --><p class='indent'>   \begin {align*}  {A_o}=\left [ \begin {array}{c|cccc} -a_{n-1} &amp; 1 &amp; &amp; &amp; 0 \\ -a_{n-2} &amp; &amp; 1 &amp; &amp; \\ \vdots &amp; &amp; &amp; \ddots &amp; \\ -a_1 &amp; 0 &amp; &amp; &amp; 1 \\ \hline -a_0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 \end {array}\right ], \quad {A_o}\in \mathbb {R}^{n\times n}  \end {align*}
+</p><!-- l. 934 --><p class='indent'>   \begin {align*}  {B_o}=\left [ \begin {array}{c} b_{n-1} \\ b_{n-2}\\ \vdots \\ b_1 \\ \hline b_0 \end {array}\right ], \quad {B_o}\in \mathbb {R}^{n\times 1}  \end {align*}
+</p><!-- l. 940 --><p class='indent'>   \begin {align*}  {C_o}=\left [ \begin {array}{c|ccc} 1 &amp; 0 &amp; \dots &amp; 0 \end {array}\right ], \quad {C}_o\in \mathbb {R}^{1\times n}  \end {align*}
+</p><!-- l. 942 --><p class='indent'>   Como en este caso particular, \(y\in \mathbb {R}\), entonces \(L\) es matriz \(n \times 1\): \begin {align*}  L=\left [ \begin {array}{c} l_{n-1} \\ l_{n-2}\\ \vdots \\ l_0 \end {array}\right ]  \end {align*}
+</p><!-- l. 951 --><p class='indent'>   Por lo tanto, se puede obtener \(A_0 - LC_0\) de la siguiente forma: \begin {align*}  LC_o&amp;=\left [ \begin {array}{c} l_{n-1} \\ l_{n-2}\\ \vdots \\ l_0 \end {array}\right ] \left [ \begin {array}{c c c c} 1 &amp; 0 &amp; ... &amp; 0 \end {array}\right ] =\left [ \begin {array}{c|c} l_{n-1} &amp; \\ \vdots &amp; {0} \\ l_0 &amp; \end {array}\right ] \\ A_o-LC_o &amp;= \left [ \begin {array}{c|c c c} -a_{n-1}-l_{n-1} &amp; &amp; &amp; \\ -a_{n-2}-l_{n-2} &amp; &amp; &amp; \\ \vdots &amp; &amp; {I} &amp; \\-a_1-l_1 &amp; &amp; &amp; \\ \hline \\ -a_0-l_0 &amp; 0 &amp; ... &amp; 0 \end {array}\right ]  \end {align*}
+</p><!-- l. 967 --><p class='indent'>   y su ecuación característica es: \begin {align*}  &amp;\phantom {\Longrightarrow } \Delta (A_o-LC_o) = 0 \\ &amp;\Longrightarrow s^n+(a_{n-1}+l_{n-1})s^{n-1}+...+(a_1+l_1)s+(a_0+l_0) = 0  \end {align*}
+</p><!-- l. 973 --><p class='indent'>   Cada coeficiente \((a_i+l_i)\), son los coeficientes \(\lambda _i\) del polinomio característico asociado a la ubicación de polos deseada
+\(p_i\):
+</p><!-- l. 977 --><p class='indent'>   \begin {align*}  \prod _{i=0}^{n-1}(s-p_i)=s^n+\lambda _{n-1}s^{n-1}+...+\lambda _1s+\lambda _0=0  \end {align*}
+</p><!-- l. 979 --><p class='indent'>   Para finalmente obtener los términos \(l_i\) de la matriz \(L\), se deben definir los polos deseados, expandir el polinomio y
+luego igualar ambos términos para todo \(i \in [0,n-1]\).
+</p><!-- l. 984 --><p class='indent'>   \begin {align*}  &amp;\phantom {\longrightarrow } a_i + l_i = \lambda _i \\ &amp;\longrightarrow l_i = a_i-\lambda _i  \end {align*}
+</p><!-- l. 986 --><p class='indent'>   <span class='underline'>Nota</span>: En MATLAB, el diseño por ubicación de polos se puede realizar utilizando el comando <span class='cmtt-10'>place()</span>.
+<br class='newline' />
+</p><!-- l. 988 --><p class='indent'>   <span class='underline'>Nota</span>: Si el sistema no está escrito en OCF (forma canónica observable), es recomendable transformarlo a OCF con
+una transformación de similitud utilizando la matriz \(T\). Recordar que esta matriz \(T\) existe ssi el sistema es
+observable.
+</p><!-- l. 991 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='principio-de-separacion'><span class='titlemark'>10.13.   </span> <a id='x16-18500010.13'></a>Principio de Separación</h3>
+<!-- l. 992 --><p class='noindent'>Considere el siguiente sistema LTI cerrado: </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 995 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/ppio_separacion.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 999 --><p class='indent'>   Planta: </p><div class='subequations'>\begin {subequations}  \begin {align} \dot {x} &amp;= Ax+Bu\\ y &amp;= Cx \end {align}  \end {subequations}</div>
+<!-- l. 1007 --><p class='indent'>   Controlador: </p><div class='subequations'>\begin {subequations}  \begin {align} u = -K\hat {x} \end {align}  \end {subequations}</div>
+<!-- l. 1014 --><p class='indent'>   Estimador y error de estimación: </p><div class='subequations'>\begin {subequations}  \begin {align} \dot {\hat {x}}&amp;= A\hat {x}+Bu+L\tilde {y}\\ \hat {y} &amp;= C\hat {x}\\ \tilde {x} &amp;= x-\hat {x}\\ \tilde {y} &amp;= y-\hat {y} \end {align}  \end {subequations}</div>
+<!-- l. 1024 --><p class='indent'>   Utilizando las ecuaciones de cada subsistema, vamos a obtener una expresión para el sistema cerrado:
+<br class='newline' />
+</p><!-- l. 1026 --><p class='indent'>   Reemplazando (2.3c) en (2.2a): \begin {align*}  u&amp;=-K(x-\tilde {x})\\  \end {align*}
+</p><!-- l. 1031 --><p class='indent'>   Reemplazando lo anterior en (2.1a): \begin {align*}  \dot {x} &amp;= Ax + B(-K(x - \tilde {x}))\\ \Longrightarrow \dot {x} &amp;= Ax - BK(x-\tilde {x}) \\ \Longrightarrow \dot {x} &amp;= (A-BK)x+BK\tilde {x}  \end {align*}
+</p><!-- l. 1038 --><p class='indent'>   Restando (2.1a) menos (2.3a) para obtener la dinámica del error de estimación \begin {align*}  \Longrightarrow \dot {\tilde {x}} &amp;= (Ax+Bu)-(A\hat {x}+Bu+L\tilde {y})\\ \Longrightarrow \dot {\tilde {x}} &amp;= A\tilde {x}-LC \tilde {x}\\ \Longrightarrow \dot {\tilde {x}} &amp;= (A-LC)\tilde {x}  \end {align*}
+</p><!-- l. 1045 --><p class='indent'>   Luego, definiendo los estados del sistema cerrado como \(z=\left [ \begin {array}{c} x \\ \tilde {x} \end {array}\right ]\)
+</p><!-- l. 1050 --><p class='indent'>   La ecuación de estado del sistema cerrado queda de la siguiente forma: \begin {align*}  \dot {z}=\left [ \begin {array}{c} \dot {x} \\ \dot {\tilde {x}} \end {array}\right ] = \left [ \begin {array}{cc} A-BK &amp; BK \\ 0 &amp; A-LC \end {array}\right ]\left [ \begin {array}{c} x \\ \tilde {x} \end {array}\right ]  \end {align*}
+</p><!-- l. 1064 --><p class='indent'>   Para simplificar notación, la matriz de estado del sistema cerrado se denotará como \(A_{CL}\) \begin {align*}  A_{CL} &amp;= \left [ \begin {array}{cc} A-BK &amp; BK \\ 0 &amp; A-LC \end {array}\right ]\\ \Longrightarrow \dot {z}&amp;=A_{CL}z  \end {align*}
+</p><!-- l. 1073 --><p class='indent'>   Finalmente, los polos de \(A_{CL}\) se obtienen al resolver la ecuación característica: \begin {align*}  \text {det}(sI-A_{CL})&amp;=0\\ \Longrightarrow \text {det}(sI-(A-BK))\cdot \text {det}(sI-(A-LC)) &amp;=0  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(\text {det}(sI-(A-BK))\): polos del subsistema planta + controlador
+     </li>
+     <li class='itemize'>\(\text {det}(sI-(A-LC))\): polos del subsistema planta + observador</li></ul>
+<!-- l. 1084 --><p class='indent'>   Este resultado se conoce como <span class='cmbx-10'>Principio de Separaci</span>ó<span class='cmbx-10'>n</span>.<br class='newline' />
+</p><!-- l. 1086 --><p class='indent'>   Con este principio, se puede diseñar \(K\) y \(L\) por separado, luego agrupar y construir el sistema de control
+cerrado.
+                                                                                         
+                                                                                         
+</p>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch11.html'>next</a>] [<a href='MIC411apuntesch9.html'>prev</a>] [<a href='MIC411apuntesch9.html#tailMIC411apuntesch9.html'>prev-tail</a>] [<a href='MIC411apuntesch10.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch10.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch10.html'></a>  </p> 
+</body> 
+</html>

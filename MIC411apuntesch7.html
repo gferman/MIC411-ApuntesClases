@@ -1,0 +1,222 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>7 Tecnolog´ıa de Sensores</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='#tailMIC411apuntesch7.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='tecnologia-de-sensores'><span class='titlemark'>Capítulo 7</span><br /><a id='x13-1090007'></a>Tecnología de Sensores</h2>
+<!-- l. 5 --><p class='noindent'>Referencia: <a id='x13-109001'></a>de Silva (<a href='MIC411apuntesli4.html#cite.0@desilva2000vibrationfundamentals'>2000</a>, Cap. 11)
+</p>
+   <h3 class='sectionHead' id='fundamentos-de-sensores'><span class='titlemark'>7.1.   </span> <a id='x13-1100007.1'></a>Fundamentos de sensores</h3>
+                                                                                         
+                                                                                         
+<!-- l. 9 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='que-es-un-sensor'><span class='titlemark'>7.1.1.   </span> <a id='x13-1110007.1.1'></a>¿Qué es un sensor?</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 18 --><p class='noindent'><img alt='PIC' height='234' src='Figuras/funcionamientoSensor.png' width='234' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+     <ul class='itemize1'>
+     <li class='itemize'>\(z(t)\): desplazamiento de la estructura
+     </li>
+     <li class='itemize'>\(u(t)\): desplazamiento del SDOF del sensor
+     </li>
+     <li class='itemize'>\(w(t)\): desplazamiento relativo entre sensor y estructura \(w(t) = u(t) - z(t)\)</li></ul>
+<!-- l. 26 --><p class='indent'>   El output que genera el sensor es una señal eléctrica (voltaje, corriente) que es proporcional a \(w(t)\).<br class='newline' />
+</p><!-- l. 28 --><p class='indent'>   Sobre la utilidad de un sensor, fijarse en el rango de frecuencia y en el rango de aceleraciones.
+<br class='newline' />
+</p><!-- l. 30 --><p class='indent'>   Ej.: Sensor con rangos de frecuencia \([5; 10000]\) Hz y de amplitud \([-10; 10]\) g no podría medir frecuencias de \(1\) [Hz], y dependiendo de
+la resolución, probablemente no detecta microvibraciones, por ejemplo \(1\) mg = \(\frac {1}{1000}\) g.
+</p>
+   <h4 class='subsectionHead' id='diseno-de-sensores'><span class='titlemark'>7.1.2.   </span> <a id='x13-1120007.1.2'></a>Diseño de Sensores</h4>
+<!-- l. 33 --><p class='noindent'>Supongamos tenemos un sensor que se modela como un oscilador SDOF sin amortiguamiento:
+</p><!-- l. 37 --><p class='indent'>   \begin {align*}  \ddot {w} + \omega _s^2 w = -\ddot {z}  \end {align*}
+</p><!-- l. 39 --><p class='indent'>   La FRF de este oscilador es: \begin {align*}  H_{WZ}(\Omega ) = \frac {1}{1-\frac {\omega _s}{\Omega }^2}\\ H_{W\ddot {Z}}(\Omega ) = \frac {1}{\Omega ^2 - \omega _s^2}  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Si quiero que \(w(t)\) se parezca a \(z(t)\). Ocupar rigidez alta.
+     </li>
+     <li class='itemize'>Si quiero que \(w(t)\) se parezca a \(\ddot {z}(t)\). Ocupar rigidez baja.</li></ul>
+<!-- l. 52 --><p class='indent'>   Generalmente la respuesta transiente de \(w(t)\) (que contiene información del sensor) decae rápido
+</p><!-- l. 54 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='fundamentos-basicos-de-electronica'><span class='titlemark'>7.2.   </span> <a id='x13-1130007.2'></a>Fundamentos básicos de electrónica</h3>
+<!-- l. 56 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='resistencia'><span class='titlemark'>7.2.1.   </span> <a id='x13-1140007.2.1'></a>Resistencia</h4>
+<!-- l. 58 --><p class='noindent'>Relación deformación vs voltaje
+                                                                                         
+                                                                                         
+</p><!-- l. 60 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='capacitancia'><span class='titlemark'>7.2.2.   </span> <a id='x13-1150007.2.2'></a>Capacitancia</h4>
+<!-- l. 61 --><p class='noindent'>Es la propiedad de algunos materiales o dispositivos para almacenar carga eléctrica cuando se les aplica una
+diferencia de potencial.
+</p><!-- l. 63 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='piezoelectricidad'><span class='titlemark'>7.2.3.   </span> <a id='x13-1160007.2.3'></a>Piezoelectricidad</h4>
+<!-- l. 64 --><p class='noindent'>Del griego <span class='cmti-10'>piezo </span>(apretar/presión). Es la propiedad de algunos materiales que, al ser sometidos a tensiones o
+deformaciones, generan diferencias de potencial y cargas eléctricas. De manera inversa, si se les aplica una diferencia
+de potencial, estos materiales se deforman.
+</p><!-- l. 66 --><p class='indent'>   Ejemplos de materiales piezoelétricos: Sal de Rochell, Tourmalina, cristales de cuarzo.
+</p><!-- l. 75 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='especificaciones-de-sensores'><span class='titlemark'>7.3.   </span> <a id='x13-1170007.3'></a>Especificaciones de sensores</h3>
+<!-- l. 77 --><p class='noindent'><span class='underline'>sensitividad</span>: Cantidad de voltaje que se genera por unidad de medida de vibración (ej: de aceleración).
+</p><!-- l. 81 --><p class='indent'>   \begin {align*}  S = \frac {\text {output (voltaje)}}{\text {input (vibración)}}  \end {align*}
+</p><!-- l. 83 --><p class='indent'>   <span class='underline'>Resolución</span>: Cantidad mínima de input para generar algún voltaje (se relacióna con el ruido/contaminación de la señal).
+<br class='newline' />
+</p><!-- l. 85 --><p class='indent'>   <span class='underline'>Rango de Frecuencias</span>: Rango de frecuencias que el sensor es capaz de medir. Si la respuesta que quiero medir
+contiene una frecuencia fuera de este rango, no se estaría midiendo la respuesta real de la estructura.
+<br class='newline' />
+</p><!-- l. 87 --><p class='indent'>   <span class='underline'>Linealidad</span>: Que tan lineal es la respuesta que estoy midiendo con la señal eléctrica.
+</p><!-- l. 91 --><p class='indent'>   \begin {align*}  \text {medición} = C \times (\text {señal})  \end {align*}
+</p><!-- l. 93 --><p class='indent'>   Generalmente, los sensores tienen \(R^2 \approx 0.99\)
+</p><!-- l. 95 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='tipos-de-sensores'><span class='titlemark'>7.4.   </span> <a id='x13-1180007.4'></a>Tipos de sensores</h3>
+<!-- l. 97 --><p class='noindent'>En ingeniería estructural y mecánica, los sensores permiten medir variables físicas como aceleración, desplazamiento,
+fuerza o deformación. La correcta selección del sensor depende de la magnitud de interés, el rango de operación, la
+frecuencia de muestreo requerida y la robustez necesaria para el ambiente de trabajo.
+</p><!-- l. 100 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='acelerometros-resistivos'><span class='titlemark'>7.4.1.   </span> <a id='x13-1190007.4.1'></a>Acelerómetros resistivos</h4>
+<!-- l. 101 --><p class='noindent'>Estos sensores generan un voltaje proporcional a la aceleración aplicada al sensor. Funcionan generalmente con un
+elemento sensible resistivo (como un puente de Wheatstone) acoplado a una masa interna que se desplaza frente a la
+aceleración. Tienen la ventaja de ser simples, económicos y de fácil acondicionamiento de señal, pero suelen tener
+limitaciones de frecuencia y son sensibles al ruido eléctrico.
+</p>
+   <figure class='figure' id='-ejemplo-de-principio-de-funcionamiento-de-un-acelerometro-resistivo'> 
+
+                                                                                         
+                                                                                         
+<a id='x13-119001r1'></a>
+                                                                                         
+                                                                                         
+<div class='fbox'>                                                       </div>
+<figcaption class='caption'><span class='id'>Figura 7.1: </span><span class='content'>Ejemplo de principio de funcionamiento de un acelerómetro resistivo.</span></figcaption><!-- tex4ht:label?: x13-119001r1  -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class='subsectionHead' id='acelerometros-capacitivos'><span class='titlemark'>7.4.2.   </span> <a id='x13-1200007.4.2'></a>Acelerómetros capacitivos</h4>
+<!-- l. 113 --><p class='noindent'>Estos sensores utilizan la variación de capacitancia provocada por el movimiento de una masa interna. La
+señal de salida se obtiene mediante técnicas de modulación, generalmente cambiando la frecuencia de un
+puente capacitivo (<span class='cmti-10'>capacitive bridge</span>). Se caracterizan por su alta sensibilidad a bajas frecuencias, bajo
+consumo de energía y bajo costo. Sin embargo, son frágiles frente a impactos fuertes y su rango dinámico es
+limitado.
+</p><!-- l. 118 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='acelerometros-piezoelectricos'><span class='titlemark'>7.4.3.   </span> <a id='x13-1210007.4.3'></a>Acelerómetros piezoeléctricos</h4>
+<!-- l. 119 --><p class='noindent'>Estos sensores emplean cristales piezoeléctricos que generan carga eléctrica proporcional a la fuerza
+inercial aplicada. A diferencia de los acelerómetros resistivos o capacitivos, los piezoeléctricos son muy
+robustos frente a altas frecuencias y choques, lo que los hace ideales para aplicaciones dinámicas. Existen
+configuraciones de <span class='cmbx-10'>compresi</span>ó<span class='cmbx-10'>n</span>, <span class='cmbx-10'>flexi</span>ó<span class='cmbx-10'>n </span>y <span class='cmbx-10'>corte</span>, cada una con distinta sensibilidad a vibraciones y ruidos
+ambientales.
+</p>
+   <figure class='figure' id='-ejemplo-de-acelerometro-piezoelectrico-y-su-principio-de-funcionamiento'> 
+
+                                                                                         
+                                                                                         
+<a id='x13-121001r2'></a>
+                                                                                         
+                                                                                         
+<div class='fbox'>                                                       </div>
+<figcaption class='caption'><span class='id'>Figura 7.2: </span><span class='content'>Ejemplo de acelerómetro piezoeléctrico y su principio de funcionamiento.</span></figcaption><!-- tex4ht:label?: x13-121001r2  -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class='subsectionHead' id='-strain-gages'><span class='titlemark'>7.4.4.   </span> <a id='x13-1220007.4.4'></a><span class='cmti-10'>Strain gages</span></h4>
+<!-- l. 132 --><p class='noindent'>Las galgas extensiométricas (<span class='cmti-10'>strain gages</span>) miden la deformación de un material a través de la variación de resistencia
+eléctrica de un filamento conductor.
+</p><!-- l. 134 --><p class='indent'>   Al adherirlas a un elemento estructural, permiten medir su deformación y, a partir de ésta, estimar esfuerzos o
+fuerzas aplicadas.
+</p><!-- l. 136 --><p class='indent'>   Se utilizan ampliamente en pruebas de laboratorio y monitoreo estructural.
+</p>
+   <figure class='figure' id='-strain-gage-adherido-a-un-elemento-estructural'> 
+
+                                                                                         
+                                                                                         
+<a id='x13-122001r3'></a>
+                                                                                         
+                                                                                         
+<div class='fbox'>                                                       </div>
+<figcaption class='caption'><span class='id'>Figura 7.3: </span><span class='content'>Strain gage adherido a un elemento estructural.</span></figcaption><!-- tex4ht:label?: x13-122001r3  -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class='subsectionHead' id='celdas-de-carga'><span class='titlemark'>7.4.5.   </span> <a id='x13-1230007.4.5'></a>Celdas de carga</h4>
+<!-- l. 146 --><p class='noindent'>Las celdas de carga son transductores que convierten fuerzas en señales eléctricas, generalmente usando <span class='cmti-10'>strain gages </span>en
+configuración de puente de Wheatstone. Se emplean en balanzas, bancos de pruebas y sistemas de monitoreo de
+cargas estructurales.
+</p><!-- l. 149 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='transductores-de-desplazamiento'><span class='titlemark'>7.4.6.   </span> <a id='x13-1240007.4.6'></a>Transductores de desplazamiento</h4>
+<!-- l. 150 --><p class='noindent'>Estos sensores miden movimiento o desplazamiento lineal/rotacional. Entre los más comunes están: </p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='cmbx-10'>Potenci</span>ó<span class='cmbx-10'>metros: </span>Miden desplazamiento mediante variación resistiva; son económicos pero tienen desgaste
+     mecánico.
+     </li>
+     <li class='itemize'><span class='cmbx-10'>LVDT (Linear Variable Differential Transformer): </span>Utilizan inducción electromagnética para medir
+     desplazamiento lineal con alta precisión.
+     </li>
+     <li class='itemize'><span class='cmbx-10'>Encoders: </span>Miden desplazamiento angular o velocidad de rotación mediante lectura óptica o magnética.</li></ul>
+   <figure class='figure' id='-ejemplos-de-transductores-de-desplazamiento-lvdt-y-encoder-rotacional'> 
+
+                                                                                         
+                                                                                         
+<a id='x13-124001r4'></a>
+                                                                                         
+                                                                                         
+<div class='fbox'>                                                       </div>
+<figcaption class='caption'><span class='id'>Figura 7.4: </span><span class='content'>Ejemplos de transductores de desplazamiento: LVDT y encoder rotacional.</span></figcaption><!-- tex4ht:label?: x13-124001r4  -->
+                                                                                         
+                                                                                         
+   </figure>
+   <h4 class='subsectionHead' id='otros-sensores'><span class='titlemark'>7.4.7.   </span> <a id='x13-1250007.4.7'></a>Otros sensores</h4>
+<!-- l. 165 --><p class='noindent'>Existen tecnologías avanzadas que permiten medir movimiento, vibración o rotación en aplicaciones especializadas:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='cmbx-10'>Interfer</span>ó<span class='cmbx-10'>metros   l</span>á<span class='cmbx-10'>ser:  </span>Permiten   medir   desplazamientos   con   resolución   nanométrica   mediante
+     interferencia de luz coherente.
+     </li>
+     <li class='itemize'><span class='cmbx-10'>Giroscopios: </span>Sensan velocidad angular; existen versiones mecánicas, ópticas y MEMS.
+     </li>
+     <li class='itemize'><span class='cmbx-10'>Sensores de fibra </span>ó<span class='cmbx-10'>ptica: </span>Basados en variaciones de intensidad o interferometría, útiles para monitoreo
+     estructural distribuido.
+     </li>
+     <li class='itemize'><span class='cmbx-10'>MEMS (Micro-Electro-Mechanical Systems): </span>Integran sensores de aceleración, giro y presión en
+     tamaño muy reducido.
+     </li>
+     <li class='itemize'><span class='cmbx-10'>Ge</span>ó<span class='cmbx-10'>fonos: </span>Detectan vibraciones en el suelo, ampliamente usados en geotecnia y monitoreo sísmico.</li></ul>
+   <figure class='figure' id='-ejemplos-de-sensores-avanzados-giroscopio-mems-fibra-optica-y-geofono'> 
+
+                                                                                         
+                                                                                         
+<a id='x13-125001r5'></a>
+                                                                                         
+                                                                                         
+<div class='fbox'>                                                       </div>
+<figcaption class='caption'><span class='id'>Figura 7.5: </span><span class='content'>Ejemplos de sensores avanzados: giroscopio MEMS, fibra óptica y geófono.</span></figcaption><!-- tex4ht:label?: x13-125001r5  -->
+                                                                                         
+                                                                                         
+   </figure>
+                                                                                         
+                                                                                         
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='MIC411apuntesch7.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch7.html'></a>   </p> 
+</body> 
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>8 T´ecnicas de Monitoreo Estructural</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch9.html'>next</a>] [<a href='MIC411apuntesch7.html'>prev</a>] [<a href='MIC411apuntesch7.html#tailMIC411apuntesch7.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch8.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch8.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='tecnicas-de-monitoreo-estructural'><span class='titlemark'>Capítulo 8</span><br /><a id='x14-1260008'></a>Técnicas de Monitoreo Estructural</h2>
+   <h3 class='sectionHead' id='motivacion'><span class='titlemark'>8.1.   </span> <a id='x14-1270008.1'></a>Motivación</h3>
+<!-- l. 5 --><p class='noindent'>Nunca se está seguro de las propiedades <span class='cmti-10'>exactas </span>de una estructura.
+</p><!-- l. 7 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x14-127002x1'>
+     <!-- l. 8 --><p class='noindent'>Obras civiles “envejecen”: </p>
+         <ul class='itemize1'>
+         <li class='itemize'>Daño/deterioro estructura \(\longrightarrow \) Cambio en las propiedades de materiales</li></ul>
+     </li>
+<li class='enumerate' id='x14-127004x2'>
+     <!-- l. 12 --><p class='noindent'>Incertidumbre: </p>
+         <ul class='itemize1'>
+         <li class='itemize'>Propiedades nominales utilizadas en diseño
+         </li>
+         <li class='itemize'>Los modelos nominales no necesariamente representan fielmente el comportamiento real de la
+         estructura</li></ul>
+     </li></ol>
+<!-- l. 19 --><p class='indent'>   Un buen proyecto de monitoreo estructural (Structural health monitoring, SHM) tiene múltiples objetivos más allá
+de la instrumentación.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 23 --><p class='noindent'><img alt='PIC' height='36' src='Figuras/sysID.png' width='36' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 26 --><p class='indent'>   Para el monitoreo estructural se busca:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Determinar un modelo matemático de un sistema.
+     </li>
+     <li class='itemize'>Realizar predecicción: desempeño, daño,</li></ul>
+   <h3 class='sectionHead' id='identificacion-de-sistemas'><span class='titlemark'>8.2.   </span> <a id='x14-1280008.2'></a>Identificación de Sistemas</h3>
+<!-- l. 35 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='generalidades3'><span class='titlemark'>8.2.1.   </span> <a id='x14-1290008.2.1'></a>Generalidades</h4>
+<!-- l. 37 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x14-129002x1'>
+     <!-- l. 38 --><p class='noindent'>Análisis dinámico (problema directo) </p><figure class='figure'> 
+ <img alt='PIC' height='43' src='Figuras/problema_directo.png' width='43' /> </figure>
+     </li>
+<li class='enumerate' id='x14-129004x2'>
+     <!-- l. 43 --><p class='noindent'>Identificación de fuerza de entrada </p><figure class='figure'> 
+ <img alt='PIC' height='43' src='Figuras/fuerza_entrada.png' width='43' /> </figure>
+     </li>
+<li class='enumerate' id='x14-129006x3'>
+     <!-- l. 48 --><p class='noindent'>Identificación de sistema </p><figure class='figure'> 
+ <img alt='PIC' height='43' src='Figuras/problema_inverso.png' width='43' /> </figure>
+     </li></ol>
+<!-- l. 55 --><p class='noindent'>Estas predicciones se pueden realizar con distintos métodos:
+</p><!-- l. 57 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x14-129008x1'>
+     <!-- l. 58 --><p class='noindent'>Basados en dominio frecuencia </p>
+         <ul class='itemize1'>
+         <li class='itemize'>Análisis modal experimental
+         </li>
+         <li class='itemize'>Optimización no paramétrica</li></ul>
+                                                                                         
+                                                                                         
+     </li>
+<li class='enumerate' id='x14-129010x2'>
+     <!-- l. 63 --><p class='noindent'>Basados en dominio tiempo </p>
+         <ul class='itemize1'>
+         <li class='itemize'>Modelos auto-regresivos: ARX, ARMA, ARMAX, etc.
+         </li>
+         <li class='itemize'>Métodos basados en subespacios: ERA, Next-ERA, SSI, etc.</li></ul>
+     </li></ol>
+<!-- l. 70 --><p class='indent'>   Resumen de identificación de sistemas (SysID):
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 74 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/resumenSysID.png' width='361' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='metodos-noparametricos-de-estimacion-espectral'><span class='titlemark'>8.3.   </span> <a id='x14-1300008.3'></a>Métodos no-paramétricos de estimación espectral</h3>
+<!-- l. 79 --><p class='noindent'>Referencias: <a id='x14-130001'></a>Craig y Kurdila (<a href='MIC411apuntesli4.html#cite.0@craig2006fundamentalsstructural'>2006</a>, Sec. 18.4) y <a id='x14-130002'></a>Bendat y Piersol (<a href='MIC411apuntesli4.html#cite.0@Bendat2011'>2011</a>, Cap. 6).
+</p><!-- l. 81 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='definiciones'><span class='titlemark'>8.3.1.   </span> <a id='x14-1310008.3.1'></a>Definiciones</h4>
+<!-- l. 83 --><p class='noindent'>Dado un sistema LTI con entrada \(u(t)\) y salida \(y(t)\) conocidos experimentalmente, buscamos determinar de forma estimada
+su FRF, \(G_{YU}(\omega )\).<br class='newline' />
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 87 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/UY.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 93 --><p class='indent'>   \begin {align*}  Y(\omega ) &amp;= G_{YU}(\omega )U(\omega ) \quad \text {(FRF)}\\ y(t) &amp;= (g_{YU} \ast u)(t) \quad \text {(FRI)}  \end {align*}
+</p><!-- l. 95 --><p class='indent'>   Nota: Relación entre FRF y FRI: \(G_{YU}(\omega ) = \mathcal {F}\{g_{YU}(t)\}\)
+</p>
+   <h4 class='subsectionHead' id='densidad-de-poder-espectral-finita'><span class='titlemark'>8.3.2.   </span> <a id='x14-1320008.3.2'></a>Densidad de poder espectral finita</h4>
+<!-- l. 99 --><p class='noindent'>Recordando el teorema de Wiener-Khinchin, que establece la relación entre <span class='cmti-10'>densidad de poder espectral </span>(\(S_{XX}(\Omega )\)) y
+<span class='cmti-10'>autocorrelaci</span>ó<span class='cmti-10'>n </span>(\(R_{XX}(\tau )\)) de un proceso estocástico w.s.s. \(\{X(t),t \in T\}\):
+</p><!-- l. 104 --><p class='indent'>   \begin {align*}  S_{XX}(\Omega ) &amp;= \mathcal {F}\{R_{XX}(\tau )\}\\ R_{XX}(\tau ) &amp;= \mathcal {F}^{-1}\{S_{XX}(\Omega )\}  \end {align*}
+</p><!-- l. 106 --><p class='noindent'>donde \(R_{XX}(\tau ) =\mathbb {E}\{X(t)X(t+\tau )\}\) y \(\mathcal {F}\{\cdot \}\) es la transformada de Fourier (contínua).<br class='newline' />
+</p><!-- l. 110 --><p class='indent'>   Mientras, para el caso en tiempo discreto se utiliza la definición de <span class='cmti-10'>periodograma</span>. Suponiendo una muestra finita
+de \(N\) puntos del p.e. \(\{X(t),t \in T\}\), con período de muestreo \(T_s\):
+</p><!-- l. 118 --><p class='indent'>   \begin {align*}  x[n] = \begin {cases} x(n T_s), &amp; n\in \{0,1,\ldots ,N-1\}\\ 0, &amp; \text {otherwe} \end {cases}  \end {align*}
+</p><!-- l. 120 --><p class='indent'>   Entonces, el <span class='cmti-10'>periodograma </span>se define como:
+</p><!-- l. 124 --><p class='indent'>   \begin {align*}  \hat {S}_{XX}(\omega ) = \frac {1}{N} X(\omega ) X(\omega )^{*} = \frac {1}{N} |X(\omega )|^{2}  \end {align*}
+</p><!-- l. 126 --><p class='noindent'>donde \(X(\omega )\) es la transformada de Fourier de tiempo discreto (DTFT) de la señal finita \(x[n]\):
+</p><!-- l. 130 --><p class='indent'>   \begin {align*}  X(\omega ) = \sum _{n=0}^{N-1} x[n] e^{-j \omega n}  \end {align*}
+</p><!-- l. 132 --><p class='noindent'>y \((\cdot )^{*}\) es la transpuesta conjugada.<br class='newline' />
+</p><!-- l. 134 --><p class='indent'>   <span class='cmti-10'>Nota:</span> \(S_{XX}(\omega )\) es un valor real.<br class='newline' />
+</p><!-- l. 136 --><p class='indent'>   En el límite para \(N\to \infty \), el periodograma (un estimador sesgado del PSD) converge al valor real del PSD:
+</p><!-- l. 140 --><p class='indent'>   \begin {align*}  S_{XX}(\omega ) = \lim _{N\to \infty } \mathbb {E} \left \{ \hat {S}_{XX}(\omega ) \right \}  \end {align*}
+</p><!-- l. 142 --><p class='indent'>   Para todo el estudio que viene a continuación consideramos estimaciones de PSD utilizando alguna de las
+definiciones de periodograma modificado (por ejemplo, método de Welch).
+</p><!-- l. 144 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='relaciones-entradasalida-de-poder-espectral'><span class='titlemark'>8.3.3.   </span> <a id='x14-1330008.3.3'></a>Relaciones entrada-salida de poder espectral</h4>
+<!-- l. 146 --><p class='noindent'>Asumir que \(u(t)\) e \(y(t)\), entrada y salida de un sistema LTI SISO determinístico, son procesos estocásticos w.s.s. de media
+cero. Entonces, calculemos un estimador del auto PSD de la respuesta \(y(t)\):
+</p><!-- l. 152 --><p class='indent'>   \begin {align*}  \hat {S}_{YY}(\omega ) &amp;= \frac {1}{N} Y(\omega )Y^{*} (\omega )\\\&amp;= \frac {1}{N} \left ( G_{YU}(\omega ) U(\omega )\right ) \left (G_{YU}(\omega ) U(\omega )\right )^{*}\\ &amp;= \frac {1}{N} G_{YU}(\omega ) U(\omega ) U(\omega )^{*} G_{YU}(\omega )^{*}  \end {align*}
+</p><!-- l. 154 --><p class='indent'>   Si el sistema es determinístico, con parámetros sin incertidumbre pero desconocidos:
+</p><!-- l. 160 --><p class='indent'>   \begin {align*}  \hat {S}_{YY}(\omega ) &amp;= G_{YU}(\omega ) G_{YU}(\omega )^{*} \underbrace {\left \{ \frac {1}{N}U(\omega ) U(\omega )^{*} \right \}}_{_{\hat {S}_{UU}(\omega )}}\\ \hat {S}_{YY}(\omega ) &amp;= \left | G_{YU}(\omega ) \right |^2 \hat {S}_{UU}(\omega )\\ \left | G_{YU}(\omega ) \right |^2 &amp;= \frac {\hat {S}_{YY}(\omega )}{\hat {S}_{UU}(\omega )}  \end {align*}
+</p><!-- l. 162 --><p class='indent'>   <span class='underline'>Nota</span>: \(|G_{YU}(\omega )|^2\) es una función real y nos entrega sólo información de la magnitud del sistema y no de la fase. Por lo tanto,
+<span class='underline'>este método queda descartado</span>.
+</p><!-- l. 164 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='metodo-h'><span class='titlemark'>8.3.4.   </span> <a id='x14-1340008.3.4'></a>Método \(H_1\)</h4>
+<!-- l. 166 --><p class='noindent'>Continuando el estudio del sistema SISO LTI:
+</p><!-- l. 174 --><p class='indent'>   \begin {align*}  Y(\omega ) &amp;= G_{YU}(\omega )U(\omega ) \quad / \cdot U^{*}(\omega )\\ Y(\omega )U^{*}(\omega ) &amp;= G_{YU}(\omega )U(\omega )U^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \underbrace {\left \{\frac {1}{N}Y(\omega )U^{*}(\omega )\right \}}_{\hat {S}_{YU}(\omega )} &amp;= G_{YU}(\omega ) \underbrace {\left \{\frac {1}{N} U(\omega )U^{*}(\omega ) \right \}}_{\hat {S}_{UU}(\omega )} \\ \hat {S}_{YU}(\omega ) &amp;= G_{YU}(\omega ) \hat {S}_{UU}(\omega )\\ \hat {G}_{YU}(\omega ) &amp;= \frac {\hat {S}_{YU}(\omega )}{\hat {S}_{UU}(\omega )} \quad \text {(Estimador $H_1$)}  \end {align*}
+</p><!-- l. 176 --><p class='indent'>   donde \(\hat {S}_{YU}(\omega )\) es la estimación del PSD cruzado entre respuesta \(y(t)\) y entrada \(u(t)\).<br class='newline' />
+</p><!-- l. 178 --><p class='indent'>   <span class='cmti-10'>Nota 1:</span> \(\hat {S}_{YU}(\omega )\) es un número complejo.
+</p><!-- l. 180 --><p class='indent'>   <span class='cmti-10'>Nota 2:</span> \(\hat {G}_{YU}(\omega )\) es un número complejo. Por lo tanto, este método arroja una estimación de la magnitud \(|\hat {G}_{YU}(\omega )|\) y fase \(\angle G_{YU}(\omega )\) del sistema
+dinámico.
+                                                                                         
+                                                                                         
+</p><!-- l. 182 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='metodo-h1'><span class='titlemark'>8.3.5.   </span> <a id='x14-1350008.3.5'></a>Método \(H_2\)</h4>
+<!-- l. 184 --><p class='noindent'>Otra alternativa es el método \(H_2\):
+</p><!-- l. 192 --><p class='indent'>   \begin {align*}  Y(\omega ) &amp;= G_{YU}(\omega )U(\omega ) \quad / \cdot Y^{*}(\omega )\\ Y(\omega ) Y^{*}(\omega ) &amp;= G_{YU}(\omega )U(\omega ) Y^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \underbrace {\left \{\frac {1}{N}Y(\omega )Y^{*}(\omega )\right \}}_{\hat {S}_{YY}(\omega )} &amp;= G_{YU}(\omega ) \underbrace {\left \{\frac {1}{N} Y(\omega )U^{*}(\omega ) \right \}}_{\hat {S}_{YU}(\omega )} \\ \hat {S}_{YY}(\omega ) &amp;= G_{YU}(\omega ) \hat {S}_{YU}(\omega )\\ \hat {G}_{YU}(\omega ) &amp;= \frac {\hat {S}_{YY}(\omega )}{\hat {S}_{YU}(\omega )} \quad \text {(Estimador $H_2$)}  \end {align*}
+</p><!-- l. 194 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='metodo-hv'><span class='titlemark'>8.3.6.   </span> <a id='x14-1360008.3.6'></a>Método \(H_v\)</h4>
+<!-- l. 196 --><p class='noindent'>Otra alternativa es el método \(H_v\), que consiste en la media geométrica de estimadores \(H_1\) y \(H_2\):
+</p><!-- l. 200 --><p class='indent'>   \begin {equation*}  H_v(\omega ) = \sqrt {H_1(\omega )H_2(\omega )}  \end {equation*}
+</p><!-- l. 202 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='mediciones-con-ruido'><span class='titlemark'>8.3.7.   </span> <a id='x14-1370008.3.7'></a>Mediciones con ruido</h4>
+<!-- l. 206 --><p class='noindent'>En ausencia de ruido en \(u(t)\) y \(y(t)\), ambos estimadores \(H_1\) y \(H_2\) coinciden (caso ideal). Pero, en la situación con ruido en las
+mediciones de entrada y/o salida, hay diferencias relevantes a considerar.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 210 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/H1_ruido.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 213 --><p class='indent'>   <span class='underline'>Nota</span>:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Ruido \(m(t)\) y \(n(t)\) son p.e. estacionarios no correlacionados \(\Longrightarrow R_{MN}(\tau ) = \mathbb {E}\{m(t) u(t+\tau )\}=0\)
+     </li>
+     <li class='itemize'>Ruido \(m(t)\) y entrada \(u(t)\) descorrelacionados entre si \(\Longrightarrow R_{MU}(\tau ) = \mathbb {E}\{m(t) u(t+\tau )\}=0\)
+     </li>
+     <li class='itemize'>Ruido \(n(t)\) y salida \(y(t)\) descorrelacionados entre si \(\Longrightarrow R_{NY}(\tau ) = \mathbb {E}\{n(t) y(t+\tau )\}=0\)</li></ul>
+<!-- l. 221 --><p class='indent'>   Calculando el auto PSD de señal de entrada medida:
+</p><!-- l. 229 --><p class='indent'>   \begin {align*}  X(\omega ) &amp;= U(\omega )+M(\omega )\\ X(\omega )X^{*}(\omega ) &amp;= \left [ U(\omega )+M(\omega )\right ] \left [ U(\omega )+M(\omega )\right ]^{*}\\ X(\omega )X^{*}(\omega ) &amp;= U(\omega )U^{*}(\omega ) + U(\omega )M^{*}(\omega ) + M(\omega )U^{*}(\omega )+ M(\omega )M^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \hat {S}_{XX}(\omega ) &amp;= \hat {S}_{UU}(\omega ) + \cancelto {0}{\hat {S}_{UM}(\omega )} + \cancelto {0}{\hat {S}_{MU}(\omega )} + \hat {S}_{MM}(\omega )\\ \hat {S}_{XX}(\omega ) &amp;= \hat {S}_{UU}(\omega )+\hat {S}_{MM}(\omega )  \end {align*}
+</p><!-- l. 231 --><p class='indent'>   De forma similar, el auto PSD de señal de respuesta medida:
+</p><!-- l. 236 --><p class='indent'>   \begin {align*}  \hat {S}_{ZZ}(\omega ) &amp;= \hat {S}_{YY}(\omega ) + \hat {S}_{NN}(\omega )  \end {align*}
+</p><!-- l. 238 --><p class='indent'>   donde:
+</p><!-- l. 242 --><p class='indent'>   \begin {align*}  \hat {S}_{YY}(\omega ) = |G_{yu}(\omega )|^2 \hat {S}_{UU}(\omega )  \end {align*}
+</p><!-- l. 244 --><p class='indent'>   Por otra parte, el PSD cruzado de señal de respuesta y entrada medidas:
+</p><!-- l. 251 --><p class='indent'>   \begin {align*}  Z(\omega )X^{*}(\omega ) &amp;= \bigl [ Y(\omega )+N(\omega ) \bigr ] \bigl [ U(\omega )+M(\omega )\bigr ]^{*}\\ Z(\omega )X^{*}(\omega ) &amp;= Y(\omega )U^{*}(\omega )+Y(\omega )M^{*}(\omega )+N(\omega )U^{*}(\omega )+N(\omega )M(\omega )^{*} \quad / \frac {1}{N}\cdot \\ \hat {S}_{ZX}(\omega ) &amp;= \hat {S}_{YU}(\omega ) + \cancelto {0}{\hat {S}_{YM}(\omega )} + \cancelto {0}{\hat {S}_{NU}(\omega )} + \cancelto {0}{\hat {S}_{NM}(\omega )}\\ \hat {S}_{ZX}(\omega ) &amp;= \hat {S}_{YU}(\omega )  \end {align*}
+</p><!-- l. 253 --><p class='indent'>   Entonces, el estimador \(H_1\):
+</p><!-- l. 266 --><p class='indent'>   \begin {align*}  \hat {G}_{ZX}(\omega ) &amp;= \frac {\hat {S}_{ZX}(\omega )}{\hat {S}_{XX}(\omega )}=\frac {\hat {S}_{YU}(\omega )}{\hat {S}_{UU}(\omega )+\hat {S}_{MM}(\omega )}\\ &amp;= \frac {\hat {S}_{YU}(\omega )/\hat {S}_{UU}(\omega )}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )}\\ &amp;= \frac {G_{YU}(\omega )}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )} \\ &amp;= G_{YU}(\omega ) \underbrace {\left [ \frac {1}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )} \right ]}_{&lt; 1} &lt; G_{YU}(\omega )  \end {align*}
+</p><!-- l. 268 --><p class='indent'>   donde el término \(\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )\) es el efecto del ruido de entrada \(M(\omega )\). Luego, \(H_1\) es un limite inferior de \(G_{YU}(\omega )\).<br class='newline' />
+</p><!-- l. 270 --><p class='indent'>   De manera similar, el estimados \(H_2\):
+</p><!-- l. 275 --><p class='indent'>   \begin {align*}  \hat {G}_{ZX}(\omega ) &amp;= \frac {\hat {S}_{ZZ}(\omega )}{\hat {S}_{ZX}(\omega )}\\ &amp;= G_{YU}(\omega ) \underbrace {\left [1 +\frac {\hat {S}_{NN}(\omega )}{\hat {S}_{YY}(\omega )}\right ]}_{&gt; 1} &gt; G_{YU}(\omega )  \end {align*}
+</p><!-- l. 277 --><p class='indent'>   donde el término \(\hat {S}_{NN}(\omega )/\hat {S}_{YY}(\omega )\) es el efecto del ruido de salida. Luego, \(H_2\) es un límite superior de \(G_{YU}(\omega )\)
+</p>
+   <h4 class='subsectionHead' id='funcion-de-coherencia'><span class='titlemark'>8.3.8.   </span> <a id='x14-1380008.3.8'></a>Función de coherencia</h4>
+<!-- l. 281 --><p class='noindent'>La función de coherencia ordinaria es una herramienta que mide que tanto de la señal de salida se explica (o
+relaciona) con la señal de entrada. Puede ser utilizado como un indicador de calidad del estimador
+H1/H2.
+</p><!-- l. 285 --><p class='indent'>   \begin {align*}  \gamma _{ZX}^2(\omega ) = \frac {|\hat {S}_{ZX}(\omega )|^2}{\hat {S}_{ZZ}(\omega )\hat {S}_{XX}(\omega )} = \frac {H_1(\omega )}{H_2(\omega )}  \end {align*}
+</p><!-- l. 287 --><p class='indent'>   donde \( 0 &lt; \gamma _{ZX}^2 &lt; 1\).<br class='newline' />
+</p><!-- l. 289 --><p class='indent'>   <span class='cmti-10'>Notas</span>:
+</p><!-- l. 291 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x14-138002x1'>Si \(\gamma _{ZX}^2 \approx 1\), entonces existe buena coherencia entre entrada y salida. En general, los peaks de resonancia deben
+     tener un valor de coherecia cercano a 1.
+     </li>
+<li class='enumerate' id='x14-138004x2'>Si  \(\gamma _{ZX}^2 \approx 0\),  no  existe  correlación  entre  entrada  y  salida  del  sistema.  Esto  ocurre  especialmente  en
+     anti-resonancias, donde la estructura rechaza la entrada en la frecuencia correspondiente.
+     </li>
+<li class='enumerate' id='x14-138006x3'>Si la coherencia es baja (por ejemplo, \(\gamma _{ZX}^2 &lt; 0.8\)), puede deberse a problemas asociados con el experimento. Por
+     ejemplo, ruido de medición es excesivo, entrada no excita adecuadamente la estructura, o problemas de
+     <span class='cmti-10'>spectral leakage </span>por uso inapropiado de ventanas del periodograma modificado.
+     </li>
+<li class='enumerate' id='x14-138008x4'>Si la coherencia es baja cerca de los peaks de resonancia, puede ocurrir que el sistema sea nolineal, en
+     cuyo caso se requiere de otros métodos avanzados de identificación.</li></ol>
+<!-- l. 305 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='procedimiento'><span class='titlemark'>8.3.9.   </span> <a id='x14-1390008.3.9'></a>Procedimiento</h4>
+<!-- l. 307 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x14-139002x1'>
+     <!-- l. 309 --><p class='noindent'>Instalar sensores en el sistema a identificar<br class='newline' />
+     </p><!-- l. 311 --><p class='noindent'><span class='underline'>Nota</span>: Debe satisfacer la condición de observabilidad
+     </p></li>
+<li class='enumerate' id='x14-139004x2'>Generar un ruido blanco de entrada. <span class='cmti-10'>Nota: </span>La entrada debe ser una excitación persistente, es decir, la
+     señal debe ser rica en un amplio espectro de frecuencias (suficientes armónicas).
+     </li>
+<li class='enumerate' id='x14-139006x3'>Medir \(x[n]\) y \(z[n]\).
+     </li>
+<li class='enumerate' id='x14-139008x4'>
+     <!-- l. 322 --><p class='noindent'>Estimar \(H_{true}(\omega ) = G_{YU}(\omega )\) utilizando \(H_1\) o \(H_2\).<br class='newline' />
+     </p><!-- l. 324 --><p class='noindent'><span class='cmti-10'>Nota:</span> \(|H_1(\omega )| \leq |H_{true}(\omega )| \leq |H_2(\omega )|\)
+     </p></li>
+<li class='enumerate' id='x14-139010x5'>Calcular \(\gamma _{ZX}^2\) y revisar la calidad de la estimación FRF.
+</li></ol>
+                                                                                         
+                                                                                         
+<!-- l. 337 --><p class='noindent'>En <span class='cmti-10'>Matlab</span>, la función <span class='cmtt-10'>tfestimate() </span>determina el FRF experimental con estimadores H1/H2, donde los periodogramas se
+determinan usando el método de Welch. Link: <a class='url' href='https://www.mathworks.com/help/signal/ref/tfestimate.html'>https://www.mathworks.com/help/signal/ref/tfestimate.html</a>.
+</p><!-- l. 342 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='metodo-peakpicking'><span class='titlemark'>8.3.10.   </span> <a id='x14-1400008.3.10'></a>Método <span class='cmti-10'>peak-picking</span></h4>
+<!-- l. 344 --><p class='noindent'><span class='cmti-10'>En desarrollo</span>
+</p><!-- l. 346 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='ajuste-de-modelos-no-parametricos'><span class='titlemark'>8.3.11.   </span> <a id='x14-1410008.3.11'></a>Ajuste de modelos no paramétricos</h4>
+<!-- l. 348 --><p class='noindent'>Métodos de estimación de parámetros (<a id='x14-141001'></a>Ljung, <a href='MIC411apuntesli4.html#cite.0@Ljung1998'>1998</a>, Cap. 7):
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Least squares (LS)
+     </li>
+     <li class='itemize'>Prediction-error methods (PEM)
+     </li>
+     <li class='itemize'>Maximum likelihood estimator (MLE)
+     </li>
+     <li class='itemize'>Instrumental Variable (IV)</li></ul>
+<!-- l. 357 --><p class='indent'>   System Identification Toolbox de Matlab. URL: <a class='url' href='https://www.mathworks.com/help/ident/index.html'>https://www.mathworks.com/help/ident/index.html</a>.
+</p><!-- l. 359 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='metodos-de-identificacion-ouputonly-'><span class='titlemark'>8.4.   </span> <a id='x14-1420008.4'></a>Métodos de identificación <span class='cmti-10'>ouput-only </span></h3>
+<!-- l. 361 --><p class='noindent'>En algunos casos no se conoce la entrada que actúa sobre el sistema estructural. En esas situaciones,
+la identificación del sistema se realiza solo a partir de las respuestas medidas (<span class='cmti-10'>output-only</span>), como el
+desplazamiento, la velocidad o la aceleración. Estas respuestas se deben a excitaciones ambientales o de
+operación. A veces, el procedimiento se conoce como análisis modal operacional (<span class='cmti-10'>operational modal analysis</span>,
+OMA).
+</p><!-- l. 363 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='frequency-domain-decomposition-fdd'><span class='titlemark'>8.4.1.   </span> <a id='x14-1430008.4.1'></a>Frequency domain decomposition (FDD)</h4>
+<!-- l. 365 --><p class='noindent'>El método de descomposición en el dominio de la frecuencia (FDD) permite aproximar las frecuencias y modos de
+vibrar a partir del cálculo de descomposición de valores singulares de la función de PSD (<a id='x14-143001'></a>Brincker et al., <a href='MIC411apuntesli4.html#cite.0@brincker2001modalidentification'>2001</a>). Los
+valores singulares se pueden utilizar para definir un sistema SDOF equivalente caracterizado por los mismos
+parámetros modales que el sistema MDOF que se está investigando.
+                                                                                         
+                                                                                         
+</p><!-- l. 369 --><p class='indent'>   Algoritmo:
+</p><!-- l. 371 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x14-143003x1'>Medir respuesta multivariada del sistema \(y[n] \in \mathbb {R}^{m \times 1}\). Esto quiere decir que se miden \(m\) respuestas del sistema
+     dinámico.
+     </li>
+<li class='enumerate' id='x14-143005x2'>Calcular auto PSD de respuesta \(S_{yy}(\omega ) \in \mathbb {R}^{m \times m}\) utilizando método de Welch.
+     </li>
+<li class='enumerate' id='x14-143007x3'>
+     <!-- l. 374 --><p class='noindent'>Descomponer \(S_{yy}(\omega _i)\) utilizando SVD:
+     </p><!-- l. 378 --><p class='noindent'>\begin {equation}  S_{yy}(\omega _i) = U_i \Sigma _i U_i^*, \qquad \forall i\in \{0,\ldots ,N\}  \end {equation}<a id='x14-143008r1'></a>
+     </p><!-- l. 380 --><p class='noindent'>donde \(U_i = [u_{i1}, u_{i2}, \cdots , u_{iN}]\).
+     </p></li>
+<li class='enumerate' id='x14-143010x4'>Graficar valores singular vs frecuencia, e identificar los peaks.
+     </li>
+<li class='enumerate' id='x14-143012x5'>
+     <!-- l. 383 --><p class='noindent'>En un peak asociado al modo \(k\) (es decir, en frecuencia \(\omega _k\)), si no hay otros peaks cercanos, y es el peak
+     dominante, entonces la primera columna de \(U_k\) corresponde a la forma modal:
+     </p><!-- l. 387 --><p class='noindent'>\begin {equation}  \varphi _k = u_{k1}  \end {equation}<a id='x14-143013r2'></a>
+     </p><!-- l. 389 --><p class='noindent'>y los valores singulares vecinos corresponden al auto PSD del sistema SDOF equivalente en coordenadas
+     naturales.
+     </p></li>
+<li class='enumerate' id='x14-143015x6'>Utilizar indicador MAC (<span class='cmti-10'>modal assurance criterion</span>) para decidir si la forma modal es adecuada.</li></ol>
+<!-- l. 393 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='enhanced-frequency-domain-decomposition-efdd'><span class='titlemark'>8.4.2.   </span> <a id='x14-1440008.4.2'></a>Enhanced Frequency Domain Decomposition (EFDD)</h4>
+<!-- l. 395 --><p class='noindent'>El método <span class='cmti-10'>Enhanced Frequency Domain Decomposition </span>(EFDD) es una extensión del método FDD que permite estimar
+no solo las frecuencias naturales, sino también las razones de amortiguamiento modales del sistema. Este
+procedimiento consiste en aislar los datos obtenidos mediante la descomposición en valores singulares (SVD)
+alrededor de un peak del espectro, y transformarlos al dominio del tiempo para obtener una función de correlación. A
+partir de esta función, se asume un comportamiento de un sistema de un solo grado de libertad (SDOF),
+lo que permite determinar con mayor precisión las frecuencias naturales y los amortiguamientos, de
+manera independiente de la resolución espectral y facilitando la identificación de modos cercanos en
+frecuencia.
+                                                                                         
+                                                                                         
+</p><!-- l. 399 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='eigensystem-realization-algorithm-era'><span class='titlemark'>8.4.3.   </span> <a id='x14-1450008.4.3'></a>Eigensystem Realization Algorithm (ERA)</h4>
+<!-- l. 401 --><p class='noindent'>Referencia: <a id='x14-145001'></a>Juang y Pappa (<a href='MIC411apuntesli4.html#cite.0@Juang1985'>1985</a>)
+</p><!-- l. 403 --><p class='indent'>   Matlab: <span class='cmtt-10'>era()</span>. URL: <a class='url' href='https://www.mathworks.com/help/ident/ref/era.html'>https://www.mathworks.com/help/ident/ref/era.html</a>
+</p><!-- l. 405 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='natural-excitation-technique-next'><span class='titlemark'>8.4.4.   </span> <a id='x14-1460008.4.4'></a>Natural Excitation Technique (NExT)</h4>
+<!-- l. 407 --><p class='noindent'>El método <span class='cmti-10'>Natural Excitation Technique </span>(NExT) se basa en que, cuando una estructura es excitada por una entrada
+de tipo ruido blanco, la función de correlación cruzada entre las respuestas medidas en dos puntos distintos es
+proporcional a la función de respuesta impulsiva (FRI) del sistema. Esto permite obtener la información
+dinámica de la estructura a partir únicamente de sus respuestas, sin necesidad de conocer la excitación
+aplicada.
+</p><!-- l. 412 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='stochastic-subspace-identification-ssi'><span class='titlemark'>8.4.5.   </span> <a id='x14-1470008.4.5'></a>Stochastic Subspace Identification (SSI)</h4>
+<!-- l. 414 --><p class='noindent'>Referencia: <a id='x14-147001'></a>Van Overschee y De Moor (<a href='MIC411apuntesli4.html#cite.0@vanoverschee2011subspaceidentification'>2011</a>)
+</p><!-- l. 416 --><p class='indent'>   Clase de algoritmos que utilizan proyecciones (oblícuas) de subespacios y algebra lineal (factorización QR y SVD)
+para buscar la representación de variables de estado del sistema, \((A, B, C, D)\).
+</p><!-- l. 418 --><p class='indent'>   Alternativas para construir matriz Hankel: Data-Driven (SSI-DATA) y Covariance-Driven (SSI-COV).
+</p><!-- l. 459 --><p class='indent'>   Función Matlab <span class='cmtt-10'>n4sid()</span>. URL: <a class='url' href='https://www.mathworks.com/help/ident/ref/n4sid.html'>https://www.mathworks.com/help/ident/ref/n4sid.html</a>.
+                                                                                         
+                                                                                         
+</p>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch9.html'>next</a>] [<a href='MIC411apuntesch7.html'>prev</a>] [<a href='MIC411apuntesch7.html#tailMIC411apuntesch7.html'>prev-tail</a>] [<a href='MIC411apuntesch8.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch8.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch8.html'></a>   </p> 
+</body> 
+</html>

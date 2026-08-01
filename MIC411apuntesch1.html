@@ -1,0 +1,251 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>1 Sistemas din´amicos</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch2.html'>next</a>] [<a href='#tailMIC411apuntesch1.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch1.html'>up</a>] </p></div>
+                                                                                         
+                                                                                         
+   <h2 class='chapterHead' id='sistemas-dinamicos'><span class='titlemark'>Capítulo 1</span><br /><a id='x6-130001'></a>Sistemas dinámicos</h2>
+   <h3 class='sectionHead' id='generalidades'><span class='titlemark'>1.1.   </span> <a id='x6-140001.1'></a>Generalidades</h3>
+<!-- l. 5 --><p class='noindent'>En ingeniería estructural, un sistema se refiere al conjunto de elementos estructurales interconectados que trabajan
+en conjunto para resistir cargas y garantizar la estabilidad y seguridad de una construcción. En particular, un sistema
+dinámico es una estructura cuya respuesta varía en el tiempo ante cargas cambiantes, como sismos, viento, impactos o
+transito.
+</p><!-- l. 7 --><p class='indent'>   Al estudiar sistemas dinámicos es fundamental distinguir entre el sistema físico y el modelo matemático. El sistema
+físico es la estructura real, con sus materiales, geometría y condiciones de carga, sujeta a imperfecciones
+y a interacciones complejas con el entorno. En cambio, el modelo matemático es una representación
+simplificada que traduce ese comportamiento en ecuaciones, permitiendo predecir su respuesta bajo distintas
+condiciones.
+</p><!-- l. 9 --><p class='indent'>   Estos modelos matemáticos se construyen a partir de principios fundamentales, es decir, de las leyes físicas que
+gobiernan la mecánica estructural. Entre ellas destacan la cinemática y compatibilidad geométrica, ecuaciones de
+balance (Newton, Lagrange, etc.), relaciones constitutivas de los materiales, y la geometería y condiciones de
+contorno e iniciales del sistema físico. A partir de estos principios, se generan modelos matemáticas que representan de
+forma coherente el comportamiento de la estructura, aunque siempre con ciertas simplificaciones necesarias para el
+análisis.
+</p><!-- l. 11 --><p class='indent'>   Los sistemas sistemas dinámicos pueden ser representados gráficamente por diagramas de bloques:
+</p>
+   <figure class='figure' id='-representacion-de-un-sistema-dinamico'> 
+
+                                                                                         
+                                                                                         
+<a id='x6-14001r1'></a>
+                                                                                         
+                                                                                         
+<!-- l. 15 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sistema.png' width='50' />
+</p>
+<figcaption class='caption'><span class='id'>Figura 1.1: </span><span class='content'>Representación de un sistema dinámico</span></figcaption><!-- tex4ht:label?: x6-14001r1  -->
+                                                                                         
+                                                                                         
+   </figure>
+<!-- l. 19 --><p class='indent'>   Principales razones para construir modelos matemáticos de sistemas dinámicos:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x6-14003x1'>Análisis
+     </li>
+<li class='enumerate' id='x6-14005x2'>Diseño
+     </li>
+<li class='enumerate' id='x6-14007x3'>Control y monitoreo</li></ol>
+   <h3 class='sectionHead' id='tipos-de-sistemas'><span class='titlemark'>1.2.   </span> <a id='x6-150001.2'></a>Tipos de sistemas</h3>
+<!-- l. 29 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='estaticos-vs-dinamicos'><span class='titlemark'>1.2.1.   </span> <a id='x6-160001.2.1'></a>Estáticos vs Dinámicos</h4>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 32 --><p class='noindent'>Sistema Estático: respuesta solo depende de la excitación actual (independiente del tiempo). </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/estatico.png' width='50' />
+     </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 38 --><p class='noindent'>Sistema Dinámico: respuesta actual depende de la excitación actual y de la “historia” de la respuesta. </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/dinamico.png' width='50' />
+     </figure>
+     <!-- l. 43 --><p class='noindent'>Si la respuesta del sistema dinámico está basada en la excitación actual y pasada, entonces el sistema se conoce
+     como <span id='textcolor1'>causal</span> (todos los sistemas físicos).<br class='newline' />
+     </p><!-- l. 44 --><p class='noindent'>Si la respuesta del sistema dinámico está basada en excitación actual, pasada y <span id='textcolor2'>futura</span>, entonces el sistema es
+     <span id='textcolor3'>anticausal</span> (solo aplicable en sistemas teóricos <span class='cmti-10'>offline</span>, por ejemplo, en procesamiento digital de
+     señales).</p></li></ul>
+<!-- l. 47 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='univariado-vs-multivariado'><span class='titlemark'>1.2.2.   </span> <a id='x6-170001.2.2'></a>Univariado vs Multivariado</h4>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 49 --><p class='noindent'>SISO: Single Input, Single Output. </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/SISO.png' width='50' /> </figure>
+                                                                                         
+                                                                                         
+         <ul class='itemize2'>
+         <li class='itemize'>\(u \in \mathbb {R}\): entrada escalar
+         </li>
+         <li class='itemize'>\(y \in \mathbb {R}\): respuesta escalar</li></ul>
+     </li>
+     <li class='itemize'>
+     <!-- l. 60 --><p class='noindent'>SIMO: Single Input, Multi Output. </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/SIMO.png' width='50' /> </figure>
+         <ul class='itemize2'>
+         <li class='itemize'>\(u \in \mathbb {R}\): entrada escalar
+         </li>
+         <li class='itemize'>\(y \in \mathbb {R}^m\): respuesta vectorial</li></ul>
+     </li>
+     <li class='itemize'>
+     <!-- l. 70 --><p class='noindent'>MISO: Multi Input, Simple Output. </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/MISO.png' width='50' /> </figure>
+         <ul class='itemize2'>
+         <li class='itemize'>\(u \in \mathbb {R}^n\): entrada vectorial
+         </li>
+         <li class='itemize'>\(y \in \mathbb {R}\): respuesta escalar</li></ul>
+     </li>
+     <li class='itemize'>
+     <!-- l. 80 --><p class='noindent'>MIMO: Multi Input, Multi Output. </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/MIMO.png' width='50' /> </figure>
+         <ul class='itemize2'>
+         <li class='itemize'>\(u \in \mathbb {R}^n\): entrada vectorial
+         </li>
+         <li class='itemize'>\(y \in \mathbb {R}^m\): respuesta vectorial</li></ul>
+     </li></ul>
+<!-- l. 91 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='lineal-vs-nolineal'><span class='titlemark'>1.2.3.   </span> <a id='x6-180001.2.3'></a>Lineal vs Nolineal</h4>
+                                                                                         
+                                                                                         
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 94 --><p class='noindent'>Un <span class='cmti-10'>sistema lineal </span>es tal que cumple con el <span class='cmti-10'>principio de superposici</span>ó<span class='cmti-10'>n</span>.
+</p>
+         <ul class='itemize2'>
+         <li class='itemize'>Aditividad: Si \(u_1 \rightarrow y_1\), \(u_2 \rightarrow y_2\), entonces: \(u = u_1 + u_2 \rightarrow y = y_1 + y_2\)
+         </li>
+         <li class='itemize'>Homogeneidad/Proporcionalidad: Si \(u \rightarrow y\), entoncecs \({\alpha }u \rightarrow {\alpha }y\).</li></ul>
+     </li>
+     <li class='itemize'>De no cumplir con las propiedades del sistema lineal, entonces el sistema es <span class='cmti-10'>nolineal</span>.</li></ul>
+<!-- l. 103 --><p class='noindent'><span class='underline'>Ejemplo</span>: resorte nolineal.<br class='newline' />
+</p>
+   <figure class='figure' id='-resorte-nolineal'> 
+
+                                                                                         
+                                                                                         
+<a id='x6-18001r2'></a>
+                                                                                         
+                                                                                         
+<!-- l. 107 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/resortenolineal.png' width='50' />
+</p>
+<figcaption class='caption'><span class='id'>Figura 1.2: </span><span class='content'>Resorte nolineal</span></figcaption><!-- tex4ht:label?: x6-18001r2  -->
+                                                                                         
+                                                                                         
+   </figure>
+<!-- l. 111 --><p class='indent'>   Se tiene que:
+</p><!-- l. 117 --><p class='indent'>   \begin {align*}  f_s &amp;= ku^2 \\ p_1 = k u_1^2 &amp;\rightarrow u_1 = \sqrt {\frac {p_1}{k}}\\ p_2 = k u_2^2 &amp;\rightarrow u_2 = \sqrt {\frac {p_2}{k}}\\  \end {align*}
+</p><!-- l. 119 --><p class='indent'>   La pregunta es, ¿Se cumple el principio de superposición?
+</p><!-- l. 123 --><p class='indent'>   \begin {align*}  p_1+p_2 &amp;\xrightarrow {?} u_1+u_2  \end {align*}
+</p><!-- l. 125 --><p class='indent'>   La respuesta es no, ya que:
+</p><!-- l. 136 --><p class='indent'>   \begin {align*}  p_1 + p_2 &amp;= k(u_*)^2 \\ u_* &amp;= \sqrt {\frac {p_1 +p_2}{k}} \neq \sqrt {\frac {p_1}{k}} + \sqrt {\frac {p_2}{k}}  \end {align*}
+</p>
+   <h4 class='subsectionHead' id='invariante-tiempo-vs-variante-tiempo'><span class='titlemark'>1.2.4.   </span> <a id='x6-190001.2.4'></a>Invariante tiempo vs variante tiempo</h4>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 142 --><p class='noindent'>Sistema invariantes en el tiempo (<span class='cmti-10'>time invariant</span>) \(\longrightarrow \) parámetros del modelo son constantes en el tiempo.<br class='newline' />
+     </p><!-- l. 144 --><p class='noindent'><span class='underline'>Ejemplo</span>: Sistemas de 1GDL (Figura <a href='#-sistema-lti-linear-time-invariant'>1.3<!-- tex4ht:ref: f:invariante  --></a>), con masa, rigidez y amortiguamiento constante son LTI
+     (<span class='cmti-10'>linear time invariant</span>).
+</p>
+     <figure class='figure' id='-sistema-lti-linear-time-invariant'> 
+<a id='x6-19001r3'></a> <img alt='PIC' height='50' src='Figuras/invariante.png' width='50' />
+<figcaption class='caption'><span class='id'>Figura 1.3: </span><span class='content'>Sistema LTI (<span class='cmti-10'>linear time invariant</span>)</span></figcaption><!-- tex4ht:label?: x6-19001r3  -->
+     </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 153 --><p class='noindent'>Sistema variante en el tiempo (<span class='cmti-10'>time variant</span>) \(\longrightarrow \) parámetros del modelo varían en el tiempo.<br class='newline' />
+     </p><!-- l. 155 --><p class='noindent'><span class='underline'>Ejemplo</span>: Puentes con masa movil (Figura <a href='#-sistema-ltv-linear-time-variant'>1.4<!-- tex4ht:ref: f:movingmass  --></a>), por ejemplo por el transito de un vehículo pesado (la masa del
+     sistema varía). En este caso el sistema dinámico es LTV (<span class='cmti-10'>linear time variant</span>).
+</p>
+     <figure class='figure' id='-sistema-ltv-linear-time-variant'> 
+<a id='x6-19002r4'></a> <img alt='PIC' height='234' src='Figuras/movingmass.png' width='234' />
+<figcaption class='caption'><span class='id'>Figura 1.4: </span><span class='content'>Sistema LTV (<span class='cmti-10'>linear time variant</span>)</span></figcaption><!-- tex4ht:label?: x6-19002r4  -->
+     </figure>
+     </li></ul>
+<!-- l. 166 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='deterministico-vs-estocastico'><span class='titlemark'>1.2.5.   </span> <a id='x6-200001.2.5'></a>Determinístico vs Estocástico</h4>
+<!-- l. 168 --><p class='noindent'>Si el input del sistema es conocido (y el sistema no incorpora incertidumbre), entonces el output será predecible \(\longrightarrow \)
+<span id='textcolor4'>Determinístico</span> <br class='newline' />
+</p><!-- l. 170 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Simular múltiples veces el mismo registro (input) sobre el mismo edifico (sistema), se obtienen siempre
+las mismas respuestas (output). <br class='newline' />
+</p><!-- l. 172 --><p class='indent'>   Si el input del sistema posee incertidumbre (y/o el sistema incorpora incertidumbre), entonces el output también
+tiene incertidumbre y no es predecible \(\longrightarrow \) <span id='textcolor5'>Estocástico</span> <br class='newline' />
+                                                                                         
+                                                                                         
+</p><!-- l. 174 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Simular peatones diferentes (input con incertidumbre en masa del peatón, velocidad al
+caminar y frecuencia de pasos) sobre un mismo puente (sistema), se obtendrán respuestas diferentes
+(outputs)<br class='newline' />
+</p><!-- l. 179 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='continuo-vs-discreto'><span class='titlemark'>1.2.6.   </span> <a id='x6-210001.2.6'></a>Continuo vs Discreto</h4>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 181 --><p class='noindent'>Sistema Continuo: entrada y salida son función del tiempo. </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/continuo.png' width='50' /> </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 186 --><p class='noindent'>Sistema Discreto: señales han sido discretizadas en el tiempo.<br class='newline' /><span class='underline'>Ejemplo</span>: Interés de una cuenta bancaria. \begin {align*}  y(k+1)=(1+r)y(k) \longrightarrow \text {Ecuación de diferencias finitas}  \end {align*}
+</p>
+         <ul class='itemize2'>
+         <li class='itemize'>\(y(k+1)\): balance cuenta año \(k+1\)
+         </li>
+         <li class='itemize'>\(r\): interés compuesto anual
+         </li>
+         <li class='itemize'>\(y(k)\): balance cuenta año \(k\)</li></ul>
+     </li></ul>
+<!-- l. 200 --><p class='noindent'>Las señales de los sistemas físicos son continuas, pero que al momento de ser <span class='cmti-10'>observadas </span>por dispositivos digitales,
+estas señales se discretizan en función del tiempo.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 204 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/time_sampling.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='respuesta-de-sistemas-lti-en-tiempo-continuo'><span class='titlemark'>1.3.   </span> <a id='x6-220001.3'></a>Respuesta de sistemas LTI en tiempo continuo</h3>
+<!-- l. 208 --><p class='noindent'>LTI: Linear, Time-Invariant.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 212 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sistemayu.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 215 --><p class='indent'>   Los sistemas LTI, son aquellos cuyas propiedades y parámetros no varían en el tiempo, es decir, que los coeficientes
+de las ecuaciones diferenciales de los modelos matemáticos de los sistemas dinámicos son constantes en el tiempo \(a_i=cte\).
+\begin {align*}  \frac {d^ny}{dt^n}+a_{n-1}\frac {d^{n-1}y}{dt^{n-1}}+...+a_2\frac {d^2y}{dt^2}+a_1\frac {dy}{dt}+a_0y=u(t)  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(u(t)\): excitación
+     </li>
+     <li class='itemize'>\(y(t)\): respuesta
+     </li>
+     <li class='itemize'>\(a_i\): coeficientes</li></ul>
+<!-- l. 224 --><p class='noindent'>Dada una excitación \(u(t)\), la respuesta se obtiene al resolver la ecuación diferencial: \begin {align*}  y(t)=y_H(t)+y_p(t)  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(y_H(t)\) es la <span id='textcolor6'>respuesta homogénea</span> (para \(u(t)=0\), con condiciones iniciales)
+     </li>
+     <li class='itemize'>\(y_p(t)\) es la <span id='textcolor7'>respuesta particular</span> (para \(u(t)\neq 0\))</li></ul>
+                                                                                         
+                                                                                         
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch2.html'>next</a>] [<a href='MIC411apuntesch1.html'>front</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch1.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch1.html'></a>  </p> 
+</body> 
+</html>

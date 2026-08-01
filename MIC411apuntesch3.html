@@ -1,0 +1,417 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>3 An´alisis cl´asico de sistemas lineales</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch4.html'>next</a>] [<a href='MIC411apuntesch2.html'>prev</a>] [<a href='MIC411apuntesch2.html#tailMIC411apuntesch2.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch3.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch3.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='analisis-clasico-de-sistemas-lineales'><span class='titlemark'>Capítulo 3</span><br /><a id='x8-360003'></a>Análisis clásico de sistemas lineales</h2>
+   <h3 class='sectionHead' id='ecuacion-caracteristica-de-la-edm'><span class='titlemark'>3.1.   </span> <a id='x8-370003.1'></a>Ecuación característica de la EDM</h3>
+<!-- l. 5 --><p class='noindent'><span class='cmti-10'>En desarrollo.</span>
+</p><!-- l. 7 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='polos-del-sistema'><span class='titlemark'>3.2.   </span> <a id='x8-380003.2'></a>Polos del sistema</h3>
+<!-- l. 9 --><p class='noindent'>Desde la TF del sistema: \begin {align*}  H(s) &amp;= \frac {1}{ms^2+cs+k} ~\color {red}{\frac {1/m}{1/m}}\\ &amp;= \frac {1/m}{s^2+2\xi \omega _ns+\omega _n^2}  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(\xi \): razón de amortiguamiento
+     </li>
+     <li class='itemize'>\(\omega _n\): frecuencia natural</li></ul>
+<!-- l. 19 --><p class='indent'>   ¿Cómo se obtienen los polos? \(\Longrightarrow \) Calcular las raíces del polinomio del denominador:
+</p><!-- l. 23 --><p class='indent'>   \begin {align*}  s^2+2\xi \omega _ns+\omega _n^2=0 \qquad \text {(Ecuaci\'on caracter\'istica)}  \end {align*}
+</p><!-- l. 28 --><p class='indent'>   \begin {align*}  s_{1,2}=-\xi \omega _n\pm j \underbrace {\omega _n\sqrt {1-\xi ^2}}_{\omega _d} \qquad \text {(Polos del sistema de 1GDL)}  \end {align*}
+</p><!-- l. 30 --><p class='indent'>   ¿Es estable? \(\Longrightarrow \) Depende del valor de \(\xi \): </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(\xi &gt;0, ~ \text {Re}(s_{1,2})&lt;0\Longrightarrow \) Estable asintóticamente
+     </li>
+     <li class='itemize'>\(\xi &lt;0, ~ \text {Re}(s_{1,2})&gt;0\Longrightarrow \) Inestable
+     </li>
+     <li class='itemize'>\(\xi =0, ~ \text {Re}(s_{1,2})=0\Longrightarrow \) “Estable”</li></ul>
+<!-- l. 37 --><p class='indent'>   Además, el sistema oscila sí y solo si \(\omega _d&gt;0\Longrightarrow \omega _n&gt;0\): propiedad del sistema dinámico.<br class='newline' />Si \(\xi &gt;0, ~ \omega _n&gt;0\): </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 41 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/estabilidad.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 49 --><p class='indent'>   Notar que el FRF se puede obtener al reemplazar \(s=j\omega \) en la TF: \begin {align*}  H(\omega )=H(s)\bigg |_{s=j\omega }  \end {align*}
+</p><!-- l. 54 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Sistema de 1GDL \begin {align*}  \text {EOM: }~m\ddot {u}+c\dot {u}+ku=f(t)  \end {align*}
+</p><!-- l. 61 --><p class='indent'>   \begin {align*}  \Longrightarrow \text {TF: }&amp;~ H(s)=\frac {1}{ms^2+cs+k}=\frac {1/m}{s^2+(c/m)s+k/m}\\ \Longrightarrow \text {FRF: }&amp;~ H(\omega )=H(s)\bigg |_{s=j\omega }=\frac {1}{(k=m\omega ^2)+j\omega c}  \end {align*}
+</p><!-- l. 64 --><p class='indent'>   \begin {align*}  H(\omega )=\frac {1}{(j\omega -\lambda _1)(j\omega -\lambda _1^*)}  \end {align*}
+</p><!-- l. 68 --><p class='indent'>   \begin {align*}  \lambda _{1,2}=-\xi \omega _n\pm \omega _n\sqrt {1-\xi ^2}~\text {: polos del sistema}  \end {align*}
+</p><!-- l. 70 --><p class='indent'>   donde:
+</p><!-- l. 72 --><p class='indent'>
+                                             \[ \lambda _{2} = \lambda _{1}^{*}\]
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\((\cdot )^{*}\): conjugado del número complejo</li></ul>
+   <h3 class='sectionHead' id='valores-propios-de-matriz-de-estados'><span class='titlemark'>3.3.   </span> <a id='x8-390003.3'></a>Valores propios de matriz de estados</h3>
+   <div class='subequations'>\begin {subequations}  \begin {align} A v = \lambda v \\ (\lambda I - A)v=0\\ \det (\lambda I-A) = 0 \\ \Delta _A(\lambda ) = \lambda ^n + \alpha _{n-1} \lambda ^{n-1} + \alpha _{n-2} \lambda ^{n-2} + \cdots + \alpha _{1} \lambda + \alpha _{0} = 0 \end {align}  \end {subequations}</div>
+<!-- l. 89 --><p class='noindent'>\(\lambda \) y \(v\) son los valores y vectores propios de \(A\).
+</p><!-- l. 91 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='funcion-impulso-delta-dirac'><span class='titlemark'>3.4.   </span> <a id='x8-400003.4'></a>Función impulso (Delta Dirac)</h3>
+<!-- l. 93 --><p class='noindent'>La función <span class='cmti-10'>Delta de Dirac </span>se denota como:
+</p><!-- l. 102 --><p class='indent'>   \begin {align*}  \delta (t)= \left \{ \begin {array}{ll} +\infty &amp; t=0 \\ 0 &amp; t\neq 0 \\ \end {array} \right .  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 116 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/delta.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 119 --><p class='indent'>   <span class='underline'>Propiedades</span>: \begin {align*}  \int _{-\infty }^{+\infty }\delta (t)dt=1 \quad &amp;\text {Impulso unitario}\\ \int _{-\infty }^{+\infty }f(t)\delta (t-T)dt=f(T) \quad &amp;\text {Sampleo}  \end {align*}
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 127 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/dirac.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 132 --><p class='indent'>   \begin {align*}  \Rightarrow f(T) = f(t)\ast \delta (t-T)  \end {align*}
+</p><!-- l. 134 --><p class='indent'>   <span class='underline'>Propiedad</span>: Sea \(f(t)\) una función continua, entonces, se puede expresar como una integral de la convolución con la
+función \(\delta (t)\). \begin {align*}  f(t)=\int _{-\infty }^{+\infty }f(\tau )\delta (t-\tau )d\tau  \end {align*}
+</p><!-- l. 139 --><p class='indent'>   Esta superposición nos permite componer la función \(f(t)\) como una suma infinita de impulsos unitarios con la función \(\delta (t)\).
+</p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 142 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/suma_imp.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='funcion-de-respuesta-a-impulso-unitario'><span class='titlemark'>3.5.   </span> <a id='x8-410003.5'></a>Función de respuesta a impulso unitario</h3>
+<!-- l. 146 --><p class='noindent'>¿Cuál es la respuesta de un sistema cuando se le somete a un impulso unitario? </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 149 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/FRI.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 152 --><p class='indent'>   Para sistemas estructurales (\(\xi &lt;1\)), la ecuación de movimiento sometida a un impulso unitario: \begin {align*}  m\ddot {x}+c\dot {x}+kx=\delta (t)\\ x(0)=0 \quad \dot {x}(0)=0  \end {align*}
+</p><!-- l. 158 --><p class='indent'>   La solución a esta ecuación es la Función de Respuesta Impulso (FRI) cuando el impulso se aplica en el tiempo \(\tau = 0\):
+\begin {align*}  x(t)=h(t)=\frac {1}{m\omega _d}e^{-\xi \omega _nt}\sin {(\omega _dt)}, \quad t\geq 0  \end {align*}
+</p><!-- l. 163 --><p class='noindent'>donde \(\omega _n = \sqrt {\frac {k}{m}}\) es la frecuencia natural y \(\omega _d = \omega _n \sqrt {1-\xi ^2}\) es la frecuencia natural amortiguada. <br class='newline' />
+</p><!-- l. 165 --><p class='indent'>   Ahora, considere una excitación \(u(t)\) continua. Se puede representar como un tren de impulsos: </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 168 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/FRI2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 170 --><p class='indent'>   Notar que cada impulso genera una respuesta en el sistema \(\delta (t-\tau )\longrightarrow h(t-\tau )\).
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 174 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/FRI3.png' width='50' /> /
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 177 --><p class='indent'>   La respuesta del sistema cuando se somete a este tren de impulsos se obtiene por superposición:
+\begin {align*}  y(t)=\int _0^tu(\tau )h(t-\tau )d\tau \quad \text {``Integral de Duhamel''}\Rightarrow \text {Convolución}  \end {align*}
+</p><!-- l. 182 --><p class='indent'>   <span class='underline'>En resumen</span>: La respuesta analítica de un sistema LTI es la convolución entre el FRI \(h(t)\) y la excitación
+\(u(t)\).
+</p><!-- l. 186 --><p class='indent'>   \begin {align*}  \Rightarrow y(t)=u(t)\ast h(t)  \end {align*}
+</p>
+   <h3 class='sectionHead' id='transformada-de-laplace'><span class='titlemark'>3.6.   </span> <a id='x8-420003.6'></a>Transformada de Laplace</h3>
+<!-- l. 189 --><p class='noindent'><span class='underline'>Definición</span>: La transformada de Laplace de \(f(t)\) es igual a: \begin {align*}  \mathcal {L}: ~ F(s)=\int _{-\infty }^{+\infty }f(t)e^{-\xi t}dt \quad \text {Transformada Bilateral (``two-sided'')}  \end {align*}
+</p><!-- l. 194 --><p class='noindent'>donde \(s\in \mathbb {C}\), \(s=\sigma +j\omega \), \(j^2=-1\), \(j\) es la unidad imaginaria.<br class='newline' />
+</p><!-- l. 196 --><p class='indent'>   <span class='underline'>Definición</span>: La transformada inversa de Laplace es igual a: \begin {align*}  \mathcal {L}^{-1}: ~ f(t)=\frac {1}{2\pi j}\int _{+\sigma -j\infty }^{+\sigma +j\infty }F(s)e^{st}ds  \end {align*}
+</p><!-- l. 201 --><p class='indent'>   La razón por la que se opta por trabajar con la variable de Laplace \(s\) en lugar de utilizar el tiempo \(t\) es la
+simplificación para obtener la respuesta. Al emplear la variable de Laplace, la respuesta se obtiene con
+multiplicaciones en vez de convoluciones.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 205 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/laplace.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 208 --><p class='indent'>   Al obtener la respuesta ya sea por el dominio del tiempo o pasando por el dominio complejo, se obtiene
+exactamente el mismo resultado. \begin {align*}  y(t)=h(t)\ast u(t) \xRightarrow []{\mathcal {L}} Y(s)=H(s)\cdot U(s)  \end {align*}
+</p><!-- l. 212 --><p class='indent'>   donde: \begin {align*}  H(s)=\mathcal {L}\{h(t)\}=\int _0^{\infty }h(t)e^{-\xi t}dt \\ Y(s)=\mathcal {L}\{y(t)\}=\int _0^{\infty }y(t)e^{-\xi t}dt \\ U(s)=\mathcal {L}\{u(t)\}=\int _0^{\infty }u(t)e^{-\xi t}dt  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(h(t)\): Función de Respuesta Impulso (FRI)
+     </li>
+     <li class='itemize'>\(H(s)\): Función de transferencia (TF)</li></ul>
+<!-- l. 223 --><p class='indent'>   <span class='underline'>Propiedades</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Superposición: \begin {align*}  \mathcal {L}\{\alpha f_1(t)+\beta f_1(t)\}=\alpha \mathcal {L}\{f_1(t)\}+\beta \mathcal {L}\{f_2(t)\}  \end {align*}
+     </li>
+     <li class='itemize'>Retraso (“time-delay”): \begin {align*}  f_1(t)&amp;\xrightarrow []{\mathcal {L}}F_1(s)\\ f_1(t-\tau )&amp;\xrightarrow []{\mathcal {L}}e^{-\xi t}F_1(s)  \end {align*}
+     </li>
+     <li class='itemize'>“Time-scaling”: \begin {align*}  f(\alpha t)&amp;\xrightarrow []{\mathcal {L}}\frac {1}{\alpha }F(s/\alpha )  \end {align*}
+     </li>
+     <li class='itemize'>Diferenciación: \begin {align*}  f(t)&amp;\xrightarrow []{\mathcal {L}}F(s)\\ \frac {df(t)}{dt}&amp;\xrightarrow []{\mathcal {L}}s^2F(s)-sf(0^+)\\ \frac {d^2f(t)}{dt^2}&amp;\xrightarrow []{\mathcal {L}}s^2F(s)-sf(0^+)-\dot {f}(0^+)  \end {align*}
+     </li>
+     <li class='itemize'>Integración: \begin {align*}  f(t)&amp;\xrightarrow []{\mathcal {L}}F(s)\\ g(t)&amp;\xrightarrow []{\mathcal {L}}G(s)\\ f(t)\ast g(t)&amp;\xrightarrow []{\mathcal {L}}F(s)G(s)  \end {align*}
+</li></ul>
+<!-- l. 252 --><p class='indent'>   <span class='underline'>Aparte</span>: \begin {align*}  H(j\omega )=\mathcal {F}\{h(t)\}  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(H(j\omega )\): Función de Respuesta en Frecuencia (FRF)</li></ul>
+
+<!-- l. 262 --><p class='indent'>   \begin {align*}  H(j\omega ) \xleftrightarrow {s=j\omega } H(s)  \end {align*}
+</p>
+   <h3 class='sectionHead' id='funcion-de-transferencia'><span class='titlemark'>3.7.   </span> <a id='x8-430003.7'></a>Función de transferencia</h3>
+<!-- l. 265 --><p class='noindent'>Trabajar con LT permite obtener la respuesta simplemente multiplicando la señal de entrada con la función de
+transferencia en vez de realizar la convolución. </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 268 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/TF.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 271 --><p class='indent'>   <span class='underline'>Definición</span>: \(H(s)\in \mathbb {C}\) (función de transferencia) \begin {align*}  H(s)=\frac {\prod _{i=1}^m(s-z_i)}{\prod _{j=1}^n(s-p_j)}  \end {align*}
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(z_i\): polos
+     </li>
+     <li class='itemize'>\(p_j\): ceros</li></ul>
+<!-- l. 280 --><p class='indent'>   <span class='underline'>Definición</span>: \(p_j \in \mathbb {C}\) (polos) son las raíces de la ecuación característica del sistema dinámico: \begin {align*}  \prod _{j=1}^n(s-p_j)=0  \end {align*}
+</p><!-- l. 285 --><p class='indent'>   <span class='underline'>Definición</span>: \(z_i \in \mathbb {C}\) (ceros) son las raíces del polinomio del numerador: \begin {align*}  \prod _{i=1}^m(s-z_i)=0  \end {align*}
+</p><!-- l. 290 --><p class='indent'>   <span class='underline'>Importante</span>: La función de transferencia recopila <span id='textcolor8'>toda</span> la información del sistema dinámico en los coeficientes de los
+polinomios del numerador y denominador o equivalentemente con los polos y ceros.
+</p>
+   <h3 class='sectionHead' id='plano-complejo'><span class='titlemark'>3.8.   </span> <a id='x8-440003.8'></a>Plano complejo</h3>
+<!-- l. 293 --><p class='noindent'>Para visualizar las propiedades dinámicas del sistema, vamos a trabajar en el plano complejo.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 297 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/plano_complejo.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 300 --><p class='indent'>   Los ceros \(z_i\) y polos \(p_j\) son puntos sobre el plano complejo </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 303 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/polos_ceros.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 307 --><p class='indent'>   \(|H(s)|\) representa una “superficie” sobre el plano complejo
+</p>
+   <figure class='figure' id='-efecto-de-polos-y-ceros-en-la-magnitud-de-funcion-de-transferencia-hs'> 
+
+                                                                                         
+                                                                                         
+<a id='x8-44001r1'></a>
+                                                                                         
+                                                                                         
+<!-- l. 311 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/magH3D.png' width='361' />
+</p>
+<figcaption class='caption'><span class='id'>Figura 3.1: </span><span class='content'>Efecto de polos y ceros en la magnitud de función de transferencia \(H(s)\)</span></figcaption><!-- tex4ht:label?: x8-44001r1  -->
+                                                                                         
+                                                                                         
+   </figure>
+<!-- l. 315 --><p class='indent'>   <span class='underline'>Aparte</span>: Recordar que \(H(s)\) corresponde a: \(H(s)=\mathcal {L}\{h(t)\}\) (\(h(t)\) es FRI), por ende, \(h(t)=\mathcal {L}^{-1}\{H(s)\}\). Por lo tanto, los polos nos dan información del
+FRI.<br class='newline' />
+</p><!-- l. 317 --><p class='indent'>   Ejemplo: Si tenemos la siguiente función de transferencia \(H(s)=\frac {1}{s-a}\), se puede obtener la FRI aplicando la inversa de la
+transformada de Laplace \(h(t)=\mathcal {L}^{-1}\{H(s)\}=e^{at}\)<br class='newline' />
+</p><!-- l. 319 --><p class='indent'>   <span class='underline'>Casos</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 321 --><p class='noindent'> \(a&gt;0, ~a\in \mathbb {R}\Longrightarrow h(t)=e^{-|a|t}\) </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/caso1.png' width='50' /> </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 326 --><p class='noindent'> \(a=0, ~a\in \mathbb {R}\Longrightarrow h(t)=1\) </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/caso2.png' width='50' /> </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 331 --><p class='noindent'> \(a&lt;0, ~a\in \mathbb {R}\Longrightarrow h(t)=e^{|a|t}\) </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/caso3.png' width='50' /> </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 336 --><p class='noindent'> \(H(s)=\frac {1}{s^2+a^2}\Longrightarrow s_{1,2}=\pm \beta j \in \mathbb {C}\)<br class='newline' /><br class='newline' />\(h(t)=\mathcal {L}^{-1}\{H(s)\}=\sin {(\beta t)}\)</p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/caso4.png' width='50' /> </figure>
+     </li>
+     <li class='itemize'>
+     <!-- l. 342 --><p class='noindent'> \(a_{1,2}=\alpha \pm \beta j \in \mathbb {C}\) (polos conjugados)<br class='newline' /><br class='newline' />\begin {align*}  H(s) &amp;= \frac {1}{(s-\alpha )^2+\beta ^2} \longrightarrow \text {Raíces del denominador}\Rightarrow a_{1,2}\\ h(t) &amp;= \mathcal {L}^{-1}\{H(s)\} = e^{+\alpha t}\sin {(\beta t)}  \end {align*}
+</p>
+         <ul class='itemize2'>
+         <li class='itemize'>
+         <!-- l. 348 --><p class='noindent'> \(\alpha &lt;0\) <br class='newline' /><br class='newline' />\(h(t) = e^{-|\alpha | t}\sin {(\beta t)}\) </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/caso5a.png' width='50' /> </figure>
+         </li>
+         <li class='itemize'>
+         <!-- l. 355 --><p class='noindent'> \(\alpha &gt;0\)<br class='newline' /><br class='newline' />\(h(t) = e^{+|\alpha | t}\sin {(\beta t)}\) </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/caso5b.png' width='50' /> </figure>
+         </li>
+         <li class='itemize'> \(\alpha =0\)<br class='newline' /><br class='newline' />\(h(t)=\sin {(\beta t)}\Longrightarrow \) volvemos al caso (iv).</li></ul>
+     </li></ul>
+<!-- l. 367 --><p class='indent'>   <span class='underline'>Volviendo al plano complejo</span>, podemos identificar el tipo de respuesta FRI del sistema solo con información de la
+posición de los polos: </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 370 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Estabilidad1.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h3 class='sectionHead' id='estabilidad-bibo'><span class='titlemark'>3.9.   </span> <a id='x8-450003.9'></a>Estabilidad <span class='cmti-10'>BIBO</span></h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 376 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/BIBO.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 378 --><p class='indent'>   Un sistema es estable en el sentido BIBO, si y sólo si el sistema posee todos sus polos a la izquierda del plano
+complejo. Dicho de otra forma: \(p_i=\alpha _i\pm \beta _i j\) </p>
+     <ul class='itemize1'>
+     <li class='itemize'><span id='textcolor9'>El sistema es estable BIBO ssi \(Re(p_i)=\alpha _i&lt;0\)</span>
+     </li>
+     <li class='itemize'><span id='textcolor10'>Si el sistema posee al menos un polo cuyo \(Re(p_i)=\alpha _i&gt;0\), entonces el sistema es inestable</span></li></ul>
+   <h3 class='sectionHead' id='respuesta-escalon'><span class='titlemark'>3.10.   </span> <a id='x8-460003.10'></a>Respuesta escalón</h3>
+<!-- l. 386 --><p class='noindent'>Si queremos transicionar de un estado \(x(t_0)\) a \(x(t_1)\), la respuesta no es instantánea y existe una respuesta transiente que hay
+que limitar.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 390 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/step.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 392 --><p class='indent'>   <span class='underline'>Definición</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='underline'>Tiempo de subida</span> (“rise time”, \(t_r\)): tiempo que toma subir. Ej.: ir desde 10\(\m@th \,\)% hasta 90\(\m@th \,\)% de respuesta, o
+     de 0\(\m@th \,\)% a 100\(\m@th \,\)%.
+     </li>
+     <li class='itemize'><span class='underline'>Sobreimpulso</span> (“overshoot”, \(M_p\)): exceso de respuesta transitoria sobre la referencia deseada.
+     </li>
+     <li class='itemize'><span class='underline'>Tiempo de asentamiento</span> (“settling time”, \(t_s\)): tiempo que toma el sistema en decaer hasta 1\(\m@th \,\)%</li></ul>
+   <h3 class='sectionHead' id='implementacion-utilizando-matlabsimulink'><span class='titlemark'>3.11.   </span> <a id='x8-470003.11'></a>Implementación utilizando Matlab/Simulink</h3>
+<!-- l. 401 --><p class='noindent'>En matlab se puede trabajar con sistemas dinámicos utilizando <span class='cmti-10'>variables tipo sistema</span>. Estas variables se
+puede crear si se cuenta con la información de alguna de las representaciones vistas anteriormente.
+<br class='newline' />
+</p><!-- l. 403 --><p class='indent'>   Para State-Space se requieren las matrices \(A\), \(B\), \(C\), \({D} \Longrightarrow \) matrices de tipo “double” <br class='newline' />
+</p><!-- l. 405 --><p class='indent'>   Para construir un sistema desde representación espacio-estado, se utiliza el siguiente comando:
+</p>
+   <pre class='fancyvrb' id='fancyvrb1'><a id='x8-47003r1'></a><span id='textcolor11'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor12'> </span><span id='textcolor13'><span class='cmtt-8'>sys</span></span><span id='textcolor14'> </span><span id='textcolor15'><span class='cmtt-8'>=</span></span><span id='textcolor16'> </span><span id='textcolor17'><span class='cmtt-8'>ss</span></span><span id='textcolor18'><span class='cmtt-8'>(</span></span><span id='textcolor19'><span class='cmtt-8'>As</span></span><span id='textcolor20'><span class='cmtt-8'>,</span></span><span id='textcolor21'> </span><span id='textcolor22'><span class='cmtt-8'>Bs</span></span><span id='textcolor23'><span class='cmtt-8'>,</span></span><span id='textcolor24'> </span><span id='textcolor25'><span class='cmtt-8'>Cs</span></span><span id='textcolor26'><span class='cmtt-8'>,</span></span><span id='textcolor27'> </span><span id='textcolor28'><span class='cmtt-8'>Ds</span></span><span id='textcolor29'><span class='cmtt-8'>);</span></span><span id='textcolor30'> </span><span id='textcolor31'><span class='cmitt-10x-x-80'>% Variable tipo sistema</span></span></pre>
+<!-- l. 410 --><p class='indent'>   Para representar utilizando la función de transferencia se requiere conocer los coeficientes de los polinomios del
+numerador y denominador de la función de transferencia:
+</p><!-- l. 414 --><p class='indent'>   \begin {align*}  H(s)=\frac {b_ms^m+b_{m-1}s^{m-1}+...+b_1s+b_0}{s^n+a_{n-1}s^{n-1}+...+a_1s+a_0}  \end {align*}
+</p><!-- l. 416 --><p class='indent'>   Se utiliza el siguiente comando para construir la variable tipo sistema:
+</p>
+   <pre class='fancyvrb' id='fancyvrb2'><a id='x8-47006r1'></a><span id='textcolor32'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor33'> </span><span id='textcolor34'><span class='cmtt-8'>sys</span></span><span id='textcolor35'> </span><span id='textcolor36'><span class='cmtt-8'>=</span></span><span id='textcolor37'> </span><span id='textcolor38'><span class='cmtt-8'>tf</span></span><span id='textcolor39'><span class='cmtt-8'>(</span></span><span id='textcolor40'><span class='cmtt-8'>num</span></span><span id='textcolor41'><span class='cmtt-8'>,</span></span><span id='textcolor42'><span class='cmtt-8'>den</span></span><span id='textcolor43'><span class='cmtt-8'>);</span></span><span id='textcolor44'> </span><span id='textcolor45'><span class='cmitt-10x-x-80'>% Variable tipo sistema</span></span></pre>
+<!-- l. 421 --><p class='indent'>   Donde: \begin {align*}  \text {num} = [b_m, b_{m-1}, ... , b_1, b_0]\\ \text {den} = [1, a_{n-1}, ... , a_1, a_0]  \end {align*}
+</p><!-- l. 427 --><p class='indent'>   Ejemplo de coeficientes para sistema 1GDL: \begin {align*}  \text {num} = [1/m]\\ \text {den} = [1, c/m, k/m]  \end {align*}
+</p><!-- l. 433 --><p class='indent'>   También, se pueden generar conociendo los polos, ceros y la ganancia del sistema: \begin {align*}  \text {TF: }~H(s)= k\frac {\prod _{i=1}^m(s-z_i)}{\prod _{j=1}^n(s-p_j)}  \end {align*}
+</p><!-- l. 441 --><p class='indent'>   \begin {align*}  \text {zeros} &amp;= [z_m, z_{m-1}, ..., z_2, z_1]\\ \text {poles} &amp;= [p_n, p_{n-1},..., p_2, p_1]\\ \text {gain} &amp;= k  \end {align*}
+</p><!-- l. 443 --><p class='indent'>   Ocupando los polos, ceros y ganancia, también se puede generar una variable tipo sistema:
+</p>
+   <pre class='fancyvrb' id='fancyvrb3'><a id='x8-47009r1'></a><span id='textcolor46'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor47'> </span><span id='textcolor48'><span class='cmtt-8'>sys</span></span><span id='textcolor49'> </span><span id='textcolor50'><span class='cmtt-8'>=</span></span><span id='textcolor51'> </span><span id='textcolor52'><span class='cmtt-8'>zpk</span></span><span id='textcolor53'><span class='cmtt-8'>(</span></span><span id='textcolor54'><span class='cmtt-8'>ceros</span></span><span id='textcolor55'><span class='cmtt-8'>,</span></span><span id='textcolor56'> </span><span id='textcolor57'><span class='cmtt-8'>polos</span></span><span id='textcolor58'><span class='cmtt-8'>,</span></span><span id='textcolor59'> </span><span id='textcolor60'><span class='cmtt-8'>gain</span></span><span id='textcolor61'><span class='cmtt-8'>);</span></span></pre>
+<!-- l. 448 --><p class='indent'>   <span class='underline'>Matlab: Control System Toolbox</span><br class='newline' />
+</p><!-- l. 450 --><p class='indent'>   El toolbox <span class='cmti-10'>Control System </span>de matlab permite también extraer información y simular las variables de tipo
+sistema.
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 453 --><p class='noindent'>Valores y vectores propios del sistema:
+                                                                                         
+                                                                                         
+</p>
+     <pre class='fancyvrb' id='fancyvrb4'><a id='x8-47013r1'></a><span id='textcolor62'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor63'> </span><span id='textcolor64'><span class='cmtt-8'>eig</span></span><span id='textcolor65'><span class='cmtt-8'>(</span></span><span id='textcolor66'><span class='cmtt-8'>sys</span></span><span id='textcolor67'><span class='cmtt-8'>)</span></span> 
+<a id='x8-47015r2'></a><span id='textcolor68'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor69'> </span><span id='textcolor70'><span class='cmtt-8'>eig</span></span><span id='textcolor71'><span class='cmtt-8'>(</span></span><span id='textcolor72'><span class='cmtt-8'>As</span></span><span id='textcolor73'><span class='cmtt-8'>)</span></span></pre>
+     </li>
+     <li class='itemize'>
+     <!-- l. 458 --><p class='noindent'>Polos del sistema, frecuencias naturales y razones de amortiguamiento:
+</p>
+     <pre class='fancyvrb' id='fancyvrb5'><a id='x8-47019r1'></a><span id='textcolor74'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor75'> </span><span id='textcolor76'><span class='cmtt-8'>damp</span></span><span id='textcolor77'><span class='cmtt-8'>(</span></span><span id='textcolor78'><span class='cmtt-8'>sys</span></span><span id='textcolor79'><span class='cmtt-8'>)</span></span> 
+<a id='x8-47021r2'></a><span id='textcolor80'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor81'> </span><span id='textcolor82'><span class='cmtt-8'>damp</span></span><span id='textcolor83'><span class='cmtt-8'>(</span></span><span id='textcolor84'><span class='cmtt-8'>As</span></span><span id='textcolor85'><span class='cmtt-8'>)</span></span></pre>
+     </li>
+     <li class='itemize'>
+     <!-- l. 463 --><p class='noindent'>Posición de “ceros” y “polos” en el plano complejo:
+</p>
+     <pre class='fancyvrb' id='fancyvrb6'><a id='x8-47024r1'></a><span id='textcolor86'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor87'> </span><span id='textcolor88'><span class='cmtt-8'>pzmap</span></span><span id='textcolor89'><span class='cmtt-8'>(</span></span><span id='textcolor90'><span class='cmtt-8'>sys</span></span><span id='textcolor91'><span class='cmtt-8'>)</span></span></pre>
+     </li>
+     <li class='itemize'>
+     <!-- l. 467 --><p class='noindent'>Gráfico magnitud y fase vs frecuencia del sistema
+</p>
+     <pre class='fancyvrb' id='fancyvrb7'><a id='x8-47028r1'></a><span id='textcolor92'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor93'> </span><span id='textcolor94'><span class='cmtt-8'>bode</span></span><span id='textcolor95'><span class='cmtt-8'>(</span></span><span id='textcolor96'><span class='cmtt-8'>sys</span></span><span id='textcolor97'><span class='cmtt-8'>)</span></span> 
+<a id='x8-47030r2'></a><span id='textcolor98'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor99'> </span><span id='textcolor100'><span class='cmtt-8'>bodeplot</span></span><span id='textcolor101'><span class='cmtt-8'>(</span></span><span id='textcolor102'><span class='cmtt-8'>sys</span></span><span id='textcolor103'><span class='cmtt-8'>)</span></span></pre>
+     </li>
+     <li class='itemize'>
+     <!-- l. 472 --><p class='noindent'>Ganancia del sistema
+</p>
+     <pre class='fancyvrb' id='fancyvrb8'><a id='x8-47033r1'></a><span id='textcolor104'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor105'> </span><span id='textcolor106'><span class='cmtt-8'>dcgain</span></span><span id='textcolor107'><span class='cmtt-8'>(</span></span><span id='textcolor108'><span class='cmtt-8'>sys</span></span><span id='textcolor109'><span class='cmtt-8'>)</span></span><span id='textcolor110'> </span><span id='textcolor111'><span class='cmitt-10x-x-80'>%% DC: direct current (caso est</span>á<span class='cmitt-10x-x-80'>tico)</span></span></pre>
+     </li>
+     <li class='itemize'>
+     <!-- l. 477 --><p class='noindent'>Análisis: respuesta a impulso y a escalón
+</p>
+     <pre class='fancyvrb' id='fancyvrb9'><a id='x8-47037r1'></a><span id='textcolor112'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor113'> </span><span id='textcolor114'><span class='cmtt-8'>impulse</span></span><span id='textcolor115'><span class='cmtt-8'>(</span></span><span id='textcolor116'><span class='cmtt-8'>sys</span></span><span id='textcolor117'><span class='cmtt-8'>)</span></span> 
+<a id='x8-47039r2'></a><span id='textcolor118'><span class='cmmi-8'>&gt;&gt;</span></span><span id='textcolor119'> </span><span id='textcolor120'><span class='cmtt-8'>step</span></span><span id='textcolor121'><span class='cmtt-8'>(</span></span><span id='textcolor122'><span class='cmtt-8'>sys</span></span><span id='textcolor123'><span class='cmtt-8'>)</span></span></pre>
+     </li></ul>
+                                                                                         
+                                                                                         
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch4.html'>next</a>] [<a href='MIC411apuntesch2.html'>prev</a>] [<a href='MIC411apuntesch2.html#tailMIC411apuntesch2.html'>prev-tail</a>] [<a href='MIC411apuntesch3.html'>front</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch3.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch3.html'></a>  </p> 
+</body> 
+</html>

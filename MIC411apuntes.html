@@ -1,0 +1,190 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title></title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+<!-- l. 1 --><p class='noindent'>
+                                                                                         
+                                                                                         
+</p><!-- l. 7 --><p class='noindent'>_________________________________________________________________________________________
+</p><!-- l. 11 --><p class='noindent'><span class='cmbx-12x-x-172'>MIC411 Din</span>á<span class='cmbx-12x-x-172'>mica Estructural Avanzada</span>
+</p><!-- l. 15 --><p class='noindent'><span class='cmr-17'>Apuntes de Clases</span>
+</p><!-- l. 17 --><p class='noindent'>_________________________________________________________________________________________
+</p>
+<div class='minipage'><!-- l. 27 --><p class='noindent'><span class='cmr-12'>Gast</span>ó<span class='cmr-12'>n Fermandois Cornejo, Ph.D, Ing.</span><br />
+<span class='cmr-12'>Departamento de Obras Civiles</span><br />
+<span class='cmr-12'>Universidad T</span>é<span class='cmr-12'>cnica Federico Santa Mar</span>í<span class='cmr-12'>a</span><br />
+<span class='cmr-12'>Valpara</span>í<span class='cmr-12'>so, Chile</span><br />
+<a class='url' href='gaston.fermandois@usm.cl'>gaston.fermandois@usm.cl</a>                                </p></div>
+<!-- l. 39 --><p class='noindent'><img alt='PIC' height='328' src='Figuras/logoSHM.png' width='328' />
+</p><!-- l. 44 --><p class='noindent'><span class='cmr-12'>Versi</span>ó<span class='cmr-12'>n 3.2.4 (1 de agosto de 2026)</span>
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+</p>
+   <div class='tableofcontents'>
+   <span class='likechapterToc'><a href='MIC411apuntesli1.html#prefacio' id='QQ2-2-1'>Prefacio</a></span>
+<br />   <span class='likechapterToc'><a href='MIC411apuntesli2.html#versiones' id='QQ2-3-2'>Versiones</a></span>
+<br />   <span class='likesectionToc'><a href='MIC411apuntesli2.html#version-' id='QQ2-3-3'>Versión 3</a></span>
+<br />   <span class='likesectionToc'><a href='MIC411apuntesli2.html#version-1' id='QQ2-3-5'>Versión 2</a></span>
+<br />   <span class='likesectionToc'><a href='MIC411apuntesli2.html#version-2' id='QQ2-3-7'>Versión 1</a></span>
+<br />   <span class='likesectionToc'><a href='MIC411apuntesli2.html#version-3' id='QQ2-3-9'>Versión 0</a></span>
+<br />   <span class='likechapterToc'><a href='MIC411apuntesli3.html#indice-general' id='QQ2-4-11'>Índice general</a></span>
+<br />   <span class='partToc'>I  <a href='MIC411apuntespa1.html#teoria' id='QQ2-5-12'>Teoría</a></span>
+<br />   <span class='chapterToc'>1 <a href='MIC411apuntesch1.html#sistemas-dinamicos' id='QQ2-6-13'>Sistemas dinámicos</a></span>
+<br />   <span class='sectionToc'>1.1 <a href='MIC411apuntesch1.html#generalidades' id='QQ2-6-14'>Generalidades</a></span>
+<br />   <span class='sectionToc'>1.2 <a href='MIC411apuntesch1.html#tipos-de-sistemas' id='QQ2-6-16'>Tipos de sistemas</a></span>
+<br />   <span class='sectionToc'>1.3 <a href='MIC411apuntesch1.html#respuesta-de-sistemas-lti-en-tiempo-continuo' id='QQ2-6-26'>Respuesta de sistemas LTI en tiempo continuo</a></span>
+<br />   <span class='chapterToc'>2 <a href='MIC411apuntesch2.html#modelos-matematicos-de-sistemas-dinamicos-lineales' id='QQ2-7-27'>Modelos matemáticos de sistemas dinámicos lineales</a></span>
+<br />   <span class='sectionToc'>2.1 <a href='MIC411apuntesch2.html#generalidades1' id='QQ2-7-28'>Generalidades</a></span>
+<br />   <span class='sectionToc'>2.2 <a href='MIC411apuntesch2.html#principios-fundamentales-de-la-mecanica-estructural' id='QQ2-7-30'>Principios fundamentales de la mecánica estructural</a></span>
+<br />   <span class='sectionToc'>2.3 <a href='MIC411apuntesch2.html#ecuaciones-de-movimiento' id='QQ2-7-35'>Ecuaciones de movimiento</a></span>
+<br />   <span class='sectionToc'>2.4 <a href='MIC411apuntesch2.html#funciones-de-respuesta-en-frecuencia-frf' id='QQ2-7-36'>Funciones de respuesta en frecuencia (FRF)</a></span>
+<br />   <span class='sectionToc'>2.5 <a href='MIC411apuntesch2.html#funcion-de-transferencia-tf' id='QQ2-7-37'>Función de transferencia (TF)</a></span>
+<br />   <span class='sectionToc'>2.6 <a href='MIC411apuntesch2.html#representacion-en-variables-de-estado' id='QQ2-7-40'>Representación en variables de estado</a></span>
+<br />   <span class='chapterToc'>3 <a href='MIC411apuntesch3.html#analisis-clasico-de-sistemas-lineales' id='QQ2-8-42'>Análisis clásico de sistemas lineales</a></span>
+<br />   <span class='sectionToc'>3.1 <a href='MIC411apuntesch3.html#ecuacion-caracteristica-de-la-edm' id='QQ2-8-43'>Ecuación característica de la EDM</a></span>
+<br />   <span class='sectionToc'>3.2 <a href='MIC411apuntesch3.html#polos-del-sistema' id='QQ2-8-44'>Polos del sistema</a></span>
+<br />   <span class='sectionToc'>3.3 <a href='MIC411apuntesch3.html#valores-propios-de-matriz-de-estados' id='QQ2-8-45'>Valores propios de matriz de estados</a></span>
+<br />   <span class='sectionToc'>3.4 <a href='MIC411apuntesch3.html#funcion-impulso-delta-dirac' id='QQ2-8-46'>Función impulso (Delta Dirac)</a></span>
+<br />   <span class='sectionToc'>3.5 <a href='MIC411apuntesch3.html#funcion-de-respuesta-a-impulso-unitario' id='QQ2-8-47'>Función de respuesta a impulso unitario</a></span>
+<br />   <span class='sectionToc'>3.6 <a href='MIC411apuntesch3.html#transformada-de-laplace' id='QQ2-8-48'>Transformada de Laplace</a></span>
+<br />   <span class='sectionToc'>3.7 <a href='MIC411apuntesch3.html#funcion-de-transferencia' id='QQ2-8-49'>Función de transferencia</a></span>
+<br />   <span class='sectionToc'>3.8 <a href='MIC411apuntesch3.html#plano-complejo' id='QQ2-8-50'>Plano complejo</a></span>
+<br />   <span class='sectionToc'>3.9 <a href='MIC411apuntesch3.html#estabilidad-bibo' id='QQ2-8-52'>Estabilidad <span class='cmti-10'>BIBO</span></a></span>
+<br />   <span class='sectionToc'>3.10 <a href='MIC411apuntesch3.html#respuesta-escalon' id='QQ2-8-53'>Respuesta escalón</a></span>
+<br />   <span class='sectionToc'>3.11 <a href='MIC411apuntesch3.html#implementacion-utilizando-matlabsimulink' id='QQ2-8-54'>Implementación utilizando Matlab/Simulink</a></span>
+<br />   <span class='chapterToc'>4 <a href='MIC411apuntesch4.html#teoria-de-sistemas-lineales' id='QQ2-9-55'>Teoría de Sistemas Lineales</a></span>
+<br />   <span class='sectionToc'>4.1 <a href='MIC411apuntesch4.html#matriz-de-transicion-de-estados' id='QQ2-9-56'>Matriz de transición de estados</a></span>
+<br />   <span class='sectionToc'>4.2 <a href='MIC411apuntesch4.html#teorema-de-cayleyhamilton' id='QQ2-9-59'>Teorema de Cayley-Hamilton</a></span>
+<br />   <span class='sectionToc'>4.3 <a href='MIC411apuntesch4.html#equilibrio-y-estabilidad' id='QQ2-9-60'>Equilibrio y Estabilidad</a></span>
+<br />   <span class='sectionToc'>4.4 <a href='MIC411apuntesch4.html#controlabilidad-caso-tiempo-continuo' id='QQ2-9-68'>Controlabilidad (caso tiempo contínuo)</a></span>
+<br />   <span class='sectionToc'>4.5 <a href='MIC411apuntesch4.html#observabilidad-caso-tiempo-continuo' id='QQ2-9-69'>Observabilidad (caso tiempo contínuo)</a></span>
+<br />   <span class='sectionToc'>4.6 <a href='MIC411apuntesch4.html#realizacion-minima' id='QQ2-9-70'>Realización mínima</a></span>
+<br />   <span class='chapterToc'>5 <a href='MIC411apuntesch5.html#vibraciones-estocasticas' id='QQ2-10-71'>Vibraciones Estocásticas</a></span>
+<br />   <span class='sectionToc'>5.1 <a href='MIC411apuntesch5.html#proceso-estocastico' id='QQ2-10-72'>Proceso Estocástico</a></span>
+<br />   <span class='sectionToc'>5.2 <a href='MIC411apuntesch5.html#caracterizacion-de-proceso-estocastico' id='QQ2-10-73'>Caracterización de Proceso Estocástico</a></span>
+<br />   <span class='sectionToc'>5.3 <a href='MIC411apuntesch5.html#clasificacion-de-pe' id='QQ2-10-74'>Clasificación de P.E.</a></span>
+<br />   <span class='sectionToc'>5.4 <a href='MIC411apuntesch5.html#pe-gaussiano' id='QQ2-10-77'>P.E. Gaussiano</a></span>
+                                                                                         
+                                                                                         
+<br />   <span class='sectionToc'>5.5 <a href='MIC411apuntesch5.html#propiedades-de-la-funcion-de-autocorrelacion-de-un-pe' id='QQ2-10-78'>Propiedades de la función de autocorrelación de un P.E.</a></span>
+<br />   <span class='sectionToc'>5.6 <a href='MIC411apuntesch5.html#densidad-de-poder-espectral' id='QQ2-10-79'>Densidad de Poder Espectral</a></span>
+<br />   <span class='sectionToc'>5.7 <a href='MIC411apuntesch5.html#ruido-blanco' id='QQ2-10-83'>Ruido blanco</a></span>
+<br />   <span class='sectionToc'>5.8 <a href='MIC411apuntesch5.html#ruido-blanco-de-banda-limitada-blwn' id='QQ2-10-84'>Ruido blanco de banda limitada (BLWN)</a></span>
+<br />   <span class='sectionToc'>5.9 <a href='MIC411apuntesch5.html#valores-extremos-de-pe' id='QQ2-10-86'>Valores extremos de P.E.</a></span>
+<br />   <span class='sectionToc'>5.10 <a href='MIC411apuntesch5.html#respuesta-estocastica-de-sistemas-lineales' id='QQ2-10-87'>Respuesta estocástica de sistemas lineales</a></span>
+<br />   <span class='sectionToc'>5.11 <a href='MIC411apuntesch5.html#modelos-estocasticos-en-ingenieria-estructural' id='QQ2-10-91'>Modelos Estocásticos en Ingeniería Estructural</a></span>
+<br />   <span class='chapterToc'>6 <a href='MIC411apuntesch6.html#procesamiento-digital-de-senales' id='QQ2-11-95'>Procesamiento Digital de Señales</a></span>
+<br />   <span class='sectionToc'>6.1 <a href='MIC411apuntesch6.html#sistemas-discretos' id='QQ2-11-96'>Sistemas discretos</a></span>
+<br />   <span class='sectionToc'>6.2 <a href='MIC411apuntesch6.html#analisis-en-frecuencia' id='QQ2-11-100'>Análisis en frecuencia</a></span>
+<br />   <span class='sectionToc'>6.3 <a href='MIC411apuntesch6.html#criterio-de-muestreo-de-nyquist' id='QQ2-11-106'>Criterio de muestreo de Nyquist</a></span>
+<br />   <span class='sectionToc'>6.4 <a href='MIC411apuntesch6.html#aliasing' id='QQ2-11-107'>Aliasing</a></span>
+<br />   <span class='sectionToc'>6.5 <a href='MIC411apuntesch6.html#psd-de-senal-digital' id='QQ2-11-113'>PSD de señal digital</a></span>
+<br />   <span class='partToc'>II  <a href='MIC411apuntespa2.html#aplicaciones' id='QQ2-12-116'>Aplicaciones</a></span>
+<br />   <span class='chapterToc'>7 <a href='MIC411apuntesch7.html#tecnologia-de-sensores' id='QQ2-13-117'>Tecnología de Sensores</a></span>
+<br />   <span class='sectionToc'>7.1 <a href='MIC411apuntesch7.html#fundamentos-de-sensores' id='QQ2-13-118'>Fundamentos de sensores</a></span>
+<br />   <span class='sectionToc'>7.2 <a href='MIC411apuntesch7.html#fundamentos-basicos-de-electronica' id='QQ2-13-121'>Fundamentos básicos de electrónica</a></span>
+<br />   <span class='sectionToc'>7.3 <a href='MIC411apuntesch7.html#especificaciones-de-sensores' id='QQ2-13-125'>Especificaciones de sensores</a></span>
+<br />   <span class='sectionToc'>7.4 <a href='MIC411apuntesch7.html#tipos-de-sensores' id='QQ2-13-126'>Tipos de sensores</a></span>
+<br />   <span class='chapterToc'>8 <a href='MIC411apuntesch8.html#tecnicas-de-monitoreo-estructural' id='QQ2-14-139'>Técnicas de Monitoreo Estructural</a></span>
+<br />   <span class='sectionToc'>8.1 <a href='MIC411apuntesch8.html#motivacion' id='QQ2-14-140'>Motivación</a></span>
+<br />   <span class='sectionToc'>8.2 <a href='MIC411apuntesch8.html#identificacion-de-sistemas' id='QQ2-14-141'>Identificación de Sistemas</a></span>
+<br />   <span class='sectionToc'>8.3 <a href='MIC411apuntesch8.html#metodos-noparametricos-de-estimacion-espectral' id='QQ2-14-143'>Métodos no-paramétricos de estimación espectral</a></span>
+<br />   <span class='sectionToc'>8.4 <a href='MIC411apuntesch8.html#metodos-de-identificacion-ouputonly-' id='QQ2-14-155'>Métodos de identificación <span class='cmti-10'>ouput-only </span></a></span>
+<br />   <span class='chapterToc'>9 <a href='MIC411apuntesch9.html#sistemas-de-control-estructural' id='QQ2-15-161'>Sistemas de Control Estructural</a></span>
+<br />   <span class='sectionToc'>9.1 <a href='MIC411apuntesch9.html#introduccion' id='QQ2-15-162'>Introducción</a></span>
+<br />   <span class='sectionToc'>9.2 <a href='MIC411apuntesch9.html#control-pasivo' id='QQ2-15-163'>Control pasivo</a></span>
+<br />   <span class='sectionToc'>9.3 <a href='MIC411apuntesch9.html#control-activo' id='QQ2-15-170'>Control activo</a></span>
+<br />   <span class='sectionToc'>9.4 <a href='MIC411apuntesch9.html#control-semiactivo' id='QQ2-15-171'>Control semi-activo</a></span>
+<br />   <span class='sectionToc'>9.5 <a href='MIC411apuntesch9.html#control-hibrido' id='QQ2-15-172'>Control híbrido</a></span>
+<br />   <span class='chapterToc'>10 <a href='MIC411apuntesch10.html#teoria-de-control-clasico' id='QQ2-16-173'>Teoría de Control Clásico</a></span>
+<br />   <span class='sectionToc'>10.1 <a href='MIC411apuntesch10.html#openloop-vs-closedloop-control' id='QQ2-16-174'>Open-loop vs closed-loop control</a></span>
+<br />   <span class='sectionToc'>10.2 <a href='MIC411apuntesch10.html#sistema-estructural-con-active-mass-damper-amd' id='QQ2-16-178'>Sistema estructural con Active Mass Damper (AMD)</a></span>
+<br />   <span class='sectionToc'>10.3 <a href='MIC411apuntesch10.html#teorema-del-limite-final' id='QQ2-16-179'>Teorema del Límite Final</a></span>
+<br />   <span class='sectionToc'>10.4 <a href='MIC411apuntesch10.html#requisitos-de-control' id='QQ2-16-180'>Requisitos de control</a></span>
+<br />   <span class='sectionToc'>10.5 <a href='MIC411apuntesch10.html#control-pid' id='QQ2-16-183'>Control PID</a></span>
+<br />   <span class='sectionToc'>10.6 <a href='MIC411apuntesch10.html#ejemplo-simulacion-control-pid-mediante-simulink' id='QQ2-16-188'>Ejemplo: Simulación control PID mediante Simulink</a></span>
+<br />   <span class='sectionToc'>10.7 <a href='MIC411apuntesch10.html#root-locus' id='QQ2-16-189'>Root Locus</a></span>
+<br />   <span class='sectionToc'>10.8 <a href='MIC411apuntesch10.html#control-moderno' id='QQ2-16-190'>Control Moderno</a></span>
+<br />   <span class='sectionToc'>10.9 <a href='MIC411apuntesch10.html#formas-canonicas' id='QQ2-16-191'>Formas canónicas</a></span>
+<br />   <span class='sectionToc'>10.10 <a href='MIC411apuntesch10.html#control-lazo-cerrado-utilizando-estados-state-feedback-control' id='QQ2-16-195'>Control lazo cerrado utilizando estados (State Feedback Control)</a></span>
+<br />   <span class='sectionToc'>10.11 <a href='MIC411apuntesch10.html#observadores' id='QQ2-16-196'>Observadores</a></span>
+<br />   <span class='sectionToc'>10.12 <a href='MIC411apuntesch10.html#diseno-de-observador-de-estados' id='QQ2-16-197'>Diseño de Observador de Estados</a></span>
+<br />   <span class='sectionToc'>10.13 <a href='MIC411apuntesch10.html#principio-de-separacion' id='QQ2-16-198'>Principio de Separación</a></span>
+<br />   <span class='chapterToc'>11 <a href='MIC411apuntesch11.html#teoria-de-control-optimo' id='QQ2-17-199'>Teoría de Control Óptimo</a></span>
+<br />   <span class='sectionToc'>11.1 <a href='MIC411apuntesch11.html#planteamiento' id='QQ2-17-200'>Planteamiento</a></span>
+<br />   <span class='sectionToc'>11.2 <a href='MIC411apuntesch11.html#principio-de-optimalidad' id='QQ2-17-201'>Principio de Optimalidad</a></span>
+<br />   <span class='sectionToc'>11.3 <a href='MIC411apuntesch11.html#ecuacion-hjb-hamiltonjacobibellman' id='QQ2-17-202'>Ecuación HJB (Hamilton-Jacobi-Bellman)</a></span>
+<br />   <span class='sectionToc'>11.4 <a href='MIC411apuntesch11.html#control-lqr-linear-quadratic-regulator' id='QQ2-17-203'>Control LQR (Linear Quadratic Regulator)</a></span>
+<br />   <span class='sectionToc'>11.5 <a href='MIC411apuntesch11.html#control-lqr-de-horizonte-infinito' id='QQ2-17-204'>Control LQR de horizonte infinito</a></span>
+<br />   <span class='sectionToc'>11.6 <a href='MIC411apuntesch11.html#filtro-de-kalman-tiempo-continuo' id='QQ2-17-207'>Filtro de Kalman (tiempo contínuo)</a></span>
+<br />   <span class='sectionToc'>11.7 <a href='MIC411apuntesch11.html#control-lqg' id='QQ2-17-208'>Control LQG</a></span>
+<br />   <span class='sectionToc'>11.8 <a href='MIC411apuntesch11.html#topicos-especiales-en-control' id='QQ2-17-209'>Tópicos especiales en control</a></span>
+<br />   <span class='partToc'>III  <a href='MIC411apuntespa3.html#topicos-avanzados' id='QQ2-18-210'>Tópicos avanzados</a></span>
+                                                                                         
+                                                                                         
+<br />   <span class='chapterToc'>12 <a href='MIC411apuntesch12.html#modelos-matematicos-de-sistemas-nolineales' id='QQ2-19-211'>Modelos matemáticos de sistemas nolineales</a></span>
+<br />   <span class='sectionToc'>12.1 <a href='MIC411apuntesch12.html#generalidades4' id='QQ2-19-212'>Generalidades</a></span>
+<br />   <span class='sectionToc'>12.2 <a href='MIC411apuntesch12.html#ecuaciones-de-movimiento-nolineales' id='QQ2-19-213'>Ecuaciones de movimiento nolineales</a></span>
+<br />   <span class='sectionToc'>12.3 <a href='MIC411apuntesch12.html#modelos-fenomenologicos' id='QQ2-19-214'>Modelos fenomenológicos</a></span>
+<br />   <span class='sectionToc'>12.4 <a href='MIC411apuntesch12.html#modelos-hammersteinwiener' id='QQ2-19-217'>Modelos Hammerstein-Wiener</a></span>
+<br />   <span class='sectionToc'>12.5 <a href='MIC411apuntesch12.html#linealizacion-equivalente' id='QQ2-19-218'>Linealización equivalente</a></span>
+<br />   <span class='chapterToc'>13 <a href='MIC411apuntesch13.html#simulacion-hibrida' id='QQ2-20-219'>Simulación híbrida</a></span>
+<br />   <span class='chapterToc'>14 <a href='MIC411apuntesch14.html#aprendizaje-automatico' id='QQ2-21-220'>Aprendizaje automático</a></span>
+<br />   <span class='partToc'>IV  <a href='MIC411apuntespa4.html#apendice' id='QQ2-22-221'>Apéndice</a></span>
+<br />   <span class='appendixToc'>A <a href='MIC411apuntesap1.html#introduccion-a-matlab' id='QQ2-23-222'>Introducción a Matlab</a></span>
+<br />   <span class='sectionToc'>A.1 <a href='MIC411apuntesap1.html#introduccion1' id='QQ2-23-223'>Introducción</a></span>
+<br />   <span class='sectionToc'>A.2 <a href='MIC411apuntesap1.html#crear-variables' id='QQ2-23-224'>Crear Variables</a></span>
+<br />   <span class='sectionToc'>A.3 <a href='MIC411apuntesap1.html#operaciones' id='QQ2-23-235'>Operaciones</a></span>
+<br />   <span class='sectionToc'>A.4 <a href='MIC411apuntesap1.html#ciclos-iteraciones-y-condicionales' id='QQ2-23-241'>Ciclos, iteraciones y condicionales</a></span>
+<br />   <span class='sectionToc'>A.5 <a href='MIC411apuntesap1.html#funciones' id='QQ2-23-245'>Funciones</a></span>
+<br />   <span class='sectionToc'>A.6 <a href='MIC411apuntesap1.html#importar-y-exportar-datos' id='QQ2-23-246'>Importar y exportar datos</a></span>
+<br />   <span class='sectionToc'>A.7 <a href='MIC411apuntesap1.html#figuras' id='QQ2-23-249'>Figuras</a></span>
+<br />   <span class='sectionToc'>A.8 <a href='MIC411apuntesap1.html#instalar-toolbox' id='QQ2-23-253'>Instalar Toolbox</a></span>
+<br />   <span class='sectionToc'>A.9 <a href='MIC411apuntesap1.html#funciones-utiles-para-el-curso' id='QQ2-23-254'>Funciones útiles para el curso</a></span>
+<br />   <span class='appendixToc'>B <a href='MIC411apuntesap2.html#introduccion-a-simulink' id='QQ2-24-259'>Introducción a Simulink</a></span>
+<br />   <span class='sectionToc'>B.1 <a href='MIC411apuntesap2.html#generalidades5' id='QQ2-24-260'>Generalidades</a></span>
+<br />   <span class='sectionToc'>B.2 <a href='MIC411apuntesap2.html#entradas' id='QQ2-24-262'>Entradas</a></span>
+<br />   <span class='sectionToc'>B.3 <a href='MIC411apuntesap2.html#operaciones1' id='QQ2-24-277'>Operaciones</a></span>
+<br />   <span class='sectionToc'>B.4 <a href='MIC411apuntesap2.html#sistemas' id='QQ2-24-288'>Sistemas</a></span>
+<br />   <span class='sectionToc'>B.5 <a href='MIC411apuntesap2.html#salidas' id='QQ2-24-298'>Salidas</a></span>
+<br />   <span class='sectionToc'>B.6 <a href='MIC411apuntesap2.html#propiedades-simulacion' id='QQ2-24-304'>Propiedades simulación</a></span>
+<br />   <span class='sectionToc'>B.7 <a href='MIC411apuntesap2.html#bloques-especiales' id='QQ2-24-306'>Bloques especiales</a></span>
+<br />   <span class='sectionToc'>B.8 <a href='MIC411apuntesap2.html#ejemplo' id='QQ2-24-314'>Ejemplo</a></span>
+<br />   <span class='appendixToc'>C <a href='MIC411apuntesap3.html#topicos-de-analisis-numerico' id='QQ2-25-319'>Tópicos de Análisis Númerico</a></span>
+<br />   <span class='sectionToc'>C.1 <a href='MIC411apuntesap3.html#ecuaciones-nolineales' id='QQ2-25-320'>Ecuaciones nolineales</a></span>
+<br />   <span class='sectionToc'>C.2 <a href='MIC411apuntesap3.html#optimizacion' id='QQ2-25-321'>Optimización</a></span>
+<br />   <span class='sectionToc'>C.3 <a href='MIC411apuntesap3.html#metodos-de-integracion-numerica-de-edos' id='QQ2-25-323'>Métodos de integración númerica de EDOs</a></span>
+<br />   <span class='sectionToc'>C.4 <a href='MIC411apuntesap3.html#descomposicion-de-valores-singulares-svd' id='QQ2-25-326'>Descomposición de valores singulares (SVD)</a></span>
+<br />   <span class='sectionToc'>C.5 <a href='MIC411apuntesap3.html#fast-fourier-transform' id='QQ2-25-327'>Fast Fourier Transform</a></span>
+<br />   <span class='likechapterToc'><a href='MIC411apuntesli4.html#bibliograf-a' id='QQ2-26-328'>Bibliografía</a></span>
+<br />   <span class='chapterToc'> <a href='MIC411apuntesli4.html#bibliograf-a1'>Bibliografía</a></span>
+   </div>
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+ 
+</body> 
+</html>

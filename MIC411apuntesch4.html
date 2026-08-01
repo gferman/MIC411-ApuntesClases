@@ -1,0 +1,403 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>4 Teor´ıa de Sistemas Lineales</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch5.html'>next</a>] [<a href='MIC411apuntesch3.html'>prev</a>] [<a href='MIC411apuntesch3.html#tailMIC411apuntesch3.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch4.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch4.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='teoria-de-sistemas-lineales'><span class='titlemark'>Capítulo 4</span><br /><a id='x9-480004'></a>Teoría de Sistemas Lineales</h2>
+   <h3 class='sectionHead' id='matriz-de-transicion-de-estados'><span class='titlemark'>4.1.   </span> <a id='x9-490004.1'></a>Matriz de transición de estados</h3>
+<!-- l. 4 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='para-lti-autonomo'><span class='titlemark'>4.1.1.   </span> <a id='x9-500004.1.1'></a>Para LTI autónomo</h4>
+<!-- l. 5 --><p class='noindent'>Sea un sistema LTI autónomo, es decir, sin entrada \(u(t) = 0\).
+</p><!-- l. 9 --><p class='indent'>   \begin {equation}  \dot {x}(t) = {A} {x}(t)  \end {equation}<a id='x9-50001r1'></a>
+</p><!-- l. 11 --><p class='noindent'>donde \(x(t) \in \mathbb {R}^n\) y \(A \in \mathbb {R}^{n \times n}\). Su solución \({x}(t)\) para una condición inicial \(x(0) = x_0\) se puede obtener utilizando transformación de Laplace:
+</p>
+   <div class='subequations'>\begin {subequations}  \begin {align} &amp;\phantom {\Longrightarrow } {\dot {x}}(t) = {A} {x}(t) \qquad /\mathcal {L}\{\cdot \}\\ &amp;\Longrightarrow s {X}(s)- {x_0} = {A} {X}(s)\\ &amp;\Longrightarrow (s {I}- {A}) {X}(s) = {x_0}\\ &amp;\Longrightarrow {X}(s) = (s {I}- {A})^{-1} {x_0} \qquad /\mathcal {L}^{-1}\{\cdot \}\\ &amp;\Longrightarrow {x}(t) = e^{ {A}t} {x_0} \end {align}  \end {subequations}</div>
+<!-- l. 23 --><p class='indent'>   Definiendo \( {\phi }(t) = e^{ {A}t}\) como la <span class='cmti-10'>matriz de transici</span>ó<span class='cmti-10'>n de estados</span>, la respuesta de los estados del sistema queda determinada
+por la siguiente expresión:
+</p><!-- l. 27 --><p class='indent'>   \begin {align}  {x}(t) = {\phi }(t){x_0}  \end {align}
+</p><!-- l. 29 --><p class='indent'>   Notar que \( {\phi }(t)\) es una matriz que varía en función del tiempo.
+</p><!-- l. 31 --><p class='noindent'><span class='underline'>Aparte</span>: Para entender qué significa \(e^{ {A}t}\) hay que recordar la Expansión de Taylor de una exponencial.<br class='newline' />
+</p><!-- l. 33 --><p class='noindent'><span class='underline'>Definición</span>: Sea \(f(t)\) una función suave y continua, su <span class='cmti-10'>Expansi</span>ó<span class='cmti-10'>n de Taylor </span>en torno a \(t_0 = \alpha \) es la siguiente:
+</p><!-- l. 37 --><p class='indent'>   \begin {align*}  f(t) = f(\alpha )+\frac {\dot {f}(\alpha )}{1!}(t-\alpha )+\frac {\ddot {f}(\alpha )}{2!}(t-\alpha )^2+... = \sum _{n=0}^{\infty }{\frac {(t - \alpha )^n}{n!}\frac {d^n}{dt^n}f(t = \alpha )}  \end {align*}
+</p><!-- l. 39 --><p class='indent'>   aplicando la expansión en una función exponencial en en torno a \(\alpha = 0\):
+</p><!-- l. 43 --><p class='indent'>   \begin {align*}  e^{at} = 1+at+\frac {1}{2!}a^2t^2+\frac {1}{3!}a^3t^3+... = \sum _{i=0}^{\infty } \frac {a^i t^i}{i!}  \end {align*}
+</p><!-- l. 45 --><p class='indent'>   La Expansión de Taylor de una exponencial también converge en torno a \(\alpha = 0\) cuando se utiliza una matriz \(A\) cuadrada.
+Por lo tanto, \({\phi }(t) = e^{{A}t}\) se puede calcular utilizando la siguiente serie:
+</p>
+   <div class='subequations'>\begin {subequations}  \begin {align} {\phi }(t) = e^{ {A}t} =&amp; {I}+ {A}t+\frac {1}{2!} {A}^2t^2+\frac {1}{3!} {A}^3t^3+... \\ =&amp; \sum _{i=0}^{\infty } \frac {A^i t^i}{i!} \\ =&amp; \sum _{i=0}^{\infty } \beta _i (t)A^i \end {align}  \end {subequations}</div>
+<!-- l. 55 --><p class='indent'>   Notar que la expansión de Taylor de \({\phi }(t) = e^{{A}t}\) es una serie infinita. La serie finita se obtiene con el <span class='cmti-10'>Teorema de
+Cayley-Hamilton </span>que se explica más adelante.
+</p><!-- l. 57 --><p class='indent'>   <span class='underline'>Nota</span>: \({\phi }(t)\) satisface la ecuación de estado:
+</p>
+   <div class='subequations'>\begin {subequations}  \begin {align} \Longrightarrow {x}(t) &amp;= {\phi }(t){x_0} = \left [{I}+{A}t+\frac {1}{2!}{A}^2t^2+...\right ]{x_0}\\ \Longrightarrow {\dot {x}}(t) &amp;= \left [{A}+\frac {2}{2!}{A}^2t+\frac {3}{3!}{A}^3t^2+...\right ]{x_0}\\ \Longrightarrow {\dot {x}}(t) &amp;= {A}\left [{I}+{A}t+\frac {1}{2!}{A}^2t^2+...\right ]{x_0}\\ \Longrightarrow {\dot {x}}(t) &amp;= {A}{\phi }(t){x_0}={A}{x}(t) \quad \text {(Ecuación de Estado)} \end {align}  \end {subequations}</div>
+<!-- l. 68 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='para-lti-con-entrada-exogena'><span class='titlemark'>4.1.2.   </span> <a id='x9-510004.1.2'></a>Para LTI con entrada exógena</h4>
+<!-- l. 69 --><p class='noindent'>Si tenemos un sistema LTI con entrada exógena, es decir, con entrada \(u(t)\), la respuesta se encuentra de forma
+análoga:
+</p>
+   <div class='subequations'>\begin {subequations}  \begin {align} &amp;\phantom {\Longrightarrow } {\dot {x}}(t) = {A} {x}(t)+ {B} {u}(t) \qquad /\mathcal {L}\{\cdot \}\\ &amp;\Longrightarrow s {X}(s)- {x_0} = {A} {X}(s)+ {B} {U}(s)\\ &amp;\Longrightarrow (s {I}- {A}) {X}(s) = {x_0}+ {B} {U}(s)\\ &amp;\Longrightarrow {X}(s) = (s {I}- {A})^{-1} {x_0} + \left [(s {I}- {A})^{-1} {B} \right ]{U}(s) \qquad /\mathcal {L}^{-1}\{\cdot \}\\ &amp;\Longrightarrow {x}(t) = {\phi }(t) {x_0}+\left [ {\phi }(t) {B} \right ] \ast u(t)\\ &amp;\Longrightarrow {x}(t) = {\phi }(t) {x_0}+\int _0^t {\phi }(t-\tau ) {B} {u}(\tau )d\tau \end {align}  \end {subequations}</div>
+<!-- l. 82 --><p class='indent'>   Notar que:
+</p><!-- l. 88 --><p class='indent'>   \begin {align*}  {\phi }(t-\tau )&amp;=e^{{A}(t-\tau )}\\ &amp;=e^{{A}t} e^{-{A}\tau }\\ &amp;={\phi }(t){\phi }(-\tau )  \end {align*}
+</p><!-- l. 90 --><p class='noindent'><span class='underline'>Aparte:</span> Del problema de valores propios de \(A \in \mathbb {R}^{n \times n}\):
+</p><!-- l. 92 --><p class='indent'>
+                                                                                         
+                                                                                         
+                                             \[{A}{v}=\lambda {v}\]
+</p><!-- l. 94 --><p class='indent'>   donde \(\lambda \in \mathbb {C}\) y \(v \in \mathbb {C}^n\) son el vector y valor propio asociado.
+</p>
+   <div class='subequations'>\begin {subequations}  \begin {align} \Longrightarrow {\phi }(t){v} &amp;= \left [{I}+{A}t+\frac {1}{2!}{A}^2t^2+\frac {1}{3!}{A}^3t^3+...\right ]{v}\\ &amp;= {v}+{A}{v}t+\frac {1}{2!}{A}^2{v}t^2+\frac {1}{3!}{A}^3vt^2... \\ &amp;= {v}+\lambda {v}t+\frac {1}{2!}\lambda ^2{v}t^2 + \frac {1}{3!}\lambda ^3vt^3 +... \\ &amp;= \left [ 1+\lambda t+\frac {\lambda ^2}{2!}+\frac {\lambda ^3}{3!}t^3 + ...\right ]{v} \end {align}  \end {subequations}</div>
+<!-- l. 105 --><p class='indent'>   Si \({x_0}={v}\), entonces \({x}(t)={\phi }(t){v}\)<br class='newline' />
+</p><!-- l. 107 --><p class='noindent'><span class='underline'>Aparte</span>: \(\phi (t)\) es una serie infinita que converge:
+</p><!-- l. 111 --><p class='indent'>   \begin {align*}  \lim _{t \to \infty } \phi (t)&lt;\infty  \end {align*}
+</p><!-- l. 113 --><p class='noindent'>ssi \(\text {Re}(\lambda )&lt;0\). Entonces el sistema LTI es estable.<br class='newline' />
+</p><!-- l. 115 --><p class='noindent'><span class='underline'>Definición</span>: Una matriz \(A\) se dice que es <span class='cmbx-10'>Hurwitz </span>ssi los valores propios de \(A\) tienen una parte real estrictamente
+negativa.
+</p><!-- l. 118 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='teorema-de-cayleyhamilton'><span class='titlemark'>4.2.   </span> <a id='x9-520004.2'></a>Teorema de Cayley-Hamilton</h3>
+   <div class='newtheorem'>
+<!-- l. 120 --><p class='noindent'><span class='head'>
+<a id='x9-52001r1'></a>
+<span class='cmbx-10'>Teorema 1 </span>(Teorema de Cayley-Hamilton)<span class='cmbx-10'>.</span>  </span><span class='cmti-10'>Sea una matriz</span> \(A\in \mathbb {R}^{n\times n}\)<span class='cmti-10'>, cuya ecuaci</span>ó<span class='cmti-10'>n caracter</span>í<span class='cmti-10'>stica est</span>á <span class='cmti-10'>dada por el
+siguiente polinomio de orden</span> \(n\)<span class='cmti-10'>:</span>
+</p><!-- l. 123 --><p class='indent'>
+                                             \[\Delta _A(s)=\det (s{I}-{A})=s^n+\alpha _{n-1}s^{n-1}+...+\alpha _1s+\alpha _0=0\]
+</p><!-- l. 125 --><p class='noindent'><span class='cmti-10'>donde</span> \(\alpha _i\in \mathbb {R}\)<span class='cmti-10'>,</span> \(i\in [0,n-1]\)<span class='cmti-10'>, son los coeficientes del polinomio caracter</span>í<span class='cmti-10'>stico de</span> \(A\)<span class='cmti-10'>. Entonces, el teorema establece que la matriz</span> \(A\)
+<span class='cmti-10'>tambi</span>é<span class='cmti-10'>n satisface la ecuaci</span>ó<span class='cmti-10'>n caracter</span>í<span class='cmti-10'>stica:</span>
+</p><!-- l. 127 --><p class='indent'>
+                                                                                         
+                                                                                         
+                                             \[\Delta _A(A) = {A}^n+\alpha _{n-1}{A}^{n-1}+...+\alpha _1{A}+\alpha _0{I}={0}\]
+</p>
+   </div>
+<!-- l. 129 --><p class='indent'>
+</p><!-- l. 131 --><p class='noindent'>Del teorema, podemos despejar \({A}^n\): \begin {align*}  {A}^n &amp;= -\left [\alpha _{n-1}{A}^{n-1}+...+\alpha _1{A}+\alpha _0{I} \right ]  \end {align*}
+</p><!-- l. 136 --><p class='indent'>   El poder de una matriz se escribe como una serie polinomial de orden igual al exponente del poder.<br class='newline' />
+</p><!-- l. 138 --><p class='indent'>   \(\Longrightarrow \) Este resultado es útil para evaluar la matriz de transición \(\phi (t)\) \begin {align*}  {\phi (t)}=e^{{A}t}=\sum _{i=0}^\infty \beta _i(t){A}^i \overset {\text {(C-H)}}{=} \sum _{i=0}^{n-1}\gamma _i(t){A}^i  \end {align*}
+</p><!-- l. 143 --><p class='indent'>   <span class='underline'>Nota</span>: Este resultado es útil para evaluar \(\phi (t)\) como una serie finita en términos de \(A^i\).
+</p><!-- l. 146 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='equilibrio-y-estabilidad'><span class='titlemark'>4.3.   </span> <a id='x9-530004.3'></a>Equilibrio y Estabilidad</h3>
+<!-- l. 147 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='-phase-portrait'><span class='titlemark'>4.3.1.   </span> <a id='x9-540004.3.1'></a><span class='cmti-10'>Phase portrait</span></h4>
+<!-- l. 149 --><p class='noindent'>El retrato de fase (<span class='cmti-10'>phase portrait</span>) es una representación gráfica de las trayectorias de un sistema dinámico en el tiempo,
+es decir, se puede observar como varían los estados en función del tiempo y entender mejor el comportamiento del
+sistema. También permite observar gráficamente la estabilidad. <br class='newline' />
+</p><!-- l. 151 --><p class='indent'>   Ejemplo: Considere el siguiente sistema dinámico LTI Autónomo de un grado de libertad.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 155 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/leccion11.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 160 --><p class='indent'>   \begin {align*}  \Longrightarrow {\dot {x}}(t) ={A}{x}(t)  \end {align*}
+</p><!-- l. 162 --><p class='indent'>   donde \({x}(t)=\begin {bmatrix} y(t)\\ \dot {y}(t) \end {bmatrix}\), con condiciones iniciales \(y_0\), \(\dot {y}_0\), se puede generar el siguiente diagrama de fase en el que se observa cómo varían
+los estados en el tiempo.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 166 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/plano_de_fase.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 169 --><p class='indent'>   Notar que el retrato de fase puede ser para cualquier vector de estados y no únicamente para dos estados como en
+este ejemplo.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 173 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/plano_de_fase.png_2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='equilibrio'><span class='titlemark'>4.3.2.   </span> <a id='x9-550004.3.2'></a>Equilibrio</h4>
+<!-- l. 178 --><p class='noindent'>Sea el sistema dinámico LTI en representación espacio-estado:
+                                             \[{\dot {x}}={A}{x}+{B}{u} \]
+</p><!-- l. 181 --><p class='noindent'>encontraremos una expresión para encontrar el estado en equilibrio \(x_e\). <br class='newline' />
+</p><!-- l. 183 --><p class='indent'>   <span class='underline'>Definición</span>: El equilibrio del sistema está dado por la condición de que \(x\) no cambia en el tiempo: \begin {align*}  {\dot {x}} = {0}  \end {align*}
+</p><!-- l. 187 --><p class='indent'>   Entonces, despejando el estado de equilibrio \(x_e\) desde el sistema LTI: \begin {align*}  &amp;\Longrightarrow {0}={A}{x_e}+{B}{u_e} \\ &amp;\Longrightarrow {x_e}=-{A}^{-1}{B}{u_e} \Longrightarrow \text { Estados de Equilibrio Estático}  \end {align*}
+</p><!-- l. 193 --><p class='noindent'>donde \(x_e\) es el vector de estado en equilibrio y \(u_e\) es el vector de entrada en el equilibrio, ambos constantes.
+<br class='newline' />
+</p><!-- l. 195 --><p class='indent'>   <span class='underline'>Notas</span> </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Notar que si: \({u_e}={0}\Longrightarrow {x_e}={0}\).
+     </li>
+     <li class='itemize'>Los sistemas lineales presentan sólo un estado de equilibrio \(x_e\).
+     </li>
+     <li class='itemize'>No confundir: los estados de equilibrio \(x_e\) no son necesariamente <span class='cmti-10'>estables</span>.</li></ul>
+<!-- l. 202 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='estabilidad-de-lyapunov'><span class='titlemark'>4.3.3.   </span> <a id='x9-560004.3.3'></a>Estabilidad de Lyapunov</h4>
+<!-- l. 203 --><p class='noindent'>Sea un sistema dinámico LTI y autónomo: \(\dot {x}=Ax\), \(x(0) = x_0\) y \(x_e\) un punto de equilibrio del sistema. Vamos a definir la estabilidad
+respecto a un punto de equilibrio.<br class='newline' />
+</p><!-- l. 204 --><p class='indent'>   <span class='underline'>Definición</span>: \(x_e\) es estable en el sentido de Lyapunov si para cualquier \(\varepsilon &gt;0\) existe un \(\delta &gt;0\) tal que:
+                                                                                         
+                                                                                         
+                                             \[||x_0-x_e||&lt;\delta \Longrightarrow ||x(t)-x_e||&lt;\varepsilon , \quad \forall t&gt;0\]
+ </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 208 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/Lyapunov.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 210 --><p class='indent'>   * Mínima restricción que podemos imponer para satisfacer estabilidad.
+</p>
+   <h5 class='subsubsectionHead' id='definicion-estabilidad-asintotica'><a id='x9-57000'></a>Definición Estabilidad Asintótica</h5>
+<!-- l. 213 --><p class='noindent'>\(x_e\) es asintóticamente estable si existe \(\delta &gt;0\) tal que: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(||x_0-x_e||&lt;\delta \)
+     </li>
+     <li class='itemize'>\(x_e\) es estable en el sentido de Lyapunov
+     </li>
+     <li class='itemize'>\(\lim _{t\to \infty }x(t)=x_e\)</li></ul>
+<figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/asintotica.png' width='50' /> </figure>
+<!-- l. 224 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='definicion-estabilidad-asintotica-global'><a id='x9-58000'></a>Definición Estabilidad Asintótica Global</h5>
+<!-- l. 225 --><p class='noindent'>\(x_e\) es estable asintótica global ssi es asintóticamente estable para \(\delta \to \infty \).
+</p>
+   <div class='table'>
+                                                                                         
+                                                                                         
+<!-- l. 227 --><p class='indent'>   </p><figure class='float'>
+                                                                                         
+                                                                                         
+<div class='tabular'> <table class='tabular' id='TBL-1'><colgroup id='TBL-1-1g'><col id='TBL-1-1' /></colgroup><colgroup id='TBL-1-2g'><col id='TBL-1-2' /></colgroup><colgroup id='TBL-1-3g'><col id='TBL-1-3' /></colgroup><colgroup id='TBL-1-4g'><col id='TBL-1-4' /></colgroup><tr id='TBL-1-1-' style='vertical-align:baseline;'><td class='td11' id='TBL-1-1-1' style='white-space:nowrap; text-align:center;'>                 </td><td class='td11' id='TBL-1-1-2' style='white-space:nowrap; text-align:center;'> <img alt='PIC' height='36' src='Figuras/global1.png' width='36' />  </td><td class='td11' id='TBL-1-1-3' style='white-space:nowrap; text-align:center;'> <img alt='PIC' height='36' src='Figuras/global2.png' width='36' />  </td><td class='td11' id='TBL-1-1-4' style='white-space:nowrap; text-align:center;'> <img alt='PIC' height='36' src='Figuras/global3.png' width='36' />  </td>
+</tr><tr class='hline'><td></td><td></td><td></td><td></td></tr><tr id='TBL-1-2-' style='vertical-align:baseline;'><td class='td11' id='TBL-1-2-1' style='white-space:nowrap; text-align:center;'>      Estable         </td><td class='td11' id='TBL-1-2-2' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✗    </span></td><td class='td11' id='TBL-1-2-3' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✗    </span></td><td class='td11' id='TBL-1-2-4' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✓    </span></td>
+</tr><tr id='TBL-1-3-' style='vertical-align:baseline;'><td class='td11' id='TBL-1-3-1' style='white-space:nowrap; text-align:center;'>    Asint. Est.       </td><td class='td11' id='TBL-1-3-2' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✗    </span></td><td class='td11' id='TBL-1-3-3' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✗    </span></td><td class='td11' id='TBL-1-3-4' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✓    </span></td>
+</tr><tr id='TBL-1-4-' style='vertical-align:baseline;'><td class='td11' id='TBL-1-4-1' style='white-space:nowrap; text-align:center;'> Goblal Asint. Est.  </td><td class='td11' id='TBL-1-4-2' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✗    </span></td><td class='td11' id='TBL-1-4-3' style='white-space:nowrap; text-align:center;'>  <span class='pzdr-'>✗    </span></td><td class='td11' id='TBL-1-4-4' style='white-space:nowrap; text-align:center;'> <span class='cmbx-10'>???  </span></td></tr></table>                                               </div>
+                                                                                         
+                                                                                         
+   </figure>
+   </div>
+   <h5 class='subsubsectionHead' id='limites-de-estabilidad-para-sistemas-lti'><a id='x9-59000'></a>Límites de Estabilidad para sistemas LTI</h5>
+<!-- l. 239 --><p class='noindent'>Sea el sistema LTI autónomo \(\dot {x}(t)=Ax(t)\), cuya solución es \(x(t)=\phi (t)x_0\) y \(x_e\) un estado de equilibrio. Se requiere analizar la estabilidad en el
+sentido de Lyapunov. Por lo cual hay que analizar las normas \(||x(t) - x_e||\) y \(||x_0 - x_e||\) <br class='newline' />
+</p><!-- l. 241 --><p class='indent'>   Suponiendo que \(\phi (t)\) es finita, es decir, \(||\phi (t)||=||e^{At}||\leq \beta &lt;\infty \). Se tiene que la siguiente diferencia de vectores de estados:
+\begin {align*}  x(t)-x_e &amp;= \phi (t)x_0-x_e\\ &amp;= \phi (t)x_0-\phi (t)x_e\\ &amp;= \phi (t)[x_0-x_e]  \end {align*}
+</p><!-- l. 248 --><p class='indent'>   Para este sistema, notar que si \(x_0 = x_e\), entonces \(x(t)=x_e\), es decir, si el estado inicial es un estado de equilibrio (por ejemplo, el
+reposo) y si no existen exitaciones, entonces los estado \(x(t)\) se mantendrán constantes e igual a al estado de equilibrio \(x_e\),
+para \(\phi (t)x_e=x_e\).<br class='newline' />
+</p><!-- l. 250 --><p class='indent'>   Entonces, extrayendo la norma de la expresión anterior: \begin {align*}  ||x(t)-x_e||=||\phi (t)[x_0-x_e]||\leq ||\phi (t)||\cdot ||x_0-x_e||  \end {align*}
+</p><!-- l. 254 --><p class='indent'>   Luego, si \(||x_0 - x_e||&lt;\delta \) \begin {align*}  &amp;\Longrightarrow ||x(t)-x_e||\leq ||\phi (t)|| \delta  \end {align*}
+</p><!-- l. 258 --><p class='indent'>   Si definimos \(||\phi (t)||\delta = \varepsilon \): \begin {align*}  &amp;\Longrightarrow ||x(t) - x_e|| \leq \varepsilon  \end {align*}
+</p><!-- l. 263 --><p class='indent'>   Por lo tanto, si \(\phi (t)\) es finito, implica que \(x_e\) es estable en el sentido de Lyapunov. \(\phi (t)\) es finito si y solo si \(A\) es Hurwitz:
+\begin {align*}  \text {Re}\left (\text {eig}(A)\right )&lt;0\Longrightarrow \text {Estabilidad}  \end {align*}
+</p><!-- l. 269 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='funcion-candidata-de-lyapunov'><a id='x9-60000'></a>Función Candidata de Lyapunov</h5>
+<!-- l. 270 --><p class='noindent'><span class='underline'>Definición</span>: Sea una función \(V(x)\), \(\mathbb {R}^n\to \mathbb {R}\), tal que: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>\(V(x_e)=0\)
+     </li>
+     <li class='itemize'>\(V(x)&gt;0\), \(\forall x\neq x_e\) (\(V\) es una función definida positiva)
+     </li>
+     <li class='itemize'>\(V\) y su primera derivada son finitas</li></ul>
+<!-- l. 277 --><p class='indent'>   Entonces, \(V(x)\) es una función candidata de Lyapunov.<br class='newline' />
+</p>
+   <div class='newtheorem'>
+<!-- l. 279 --><p class='noindent'><span class='head'>
+<a id='x9-60001r2'></a>
+<span class='cmbx-10'>Teorema 2.</span>  </span><span class='cmti-10'>Si</span> \(V(x)\) <span class='cmti-10'>s una funci</span>ó<span class='cmti-10'>n candidata de Lyapunov para</span> \(x_e\) <span class='cmti-10'>en una regi</span>ó<span class='cmti-10'>n</span> \(\Omega \) <span class='cmti-10'>vecina a</span> \(x_e\)<span class='cmti-10'>:</span> </p>
+     <ul class='itemize1'>
+     <li class='itemize'> \(x_e\) <span class='cmti-10'>es estable en el sentido de Lyapunov si:</span>
+                                                                                         
+                                                                                         
+                                               \[\frac {dV(x)}{dt}\leq 0, ~\forall x\in \Omega \]
+     </li>
+     <li class='itemize'> \(x_e\) <span class='cmti-10'>es asint</span>ó<span class='cmti-10'>ticamente estable si:</span>
+                                               \[\frac {dV(x)}{dt}&lt; 0, ~\forall x\in \Omega \]
+     </li>
+     <li class='itemize'> \(x_e\) <span class='cmti-10'>es global asint</span>ó<span class='cmti-10'>ticamente estable si:</span>
+                                               \[\frac {dV(x)}{dt}&lt; 0, ~\forall x\in \Omega \]
+     <span class='cmti-10'>donde</span> \(\Omega \in \mathbb {R}^n\) <span class='cmti-10'>y</span> \(V(x)\) <span class='cmti-10'>no tiene l</span>í<span class='cmti-10'>mite radial.</span></li></ul>
+   </div>
+<!-- l. 290 --><p class='indent'>
+</p><!-- l. 292 --><p class='indent'>   <span class='underline'>Ilustración</span>: Sean \(x=\begin {bmatrix}x_1\\ x_2\end {bmatrix}\), \(x\in \mathbb {R}^2\), \(x_e=0\) y \(V(x)=x^T x\) una función candidata de Lyapunov.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 296 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/ilu_lyapunov.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 299 --><p class='indent'>   Notar que: \begin {align*}  \frac {dV(x)}{dt} &lt; 0  \end {align*}
+</p><!-- l. 304 --><p class='indent'>   Ocupando \(V=V(x(t))\). Entonces: \begin {align*}  \frac {dV}{dt} &amp;= \frac {\partial V}{\partial x}\cdot \frac {\partial x}{\partial t} \quad \text {Regla de la cadena}\\ &amp;= \sum _{i=1}^n \frac {\partial V}{\partial x_i}\cdot \frac {\partial x_i}{\partial t}\\ &amp;= \begin {bmatrix}\frac {\partial V}{\partial x_1} &amp;...&amp; \frac {\partial V}{\partial x_n}\end {bmatrix}\begin {bmatrix}\dot {x}_1\\ \vdots \\ \dot {x}_n\end {bmatrix}\\ &amp;= \nabla V\cdot \dot {x}  \end {align*}
+</p><!-- l. 314 --><p class='indent'>   \begin {align*}  \frac {dV}{dt}=\nabla V\cdot \dot {x}&lt;0, ~\forall t  \end {align*}
+</p><!-- l. 316 --><p class='indent'>   Dibujemos una línea de contorno de \(V(x)\): <br class='newline' /></p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 319 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/ilu_lyapunov2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 324 --><p class='indent'>   \begin {align*}  \nabla V\cdot f(x)&lt;0 \Longrightarrow \text {Entonces el sistema se acerca a } x_e  \end {align*}
+</p><!-- l. 326 --><p class='indent'>   \(\Longrightarrow x_e\) es un punto de atracción o <span class='cmti-10'>sumidero</span>.<br class='newline' />
+</p><!-- l. 328 --><p class='indent'>   Para el sistema LTI autónomo \(\dot {x}=Ax\), y sea \(V(x)=x^T Px\), donde \(P\) es una matriz definida positiva y simétrica.
+                                             \[\frac {dV}{dt}=\nabla V\cdot \dot {x}&lt;0 \]
+</p><!-- l. 331 --><p class='indent'>   para un sistema asintóticamente estable.<br class='newline' />\begin {align*}  \nabla V=\frac {\partial }{\partial {x}} ({x}^T {P}{x}) = 2{P}{x} \quad \text {Por demostrar}  \end {align*}
+</p><!-- l. 336 --><p class='indent'>   Entonces: \begin {align*}  \frac {dV}{dt} &amp;= (2Px)^T (Ax)= (2x^T P^T)(Ax)\\ &amp;= (x^T P^T)(Ax)+x^T P^T Ax\\ &amp;= (Px)^T(Ax)+x^T PAx\\ &amp;= (Ax)^T(Px)+x^T PAx\\ &amp;= x^T A^T Px+x^T PAx\\ &amp;= x^T (A^T P+PA)x&lt;0  \end {align*}
+</p><!-- l. 346 --><p class='indent'>   Por lo tanto, \(A^T P+PA \prec 0\) debe ser una matriz definida negativa para que el sistema sea asintóticamente estable.<br class='newline' />
+</p><!-- l. 347 --><p class='indent'>   Sea \(Q\) una matriz definida positiva y simétrica, tal que: \begin {align*}  &amp;\phantom {\Longrightarrow } A^T P+PA = -Q\\ &amp;\Longrightarrow A^T P + P A + Q = 0 \quad \text {Ecuación de Lyapunov}  \end {align*}
+</p>
+   <div class='newtheorem'>
+<!-- l. 353 --><p class='noindent'><span class='head'>
+<a id='x9-60002r3'></a>
+<span class='cmbx-10'>Teorema 3.</span>  </span><span class='cmti-10'>Dados</span> \(Q \succ 0\) <span class='cmti-10'>y sim</span>é<span class='cmti-10'>trico, existe un </span>ú<span class='cmti-10'>nico</span> \(P\succ 0\) <span class='cmti-10'>y sim</span>é<span class='cmti-10'>trico que satisface:</span>
+</p><!-- l. 356 --><p class='indent'>
+                                             \[A^T P + P A + Q = 0.\]
+</p><!-- l. 358 --><p class='indent'>   <span class='cmti-10'>Entonces,</span> \(\dot {x}=Ax\) <span class='cmti-10'>es asint</span>ó<span class='cmti-10'>ticamente estable.</span>
+</p>
+   </div>
+<!-- l. 359 --><p class='indent'>
+                                                                                         
+                                                                                         
+</p>
+   <h3 class='sectionHead' id='controlabilidad-caso-tiempo-continuo'><span class='titlemark'>4.4.   </span> <a id='x9-610004.4'></a>Controlabilidad (caso tiempo contínuo)</h3>
+<!-- l. 363 --><p class='noindent'>Sea un sistema LTI: \(\dot {x}=Ax+Bu\), \(x\in \mathbb {R}^n\), \(u\in \mathbb {R}^p\). Buscamos \(u(t)\) tal que los estados vayan de \(x(t)\) a cero en un tiempo finito \(t_1\). <br class='newline' />Recordar que la solución de un sistema LTI no autónomo es: \begin {align*}  x(t)=\phi (t)x_0+\int _0^t \phi (t-\tau )Bu(\tau )d\tau  \end {align*}
+</p><!-- l. 368 --><p class='indent'>   Luego, si \(x(t_1) = 0\) \begin {align*}  0=\phi (t_1)x_0+\int _0^{t_1} \phi (t_1-\tau )Bu(\tau )d\tau  \end {align*}
+</p><!-- l. 373 --><p class='indent'>   Considerando la propiedad: \(\phi (t_1-\tau )=e^{A(t_1-\tau )}=e^{At_1}\cdot e^{-A\tau }=\phi (t_1)\phi (-\tau )\). Entonces:
+</p><!-- l. 378 --><p class='indent'>   \begin {align*}  0 &amp;=\phi (t_1)\left [x_0+\int _0^{t_1}\phi (-\tau )Bu(\tau )d\tau \right ] \\ \Longrightarrow -x_0 &amp;= \int _0^{t_1}\phi (-\tau )Bu(\tau )d\tau  \end {align*}
+</p><!-- l. 380 --><p class='indent'>   Por el teorema de Cayley-Hamilton: \begin {align*}  \phi (-\tau )=m_0(\tau )I+m_1(\tau )A+m_2(\tau )A^2+...+m_{n-1}(\tau )A^{n-1}  \end {align*}
+</p><!-- l. 385 --><p class='indent'>   Entonces: \begin {align*}  -x_0 &amp;= \int _0^{t_1}\left [m_0(\tau )B+m_1(\tau )AB+m_2(\tau )A^2B+...+m_{n-1}(\tau )A^{n-1}B \right ]u(\tau )d\tau \\ \Longrightarrow -x_0 &amp;= \int _0^{t_1} \sum _{j=0}^{n-1}A^jBm_j(\tau )u(\tau )d(\tau )\\ \Longrightarrow -x_0 &amp;= \sum _{j=0}^{n-1}A^jB \int _0^{t_1} m_j(\tau )u(\tau )d\tau  \end {align*}
+</p><!-- l. 392 --><p class='indent'>   Cada término de la integral es un vector constante de dimensión \(p\times 1\) \begin {align*}  \Longrightarrow v_j := -\int _0^{t_1}m_j(\tau )u(\tau )d\tau  \end {align*}
+</p><!-- l. 406 --><p class='indent'>   \begin {align*}  \Longrightarrow x_0 &amp;= \sum _{j=0}^{n-1}A^jBv_j =Bv_0+ABv_1+...+A^{n-1}Bv_{n-1}\\ \Longrightarrow x_0 &amp;= \underbrace {\left [ \begin {array}{c|c|c|c|c} B &amp; AB &amp; A^2B &amp; ... &amp; A^{n-1}B \end {array}\right ]}_{\mathcal {C}} \underbrace {\left [ \begin {array}{c} v_0\\ \hline v_1 \\ \hline v_2 \\ \hline \vdots \\ \hline v_{n-1} \end {array}\right ]}_{V}  \end {align*}
+</p><!-- l. 408 --><p class='indent'>   Por lo tanto, se define la <span class='cmti-10'>Matriz de Controlabilidad</span> \(\mathcal {C}\):
+</p><!-- l. 415 --><p class='indent'>   \begin {align*}  \mathcal {C}=\left [ \begin {array}{c|c|c|c|c} B &amp; AB &amp; A^2B &amp; ... &amp; A^{n-1}B \end {array}\right ]  \end {align*}
+</p><!-- l. 417 --><p class='indent'>   Escribiendo nuevamente el sistema lineal de ecuaciones:
+</p><!-- l. 419 --><p class='indent'>
+                                             \[x_0 = \mathcal {C} V\]
+</p><!-- l. 421 --><p class='noindent'>donde \(\mathcal {C} \in \mathbb {R}^{n \times np}\), \(x_0 \in \mathbb {R}^{n \times 1}\), y \(V \in \mathbb {R}^{np \times 1}\).<br class='newline' />
+</p><!-- l. 423 --><p class='indent'>   Este resultado indica que cualquier vector \(x_0\) puede ser expresado como una combinación lineal de las
+columnas de la matriz \(\mathcal {C}\). La solución de \(V\) (vector con comandos incógnito) es única ssi \(\mathcal {C}\) tiene rango completo
+\(n\).<br class='newline' />
+</p><!-- l. 425 --><p class='indent'>   <span class='underline'>Por lo tanto, un sistema LTI es controlable ssi \(\text {rank}(\mathcal {C})=n\)</span>. <br class='newline' />
+</p><!-- l. 427 --><p class='indent'>   <span class='underline'>Nota</span>: Si \(\text {rank}(\mathcal {C})= n_e &lt; n\), entonces el sistema tiene no más de \(n_e\) estados controlables.<br class='newline' />
+</p><!-- l. 428 --><p class='indent'>   <span class='underline'>Definición</span>: Si el sistema tiene estados inestables, pero controlables, entonces se dice que estos estados
+son <span class='cmbx-10'>estabilizables</span>. Por lo tanto, puede diseñar \(u(t)\) tal que el sistema cerrado tenga todos sus estados
+estables.<br class='newline' />
+</p><!-- l. 430 --><p class='indent'>   <span class='underline'>Nota</span>: Sea el sistema LTI, \(\dot {x}=Ax+Bu\), y sea \(T\) una matriz de transformación tal que \(x=Tz\), donde \(\dot {z}=A_cz+B_cu\), es una realización CCF. Entonces,
+el sistema es controlable ssi \(T\) existe.
+</p>
+   <div class='newtheorem'>
+<!-- l. 434 --><p class='noindent'><span class='head'>
+<a id='x9-61001r4'></a>
+<span class='cmbx-10'>Teorema 4.</span>  </span><span class='cmti-10'>Las siguientes afirmaciones son equivalentes para un sistema LTI cont</span>í<span class='cmti-10'>nuo:</span>
+                                                                                         
+                                                                                         
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x9-61003x1'><span class='cmti-10'>Si la matriz</span> \(\mathcal {C}\) <span class='cmti-10'>tiene rango completo, entonces el sistema es controlable.</span>
+     </li>
+<li class='enumerate' id='x9-61005x2'><span class='cmti-10'>Test PBH (Popov-Belevitch-Hautus): Para cualquier</span> \(\lambda \)<span class='cmti-10'>,</span> \(\text {rank}\left (\begin {bmatrix}\lambda I - A &amp; B\end {bmatrix}\right ) = n\)<span class='cmti-10'>.</span>
+     </li>
+<li class='enumerate' id='x9-61007x3'><span class='cmti-10'>Test vector propio: Para cada vector propio izquierdo</span> \(v\) <span class='cmti-10'>de</span> \(A\) <span class='cmti-10'>(es decir,</span> \(v A = \lambda v\)<span class='cmti-10'>),</span> \(v B \neq 0\)<span class='cmti-10'>.</span>
+     </li>
+<li class='enumerate' id='x9-61009x4'><span class='cmti-10'>El gramiano de controlabilidad</span> \(W_C(t)\) <span class='cmti-10'>es no singular:</span>
+                                               \[W_C(t) = \int _0^t \phi (\tau ) B B^T \phi (\tau )^T d\tau \]
+     </li></ol>
+   </div>
+<!-- l. 443 --><p class='indent'>
+</p><!-- l. 445 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='observabilidad-caso-tiempo-continuo'><span class='titlemark'>4.5.   </span> <a id='x9-620004.5'></a>Observabilidad (caso tiempo contínuo)</h3>
+<!-- l. 447 --><p class='noindent'>Asuma el sistema LTI autónomo:
+</p><!-- l. 452 --><p class='indent'>   \begin {align*}  \dot {x} &amp;= Ax, \quad x\in \mathbb {R}^n\\ y &amp;= Cx, \quad y\in \mathbb {R}^r  \end {align*}
+</p><!-- l. 460 --><p class='indent'>   \begin {align*}  \begin {array} {|c|} \hline \text {Caja}\\ \text {Negra} \\ \hline \end {array} \longrightarrow y\in \mathbb {R}^r  \end {align*}
+</p><!-- l. 462 --><p class='indent'>   La pregunta que nos formulamos es: ¿podemos reconstruir los estados \(x(t)\) del sistema solo con información de la
+respuesta medida \(y(t)\)? Para responder esta pregunta, suponer que conocemos la respuesta inicial, y todas sus derivadas
+temporales de orden superior: \(Y_0 = \{y(0),\dot {y}(0),\ddot {y}(0),\ldots ,y^{(n-1)}(0)\}^{T}\). Entonces, queremos reconstruir el estado inicial \(x(0)=x_0\) que no es posible medir
+directamente.
+</p><!-- l. 464 --><p class='indent'>   Sabemos que la respuesta es proporcional a los estados:
+</p><!-- l. 473 --><p class='indent'>   \begin {align*}  y(0) &amp;= C x(0) =C x_0 \\ \dot {y}(0) &amp;= C \dot {x}(0) =C Ax_0 \\ \ddot {y}(0) &amp;= C \ddot {x}(0) =C A^2 x_0 \\ y^{(3)}(0) &amp;= C x^{(3)}(0) =C A^3 x_0 \\ \vdots &amp; \\ y^{(n-1)}(0) &amp;= C x^{(n-1)}(0) =C A^{n-1} x_0 \\  \end {align*}
+</p><!-- l. 475 --><p class='indent'>   Escribimos el siguiente sistema lineal de ecuaciones:
+</p><!-- l. 482 --><p class='indent'>   \begin {align*}  \underbrace {\begin {bmatrix} y(0) \\ y^{(1)}(0) \\ y^{(2)}(0) \\ \vdots \\ y^{(n-1)}(0) \end {bmatrix}}_{Y_0} = \underbrace {\begin {bmatrix} C \\ CA \\ CA^2 \\ \vdots \\ CA^{n-1} \end {bmatrix}}_{\mathcal {O}} x_0  \end {align*}
+</p><!-- l. 503 --><p class='indent'>   Se define:
+</p><!-- l. 510 --><p class='indent'>   \begin {align*}  \mathcal {O}=\left [ \begin {array}{c} C\\ \hline CA \\ \hline CA^2 \\ \hline \vdots \\ \hline CA^{n-1} \end {array}\right ] \quad \text {Matriz de observabilidad}  \end {align*}
+                                                                                         
+                                                                                         
+</p><!-- l. 512 --><p class='indent'>   Entonces, el sistema lineal se escribe:
+</p><!-- l. 514 --><p class='indent'>
+                                             \[ Y_0 = \mathcal {O} x_0 \]
+</p><!-- l. 516 --><p class='noindent'>donde \(\mathcal {O} \in \mathbb {R}^{nr \times n}\), \(x_0 \in \mathbb {R}^{n \times 1}\), y \(Y_0 \in \mathbb {R}^{nr \times 1}\).<br class='newline' />
+</p><!-- l. 518 --><p class='indent'>   Del análisis, sólo podemos reconstruir el estado inicial \(x_0\) (incógnita) de las observaciones \(Y_0\) (datos), tal que la solución
+sea única, si y solo si la matriz de observabilidad \(\mathcal {O}\) tiene rango completo.
+</p><!-- l. 522 --><p class='indent'>   <span class='underline'>Por lo tanto, un sistema LTI es observable ssi \(\text {rank}(\mathcal {O})=n\)</span><br class='newline' />
+</p><!-- l. 524 --><p class='indent'>   <span class='underline'>Definición</span>: Si un estado es inestable, pero observable, entonces dicho estado se dice que es <span class='cmbx-10'>detectable</span>.
+</p>
+   <div class='newtheorem'>
+<!-- l. 526 --><p class='noindent'><span class='head'>
+<a id='x9-62001r5'></a>
+<span class='cmbx-10'>Teorema 5.</span>  </span><span class='cmti-10'>Las siguientes afirmaciones son equivalentes para un sistema LTI cont</span>í<span class='cmti-10'>nuo:</span>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x9-62003x1'><span class='cmti-10'>Si la matriz</span> \(\mathcal {O}\) <span class='cmti-10'>tiene rango completo, entonces el sistema es observable.</span>
+     </li>
+<li class='enumerate' id='x9-62005x2'><span class='cmti-10'>Test PBH (Popov-Belevitch-Hautus): Para cualquier</span> \(\lambda \)<span class='cmti-10'>,</span> \(\text {rank}\left (\begin {bmatrix}\lambda I - A \\ C\end {bmatrix}\right ) = n\)<span class='cmti-10'>.</span>
+     </li>
+<li class='enumerate' id='x9-62007x3'><span class='cmti-10'>Test vector propio: Para cada vector propio derecho</span> \(v\) <span class='cmti-10'>de</span> \(A\) <span class='cmti-10'>(es decir,</span> \(Av=\lambda v\)<span class='cmti-10'>),</span> \(C v \neq 0\)<span class='cmti-10'>.</span>
+     </li>
+<li class='enumerate' id='x9-62009x4'><span class='cmti-10'>El gramiano de observabilidad</span> \(W_O(t)\) <span class='cmti-10'>es no singular:</span>
+                                                                                         
+                                                                                         
+                                               \[W_O(t) = \int _0^t \phi (\tau )^T C^T C \phi (\tau ) d\tau \]
+     </li></ol>
+   </div>
+<!-- l. 535 --><p class='indent'>
+</p><!-- l. 537 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='realizacion-minima'><span class='titlemark'>4.6.   </span> <a id='x9-630004.6'></a>Realización mínima</h3>
+     <dl class='description'><dt class='description'>
+<span class='cmbx-10'>Propiedad</span> </dt><dd class='description'>
+     <!-- l. 540 --><p class='noindent'> Una realización mínima \((A,B,C)\) es aquella que describe un sistema dinámico con un número mínimo de estados,
+     que es igual a la dimensión del sistema de ecuaciones diferenciales.
+     </p></dd><dt class='description'>
+<span class='cmbx-10'>Test</span> </dt><dd class='description'>
+     <!-- l. 541 --><p class='noindent'> Una realización \((A,B,C)\) es mínima ssi el sistema es tanto controlable y observable.
+     </p></dd><dt class='description'>
+<span class='cmbx-10'>Usos</span> </dt><dd class='description'>
+     <!-- l. 542 --><p class='noindent'> Diseño de observadores, identificación de sistemas, control óptimo, etc.</p></dd></dl>
+                                                                                         
+                                                                                         
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch5.html'>next</a>] [<a href='MIC411apuntesch3.html'>prev</a>] [<a href='MIC411apuntesch3.html#tailMIC411apuntesch3.html'>prev-tail</a>] [<a href='MIC411apuntesch4.html'>front</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch4.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch4.html'></a>  </p> 
+</body> 
+</html>

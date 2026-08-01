@@ -1,0 +1,174 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>9 Sistemas de Control Estructural</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>next</a>] [<a href='MIC411apuntesch8.html'>prev</a>] [<a href='MIC411apuntesch8.html#tailMIC411apuntesch8.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch9.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch9.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='sistemas-de-control-estructural'><span class='titlemark'>Capítulo 9</span><br /><a id='x15-1480009'></a>Sistemas de Control Estructural</h2>
+   <h3 class='sectionHead' id='introduccion'><span class='titlemark'>9.1.   </span> <a id='x15-1490009.1'></a>Introducción</h3>
+<!-- l. 19 --><p class='noindent'>Los sistemas de control estructural son dispositivos mecánicos que se incorporan a una estructura para poder mejorar
+su desempeño y serviciabilidad ante cargas dinámicas.
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>Reducir la <span class='underline'>respuesta</span>
+     </li>
+     <li class='itemize'>Reducir <span class='underline'>pérdidas por daños</span>
+     </li>
+     <li class='itemize'>Reducción de <span class='underline'>riesgos</span> (Ej. Probabilidad de colapso)</li></ul>
+<!-- l. 27 --><p class='indent'>   Se clasifican en los siguientes grupos: </p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='underline'>Pasivos</span>: No requieren energía adicional
+     </li>
+     <li class='itemize'><span class='underline'>Activos</span>: Requieren energía adicional
+     </li>
+     <li class='itemize'><span class='underline'>Semi-Activos</span>: Pueden requerir o no energía adicional
+     </li>
+     <li class='itemize'><span class='underline'>Híbridos</span>: dos de los anteriores.</li></ul>
+<!-- l. 35 --><p class='indent'>   En general, las estructuras con dispositivos de control tienen la siguiente EDM:
+</p><!-- l. 39 --><p class='indent'>   \begin {align*}  {M}{\ddot {u}} + {C}{\dot {u}} + {K}{u} + {f}_p = {f}_a + {f}_e  \end {align*}
+</p><!-- l. 41 --><p class='indent'>   Donde \({f}_p\) es la fuerza pasiva, \({f}_a\) (actuadores) es la fuerza activa y \({f}_e\) es la fuerza externa (sismo).
+</p><!-- l. 43 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='control-pasivo'><span class='titlemark'>9.2.   </span> <a id='x15-1500009.2'></a>Control pasivo</h3>
+<!-- l. 44 --><p class='noindent'>Los sistemas de control pasivo no requieren de una fuente de energía externa. <br class='newline' />
+</p><!-- l. 46 --><p class='indent'>   Funcionan absorbiendo, aislando y disipando energía. <br class='newline' />
+                                                                                         
+                                                                                         
+</p><!-- l. 48 --><p class='indent'>   Su operación puede depender tanto de el desplazamiente, velocidad y aceleración relativa entre los nodos de
+conexión del dispositivo. Algunos de estos dispositivos requieren ser reemplazados luego de ser utilizados.
+<br class='newline' />
+</p><!-- l. 50 --><p class='indent'>   La ecuación general para un sistema estructural con dispositivos de control pasivo es: \begin {align*}  {M}{\ddot {u}} + {C}{\dot {u}} + {K}{u} + {f}_p = \cancelto {0}{{f}_a} + {f}_e  \end {align*}
+</p><!-- l. 55 --><p class='indent'>   Ejemplos: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Dispositivo disipador histerético: \(f_p\) depende de sus ciclos de histéresis.
+     </li>
+     <li class='itemize'>Amortiguador viscoso: \(f_p(\dot {x}) = c_d |\dot {x}|^\alpha sgn(\dot {x})\)
+     </li>
+     <li class='itemize'>TMD: \(f_p = m_{TMD} \ddot {x}_{TMD}\)</li></ul>
+<!-- l. 62 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='dispositovs-metalicos'><a id='x15-151000'></a>Dispositovs metálicos</h5>
+<!-- l. 63 --><p class='noindent'>-
+</p>
+   <h5 class='subsubsectionHead' id='dispositivos-de-friccion'><a id='x15-152000'></a>Dispositivos de fricción</h5>
+<!-- l. 67 --><p class='noindent'>\begin {align*}  P(t) = \mu N(t) \text {sgn}(\dot {u}(t))  \end {align*}
+</p><!-- l. 69 --><p class='noindent'>donde \(P(t)\) es la fuerza que aplica el dispositivo a la estructura, \(\mu \) es el coeficiente de fricción (roce) dinámico, \(N(t)\) es la
+fuerza normal en la superficie de deslizamiento y \(\dot {u}\) es la velocidad relativa del deslizamDiento de las
+superficies.
+</p><!-- l. 71 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='dispositivos-histereticos'><a id='x15-153000'></a>Dispositivos Histeréticos</h5>
+<!-- l. 72 --><p class='noindent'>-
+</p>
+   <h5 class='subsubsectionHead' id='dispositivos-viscoelasticos'><a id='x15-154000'></a>Dispositivos Viscoelásticos</h5>
+<!-- l. 74 --><p class='noindent'>Comunmente son pistones que consisten en cilindros huecos rellenos de un material viscoelástico (fluido o sólido). En el
+caso de meteriales fluidos, la fuerza se genera cuando el fluido orificios y en el caso de materiales sólidos ocurre
+cuando estos se deforman.
+</p><!-- l. 76 --><p class='indent'>   Para modelar las fuerzas: \begin {align*}  P(t) &amp;= C|\dot {u}(t)|^\alpha \text {sign}[\dot {u}(t)] \longrightarrow \text {VE Fluidos} \\ P(t) &amp;= Ku(t) + C\dot {u}(t) \longrightarrow \text {VE Sólidos}  \end {align*}
+</p><!-- l. 81 --><p class='indent'>   La disipación de energía ocurre por la fricción generando calor.
+                                                                                         
+                                                                                         
+</p><!-- l. 84 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='otros'><a id='x15-155000'></a>Otros</h5>
+     <ul class='itemize1'>
+     <li class='itemize'>Dispositivos de re-centrado
+     </li>
+     <li class='itemize'>Amortiguadores de transformación de fase
+     </li>
+     <li class='itemize'>
+     <!-- l. 89 --><p class='noindent'>Amortiguadores/disipadores de vibración dinámica: </p>
+         <ul class='itemize2'>
+         <li class='itemize'>Amortiguadores de Masa Sintonizada (TMD)
+         </li>
+         <li class='itemize'>Amortiguadores de Líquido Sintonizado (TLD)</li></ul>
+     </li></ul>
+<!-- l. 97 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='dispositivos-de-aislacion-sismica'><a id='x15-156000'></a>Dispositivos de Aislación Sísmica</h5>
+     <ul class='itemize1'>
+     <li class='itemize'>Eficiente para vibraciones desde el suelo como sismos y tráfico, no para viento.
+     </li>
+     <li class='itemize'>Alta flexibilidad lateral
+     </li>
+     <li class='itemize'>Alta rigidez vertical
+     </li>
+     <li class='itemize'>Inclusión de nuevo modo de vibrar con <span class='cmti-10'>Desplazamientos relativos entre piso </span>pequeños.
+     </li>
+     <li class='itemize'>Al incluir el nuevo modo de vibrar, se alejan los otros modos lejos del contenido de periodos de la
+     excitación.
+                                                                                         
+                                                                                         
+     </li>
+     <li class='itemize'>Funcionan para edificios bajos con periodos fundamentales cortos y no para edificios altos que tienen
+     periodos fundamentales largos.
+     </li>
+     <li class='itemize'>Se puede incluir en distintas ubicaciones de la estructura.</li></ul>
+<!-- l. 111 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='control-activo'><span class='titlemark'>9.3.   </span> <a id='x15-1570009.3'></a>Control activo</h3>
+<!-- l. 112 --><p class='noindent'>Los dispositivos de control activo requieren de energía para contrarrestar la respuesta estructural. Funcionan
+adaptandose en función de la excitación y respuesta. Requieren del uso de sensores y actuadores. La ecuación general es
+la siguiente:
+</p><!-- l. 116 --><p class='indent'>   \begin {align*}  m\ddot {x} + c\dot {x} + kx + fp(x,\dot {x},\ddot {x}) = f_a + f_e  \end {align*}
+</p><!-- l. 118 --><p class='indent'>   donde \(f_a\) depende del actuador que se instale.
+</p><!-- l. 120 --><p class='indent'>   <span class='underline'>Ventajas del control activo</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Efectividad, no hay límites teoréticos para la eficiencia del controlador
+     </li>
+     <li class='itemize'>Adaptabilidad a la excitación
+     </li>
+     <li class='itemize'>Selectvidad, el controlador se puede diseñar para varios objetivos (seguridad y comfort)
+     </li>
+     <li class='itemize'>Aplicabilidad para un gran rango de frecuencias y excitaciones</li></ul>
+<!-- l. 128 --><p class='indent'>   <span class='underline'>Dispositivos</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>Amortiguador de masa activo (Active mass damper, AMD)
+     </li>
+     <li class='itemize'>Sistemas de tendones activos (Active tendon systems)
+     </li>
+     <li class='itemize'>(Active brace systems)
+     </li>
+     <li class='itemize'>(Pulse generation systems)</li></ul>
+                                                                                         
+                                                                                         
+<!-- l. 136 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='control-semiactivo'><span class='titlemark'>9.4.   </span> <a id='x15-1580009.4'></a>Control semi-activo</h3>
+     <ul class='itemize1'>
+     <li class='itemize'>TMD semi-activo (Semi-active TMDs)
+     </li>
+     <li class='itemize'>TLD semi-activo (Semi-active TLDs)
+     </li>
+     <li class='itemize'>Amortiguador de fricción semi-activo (Semi-active friction damper)
+     </li>
+     <li class='itemize'>(Semi-active vibration absorbers)
+     </li>
+     <li class='itemize'>Controlador de rigidez semi-activo
+     </li>
+     <li class='itemize'>Amortiguadores Electroreologicos (Electrorheological damper, ER)
+     </li>
+     <li class='itemize'>Amortiguador Magnetoreologico (MR)
+     </li>
+     <li class='itemize'>Amortiguador viscoelástico semi-activo</li></ul>
+<!-- l. 148 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='control-hibrido'><span class='titlemark'>9.5.   </span> <a id='x15-1590009.5'></a>Control híbrido</h3>
+     <ul class='itemize1'>
+     <li class='itemize'>Amortiguador de masa hibrido (Hybrid mass damper, HMD)
+     </li>
+     <li class='itemize'>Aislación basal híbrida (Hybrid base isolation)
+     </li>
+     <li class='itemize'>(Hybrid damper actuator bracing control)</li></ul>
+                                                                                         
+                                                                                         
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>next</a>] [<a href='MIC411apuntesch8.html'>prev</a>] [<a href='MIC411apuntesch8.html#tailMIC411apuntesch8.html'>prev-tail</a>] [<a href='MIC411apuntesch9.html'>front</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch9.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailMIC411apuntesch9.html'></a>  </p> 
+</body> 
+</html>

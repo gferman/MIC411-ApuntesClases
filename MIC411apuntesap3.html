@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>C Topicos de Analisis Numerico</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesli4.html'>next</a>] [<a href='MIC411apuntesap2.html'>prev</a>] [<a href='MIC411apuntesap2.html#tailMIC411apuntesap2.html'>prev-tail</a>] [<a href='#tailMIC411apuntesap3.html'>tail</a>] [<a href='MIC411apuntespa4.html#MIC411apuntesap3.html'>up</a>] </p></div>
+   <h2 class='appendixHead' id='topicos-de-analisis-numerico'><span class='titlemark'>Apéndice C</span><br /><a id='x25-272000C'></a>Tópicos de Análisis Númerico</h2>
+   <h3 class='sectionHead' id='ecuaciones-nolineales'><span class='titlemark'>C.1.   </span> <a id='x25-273000C.1'></a>Ecuaciones nolineales</h3>
+<!-- l. 5 --><p class='noindent'><a id='x25-273001'></a>Heath (<a href='MIC411apuntesli4.html#cite.0@heath2002scientificcomputing'>2002</a>)
+</p><!-- l. 7 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='optimizacion'><span class='titlemark'>C.2.   </span> <a id='x25-274000C.2'></a>Optimización</h3>
+<!-- l. 9 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id=''><span class='titlemark'>C.2.1.   </span> <a id='x25-275000C.2.1'></a></h4>
+<!-- l. 11 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='metodos-de-integracion-numerica-de-edos'><span class='titlemark'>C.3.   </span> <a id='x25-276000C.3'></a>Métodos de integración númerica de EDOs</h3>
+<!-- l. 13 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='paso-temporal-fijo'><span class='titlemark'>C.3.1.   </span> <a id='x25-277000C.3.1'></a>Paso temporal fijo</h4>
+<!-- l. 15 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='paso-temporal-variable'><span class='titlemark'>C.3.2.   </span> <a id='x25-278000C.3.2'></a>Paso temporal variable</h4>
+<!-- l. 17 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='descomposicion-de-valores-singulares-svd'><span class='titlemark'>C.4.   </span> <a id='x25-279000C.4'></a>Descomposición de valores singulares (SVD)</h3>
+<!-- l. 19 --><p class='noindent'>Referencia: <a id='x25-279001'></a>Brunton y Kutz (<a href='MIC411apuntesli4.html#cite.0@brunton_data-driven_2019'>2019</a>, Cap. 1)
+</p><!-- l. 21 --><p class='indent'>   Dado \(X \in \mathbb {C}^{n \times m}\):
+</p><!-- l. 25 --><p class='indent'>   \begin {equation}  X = U \Sigma V^*  \end {equation}<a id='x25-279002r1'></a>
+</p><!-- l. 27 --><p class='noindent'>donde \(U \in \mathbb {C}^{n \times n} \) y \(V \in \mathbb {C}^{m \times m}\) son matrices unitarias con columnas ortogonales (es decir, \(U U^* = I\) y \(V V^* = I\)), y \(\Sigma \in \mathbb {R}^{n \times m}\) es una matriz con entradas no-negativas
+y reales en la diagonal, y ceros fuera de la diagonal. Las columnas de \(U\) se denominan los <span class='cmti-10'>vectores singulares izquierdos</span>
+de \(X\), y las columnas de \(V\) son los <span class='cmti-10'>vectores singulares derechos </span>de \(X\).
+</p><!-- l. 29 --><p class='indent'>   Cuando \(n \geq m\), se puede escribir la operación SVD económica:
+</p><!-- l. 40 --><p class='indent'>   \begin {equation}  X = U \Sigma V^* = \begin {bmatrix} \hat {U} &amp; \hat {U}^{\perp } \end {bmatrix} \begin {bmatrix} \hat {\Sigma } \\ 0 \end {bmatrix} V^*  \end {equation}<a id='x25-279003r2'></a>
+</p><!-- l. 42 --><p class='indent'>   donde \(\hat {\Sigma } \in \mathbb {R}^{m \times m}\) es la matriz de valores singulares.
+</p><!-- l. 44 --><p class='indent'>   En Matlab, se utiliza la función <span class='cmtt-10'>svd()</span>
+</p>
+   <!-- l. 46 -->
+                                                                                         
+                                                                                         
+
+<pre class='lstlisting' id='listing-1'><span class='label'><a id='x25-279004r1'></a>1</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>X</span></span><span style='color:#000000'> <span class='cmtt-10'>= rand(5,3);</span> 
+</span><span class='label'><a id='x25-279005r2'></a>2</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>U</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>S</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X);</span> 
+</span><span class='label'><a id='x25-279006r3'></a>3</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>Uhat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>Shat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X,</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>econ</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span><span style='color:#000000'><span class='cmtt-10'>;</span></span></pre>
+<!-- l. 52 --><p class='indent'>   Una interpretación matemática es que las matrices de correlación \(X X^*\) y \(X X^*\) cumple las siguientes relaciones:
+</p><!-- l. 57 --><p class='indent'>   \begin {align}  (X X^*) U &amp; = U \begin {bmatrix} \hat {\Sigma }^2 &amp; 0 \\ 0 &amp; 0\end {bmatrix}\\ (X^* X) V &amp; = V \hat {\Sigma }^2\\  \end {align}
+</p><!-- l. 59 --><p class='indent'>   Entonces, los valores singulares de \(X\) corresponden a los valores propios (<span class='cmti-10'>eigenvalues</span>) de las matrices de correlación \(X X^*\)
+y \(X X^*\). También, las columnas de \(U\) son los vectores propios (<span class='cmti-10'>eigenvectors</span>) de la matriz \(X X^*\), y las columnas de \(V\) son los
+vectores propios de la matriz \(X^* X\).
+</p><!-- l. 61 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='fast-fourier-transform'><span class='titlemark'>C.5.   </span> <a id='x25-280000C.5'></a>Fast Fourier Transform</h3>
+                                                                                         
+                                                                                         
+   <!-- l. 160 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesli4.html'>next</a>] [<a href='MIC411apuntesap2.html'>prev</a>] [<a href='MIC411apuntesap2.html#tailMIC411apuntesap2.html'>prev-tail</a>] [<a href='MIC411apuntesap3.html'>front</a>] [<a href='MIC411apuntespa4.html#MIC411apuntesap3.html'>up</a>] </p></div>
+<!-- l. 160 --><p class='indent'>   <a id='tailMIC411apuntesap3.html'></a>  </p> 
+</body> 
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html> 
+<html lang='es' xml:lang='es'> 
+<head><title>6 Procesamiento Digital de Senales</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='MIC411apuntes.css' rel='stylesheet' type='text/css' /> 
+<meta content='MIC411apuntes.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+</head><body>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch5.html'>prev</a>] [<a href='MIC411apuntesch5.html#tailMIC411apuntesch5.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch6.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch6.html'>up</a>] </p></div>
+   <h2 class='chapterHead' id='procesamiento-digital-de-senales'><span class='titlemark'>Capítulo 6</span><br /><a id='x11-870006'></a>Procesamiento Digital de Señales</h2>
+   <h3 class='sectionHead' id='sistemas-discretos'><span class='titlemark'>6.1.   </span> <a id='x11-880006.1'></a>Sistemas discretos</h3>
+<!-- l. 5 --><p class='noindent'>Es necesario convertir una señal análoga a discreta.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 9 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sist_discreto.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 12 --><p class='indent'>   Razón: Queremos realizar calculos de la señal en un computador.
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 16 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sistema_discret.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='muestreo'><span class='titlemark'>6.1.1.   </span> <a id='x11-890006.1.1'></a>Muestreo</h4>
+<!-- l. 21 --><p class='noindent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x11-89002x1'>Muestreo en el tiempo \(\Longrightarrow \) Sampling
+     </li>
+<li class='enumerate' id='x11-89004x2'>Muestreo en amplitud \(\Longrightarrow \) Quantization</li></ol>
+<!-- l. 26 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='cuantizacion'><span class='titlemark'>6.1.2.   </span> <a id='x11-900006.1.2'></a>Cuantización</h4>
+<!-- l. 28 --><p class='noindent'>En el contexto de la conversión analógica a digital (ADC, Analog-to-Digital Conversion), la cuantización
+(quantization) es el proceso mediante el cual se convierte un valor analógico continuo en un valor digital
+discreto.
+</p><!-- l. 30 --><p class='indent'>   Por ejemplo, una máquina 8 bits \(\Longrightarrow \) Números utilizando \(2^{8}\) cifras significativas.
+</p><!-- l. 38 --><p class='indent'>   \begin {align*}  \text {Bit} = \left \{ \begin {array}{l} 0 \\ 1 \end {array} \right . \Longrightarrow 256 \text { niveles}  \end {align*}
+</p><!-- l. 40 --><p class='indent'>   Durante la cuantización, cada valor analógico medido se aproxima al nivel más cercano de entre esos 256
+niveles.
+</p><!-- l. 42 --><p class='indent'>   Por ejemplo, si el rango es \(0 - 5\) V, cada nivel representa un salto de \(\Delta = 5/256 \approx 0.0195\) V. Si el valor analógico real es \(1.23\) V, el ADC lo
+“cuantiza” al nivel más cercano, por ejemplo \(1.22\) V.
+</p><!-- l. 44 --><p class='indent'>   Esta aproximación introduce un error de cuantización, que es la diferencia entre el valor analógico real y el valor
+cuantizado. Este error es inevitable y depende de la resolución del ADC: a mayor número de bits, menor error de
+cuantización.
+</p><!-- l. 46 --><p class='indent'>   <span class='underline'>Nota</span>: Computadores representan números utilizando dígitos binarios (bits almacenados en flip-flops).<br class='newline' />
+</p><!-- l. 48 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='senal-en-tiempo-discreto'><span class='titlemark'>6.1.3.   </span> <a id='x11-910006.1.3'></a>Señal en tiempo discreto</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 52 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/AD.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 58 --><p class='indent'>   \begin {align*}  x[n]=x_a(nT_s)  \end {align*}
+</p><!-- l. 60 --><p class='noindent'>donde \(x[n]\) es la señal en tiempo discreto, \(T_s\) es el paso temporal de muestreo, y \(n\) es el índice temporal (número
+entero).<br class='newline' />
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 64 --><p class='noindent'><img alt='PIC' height='289' src='Figuras/senaldiscreta.png' width='289' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 67 --><p class='indent'>   La representación matemática del muestreo se puede realizar utilizando la <span class='underline'>Función pulso unitario</span>:
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 71 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/pulso_unitario.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 80 --><p class='indent'>   \begin {align*}  \delta [n] = \begin {cases} 1, &amp; n=0\\ 0,&amp; n \neq 0 \end {cases}  \end {align*}
+</p><!-- l. 84 --><p class='indent'>   \begin {align*}  x[n]=\sum _{k=0}^{N-1} x_k \delta [n-k]=x_0\delta [n]+x_1\delta [n-1]+x_2\delta [n-2]+...+x_{N-1}\delta [n-(N-1)]  \end {align*}
+</p><!-- l. 88 --><p class='indent'>   \begin {align*}  \{x_n\}_0^{N-1}=\{x_0,x_1,x_2,...,x_{N-1}\} \Longrightarrow \text {Arreglo de N puntos (vector)}  \end {align*}
+</p>
+   <h3 class='sectionHead' id='analisis-en-frecuencia'><span class='titlemark'>6.2.   </span> <a id='x11-920006.2'></a>Análisis en frecuencia</h3>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 95 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/analisis_frec.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 98 --><p class='noindent'><span class='cmti-10'>Nota:</span> \(j = \sqrt {-1}\) es el número complejo.<br class='newline' />
+</p>
+   <h4 class='subsectionHead' id='continuoustime-fourier-transform-ctft'><span class='titlemark'>6.2.1.   </span> <a id='x11-930006.2.1'></a>Continuous-Time Fourier Transform (CTFT)</h4>
+<!-- l. 105 --><p class='noindent'>\begin {align*}  X(\Omega ) &amp;= \int _{-\infty }^{+\infty }x_a(t)e^{-j\Omega t}dt \quad \text {(CTFT)}\\ x_a(t) &amp;= \frac {1}{2\pi }\int _{-\infty }^{+\infty }X(\Omega )e^{+j\Omega t}d\Omega \quad \text {(inverse CTFT)}  \end {align*}
+</p><!-- l. 107 --><p class='noindent'>\(t, \Omega \in \mathbb {R}\), \(x_a(t)\in \mathbb {R}\), \(X(\Omega )\in \mathbb {C}\)<br class='newline' />
+</p><!-- l. 109 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='discretetime-fourier-transform-dtft'><span class='titlemark'>6.2.2.   </span> <a id='x11-940006.2.2'></a>Discrete-time Fourier Transform (DTFT)</h4>
+<!-- l. 111 --><p class='noindent'>Supongamos que la señal \(x(t)\) es discretizada en el tiempo, \(x[n] = x(n T_s)\), donde \(T_s\) es el período de muestreo. Entonces, el DTFT se
+define:
+</p><!-- l. 116 --><p class='indent'>   \begin {align*}  X_d(\omega ) &amp;= \sum _{n=-\infty }^{\infty }x[n]e^{-j\omega n} \quad \text {(DTFT)}\\ x[n] &amp;= \frac {1}{2\pi }\int _{-\infty }^{\infty }X_d(\omega )e^{+j\omega n}d\omega \quad \text {(inverse DTFT)}  \end {align*}
+</p><!-- l. 118 --><p class='indent'>   donde \(\omega \in \mathbb {R}\), \(n \in \mathbb {Z}\).
+</p><!-- l. 120 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='discrete-fourier-transform-dft'><span class='titlemark'>6.2.3.   </span> <a id='x11-950006.2.3'></a>Discrete Fourier Transform (DFT)</h4>
+<!-- l. 122 --><p class='noindent'>La DFT opera sobre una secuencia de \(N\) puntos en tiempo, \(x[n], n \in \{0,1,2,\ldots ,N-1\}\), y produce una secuencia de \(N\) puntos en frecuencia,
+\(X[m], m \in \{0,1,2,\ldots ,N-1\}\).
+</p><!-- l. 127 --><p class='indent'>   \begin {align*}  X[m] &amp;= \sum _{n=0}^{N-1} x_ne^{-j\frac {2\pi }{N}nm} \quad \text {(DFT)}\\ x[n] &amp;= \frac {1}{N}\sum _{m=0}^{N-1}X_me^{+j\frac {2\pi }{N}nm} \quad \text {(Inverse DFT)}  \end {align*}
+</p><!-- l. 129 --><p class='indent'>   donde \(n,m \in \{0,1,2,\ldots ,N-1\}\).<br class='newline' />
+</p><!-- l. 131 --><p class='indent'>   <span class='cmti-10'>Nota 1</span>: Se asume que la secuencia \(x[n]\) es periódica.<br class='newline' />
+</p><!-- l. 133 --><p class='indent'>   <span class='cmti-10'>Nota 2</span>: Fast Fourier Transform (FFT) es un algoritmo computacional para calcular el DFT.<br class='newline' />
+</p><!-- l. 135 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='relacion-entre-dft-y-dtft'><span class='titlemark'>6.2.4.   </span> <a id='x11-960006.2.4'></a>Relación entre DFT y DTFT</h4>
+<!-- l. 139 --><p class='noindent'>\begin {align*}  X[m]=X_d(\omega )\bigg |_{\omega =\frac {2\pi }{N}m}  \end {align*}
+</p><!-- l. 141 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='relacion-entre-dtft-y-ctft'><span class='titlemark'>6.2.5.   </span> <a id='x11-970006.2.5'></a>Relación entre DTFT y CTFT</h4>
+<!-- l. 145 --><p class='noindent'>\begin {align*}  X_d(\omega ) = \frac {1}{T} \sum _{l=-\infty }^{+\infty } X \left (\underbrace {\frac {\omega + 2\pi l}{T}}_{= \Omega } \right )  \end {align*}
+                                                                                         
+                                                                                         
+</p><!-- l. 147 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='criterio-de-muestreo-de-nyquist'><span class='titlemark'>6.3.   </span> <a id='x11-980006.3'></a>Criterio de muestreo de Nyquist</h3>
+<!-- l. 149 --><p class='noindent'>En DSP, queremos muestrear la señal sin pérdida de información (“lossless”). Entonces, hay que elegir correctamente el
+intervalo de muestreo \(T_s\) (sampling time).<br class='newline' />
+</p>
+   <div class='newtheorem'>
+<!-- l. 151 --><p class='noindent'><span class='head'>
+<a id='x11-98001r7'></a>
+<span class='cmbx-10'>Teorema 7 </span>(Teorema de Nyquist)<span class='cmbx-10'>.</span>  </span><span class='cmti-10'>La frecuencia de muestreo de una se</span>ñ<span class='cmti-10'>al digital debe ser al menos el doble
+de la m</span>á<span class='cmti-10'>xima frecuencia de la se</span>ñ<span class='cmti-10'>al an</span>á<span class='cmti-10'>loga:</span>
+                                             \[F_s &gt; 2 f_{\max }\]
+</p>
+   </div>
+<!-- l. 154 --><p class='indent'>
+</p><!-- l. 156 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='aliasing'><span class='titlemark'>6.4.   </span> <a id='x11-990006.4'></a>Aliasing</h3>
+<!-- l. 158 --><p class='noindent'>Aliasing es un fenómeno que ocure cuando el terorema de Nyquist no se cumple, es decir, \(F_s \leq 2 f_{\max }\). Ocurre cuando una señal
+análoga no puede ser reconstruida por la señal digitalizada.<br class='newline' />
+</p><!-- l. 160 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Video del “helicoptero mágico” <a class='url' href='https://www.chrisfay.de/helicopter-video'>https://www.chrisfay.de/helicopter-video</a>.
+</p><!-- l. 162 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='aliasing-en-dominio-del-tiempo'><span class='titlemark'>6.4.1.   </span> <a id='x11-1000006.4.1'></a>Aliasing en dominio del tiempo</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 166 --><p class='noindent'><img alt='PIC' height='433' src='Figuras/AliasingTimeExample.png' width='433' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='aliasing-en-dominio-de-frecuencia'><span class='titlemark'>6.4.2.   </span> <a id='x11-1010006.4.2'></a>Aliasing en dominio de frecuencia</h4>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 173 --><p class='noindent'><img alt='PIC' height='433' src='Figuras/aliasing_frequency_folding.png' width='433' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 176 --><p class='indent'>   Considere \(f = 2 \pi \Omega \), donde \(f\) es frecuencia [Hz] y \(\Omega \) es frecuencia (cicular) [rad/s].
+</p>
+   <h5 class='subsubsectionHead' id='sin-aliasing'><a id='x11-102000'></a>Sin Aliasing</h5>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 182 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/sin_aliasing.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 188 --><p class='indent'>   \begin {align*}  F_s &amp;&gt; 2f_{max}\\ f_{max} &amp;&lt; \frac {F_s}{2}=F_N \quad \text {(frecuencia de Nyquist)}  \end {align*}
+</p>
+   <h5 class='subsubsectionHead' id='con-aliasing'><a id='x11-103000'></a>Con Aliasing</h5>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 194 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/con_aliasing.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 197 --><p class='indent'>   Ejemplo: PSD de respuesta estructural de un sistema 3DOF
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 201 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/AAexample.png' width='361' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+     <ul class='itemize1'>
+     <li class='itemize'>Filtro anti-aliasing (AA) de paso bajo (low-pass) es utilizado para eliminar el “aliasing” de la respuesta
+     en frecuencia.
+     </li>
+     <li class='itemize'>Filtro AA tiene que ser aplicado antes del muestreo en el tiempo.</li></ul>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 211 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/filtroAA2.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <h4 class='subsectionHead' id='spectral-leakage'><span class='titlemark'>6.4.3.   </span> <a id='x11-1040006.4.3'></a>Spectral Leakage</h4>
+<!-- l. 215 --><p class='noindent'>CTFT/DTFT/DFT asumen que la <span class='underline'>señal es periódica</span>, es decir, que la señal se repite luego de un periodo \(T_1\)
+indefinidamente.
+                                             \[ x(t) = x(t+nT_1) \]
+ Si la señal no es periódica, ocurren saltos abruptos. </p><figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 220 --><p class='noindent'><img alt='PIC' height='50' src='Figuras/FT.png' width='50' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 225 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/DFT.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 228 --><p class='indent'>   Este salto abrupto es semejante a una función escalón. Recordar que una función escalón se puede escribir como una
+Serie de Fourier que es una suma de armónicas con distinta frecuencia. Por lo tanto, al calcular \(X[m]\) (DFT de \(x[n]\))
+surge el fenómeno de “spectral leakage”, donde se agregan armónicas artificiales producto del escalón
+generado.<br class='newline' />
+</p><!-- l. 229 --><p class='indent'>   <span class='underline'>Ejemplo</span>:
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 233 --><p class='noindent'><img alt='PIC' height='361' src='Figuras/ejemplo_leakage.png' width='361' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 236 --><p class='indent'>   <span class='underline'>Solución</span>: “Windowing” \(\Longrightarrow \) aplicar ventanas.<br class='newline' />
+</p>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 240 --><p class='noindent'><img alt='PIC' height='469' src='Figuras/solucion_leakage.png' width='469' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 243 --><p class='indent'>   También ocurre cuando la señal está contaminada con ruido. <br class='newline' />
+</p><!-- l. 245 --><p class='indent'>   Para resolver el <span class='cmti-10'>spectral leakage </span>se pueden utilizar <span class='cmti-10'>Periodogramas</span>.
+</p>
+   <h3 class='sectionHead' id='psd-de-senal-digital'><span class='titlemark'>6.5.   </span> <a id='x11-1050006.5'></a>PSD de señal digital</h3>
+<!-- l. 249 --><p class='noindent'>Referencia: <a id='x11-105001'></a>Hayes (<a href='MIC411apuntesli4.html#cite.0@Hayes1996'>1996</a>, Cap. 8).<br class='newline' />
+</p><!-- l. 251 --><p class='indent'>   En el caso de que \(x(t)\) sea un p.e. w.s.s., su PSD se puede calcular de la siguiente forma:
+</p><!-- l. 256 --><p class='indent'>   \begin {align*}  S_{X}(\Omega ) &amp;= \mathcal {F}\{R_{X}(\tau )\} \quad \text {(Caso contínuo, CTFT)}  \end {align*}
+</p><!-- l. 258 --><p class='indent'>   En cambio, si \(x[k]\) un p.e. w.s.s., señal digital con un intervalo de muestreo \(T_s\). Podemos estimar \(S_{X}(\omega )\) (continua) utilizando
+estimadores de valor medio y la definición de DTFT.
+</p><!-- l. 262 --><p class='indent'>   \begin {align*}  \hat {S}_{X}(\omega ) = \sum _{k=-\infty }^{+\infty }\hat {r}_x[k]e^{-j\omega k}  \end {align*}
+</p><!-- l. 264 --><p class='indent'>   donde el estimador de autocorrelación \(\hat {r}_{X}[k]\), \(n\) es el índice temporal, y \(k\) es el índice para el retraso.
+</p><!-- l. 268 --><p class='indent'>   \begin {align*}  \hat {r}_{X}[k] = \frac {1}{N} \sum _{n=0}^{N-1} x[n] x^*[n+k], \qquad k \in \{0,1,2,\ldots ,N-1\}  \end {align*}
+</p><!-- l. 270 --><p class='indent'>   Alcance para la estimación del PSD:
+</p><!-- l. 272 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x11-105003x1'>Calcular DFT, y utilizar una forma de calcular el promedio de manera insesgada.
+     </li>
+<li class='enumerate' id='x11-105005x2'>Distintas realizaciones de \(x(t)\) (de \(x[k]\)) nos entegan disintas estimaciones del PSD. <br class='newline' />Cada estimación del PSD es una realización de un proceso estocástico.</li></ol>
+   <figure class='figure'> 
+
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!-- l. 279 --><p class='noindent'><img alt='PIC' height='43' src='Figuras/PSD_realizaciones.png' width='43' />
+                                                                                         
+                                                                                         
+</p>
+   </figure>
+<!-- l. 282 --><p class='indent'>   Estrategia para caracterizar el PSD:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x11-105007x1'>Queremos que la media del PSD se acerque al valor real del PSD.
+     </li>
+<li class='enumerate' id='x11-105009x2'>Queremos que la varianza del PSD sea pequeña.</li></ol>
+<!-- l. 288 --><p class='indent'>   <span class='underline'>Ejemplo</span>: Considere el siguiente p.e.: \begin {align*}  x[n]=A+w[n]  \end {align*}
+</p><!-- l. 293 --><p class='indent'>   donde \(A\) es una constante; \(w[n] = w(nT_s)\) es ruido blanco, \(\mu _W(t) = 0\) y \(\sigma _W^2(t) = \sigma ^2\). Entonces, \(\mu _X(t) = A\) y \(\sigma _X^2(t) = \sigma ^2\).<br class='newline' />
+</p><!-- l. 295 --><p class='indent'>   Dada una realización finita \(\{x[0],x[1]...,x[N-1]\}\). Un estimador razonable para la media \(A\) es la “media muestral de A”
+(promedio).
+</p><!-- l. 299 --><p class='indent'>   \begin {align*}  \hat {A} = \frac {1}{N} \sum _{n=0}^{N-1}x[n]  \end {align*}
+</p><!-- l. 301 --><p class='indent'>   Entonces, queremos dos cosas:
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x11-105011x1'>
+     <!-- l. 304 --><p class='noindent'>Que \(\hat {A}\) sea insesgado, es decir, que converja al valor correcto de \(A\):
+     </p><!-- l. 306 --><p class='noindent'>
+                                               \[\mathbb {E}\{\hat {A}\}=A\]
+     </p><!-- l. 308 --><p class='noindent'>Si \(\hat {A}\) es sesgado. Que al menos cumpla con ser un estimador asintóticamente insesgado:
+     </p><!-- l. 310 --><p class='noindent'>
+                                               \[\lim _{N\to \infty } \mathbb {E}\{\hat {A}\}=A\]
+                                                                                         
+                                                                                         
+     </p></li>
+<li class='enumerate' id='x11-105013x2'>
+     <!-- l. 312 --><p class='noindent'>La varianza de \(\hat {A}\) sea pequeña
+     </p><!-- l. 314 --><p class='noindent'>
+                                               \[\text {var}\{\hat {A}\} = \frac {\sigma ^2}{N}\]
+     </p><!-- l. 316 --><p class='noindent'>En este sentido, la dispersión de \(\hat {A}\) disminuye en la medida que \(N\) aumenta:
+     </p><!-- l. 318 --><p class='noindent'>
+                                               \[\lim _{N\to \infty } \text {var}\{\hat {A}\} = 0\]
+</p>
+     </li></ol>
+<!-- l. 323 --><p class='indent'>   <span class='underline'>Objetivos</span>: Estimar \(\hat {S}_X(\omega )\) tal que:
+                                             \[\mathbb {E}\{\hat {S}_X(\omega )\}=S_X(\omega ) \]
+ y
+                                                                                         
+                                                                                         
+                                             \[\text {var}\{\hat {S}_X(\omega )\}=\text {pequeño} \]
+</p>
+   <h4 class='subsectionHead' id='periodograma'><span class='titlemark'>6.5.1.   </span> <a id='x11-1060006.5.1'></a>Periodograma</h4>
+<!-- l. 329 --><p class='noindent'><span class='underline'>Definición</span>:
+</p><!-- l. 331 --><p class='indent'>   Usando DTFT:
+</p><!-- l. 338 --><p class='indent'>   \begin {align*}  \hat {S}_{PER}(\omega ) &amp;= \frac {1}{N} \left | \sum _{n=0}^{N-1} x[n] e^{-j \omega n} \right |^2 \\ &amp; = \frac {1}{N} |X(\omega )|^2\\ &amp; = \frac {1}{N} X(\omega ) X^*(\omega )  \end {align*}
+</p><!-- l. 340 --><p class='indent'>   Usando DFT:
+</p><!-- l. 346 --><p class='indent'>   \begin {align*}  \hat {S}_{PER}[k] &amp;= \frac {1}{N} \left | \sum _{n=0}^{N-1} x[n] e^{-j 2 \pi n k /N} \right |^2 \\ &amp; = \frac {1}{N} \left | X[k] \right |^2\\ &amp; = \frac {1}{N} X[k] X^*[k]  \end {align*}
+</p><!-- l. 348 --><p class='indent'>   <span class='underline'>Nota</span>: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 352 --><p class='noindent'>\(\hat {S}_{PER}[k]\) es sesgado, pero es asintóticamente insesgado
+     </p><!-- l. 356 --><p class='noindent'>\begin {align*}  \lim _{N\to \infty }\mathbb {E}\{\hat {S}_{PER}[k]\}=S_X[k]  \end {align*}
+     </p></li>
+     <li class='itemize'>
+     <!-- l. 358 --><p class='noindent'>Varianza de \(\hat {S}_{PER}[k]\) no tiende a cero para \(N\to \infty \) \(\Longrightarrow \) Problema
+     </p><!-- l. 362 --><p class='noindent'>\begin {align*}  \text {var}\{\hat {S}_X(\omega )\}=\sigma ^4  \end {align*}
+     </p><!-- l. 364 --><p class='noindent'>donde \(\sigma ^2=\frac {S_0 \omega _c}{\pi }\) si \(x[n]\) es un ruido blanco.<br class='newline' />
+</p>
+     </li></ul>
+<!-- l. 368 --><p class='indent'>   Principales problemas del periodograma:
+</p><!-- l. 370 --><p class='indent'>
+     </p><ol class='enumerate1'>
+<li class='enumerate' id='x11-106002x1'>Estimación sesgada
+     </li>
+<li class='enumerate' id='x11-106004x2'>Varianza no decrece con aumento \(N\)
+     </li>
+<li class='enumerate' id='x11-106006x3'>
+     <!-- l. 373 --><p class='noindent'>Fluctuaciones rápidas </p><figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/fluct.png' width='50' /> </figure>
+     </li></ol>
+                                                                                         
+                                                                                         
+<!-- l. 380 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='periodograma-modificado'><span class='titlemark'>6.5.2.   </span> <a id='x11-1070006.5.2'></a>Periodograma Modificado</h4>
+<!-- l. 382 --><p class='noindent'>Métodos que modifican el periodograma clásico, para resolver los problemas estacionarios:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>
+     <!-- l. 385 --><p class='noindent'><span class='underline'>Periodograma modificada</span>: uso de ventanas, que reduce el efecto del sesgo, pero sacrificando resolución.
+     </p><!-- l. 387 --><p class='noindent'>
+                                               \[\hat {S}_{MP}(\omega )=\frac {1}{N U} \left | \sum _{n=0}^{N-1} x[n]w[n]e^{-j\omega n} \right | ^2 \]
+     </p><!-- l. 389 --><p class='noindent'>donde \(w[n]\): ventana en el dominio del tiempo y \(U\) es un factor de escala.
+     </p><!-- l. 391 --><p class='noindent'>
+                                               \[U=\frac {1}{N}\sum _{n=0}^{N-1} w[n]^2\]
+     </p><!-- l. 393 --><p class='noindent'>Nota: \(U=1\) si la ventana es rectangular.
+     </p><!-- l. 395 --><p class='noindent'>Desempeño:
+</p>
+         <ul class='itemize2'>
+         <li class='itemize'>Reduce sesgo, pero sigue siendo una estimación sesgada.
+         </li>
+         <li class='itemize'>Es asintóticamente insesgada.
+         </li>
+         <li class='itemize'>La varianza es bastante cercana a la del periodograma.</li></ul>
+                                                                                         
+                                                                                         
+     </li>
+     <li class='itemize'>
+     <!-- l. 403 --><p class='noindent'><span class='underline'>Método de Bartlett</span>: promedio de periodogramas). Dividir la señal en \(K\) segmentos de \(L\) muestras, tal que
+     \(N = KL\).
+</p>
+     <figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/ventana1.png' width='50' /> </figure>
+     <!-- l. 410 --><p class='noindent'>Definición de bloque:
+     </p><!-- l. 412 --><p class='noindent'>
+                                               \[ x_i[n] = x[n + iL], \qquad \begin {cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end {cases} \]
+     </p><!-- l. 420 --><p class='noindent'>Entonces, la estimación del PSD es:
+     </p><!-- l. 422 --><p class='noindent'>
+                                               \[\hat {S}_B(\omega )=\frac {1}{K}\sum _{i=0}^{K-1} \left \{\frac {1}{L} \left |\sum _{n=0}^{L-1}x_i[n]e^{-j\omega n} \right |^2 \right \} \]
+     </p><!-- l. 424 --><p class='noindent'>donde \(i\) esta asociado al bloque \(i\) de tamaño \(L\).
+     </p><!-- l. 426 --><p class='noindent'>La varianza de la estimación del PSD es inversamente proporcional a la cantidad de bloques \(K\):
+     </p><!-- l. 428 --><p class='noindent'>
+                                               \[\text {var}\{\hat {S}_B(\omega )\} \propto \frac {1}{K}\]
+     </p><!-- l. 430 --><p class='noindent'>Es decir, que mientras más bloques se escogan (mayor \(K\)) más nos acercamos al objetivo de que la varianza sea \(0\).
+     <br class='newline' />
+     </p><!-- l. 432 --><p class='noindent'>El problema es que como \(N = KL\), si se definen más bloques (aumentar \(K\)), significa que los bloques son
+     más cortos (\(L\) disminuye) y bloques cortos implican una resolución en frecuencia baja, es decir, \(\Delta \omega \) es
+     grande.
+     </p><!-- l. 436 --><p class='noindent'>\(\Longrightarrow \) “Trade-off”: Varianza vs resolución.
+     </p></li>
+     <li class='itemize'>
+     <!-- l. 438 --><p class='noindent'><span class='underline'>Método de Welch</span>: promedio de periodogramas con ventanas traslapadas.
+</p>
+     <figure class='figure'> 
+ <img alt='PIC' height='50' src='Figuras/ventana2.png' width='50' /> </figure>
+     <!-- l. 445 --><p class='noindent'>Definición de bloque:
+     </p><!-- l. 447 --><p class='noindent'>
+                                               \[ x_i[n] = x[n + iD], \qquad \begin {cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end {cases} \]
+     </p><!-- l. 455 --><p class='noindent'>donde la cantidad de puntos de traslape es \(L-D\):
+     </p><!-- l. 457 --><p class='noindent'>
+                                               \[ \begin {cases} D = L, &amp; \text {sin traslape} \\ D = L/2, &amp; \text {50\% traslape (más común)}\\ D = 3L/4, &amp; \text {25\% traslape} \end {cases} \]
+     </p><!-- l. 465 --><p class='noindent'>
+                                                                                         
+                                                                                         
+                                               \[\hat {S}_W (\omega ) =\frac {1}{KLU}\sum _{i=0}^{K-1}\left | \sum _{n=0}^{L-1} x_i[n]w[n]e^{-j\omega n} \right |^2\]
+     </p><!-- l. 471 --><p class='noindent'>Comparado con método de Bartlett (sin traslape), para el mismo valor de \(N\) y \(L\), el método de Welch arroja casi un
+     50\(\m@th \,\)% de reducción en varianza:
+     </p><!-- l. 473 --><p class='noindent'>
+                                               \[\text {var}\{\hat {S}_W (\omega )\} \approx \frac {9}{16} \text {var}\{\hat {S}_B (\omega )\} \]
+     </p><!-- l. 475 --><p class='noindent'>En <span class='cmti-10'>MATLAB</span>, la función <span class='cmtt-10'>cpsd() </span>y <span class='cmtt-10'>pwelch() </span>utilizan el método de Welch.
+</p>
+     </li></ul>
+                                                                                         
+                                                                                         
+   <!-- l. 130 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch5.html'>prev</a>] [<a href='MIC411apuntesch5.html#tailMIC411apuntesch5.html'>prev-tail</a>] [<a href='MIC411apuntesch6.html'>front</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch6.html'>up</a>] </p></div>
+<!-- l. 130 --><p class='indent'>   <a id='tailMIC411apuntesch6.html'></a>   </p> 
+</body> 
+</html>
