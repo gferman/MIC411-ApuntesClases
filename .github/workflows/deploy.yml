@@ -23,9 +23,10 @@ jobs:
 
       - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
-          # El parámetro '2' divide el documento en páginas web separadas por \chapter
-          # El parámetro 'mathjax' inyecta el código necesario para renderizar matemática web
-          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2"
+          # El parámetro '2' divide el documento
+          # El parámetro 'mathjax' inyecta el soporte web para matemática
+          # El tercer parámetro pasa las opciones de compilación nativas a LaTeX
+          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2" "-shell-escape -interaction=nonstopmode"
           
       - name: Procesar Bibliografía
         run: |
@@ -33,14 +34,12 @@ jobs:
           
       - name: Recompilar para generar enlaces cruzados
         run: |
-          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2"
+          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2" "-shell-escape -interaction=nonstopmode"
 
       - name: Configurar página de inicio y organizar figuras
         run: |
-          # make4ht genera el archivo principal con el nombre de tu documento.
-          # Creamos un index.html que redirija automáticamente a ese archivo para que GitHub lo muestre.
+          # Redirigimos el index a la página generada por make4ht
           echo '<meta http-equiv="refresh" content="0; URL=MIC411apuntes.html" />' > public/index.html
-          # Aseguramos que los gráficos pasen a la carpeta pública
           cp -r Figuras public/Figuras || true
 
       - name: Publicar en la rama gh-pages
