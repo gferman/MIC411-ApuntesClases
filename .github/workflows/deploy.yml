@@ -1,4 +1,4 @@
-name: Compilar HTML con Pandoc
+name: Compilar Sitio Web Multipartes
 
 on:
   push:
@@ -9,26 +9,38 @@ permissions:
   contents: write
 
 jobs:
-  build-html:
+  build-website:
     runs-on: ubuntu-latest
 
     steps:
       - name: Obtener el código fuente
         uses: actions/checkout@v4
 
-      - name: Instalar Pandoc
+      - name: Instalar TeX Live Completo y utilidades
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc
+          sudo apt-get install -y texlive-full biber make4ht python3-pygments
 
-      - name: Compilar archivo HTML con Pandoc
+      - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
-          pandoc MIC411apuntes.tex -s --mathjax --citeproc -o index.html --metadata title="MIC411 Dinámica Estructural Avanzada"
+          # El parámetro '2' divide el documento en páginas web separadas por \chapter
+          # El parámetro 'mathjax' inyecta el código necesario para renderizar matemática web
+          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2"
+          
+      - name: Procesar Bibliografía
+        run: |
+          biber MIC411apuntes || true
+          
+      - name: Recompilar para generar enlaces cruzados
+        run: |
+          make4ht -u -d public MIC411apuntes.tex "mathjax,html,2"
 
-      - name: Organizar archivos para publicación
+      - name: Configurar página de inicio y organizar figuras
         run: |
-          mkdir public
-          mv index.html public/index.html
+          # make4ht genera el archivo principal con el nombre de tu documento.
+          # Creamos un index.html que redirija automáticamente a ese archivo para que GitHub lo muestre.
+          echo '<meta http-equiv="refresh" content="0; URL=MIC411apuntes.html" />' > public/index.html
+          # Aseguramos que los gráficos pasen a la carpeta pública
           cp -r Figuras public/Figuras || true
 
       - name: Publicar en la rama gh-pages
