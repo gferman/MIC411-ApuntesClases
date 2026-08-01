@@ -196,6 +196,7 @@ code.minted-inline{font-family:monospace,monospace;}
 pre.fancyvrb {white-space: pre-wrap; margin:0em;font-family:monospace,monospace;}
 .framedenv{border: 1px solid black;}
 dt.printshorthands{float:left; clear:left; margin-right:1em;}
+img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
 span#textcolor1{color:#FF0000}
 span#textcolor2{color:rgb(0,225,0)}
 span#textcolor3{color:#FF0000}
