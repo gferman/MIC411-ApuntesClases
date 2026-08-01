@@ -2,19 +2,74 @@
 
 \section{Generalidades}
 
-\emph{En desarrollo}
+Nolinealidad geométrica o del material.
+
+En el segundo caso, histeresis ocurre cuando la fuerza es función de la historia de deformación (dependiente de la memoria del componente o material).
 
 \section{Ecuaciones de movimiento nolineales}
 
+
 \section{Modelos fenomenológicos}
+
+\textcite{wang2023modeldrivendatadriven}
+
+\subsection{Características}
+
+Modelos con curvas esqueleto (backbone): polinomial y polinomial por trozos (piecewise)
+
+Modelos basados en ecuaciones diferenciales
 
 \subsection{Modelo elastoplástico}
 
-\textcite{roberts2003randomvibration}
+Ref: Simo \& Hughes
+
+Consideremos un modelo uniaxial elastico -- perfectamente plástico.
+
+$$\sigma = E (\varepsilon - \varepsilon_p)$$
+
+$$f = |\sigma| - \sigma_y \leq 0$$
+
+$$\dot{\varepsilon}_p = \gamma \text{sgn}(\sigma)$$
+
+Si $f < 0$ entonces $\gamma = 0$
+
+Si $f = 0$ entonces $\gamma > 0$
+
+Algoritmo \emph{return mapping}, donde $\varepsilon_p$ es una variable interna con la historia del proceso de plastificación.
 
 \subsection{Modelo Bouc-Wen}
 
+Ref: \textcite{song2006generalizedbouc}
 
+Consideremos un elemento histerético con rigidez elástica $k_0$, desplazamiento de fluencia $d_y$, y razón de rigidez post-fluencia vs elástica $\alpha$. El modelo Bouc-Wen establece una relación nolineal controlado por la variable interna $z(t)$:
+
+\begin{equation}
+    f = \alpha k_0 d + (1-\alpha) k_0 d_y z
+\end{equation}
+
+% \begin{equation}
+%     \dot{z} = \frac{1}{d_y} \left( A \dot{d} - \beta \dot{d} \left|z\right|^{n} - \gamma \left|\dot{d}\right| \left|z\right|^{n-1} \right)
+% \end{equation}
+
+\begin{equation}
+    \dot{z} = \frac{1}{d_y} \dot{d} \left[ A  - \left|z\right|^{n} \left( \gamma + \beta \text{sgn}(\dot{d} z) \right)\right]
+\end{equation}
+
+\noindent donde $A$ y $n$ son parámetros que controlan la escala y la agudeza (\emph{sharpness}) de la curva de histeresis; $\beta$ y $\gamma$ controlan la forma de la curva de histeresis.
+
+% En la literatura se recomienda $A=1$ y $\beta + \gamma = 1$.
+
+\begin{lstlisting}[style=matlab-editor]
+alpha = 0.;
+beta = 0.55;
+gamma = 0.45;
+n = 2;
+A = 1.;
+\end{lstlisting}
+
+\subsection{Modelo Duhem}
+
+Utilizado para caracterizar sistemas friccionales.
 
 \section{Modelos Hammerstein-Wiener}
 

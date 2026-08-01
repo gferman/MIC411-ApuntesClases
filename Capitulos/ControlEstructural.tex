@@ -24,21 +24,25 @@ Los sistemas de control estructural son dispositivos mecánicos que se incorpora
     \item Reducción de \underline{riesgos} (Ej. Probabilidad de colapso)
 \end{itemize}
 
+\vspace{1eX}
+
 Se clasifican en los siguientes grupos:
-\begin{itemize}
-    \item \underline{Pasivos}: No requieren energía adicional
-    \item \underline{Activos}: Requieren energía adicional
-    \item \underline{Semi-Activos}: Pueden requerir o no energía adicional
-    \item \underline{Híbridos}: dos de los anteriores.
-\end{itemize}
+
+\begin{description} 
+    \item[Pasivos] Estos sistemas no requieren una fuente de energía externa para operar. Funcionan disipando o absorbiendo la energía que ingresa a la estructura basándose únicamente en sus propiedades físicas y en el propio movimiento de la estructura.
+    \item[Activos] Estos sistemas requieren una fuente de poder externa significativa (electricidad, sistema hidráulico) para funcionar. Utilizan sensores que miden la respuesta de la estructura en tiempo real y un algoritmo de control que calcula una fuerza de corrección. Luego, los actuadores aplican activamente esa fuerza a la estructura para contrarrestar la vibración.
+    \item[Semi-Activos] Estos sistemas representan un punto intermedio inteligente. Requieren una pequeña cantidad de energía (como la de una batería), pero esta energía no se usa para aplicar fuerzas directamente a la estructura (como en el control activo). En cambio, se utiliza para cambiar las propiedades mecánicas (rigidez o amortiguación) del dispositivo de control en tiempo real.
+    \item[Híbridos] Como su nombre indica, estos sistemas combinan dos o más de los tipos anteriores para aprovechar sus ventajas.
+\end{description}
+
 
 En general, las estructuras con dispositivos de control tienen la siguiente EDM:
 
 \begin{align*}
-    {M}{\ddot{u}} + {C}{\dot{u}} + {K}{u} + {f}_p = {f}_a + {f}_e
+    {M}{\ddot{q}} + {C}{\dot{q}} + {K}{q} + {f}_{p} + f_{s} = {f}_a + {f}_e
 \end{align*}
 
-Donde ${f}_p$ es la fuerza pasiva, ${f}_a$ (actuadores) es la fuerza activa y ${f}_e$ es la fuerza externa (sismo).
+\noindent donde ${f}_{p}$ es la fuerza de dispositivos pasivos, ${f}_{sa}$ es la fuerza de dispositivos semi-activos, ${f}_a$ es la fuerza de dispositivos activos, y ${f}_e$ es la fuerza externa (p.ej., terremoto).
 
 \section{Control pasivo}
 Los sistemas de control pasivo no requieren de una fuente de energía externa. \\
@@ -47,75 +51,97 @@ Funcionan absorbiendo, aislando y disipando energía. \\
 
 Su operación puede depender tanto de el desplazamiente, velocidad y aceleración relativa entre los nodos de conexión del dispositivo. Algunos de estos dispositivos requieren ser reemplazados luego de ser utilizados. \\
 
-La ecuación general para un sistema estructural con dispositivos de control pasivo es:
-\begin{align*}
-    {M}{\ddot{u}} + {C}{\dot{u}} + {K}{u} + {f}_p = \cancelto{0}{{f}_a} + {f}_e
-\end{align*}
+% La ecuación general para un sistema estructural con dispositivos de control pasivo es:
 
-Ejemplos:
-\begin{itemize}
-    \item Dispositivo disipador histerético: $f_p$ depende de sus ciclos de histéresis.
-    \item Amortiguador viscoso: $f_p(\dot{x}) = c_d |\dot{x}|^\alpha sgn(\dot{x})$
-    \item TMD: $f_p = m_{TMD} \ddot{x}_{TMD}$
-\end{itemize}
+% \begin{align}
+%     {M}{\ddot{q}} + {C}{\dot{q}} + {K}{q} + \textcolor{red}{{f}_p(q,\dot{q},\ddot{q})} = {f}_e
+% \end{align}
 
-\subsubsection{Dispositovs metálicos}
--
-\subsubsection{Dispositivos de fricción}
-\begin{align*}
-    P(t) = \mu N(t) \text{sgn}(\dot{u}(t))
-\end{align*}
+\subsubsection{Amortiguadores viscosos}
 
-donde $P(t)$ es la fuerza que aplica el dispositivo a la estructura, $\mu$ es el coeficiente de fricción (roce) dinámico, $N(t)$ es la fuerza normal en la superficie de deslizamiento y $\dot{u}$ es la velocidad relativa del deslizamDiento de las superficies.
+\begin{equation}
+    f_p(\dot{r}) = c_d |\dot{r}|^\alpha \text{sign}(\dot{r})
+\end{equation}
 
-\subsubsection{Dispositivos Histeréticos}
--
-\subsubsection{Dispositivos Viscoelásticos}
-Comunmente son pistones que consisten en cilindros huecos rellenos de un material viscoelástico (fluido o sólido). En el caso de meteriales fluidos, la fuerza se genera cuando el fluido orificios y en el caso de materiales sólidos ocurre cuando estos se deforman. 
+\subsubsection{Amortiguadores metálicos}
 
-Para modelar las fuerzas:
-\begin{align*}
-    P(t) &= C|\dot{u}(t)|^\alpha \text{sign}[\dot{u}(t)] \longrightarrow \text{VE Fluidos} \\
-    P(t) &= Ku(t) + C\dot{u}(t) \longrightarrow \text{VE Sólidos}
-\end{align*}
-La disipación de energía ocurre por la fricción generando calor.
+Disipación de energía por histeresis. Por ejemplo, usando un modelo de Bouc-Wen:
+
+\begin{align}
+    f_P(r,\dot{r},t) = (1-\alpha) k r +  \alpha k z(t)
+\end{align}
+
+donde $z(t)$ es un estado interno que maneja la histeresis del dispositico, y que evoluciona a través de una ecuación diferencial nolineal:
+
+\begin{align}
+    \dot{z} = h(\dot{r},z)
+\end{align}
+
+\subsubsection{Amortiguadores de fricción}
+
+\begin{align}
+    f_P(\dot{r},t) = \mu(t) N(t) \text{sign}(\dot{r})
+\end{align}
+
+donde $\mu(t)$ es el coeficiente de fricción dinámico, $N(t)$ es la fuerza normal en la superficie de deslizamiento, y $\dot{r}$ es la velocidad relativa entre los terminales del amorgtiguador de roce.
+
+% \subsubsection{Dispositivos Viscoelásticos}
+
+% Comunmente son pistones que consisten en cilindros huecos rellenos de un material viscoelástico (fluido o sólido). En el caso de meteriales fluidos, la fuerza se genera cuando el fluido orificios y en el caso de materiales sólidos ocurre cuando estos se deforman. 
+
+% Para modelar las fuerzas:
+% \begin{align*}
+%     P(t) &= C|\dot{u}(t)|^\alpha \text{sign}[\dot{u}(t)] \longrightarrow \text{VE Fluidos} \\
+%     P(t) &= Ku(t) + C\dot{u}(t) \longrightarrow \text{VE Sólidos}
+% \end{align*}
+% La disipación de energía ocurre por la fricción generando calor.
 
 
-\subsubsection{Otros}
+\subsection{Amortiguadores de masa sintonizada}
 
-\begin{itemize}
-    \item Dispositivos de re-centrado
-    \item Amortiguadores de transformación de fase
-    \item Amortiguadores/disipadores de vibración dinámica:
-    \begin{itemize}
-        \item Amortiguadores de Masa Sintonizada (TMD)
-        \item Amortiguadores de Líquido Sintonizado (TLD)
-    \end{itemize}
-\end{itemize}
+\begin{align}
+    f_P = m_{TMD} a_{TMD}
+\end{align}
+
+donde $a_{TMD}$ es la aceleración absoluta del TMD.
+
+% \subsubsection{Otros}
+
+% \begin{itemize}
+%     \item Dispositivos de re-centrado
+%     \item Amortiguadores de transformación de fase
+%     \item Amortiguadores/disipadores de vibración dinámica:
+%     \begin{itemize}
+%         \item Amortiguadores de Masa Sintonizada (TMD)
+%         \item Amortiguadores de Líquido Sintonizado (TLD)
+%     \end{itemize}
+% \end{itemize}
 
 
-\subsubsection{Dispositivos de Aislación Sísmica}
-% Saaed
+% \subsubsection{Dispositivos de Aislación Sísmica}
+% % Saaed
 
-\begin{itemize}
-    \item Eficiente para vibraciones desde el suelo como sismos y tráfico, no para viento.
-    \item Alta flexibilidad lateral
-    \item Alta rigidez vertical
-    \item Inclusión de nuevo modo de vibrar con \emph{Desplazamientos relativos entre piso} pequeños.
-    \item Al incluir el nuevo modo de vibrar, se alejan los otros modos lejos del contenido de periodos de la excitación.
-    \item Funcionan para edificios bajos con periodos fundamentales cortos y no para edificios altos que tienen periodos fundamentales largos.
-    \item Se puede incluir en distintas ubicaciones de la estructura.
-\end{itemize}
+% \begin{itemize}
+%     \item Eficiente para vibraciones desde el suelo como sismos y tráfico, no para viento.
+%     \item Alta flexibilidad lateral
+%     \item Alta rigidez vertical
+%     \item Inclusión de nuevo modo de vibrar con \emph{Desplazamientos relativos entre piso} pequeños.
+%     \item Al incluir el nuevo modo de vibrar, se alejan los otros modos lejos del contenido de periodos de la excitación.
+%     \item Funcionan para edificios bajos con periodos fundamentales cortos y no para edificios altos que tienen periodos fundamentales largos.
+%     \item Se puede incluir en distintas ubicaciones de la estructura.
+% \end{itemize}
+
 % Los dispositivos de aislación sísmica basan su funcionamiento en la flexibilidad horizontal de un nivel pero una alta rigidez vertical. Debido a la flexibilidad horizontal, se introduce un nuevo modo de vibrar que contiene \emph{desplazamientos relativos entre pisos} pequeños. 
 
 \section{Control activo}
+
 Los dispositivos de control activo requieren de energía para contrarrestar la respuesta estructural. Funcionan adaptandose en función de la excitación y respuesta. Requieren del uso de sensores y actuadores. La ecuación general es la siguiente:
 
-\begin{align*}
-    m\ddot{x} + c\dot{x} + kx + fp(x,\dot{x},\ddot{x}) = f_a + f_e
-\end{align*}
+\begin{align}
+    {M}{\ddot{q}} + {C}{\dot{q}} + {K}{q} = \textcolor{red}{{f}_a(q,\dot{q},\ddot{q},u)} + {f}_e
+\end{align}
 
-donde $f_a$ depende del actuador que se instale.
+donde $f_a$ es la fuerza activa, que puede depender de estados del sistema, pero depende principalmente de una señal de control exógena $u(t)$.
 
 \underline{Ventajas del control activo}:
 \begin{itemize}
@@ -134,6 +160,17 @@ donde $f_a$ depende del actuador que se instale.
 \end{itemize}
 
 \section{Control semi-activo}
+
+\begin{align}
+    {M}{\ddot{q}} + {C}{\dot{q}} + {K}{q} + \textcolor{red}{{f}_s(q,\dot{q},\ddot{q},u)} = {f}_e
+\end{align}
+
+Ejemplo: Amortiguador viscoso de orificio variable. El coeficiente $c_d(u)$ es una función de una señal de control exógeno.
+
+\begin{equation}
+    f_{sa}(\dot{r},u) = c_d(u) |\dot{r}|^\alpha \text{sign}(\dot{r})
+\end{equation}
+
 \begin{itemize}
     \item TMD semi-activo (Semi-active TMDs)
     \item TLD semi-activo (Semi-active TLDs)
@@ -149,6 +186,5 @@ donde $f_a$ depende del actuador que se instale.
 
 \begin{itemize}
     \item Amortiguador de masa hibrido (Hybrid mass damper, HMD)
-    \item Aislación basal híbrida (Hybrid base isolation)
-    \item (Hybrid damper actuator bracing control)
+    \item Aislación basal híbrida: aislación basal + control activo o semi-activo
 \end{itemize}
