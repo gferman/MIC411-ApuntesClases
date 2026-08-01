@@ -41,9 +41,37 @@ Durante la cuantización, cada valor analógico medido se aproxima al nivel más
 
 Por ejemplo, si el rango es $0 - 5$ V, cada nivel representa un salto de $\Delta = 5/256 \approx 0.0195$ V. Si el valor analógico real es $1.23$ V, el ADC lo “cuantiza” al nivel más cercano, por ejemplo $1.22$ V.
 
-Esta aproximación introduce un error de cuantización, que es la diferencia entre el valor analógico real y el valor cuantizado. Este error es inevitable y depende de la resolución del ADC: a mayor número de bits, menor error de cuantización.
+Esta aproximación introduce un error de cuantización, que es la diferencia entre el valor analógico real y el valor cuantizado. Este error es inevitable y depende de la resolución del ADC: a mayor número de bits, menor error de cuantización. (\emph{Nota}: Computadores representan números utilizando dígitos binarios (bits almacenados en flip-flops).)\\
 
-\underline{Nota}: Computadores representan números utilizando dígitos binarios (bits almacenados en flip-flops).\\
+\subsubsection{Implementación en Matlab/Simulink}
+
+Definiendo el rango $R$ de valores de entrada $u$ que puede medir el ADC:
+
+\begin{equation}
+    R = |u_{\max} - u_{\min}|
+\end{equation}
+
+El intervalo de cuantización se define como:
+
+\begin{equation}
+    q = \frac{R}{2^B}
+\end{equation}
+
+donde $B$ es el número de bits del ADC. Por ejemplo, si $u_{\max} = 1g$, $u_{\min} = -1g$, y $B = 8$, entonces:
+
+\begin{equation}
+    q = \frac{2g}{2^{8}} = 0.0078125 g
+\end{equation}
+
+Por lo tanto, el cuantizador en Simulink funciona de la siguiente forma:
+
+\begin{equation}
+    y = q \times \text{round}(u/q)
+\end{equation}
+
+donde $y$ es la señal de salida cuantizada, y $u$ es la señal de entrada.
+
+
 
 \subsection{Señal en tiempo discreto}
 
@@ -130,7 +158,7 @@ donde $n,m \in \{0,1,2,\ldots,N-1\}$.\\
 
 \emph{Nota 1}: Se asume que la secuencia $x[n]$ es periódica.\\
 
-\emph{Nota 2}: Fast Fourier Transform (FFT) es un algoritmo computacional para calcular el DFT.\\
+\emph{Nota 2}: Fast Fourier Transform (FFT) es un algoritmo computacional muy eficiente para calcular el DFT. Revisar Sección \ref{s:FFT} para más información.\\
 
 \subsection{Relación entre DFT y DTFT}
 
@@ -153,9 +181,13 @@ En DSP, queremos muestrear la señal sin pérdida de información (``lossless'')
     $$F_s > 2 f_{\max}$$
 \end{theorem}
 
+Esto quiere decir que la máxima frecuencia de la señal que se quiere medir, $f_{\max}$, no debe ser mayor que la frecuencia de Nyquist, $F_N = F_s/2$:
+
+$$ f_{\max} < F_n $$
+
 \section{Aliasing}
 
-Aliasing es un fenómeno que ocure cuando el terorema de Nyquist no se cumple, es decir, $F_s \leq 2 f_{\max}$. Ocurre cuando una señal análoga no puede ser reconstruida por la señal digitalizada.\\
+Aliasing es un fenómeno que ocure cuando el terorema de Nyquist no se cumple, es decir, $f_{\max} > F_N$. Como consecuencia, la señal análoga no puede ser reconstruida por la señal digitalizada.\\
 
 \underline{Ejemplo}: Video del ``helicoptero mágico'' \url{https://www.chrisfay.de/helicopter-video}. 
 
@@ -173,7 +205,7 @@ Aliasing es un fenómeno que ocure cuando el terorema de Nyquist no se cumple, e
     \includegraphics[width=6in]{Figuras/aliasing_frequency_folding.png}
 \end{figure}
 
-Considere $f = 2 \pi \Omega$, donde $f$ es frecuencia [Hz] y $\Omega$ es frecuencia (cicular) [rad/s].
+% Considere $f = 2 \pi \Omega$, donde $f$ es frecuencia [Hz] y $\Omega$ es frecuencia (cicular) [rad/s].
 
 \subsubsection{Sin Aliasing}
 
@@ -201,20 +233,58 @@ Ejemplo: PSD de respuesta estructural de un sistema 3DOF
 \includegraphics[width=5in]{Figuras/AAexample.png}
 \end{figure}
 
+Solución: utilizar filtros anti-aliasing (AA)
+
+\subsection{Filtros low-pass}
+
 \begin{itemize}
     \item Filtro anti-aliasing (AA) de paso bajo (low-pass) es utilizado para eliminar el ``aliasing'' de la respuesta en frecuencia.
     \item Filtro AA tiene que ser aplicado antes del muestreo en el tiempo.
 \end{itemize}
 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.7]{Figuras/filtroAA2.png}
+% \end{figure}
+
+Por ejemplo, utilizamos el comando \texttt{ellip()} en Matlab para construir un filtro low-pass de tipo elíptico. El siguiente comando construye un filtro elíptico análogo, de orden 8, bandpass 0.01 dB, bandstop -80 dB, y frecuencia de corte 50 Hz:
+
+\begin{lstlisting}[style=Matlab-editor]
+n = 8; % orden del filtro eliptico
+Rp = 0.01; % bandpass (dB)
+Rs = 80; % bandstop (dB)
+fc = 50; % frecuencia corte (Hz)
+wc = 2*pi*fc; % frecuencia corte (rad/s)
+[b, a] = ellip(n, Rp, Rs, wc, "s" );
+AAfilt = tf(b,a);
+bode(AAfilt)
+\end{lstlisting}
+
+\section{Convertidor análogo-digital (ADC)}
+
+Los ADC estan constituidos generalmente por tres módulos: (i) filtro anti-aliasing; (ii) sample \& hold; y (iii) quantizer. Cada uno de estos módulos se fabrica con componentes y circuitos eléctricos.
+
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{Figuras/filtroAA2.png}
+    \centering
+    \includegraphics[scale=0.7]{Figuras/ADCmodel.png}
 \end{figure}
 
-\subsection{Spectral Leakage}
-CTFT/DTFT/DFT asumen que la \underline{señal es periódica}, es decir, que la señal se repite luego de un periodo $T_1$ indefinidamente.
-$$ x(t) = x(t+nT_1) $$
-Si la señal no es periódica, ocurren saltos abruptos.
+Existen distintas arquitecturas de ADC, dependiendo de la velocidad de muestreo y la resolución. Por ejemplo, arquitecturas $\Sigma-\Delta$ se ocupa en medición de vibraciones estructurales, por su excelente resolución para bajas frecuencias ($< 1000$ Hz).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=4in]{Figuras/ADC-architectures.png}
+    \caption{Arquitecturas de ADC. URL: \url{https://www.analog.com/en/resources/analog-dialogue/articles/the-right-adc-architecture.html}}
+\end{figure}
+
+\section{Spectral Leakage}
+
+La transformada de Fourier (CTFT o DTFT) asume que la señal es infinita, o al menos es finita pero periódioca. Es decir, que la señal se repite luego de un periodo $T$ indefinidamente:
+
+$$ x(t) = x(t+kT), \quad \forall k\in\mathbb{Z} $$
+
+Si la señal es finita pero no es periódica, ocurren saltos abruptos.
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/FT.png}
@@ -226,6 +296,17 @@ Si la señal no es periódica, ocurren saltos abruptos.
 \end{figure}
 
 Este salto abrupto es semejante a una función escalón. Recordar que una función escalón se puede escribir como una Serie de Fourier que es una suma de armónicas con distinta frecuencia. Por lo tanto, al calcular $X[m]$ (DFT de $x[n]$) surge el fenómeno de ``spectral leakage'', donde se agregan armónicas artificiales producto del escalón generado.\\
+
+% The Technical View: The Rectangular Window
+
+% What you're really doing when you take a finite measurement is multiplying your "true" infinite signal by a rectangular window (also called a "boxcar" window). This window is just a function that is '1' during your measurement and '0' everywhere else.
+
+% The problem is the Fourier transform of this rectangular window. It is not a clean spike; it is the sinc function (sin(x)/x).
+
+% The sinc function has a narrow main lobe, but it also has very high side-lobes.
+
+% Because multiplication in the time domain is convolution in the frequency domain, your final PSD is the "true" spectrum (a perfect spike) convolved with that sinc function. The nasty side-lobes of the sinc function are what get "smeared" across your true spectrum, and that is, physically, the spectral leakage.
+
 \par \underline{Ejemplo}:
 
 \begin{figure}[H]
@@ -233,18 +314,28 @@ Este salto abrupto es semejante a una función escalón. Recordar que una funci�
     \includegraphics[width=5in]{Figuras/ejemplo_leakage.png}
 \end{figure}
 
-\par \underline{Solución}: ``Windowing'' $\Longrightarrow$ aplicar ventanas.\\
+Para resolver el \emph{spectral leakage} se pueden utilizar \emph{Periodogramas} con distintos tipos de \emph{ventanas}.
+
+\section{Ventanas}
+
+Referencia: Window Functions in DSP - From Theory to MATLAB (URL: \url{https://youtu.be/vyZrezB2NPo?si=2Z9BbdEGRo-NzyEy}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figuras/solucion_leakage.png}
 \end{figure}
 
-También ocurre cuando la señal está contaminada con ruido. \\
+Ventanas más utilizadas:
 
-Para resolver el \emph{spectral leakage} se pueden utilizar \emph{Periodogramas}.
+\begin{itemize}
+    \item Hanning
+    \item Hamming
+    \item Kaiser
+    \item Blackman-Harris
+    \item Chebyshev
+\end{itemize}
 
-\section{PSD de señal digital}
+\section{Estimación de PSD utilizando periodogramas}
 
 Referencia: \textcite[Cap. 8]{Hayes1996}.\\
 
@@ -270,7 +361,7 @@ donde el estimador de autocorrelación $\hat{r}_{X}[k]$, $n$ es el índice tempo
 \par Alcance para la estimación del PSD:
 
 \begin{enumerate}
-    \item Calcular DFT, y utilizar una forma de calcular el promedio de manera insesgada.
+    \item Calcular DTFT (o DFT), y utilizar una forma de calcular el promedio de manera insesgada.
     \item Distintas realizaciones de $x(t)$ (de $x[k]$) nos entegan disintas estimaciones del PSD. \\ Cada estimación del PSD es una realización de un proceso estocástico.
 \end{enumerate}
 
@@ -379,105 +470,144 @@ Principales problemas del periodograma:
 
 \subsection{Periodograma Modificado}
 
-Métodos que modifican el periodograma clásico, para resolver los problemas estacionarios:
+Métodos que modifican el periodograma clásico, para resolver obtener estimadores con menor varianza.\\
+
+\emph{Nota:} Periodogramas modificados utilizan ventanas (distintas a rectangular) para mejorar la estimación y reducir el efecto de spectral leakage (¡causado por una ventana rectangular en un principio!).
+
+\subsubsection{Periodograma modificada}
+
+Uso de ventanas, que reduce el efecto del sesgo, pero sacrificando resolución.
+    
+$$\hat{S}_{MP}(\omega)=\frac{1}{N U} \left| \sum_{n=0}^{N-1} x[n]w[n]e^{-j\omega n} \right| ^2 $$
+
+donde $w[n]$: ventana en el dominio del tiempo y $U$ es un factor de escala.
+
+$$U=\frac{1}{N}\sum_{n=0}^{N-1}  w[n]^2$$
+
+Nota: $U=1$ si la ventana es rectangular.
+
+Desempeño:
 
 \begin{itemize}
-    \item \underline{Periodograma modificada}: uso de ventanas, que reduce el efecto del sesgo, pero sacrificando resolución.
-    
-    $$\hat{S}_{MP}(\omega)=\frac{1}{N U} \left| \sum_{n=0}^{N-1} x[n]w[n]e^{-j\omega n} \right| ^2 $$
-    
-    donde $w[n]$: ventana en el dominio del tiempo y $U$ es un factor de escala.
-    
-    $$U=\frac{1}{N}\sum_{n=0}^{N-1}  w[n]^2$$
-
-    Nota: $U=1$ si la ventana es rectangular.
-
-    Desempeño:
-
-    \begin{itemize}
-        \item Reduce sesgo, pero sigue siendo una estimación sesgada.
-        \item Es asintóticamente insesgada.
-        \item La varianza es bastante cercana a la del periodograma.
-    \end{itemize}
-    
-    \item \underline{Método de Bartlett}: promedio de periodogramas). Dividir la señal en $K$ segmentos de $L$ muestras, tal que $N = KL$.
-    
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.7]{Figuras/ventana1.png}
-    \end{figure}
-
-    Definición de bloque:
-
-    $$
-    x_i[n] = x[n + iL], \qquad
-    \begin{cases}
-        n &= \{0,1,\ldots,L-1\} \\
-        i &= \{0,1,\ldots,K-1\}
-    \end{cases}
-    $$
-
-    Entonces, la estimación del PSD es:
-    
-    $$\hat{S}_B(\omega)=\frac{1}{K}\sum_{i=0}^{K-1} \left\{\frac{1}{L} \left|\sum_{n=0}^{L-1}x_i[n]e^{-j\omega n} \right|^2 \right\} $$
-    
-    donde $i$ esta asociado al bloque $i$ de tamaño $L$.
-
-    La varianza de la estimación del PSD es inversamente proporcional a la cantidad de bloques $K$:
-    
-    $$\text{var}\{\hat{S}_B(\omega)\} \propto \frac{1}{K}$$
-    
-    Es decir, que mientras más bloques se escogan (mayor $K$) más nos acercamos al objetivo de que la varianza sea $0$. \\
-    
-    El problema es que como $N = KL$, si se definen más bloques (aumentar $K$), significa que los bloques son más cortos ($L$ disminuye) y bloques cortos implican una resolución en frecuencia baja, es decir, $\Delta \omega$ es grande.
-    
-   % $$X[k] = \sum_{n=0}^{L-1}x[n]e^{-j2\pi nk/L} \quad \text{(DFT)}$$
-    
-    $\Longrightarrow$ ``Trade-off'': Varianza vs resolución.
-    
-    \item \underline{Método de Welch}: promedio de periodogramas con ventanas traslapadas.
-    
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.7]{Figuras/ventana2.png}
-    \end{figure}
-
-    Definición de bloque:
-
-    $$
-    x_i[n] = x[n + iD], \qquad
-    \begin{cases}
-        n &= \{0,1,\ldots,L-1\} \\
-        i &= \{0,1,\ldots,K-1\}
-    \end{cases}
-    $$
-
-    donde la cantidad de puntos de traslape es $L-D$:
-
-    $$
-    \begin{cases}
-        D = L, & \text{sin traslape} \\
-        D = L/2, & \text{50\% traslape (más común)}\\
-        D = 3L/4, & \text{25\% traslape}
-    \end{cases}
-    $$
-    
-    $$\hat{S}_W (\omega) =\frac{1}{KLU}\sum_{i=0}^{K-1}\left| \sum_{n=0}^{L-1} x_i[n]w[n]e^{-j\omega n} \right|^2$$
-
-    % La varianza de la estimación del PSD es inversamente proporcional a la cantidad de bloques $K$:
-    
-    % $$\text{var}\{\hat{S}_W (\omega)\} \approx \frac{9}{16}\frac{L}{N} S_X(\omega)^2 $$
-
-    Comparado con método de Bartlett (sin traslape), para el mismo valor de $N$ y $L$, el método de Welch arroja casi un 50\% de reducción en varianza:
-
-      $$\text{var}\{\hat{S}_W (\omega)\} \approx \frac{9}{16} \text{var}\{\hat{S}_B (\omega)\} $$
-    
-    En \emph{MATLAB}, la función \texttt{cpsd()} y \texttt{pwelch()} utilizan el método de Welch.
-    
-    % \item \underline{Método de Blackman-Tukey}:
-
-    % \emph{(En desarrollo)}
-
-    % En \emph{MATLAB}, la función \texttt{spa()} utiliza el método de Blackman-Tukey. Link: \url{https://www.mathworks.com/help/ident/ref/spa.html}.
-    
+    \item Reduce sesgo, pero sigue siendo una estimación sesgada.
+    \item Es asintóticamente insesgada.
+    \item La varianza es bastante cercana a la del periodograma.
 \end{itemize}
+
+\subsubsection{Método de Bartlett}
+
+Utiliza el promedio de periodogramas. Dividir la señal de $N$ puntos en $K$ bloques de $L$ muestras cada uno:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Figuras/ventana1.png}
+\end{figure}
+
+Definición de bloque:
+
+$$
+x_i[n] = x[n + iL], \qquad
+\begin{cases}
+    n &= \{0,1,\ldots,L-1\} \\
+    i &= \{0,1,\ldots,K-1\}
+\end{cases}
+$$
+
+La cantidad de bloques resultante se puede calcular con la siguiente formula:
+
+$$K = \text{floor}\left(\frac{N-L}{L}\right) + 1$$
+
+Entonces, la estimación del PSD es:
+
+$$\hat{S}_B(\omega)=\frac{1}{K}\sum_{i=0}^{K-1} \left\{\frac{1}{L} \left|\sum_{n=0}^{L-1}x_i[n]e^{-j\omega n} \right|^2 \right\} $$
+
+donde $i$ esta asociado al bloque $i$ de tamaño $L$.
+
+La varianza de la estimación del PSD es inversamente proporcional a la cantidad de bloques $K$:
+
+$$\text{var}\{\hat{S}_B(\omega)\} \propto \frac{1}{K}$$
+
+Es decir, que mientras más bloques se escogan (mayor $K$) más nos acercamos al objetivo de que la varianza sea $0$. \\
+
+El problema es que como $N = KL$, si se definen más bloques (aumentar $K$), significa que los bloques son más cortos ($L$ disminuye) y bloques cortos implican una resolución en frecuencia baja, es decir, $\Delta \omega$ es grande.
+
+% $$X[k] = \sum_{n=0}^{L-1}x[n]e^{-j2\pi nk/L} \quad \text{(DFT)}$$
+
+$\Longrightarrow$ ``Trade-off'': Varianza vs resolución.
+
+\subsubsection{Método de Welch}
+
+Utiliza el promedio de periodogramas con ventanas traslapadas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Figuras/ventana2.png}
+\end{figure}
+
+Definición de bloque:
+
+$$
+x_i[n] = x[n + i(L-D)], \qquad
+\begin{cases}
+    n &= \{0,1,\ldots,L-1\} \\
+    i &= \{0,1,\ldots,K-1\}
+\end{cases}
+$$
+
+donde la cantidad de puntos de traslape es $D$:
+
+$$
+\begin{cases}
+    D = 0, & \text{sin traslape} \\
+    D = L/4, & \text{25\% traslape} \\
+    D = L/2, & \text{50\% traslape (más común)}
+\end{cases}
+$$
+
+La cantidad de bloques resultante se puede calcular con la siguiente formula:
+
+$$K = \text{floor}\left(\frac{N-L}{L - D}\right) + 1$$
+
+Entonces, el estimador de Welch se calcula como:
+
+$$\hat{S}_W (\omega) =\frac{1}{K}\sum_{i=0}^{K-1} \left\{ \frac{1}{LU}\left| \sum_{n=0}^{L-1} x_i[n]w[n]e^{-j\omega n} \right|^2 \right\}$$
+
+% La varianza de la estimación del PSD es inversamente proporcional a la cantidad de bloques $K$:
+
+% $$\text{var}\{\hat{S}_W (\omega)\} \approx \frac{9}{16}\frac{L}{N} S_X(\omega)^2 $$
+
+Comparado con método de Bartlett (sin traslape), para el mismo valor de $N$ y $L$, el método de Welch con traslape 50\% resulta en casi un 50\% de reducción en varianza del estimador del PSD:
+
+  $$\text{var}\{\hat{S}_W (\omega)\} \approx \frac{9}{16} \text{var}\{\hat{S}_B (\omega)\} $$
+
+% Otro método menos ocuado es el Blackman-Tukey
+
+\subsection{Implementación en Matlab}
+
+En \emph{MATLAB}, las funciones \texttt{pwelch()} (auto PSD) y \texttt{cpsd()} (cross PSD) ambas utilizan el método de Welch.
+
+\begin{lstlisting}[style=matlab-editor]
+% Muestras de senal digital
+Td = 500; % Duration in seconds
+fs = 20; % Sampling frequency in Hz
+t = 0:1/fs:Td; % Time vector
+N = size(t,1); % Sample size
+
+% Definir bloques, ventanas, traslape y puntos FFT
+L = 1000; % Window size
+noverlap = L/2; % Number of overlapped points
+nfft = 2^nextpow2(L); % Define number of FFT points
+window = hamming(L); % Define window for pwelch (hamming, hann, etc.)
+B = floor((N-L)/(L - noverlap)) + 1; % Cantidad de ventanas con traslape
+fprintf('N = %d, L = %d, noverlap = %d, B = %d, nfft = %d\n',N,L,noverlap,B,nfft)
+
+% Calcular auto PSD de senal u
+[pxx, ~] = cpsd(u, u, window, noverlap, nfft, fs);
+
+% Calcular cross PSD entre senales y & u
+[pyx, f] = cpsd(y, u, window, noverlap, nfft, fs);
+\end{lstlisting}
+
+
+% En \emph{MATLAB}, la función \texttt{spa()} utiliza el método de Blackman-Tukey. Link: \url{https://www.mathworks.com/help/ident/ref/spa.html}.
+

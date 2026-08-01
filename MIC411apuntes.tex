@@ -9,22 +9,22 @@
 \usepackage{amsmath,bm,amsthm,amsfonts,amssymb}
 \usepackage{mathtools,cancel}
 \usepackage{multicol}
-\usepackage{listings}
 \usepackage{alltt}
 \usepackage{gensymb}
 \usepackage{subfigure} 
 \usepackage{ragged2e}
-\usepackage{minted}
 \usepackage{pifont}
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{float}
 \usepackage{tcolorbox}
 \usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage[framed,numbered]{matlab-prettifier}
 \usepackage[backend=biber,style=apa]{biblatex}
 \addbibresource{references.bib}
-\usepackage{csquotes}
-\usepackage{matlab-prettifier}
 
 \newtheorem{theorem}{Teorema}
 
@@ -91,7 +91,7 @@
     }
 }
 
-\def\version{3.2.4}
+\def\version{4.0.0}
 
 %%% MAINMATTER %%%
 \begin{document}
@@ -125,23 +125,27 @@
 
 \input{Capitulos/VibrEstocasticas}
 
-\input{Capitulos/ProcSenalesDigitales}
-
-\part{Aplicaciones}
+\part{Monitoreo estructural}
 
 \input{Capitulos/Sensores}
 
+\input{Capitulos/ProcSenalesDigitales}
+
 \input{Capitulos/MonitoreoEstructural}
+
+\part{Control estructural}
 
 \input{Capitulos/ControlEstructural}
 
 \input{Capitulos/ControlClasico}
 
-\input{Capitulos/ControlOptimo}
+\input{Capitulos/ControlOptimoLineal}
 
 \part{Tópicos avanzados}
 
 \input{Capitulos/ModeloNolineal}
+
+\input{Capitulos/ControlOptimoNolineal}
 
 \input{Capitulos/SimulacionHibrida}
 
@@ -151,11 +155,11 @@
 
 \part{Apéndice}
 
+\input{Capitulos/TopicosAnalisisNumerico}
+
 \input{Capitulos/IntroMatlab}
 
 \input{Capitulos/IntroSimulink}
-
-\input{Capitulos/TopicosAnalisisNumerico}
 
 \printbibliography[heading=bibintoc]
 

@@ -1,20 +1,73 @@
-\chapter{T\'opicos de An\'alisis N\'umerico}\label{ch:AnalNum}
+\chapter{Tópicos de Análisis Numérico}\label{ch:AnalNum}
 
+%%%%
 \section{Ecuaciones nolineales}
 
 \textcite{heath2002scientificcomputing}
 
-\section{Optimizaci\'on}
+\subsection{Método de Newton}
 
-\subsection{}
+\subsection{Métodos Cuasi-Newton}
 
-\section{M\'etodos de integraci\'on n\'umerica de EDOs}
+%%%%
+\section{Optimización}
 
-\subsection{Paso temporal fijo}
+\subsection{Formulación}
 
-\subsection{Paso temporal variable}
+\subsection{Descenso de gradiente}
 
-\section{Descomposici\'on de valores singulares (SVD)}
+\subsection{Penalización de Lagrange}
+
+\subsection{Métodos metaheurísticos}
+
+%%%%
+\section{Integración numérica de ecuaciones diferenciales ordinarias (EDOs)}
+
+\subsection{Explicito vs implicito}
+
+% Calculation	
+% [E] Compute the next state value as a direct function of the current state and its derivatives. No iterative solving is needed.
+% [I] Define the next state value implicitly, requiring the solution of a set of algebraic equations at each time step (often using Newton-like methods).
+
+% Computational Cost
+% [E] Less computation per time step.
+% [I] More computationally expensive per time step due to iterations.
+
+% Stability/Step Size
+% [E] Less stable, requires smaller time steps for accuracy and stability, especially in stiff systems.
+% [I] More stable, can use larger time steps, which often makes them more efficient overall for stiff problems.
+
+% Best For
+% [E] Nonstiff problems where the solution varies slowly. The ode45 solver is the first choice for most problems.
+% [I] Stiff problems and systems containing Differential Algebraic Equations (DAEs) or physical networks (Simscape models).
+
+% Explicit solvers are faster per step but may be forced to take very small steps to maintain stability if the system has rapidly varying dynamics (stiffness).
+
+% Implicit solvers do more work per step but can take larger steps, ultimately requiring fewer total steps to simulate a stiff system over the same time interval. 
+
+\subsection{Paso temporal fijo vs variable}
+
+\subsection{Solvers más utilizados de Matlab}
+
+\subsubsection{Paso fijo}
+
+Explicito:
+- Euler, ode1
+- Runge-Kutta orden 4, ode4
+
+Implicito: Utiliza metodo de Newton
+- ode14x (extrapolation)
+- ode1be (Backwards Euler)
+
+\subsubsection{Paso variable}
+
+Explicito:
+- Runge-Kutta, ode45
+
+Implicito:
+- Rosenbrock, ode23s
+
+\section{Descomposición de valores singulares (SVD)}
 
 Referencia: \textcite[Cap. 1]{brunton_data-driven_2019}
 
@@ -58,5 +111,76 @@ Una interpretación matemática es que las matrices de correlación $X X^*$ y $X
 
 Entonces, los valores singulares de $X$ corresponden a los valores propios (\emph{eigenvalues}) de las matrices de correlación $X X^*$ y $X X^*$. También, las columnas de $U$ son los vectores propios (\emph{eigenvectors}) de la matriz $X X^*$, y las columnas de $V$ son los vectores propios de la matriz $X^* X$.
 
-\section{Fast Fourier Transform}
+\section{Fast Fourier Transform (FFT)}\label{s:FFT}
 
+Referencia: \textcite[Cap. 2]{brunton_data-driven_2019}
+
+\subsection{Definición del DFT}
+
+Supongamos que tenemos una señal digital de $N$ puntos en el dominio del tiempo discreto, $x_n = x[n] = x(n T_s), n \in \{0,1,2,\ldots,N-1\}$. Queremos aplicar la Discrete Fourier Transform (DFT) para calcular la señal en el dominio de frecuencia discreta, $X_m = X[m], m \in \{0,1,2,\ldots,N-1\}$.
+
+$$ \{x_0,x_1,x_2,\ldots,x_{N-1}\} \xrightarrow{\text{DFT}} \{X_0,X_1,X_2,\ldots,X_{N-1}\}$$
+
+Recordando la definión del DFT:
+
+\begin{equation}
+    X_m = \sum_{n=0}^{N-1} x_n e^{\frac{-j2\pi n m}{N}}
+\end{equation}
+
+Definiendo $W_N = e^{\frac{j2\pi}{N}}$, que se conoce como la \emph{raíz $N$ de la unidad}, y que corresponde a la solución de $z^N = 1$ donde $z \in \mathbb{C}$. Entonces, la DFT se puede reescribir como:
+
+\begin{equation}
+    X_m = \sum_{n=0}^{N-1} x_n W_N^{-n m}
+\end{equation}
+
+Notar que $W_N \in \mathbb{C}$, y utilizando la identidad de Euler:
+
+\begin{equation}
+    W_N = \cos\left(\frac{2\pi}{N}\right) + j \sin\left(\frac{2\pi}{N}\right)
+\end{equation}
+
+Entonces $W_N$ entrega las coordenadas en el plano complejo de un vector de magnitud $1$. También, las potencias de $W_N$ tiene significado de rotaciones de este vector, que traza una circunferencia de radio unitario.
+
+Finalmente, el DFT se puede reescribir utilizando notación matricial:
+
+\begin{equation}
+    \begin{bmatrix}
+        X_0 \\ X_1 \\ X_2 \\ \vdots \\ X_{N-1}
+    \end{bmatrix}
+    =
+    \underbrace
+    {
+    \begin{bmatrix}
+        1 & 1 & 1 & \cdots & 1 \\
+        1 & W_N^{-1} & W_N^{-2} & \cdots & W_N^{-(N-1)} \\
+        1 & W_N^{-2} & W_N^{-4} & \cdots & W_N^{-2(N-1)} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots\\
+        1 & W_N^{-(N-1)} & W_N^{-2(N-1)} & \cdots & W_N^{-(N-1)^2} \\
+    \end{bmatrix}
+    }_{F_N}
+    \begin{bmatrix}
+        x_0 \\ x_1 \\ x_2 \\ \vdots \\ x_{N-1}
+    \end{bmatrix}
+\end{equation}
+
+Donde $F_N \in \mathbb{C}^{N\times N}$ es la matriz DFT de tamaño $N$.
+
+Propiedades de $F_N$:
+
+\begin{enumerate}
+    \item $F_N$ es una matriz simétrica, es decir: $F_N^* = F_N$
+    \item $F_N$ es una matriz ortogonal, es decir: $F_N^* F_N = I$
+    \item $F_N$ es un caso especial de una matriz de Vandermonde.
+\end{enumerate}
+
+Por último, el DFT es muy costoso computacionalmente, del orden de $\mathcal{O}(N^2)$.
+
+\subsection{Concepto detrás del FFT}
+
+Si la cantidad de puntos de la señal es un multiplo de $2$ (es decir, $N=2^M$), la matriz DFT tiene una propiedad especial, que revisaremos a continuación.
+
+%% DETALLES %%
+
+Si la cantidad de puntos no es un multiplo de $2$, entonces, se puedo agregar ceros a la señal (\emph{zero-padding}), tal que se asegure $N=2^M$, y por tanto aprovechar el algoritmo FFT.
+
+\subsection{Algoritmo FFT}

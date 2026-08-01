@@ -193,11 +193,18 @@ Otra alternativa es el método $H_2$:
 
 \subsection{Método \texorpdfstring{$H_v$}{Hv}}
 
-Otra alternativa es el método $H_v$, que consiste en la media geométrica de estimadores $H_1$ y $H_2$:
+Otra alternativa es el método $H_v$:
 
 \begin{equation*}
-    H_v(\omega) = \sqrt{H_1(\omega)H_2(\omega)}
+    H_v(\omega) =\Re\{H_v(\omega)\} + j\Im\{H_v(\omega)\}
 \end{equation*}
+
+que consiste en la media geométrica de estimadores $H_1$ y $H_2$. En este sentido, la media geométrica se toma para cada parte real e imaginaria del FRF por separado:
+
+\begin{align*}
+    \Re\{H_v(\omega)\} & = \sqrt{\Re\{H_1(\omega)\} \Re\{H_2(\omega)\}} \\
+    \Im\{H_v(\omega)\} & = \sqrt{\Im\{H_1(\omega)\} \Im\{H_2(\omega)\}}
+\end{align*}
 
 \subsection{Mediciones con ruido}
 
@@ -291,7 +298,7 @@ donde $ 0 < \gamma_{ZX}^2 < 1$.\\
 \begin{enumerate}
     \item Si $\gamma_{ZX}^2 \approx 1$, entonces existe buena coherencia entre entrada y salida. En general, los peaks de resonancia deben tener un valor de coherecia cercano a 1.
     \item Si $\gamma_{ZX}^2 \approx 0$, no existe correlación entre entrada y salida del sistema. Esto ocurre especialmente en anti-resonancias, donde la estructura rechaza la entrada en la frecuencia correspondiente.
-    \item Si la coherencia es baja (por ejemplo, $\gamma_{ZX}^2 < 0.8$), puede deberse a problemas asociados con el experimento. Por ejemplo,  ruido de medición es excesivo, entrada no excita adecuadamente la estructura, o problemas de \emph{spectral leakage} por uso inapropiado de ventanas del periodograma modificado.
+    \item Si la coherencia es baja (por ejemplo, $\gamma_{ZX}^2 << 1$), puede deberse a problemas asociados con el experimento. Por ejemplo,  ruido de medición es excesivo, entrada no excita adecuadamente la estructura, o problemas de \emph{spectral leakage} por uso inapropiado de ventanas del periodograma modificado.
     \item Si la coherencia es baja cerca de los peaks de resonancia, puede ocurrir que el sistema sea nolineal, en cuyo caso se requiere de otros métodos avanzados de identificación.
 \end{enumerate}
 
@@ -306,7 +313,7 @@ donde $ 0 < \gamma_{ZX}^2 < 1$.\\
 
 \begin{enumerate}
 
-    \item Instalar sensores en el sistema a identificar\\
+    \item Instalar sensores en el sistema a identificar.
 
            \underline{Nota}: Debe satisfacer la condición de observabilidad
     
@@ -318,6 +325,8 @@ donde $ 0 < \gamma_{ZX}^2 < 1$.\\
     \item Generar un ruido blanco de entrada. \emph{Nota:} La entrada debe ser una excitación persistente, es decir, la señal debe ser rica en un amplio espectro de frecuencias (suficientes armónicas).
     
     \item Medir $x[n]$ y $z[n]$.
+
+    \item Realizar postprocesamiento a las señales de medición (detrend, resampling, etc.).
     
     \item Estimar $H_{true}(\omega) = G_{YU}(\omega)$ utilizando $H_1$ o $H_2$.\\
 
@@ -339,9 +348,83 @@ En \emph{Matlab}, la función \texttt{tfestimate()} determina el FRF experimenta
 
 % Otras alternativas son \texttt{etfe()} y \texttt{spa()}.
 
-\subsection{Método \emph{peak-picking}}
+\subsection{Frecuencias y formas modales utilizando \emph{peak-picking}}
 
-\emph{En desarrollo}
+Referencia: \textcite[Sec. 18.6]{craig2006fundamentalsstructural}
+
+Considere la EDM de un sistema MDOF:
+
+\begin{equation}
+    M \ddot{u} + C \dot{u} + K u = G p(t)
+\end{equation}
+
+\noindent donde $u(t) \in \mathbb{R}^n$ y $p(t) \in \mathbb{R}$ son los GLs y la excitación, respectivamente; $M \in \mathbb{R}^{n \times n}$, $C \in \mathbb{R}^{n \times n}$ y $K \in \mathbb{R}^{n \times n}$ son las matrices de masa, amortiguamiento y rigidez, respectivamente; $G \in \mathbb{R}^{n}$ es el vector de participación de la excitación $p(t)$ en la dinámica del sistema.
+
+De la solución del problema de valores y vectores propios generalizados:
+
+\begin{equation}
+    K \phi = \lambda M \phi
+\end{equation}
+
+\noindent donde $\lambda_r = \omega_r^2$ y $\phi_r$ es el valor y vector propio del modo $r$. De este resultado podemos definir coordenadas modales  en notación matricial:
+
+\begin{equation}
+    u(t) = \Phi q(t)
+\end{equation}
+
+\noindent donde $\Phi = [\phi_1, \phi_2, \ldots,\phi_n]$ es la matriz de formas modales del sistema.
+
+La relación entre coordenadas físicas y modales la podemos describir en notación indicial:
+
+\begin{equation}\label{eq:coordmod}
+    u_{s}(t) = \phi_{sr} q_r(t)    
+\end{equation}
+
+Asumiendo amortiguamiento proporcional, la EDM de la coordenada modal $q_r(t)$ se escribe:
+
+\begin{equation}
+    \ddot{q}_{r} + 2 \zeta_r \omega_r \dot{q}_{r}  + \omega_r^2 q_r = \underbrace{\phi_{kr} G_k}_{\gamma_r} p(t)
+\end{equation}
+
+Aplicando la transformada de Fourier, podemos calcular el FRF de la coordenada modal $q_r$ dada la entrada $p$:
+
+\begin{equation}
+    H_{q_{r} p}(\Omega) = \frac{\gamma_r}{(\omega_r^2 - \Omega^2) + j (2 \zeta_r \omega_r \Omega)}
+\end{equation}
+
+Volviendo a \eqref{eq:coordmod}, aplicando la transformada de Fourier:
+
+\begin{align}
+    U_{s}(\Omega) &= \phi_{sr} Q_r(\Omega) \\
+                  &= \phi_{sr} H_{q_rp}(\Omega) P(\Omega) \\
+                  &= H_{u_{s} p}(\Omega) P(\Omega)
+\end{align}
+
+Por lo tanto:
+
+\begin{equation}
+    H_{u_{s} p}(\Omega) = \frac{\gamma_r}{(\omega_r^2 - \Omega^2) + j (2 \zeta_r \omega_r \Omega)} \phi_{sr}
+\end{equation}
+
+Notar que cuando $\Omega = \omega_r$, el FRF tiene solo parte imaginaria:
+
+\begin{equation}
+    H_{u_{s} p}(\omega_r) = \frac{\gamma_r}{j (2 \zeta_r \omega_r^2)} \phi_{sr}
+\end{equation}
+
+Entonces, el peak ``r'' de la parte imaginaria de $H_{u_{s} p}$ es proporcional a la componente $\phi_{sr}$ de la forma modal $r$:
+
+\begin{equation}
+    \Im\left\{H_{u_{s} p}(\omega_r)\right\} \propto \phi_{sr}
+\end{equation}
+
+Podemos ocupar esta información para estimar las formas modales utilizando FRF experimentales:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6in]{Figuras/expmodeshapes.JPG}
+    \caption{Estimación de formas modales}
+\end{figure}
 
 \subsection{Ajuste de modelos no paramétricos}
 

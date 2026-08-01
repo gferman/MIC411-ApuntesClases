@@ -146,30 +146,47 @@ $\Longrightarrow$ Generar un set de requisitos de respuesta de planta $\Longrigh
 \end{itemize}
 
 \subsection{Especificaciones de Respuesta Transiente}
-Suponiendo un sistema LTI-SISO:\\
+
+Ref: \textcite[Sec. 3.4]{Franklin2015}
+
+Suponiendo un sistema LTI-SISO de segundo orden:\\
+
 \begin{align*}
     \text{EDM: }~ m\ddot{u}+c\dot{u}+ku &= f\\
-    \Longrightarrow H_{UF}(s) &= \frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}
+    \Longrightarrow H_{UF}(s) &= \frac{1/m}{s^2+2\zeta\omega_n s+\omega_n^2}
 \end{align*}
+
+Polos del sistema:
+
+\begin{align*}
+    s_{1,2} &= -\underbrace{\zeta \omega_n}_{\sigma} \pm j \underbrace{\omega_n \sqrt{1 - \zeta^2}}_{\omega_d} \\
+    &= - \sigma \pm j \omega_d
+\end{align*}
+
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{transiente.png}
+    \centering
+    \includegraphics[scale=0.5]{transiente.png}
 \end{figure}
 
+
+
 Fórmulas para estimar la respuesta transiente para el caso de excitación escalón:
+
+% Nota: Estas formulas son distintas a las descritas en la literatura para $\zeta = 50\%$, ver libro Franklin "Feedback Control"
+
 \begin{itemize}
-    \item \underline{Tiempo subida, $t_r$}: Asumiento $\xi=2\%$, 
+    \item \underline{Tiempo subida, $t_r$}: Asumiento $\zeta=2\%$, 
     $$t_r\approx \frac{1.6}{\omega_n}$$
     \item \underline{Sobreimpulso, $M_p$}: 
     $$-\log \left(\frac{M_p}{\pi} \right) \approx \tan(\theta)$$
     \item \underline{Tiempo asentamiento, $t_s$}: Asumiendo 2\% de respuesta esperada en ``steady-state'',
-    $$t_s\approx \frac{4}{\xi \omega_n} $$
+    $$t_s\approx \frac{4}{\zeta \omega_n} $$
 \end{itemize}
 
 \subsection{``Pole placement'', ubicación de polos}
 Dadas las especificaciones transientes: $t_r$, $M_p$, $t_s$
 \begin{align*}
-    \color{VioletRed}{t_s}&<(t_s)_{lim}=\frac{4}{(\xi\omega_n)_{lim}}\\
+    \color{VioletRed}{t_s}&<(t_s)_{lim}=\frac{4}{(\zeta\omega_n)_{lim}}\\
     \color{BurntOrange}{t_r}&<(t_r)_{lim}\approx \frac{1.6}{\omega_n}\\
     \color{LimeGreen}{M_p}&<(M_p)_{lim}=e^{-\pi\tan(\theta)}
 \end{align*}
@@ -196,9 +213,9 @@ Si definimos $C(s) = K_P + K_Ds + \frac{K_I}{s}$
     \item $K_p$: control proporcional
     \item $K_D$: control derivativo
     \item $K_I$: control integral
-    \item $K_pe(t)$: error instantáneo
-    \item $K_D\frac{de(t)}{dt}$: error futuro
-    \item $K_I\int e(t)dt$: error pasado
+    \item $K_p e(t)$: error instantáneo
+    \item $K_D \frac{de(t)}{dt}$: error futuro
+    \item $K_I \int e(t) dt$: error pasado
     \item $e(t) = r(t) - y(t)$
 \end{itemize}
 
@@ -229,7 +246,7 @@ $$C(s)=K_p+\frac{K_I}{s}+K_Ds$$
 Si se considera únicamente el control P (proporcional), se puede obtener la función de transferencia del sistema cerrado.
 \begin{align*}
     & C(s)=K_p\\
-    \Longrightarrow & G(s)=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}=\frac{c}{s^2+as+b}\\
+    \Longrightarrow & G(s)=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+2\zeta\omega_n s+\omega_n^2}=\frac{c}{s^2+as+b}\\
     \Longrightarrow & G_{CL}(s)=\frac{K_p\frac{c}{s^2+bs+c}}{1+K_p\frac{c}{s^2+bs+c}} \\
     \Longrightarrow & G_{CL}(s)=\frac{K_p c}{s^2+as+(b+K_p\cdot c)} \longrightarrow \text{Función de transferencia Closed-loop}
 \end{align*}
@@ -237,13 +254,13 @@ Si se considera únicamente el control P (proporcional), se puede obtener la fun
 Al tener la misma forma de un sistema 1GDL, se pueden definir propiedades equivalentes:
 \begin{align*}
     \Longrightarrow & \omega_{n,CL}= \sqrt{b+K_p\cdot c}\\
-    \Longrightarrow & \xi_{CL}= \frac{a}{2\omega_{n,CL}}=\frac{a}{2\sqrt{b+K_p\cdot c}}
+    \Longrightarrow & \zeta_{CL}= \frac{a}{2\omega_{n,CL}}=\frac{a}{2\sqrt{b+K_p\cdot c}}
 \end{align*}
 
 Notar que:
 \begin{itemize}
     \item Aumentar $K_p$ hace que $\omega_{n,CL}$ aumente (sistema rígido)
-    \item Aumentar $K_p$ hace que $\xi$ disminuya
+    \item Aumentar $K_p$ hace que $\zeta$ disminuya
 \end{itemize}
 
 En términos de la respuesta $y_{\infty}$: 
@@ -277,7 +294,7 @@ Si el controlador es PD, entonces se obtiene la expresión para el sistema cerra
 \begin{itemize}
     \item Aparece un ``cero'' en el numerador
     \item Podemos controlar $\omega_{n,CL}$ mediante $K_p$
-    \item Podemos controlar $\xi_{CL}$ mediante una combinación de $K_p$ y $T_D$
+    \item Podemos controlar $\zeta_{CL}$ mediante una combinación de $K_p$ y $T_D$
 \end{itemize}
 
 $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
@@ -394,33 +411,89 @@ $\Longrightarrow y_{\infty}$, no hay cambio en el error de estado estacionario\\
     &= K_p+\frac{K_I}{s}+K_Ds, \quad K_I=K_pT_I, \quad K_D=K_pT_D
 \end{align*}
 
-\begin{multicols}{2}
+% \begin{multicols}{2}
+% \underline{Código Matlab}: 
+% \begin{minted}[]{matlab}
+% %% Simulacion Control PID
+% % Gaston Fermandois, 2020
+
+% %% Inicializar
+% clear all, close all, clc
+
+% %% Parametros
+
+% m=100; % masa primer piso, kg
+% c=50; %Ns/m
+% k=4000; %N/m
+% g=100; %cte motor, N/V
+
+% %% Control PID
+
+% Kp=1;
+% Ti=1/10; Ki=Kp*Ti;
+% Td=1/100; Kd=Kp*Td;
+
+% s=tf('s');
+% Cpid=Kp*(1+Ti/s+Td*s);
+
+% %% Espacio estado
+
+% A=[0 1;-k/m -c/m];
+% B1=[0;-1];
+% B2=[0;g/m];
+% B=[B1 B2];
+% C=[1 0];
+% D1=0;
+% D2=0;
+% D=[D1 D2];
+
+% sys=ss(A,B,C,D);
+
+% sysyu=ss(A,B2,C,D2);
+
+% Gyu=tf(sysyu);
+
+% %% Sistema Cerrado
+
+% Gcl=Gyu*Cpid/(1+Gyu*Cpid);
+% Gcl=minreal(Gcl) % Cancelación polos y ceros
+
+% figure;
+% rlocus(Gcl)
+
+% %% Simulacion
+
+% Tfinal=60; %s
+% Fs=1000; %Hz
+% Ts=1/Fs; %s
+
+% GM=importdata('RegistroNorthridge1994.txt');
+% N=length(GM.data);
+% dt=0.02; %s
+% t=linspace(0,N*dt,N);
+% ddzg=[t.' GM.data/100]; %[s m/s2]
+
+% sim('AMDctrl_demo_simu')
+% \end{minted}
+% \end{multicols}
+
 \underline{Código Matlab}: 
-\begin{minted}[]{matlab}
-%% Simulacion Control PID
-% Gaston Fermandois, 2020
 
-%% Inicializar
-clear all, close all, clc
-
+\begin{lstlisting}[style=matlab-editor]
 %% Parametros
-
 m=100; % masa primer piso, kg
 c=50; %Ns/m
 k=4000; %N/m
 g=100; %cte motor, N/V
 
 %% Control PID
-
 Kp=1;
 Ti=1/10; Ki=Kp*Ti;
 Td=1/100; Kd=Kp*Td;
-
 s=tf('s');
 Cpid=Kp*(1+Ti/s+Td*s);
 
 %% Espacio estado
-
 A=[0 1;-k/m -c/m];
 B1=[0;-1];
 B2=[0;g/m];
@@ -429,23 +502,18 @@ C=[1 0];
 D1=0;
 D2=0;
 D=[D1 D2];
-
 sys=ss(A,B,C,D);
-
 sysyu=ss(A,B2,C,D2);
-
 Gyu=tf(sysyu);
 
 %% Sistema Cerrado
-
 Gcl=Gyu*Cpid/(1+Gyu*Cpid);
-Gcl=minreal(Gcl) % Cancelación polos y ceros
+Gcl=minreal(Gcl) % Cancelacion polos y ceros
 
 figure;
 rlocus(Gcl)
 
 %% Simulacion
-
 Tfinal=60; %s
 Fs=1000; %Hz
 Ts=1/Fs; %s
@@ -457,21 +525,21 @@ t=linspace(0,N*dt,N);
 ddzg=[t.' GM.data/100]; %[s m/s2]
 
 sim('AMDctrl_demo_simu')
-\end{minted}
-\end{multicols}
+\end{lstlisting}
+
+
 \underline{Simulink}:
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Figuras/Simulink.png}
 \end{figure}
 
-
-
 \section{Root Locus}
 $\Longrightarrow$ ``Migración de polos'', Locus = posición en latín
 \begin{align*}
-    \text{Planta: }~ G_{y\ddot{z}_g}(s)&=\frac{1/m}{s^2+2\xi\omega_n s+\omega_n^2}\\
-    G_{yu}(s) &=\frac{g/m}{s^2+2\xi\omega_n s+\omega_n^2}
+    \text{Planta: }~ G_{y\ddot{z}_g}(s)&=\frac{1/m}{s^2+2\zeta\omega_n s+\omega_n^2}\\
+    G_{yu}(s) &=\frac{g/m}{s^2+2\zeta\omega_n s+\omega_n^2}
 \end{align*}
 \begin{align*}
     \text{Controlador PID: }~C(s)=K_p(1+\frac{T_I}{s}+T_Ds)
@@ -681,23 +749,29 @@ La señal de error:
 \end{align*}
 
 Luego:
+
 \begin{align*}
     \dot{x} &= Ax+BK(r-x)\\
     \dot{x} &= (A-BK)x+BKr\\
 \end{align*}
+
 \begin{itemize}
     \item $A_{CL}=A-BK$: matriz de estado del sistema cerrado.
     \item $B_{CL}=BK$
 \end{itemize}
+
 \begin{align*}
     \dot{x}=A_{CL}x+B_{CL}r
 \end{align*}
+
 Para que el sistema cerrado sea \textcolor{red}{ESTABLE}, los valores propios de $A_{CL}$ deben tener partes reales estrictamente negativas:
+
 \begin{align*}
-    \text{Re}(eig(A_{CL}))<0
+    \Re(\text{eig}(A_{CL}))<0
 \end{align*}
 
 \par Analicemos el diseño de un controlador utilizando una representación CCF:
+
 \begin{align*}
 {A}=\left[
     \begin{array}{cccc|c}
