@@ -34,18 +34,32 @@ jobs:
           \Configure{Gin-dim}{}
           \Css{img { max-width: 100\%; height: auto !important; display: block; margin: 1em auto; }}
           
-          % 2. Corrección de símbolos % y ~ en MathJax y texto normal (usando doble ## para escapar en LaTeX)
-          \renewcommand\textpercent{\HCode{&##37;}}
-          \renewcommand\textasciitilde{\HCode{&##126;}}
-          
-          % 3. Aplicar los símbolos puros a matlab-prettifier
+          % 2. Corrección robusta de símbolos % y ~ (Inyectando HTML puro)
           \makeatletter
+          \catcode`\#=12
+          \gdef\mypercent{\HCode{&#37;}}
+          \gdef\mytilde{\HCode{&#126;}}
+          \catcode`\#=6
+          
           \AtBeginDocument{
+            \let\%\mypercent
+            \let\textpercent\mypercent
+            \let\textasciitilde\mytilde
             \@ifpackageloaded{matlab-prettifier}{
-              \def\mlpr@comment@char{\textpercent}
-              \def\mlpr@tilde@char{\textasciitilde}
+              \let\mlpr@comment@char\mypercent
+              \let\mlpr@tilde@char\mytilde
             }{}
           }
+          
+          \@ifpackageloaded{listings}{
+            \lst@AddToHook{PreInit}{
+              \let\%\mypercent
+              \let\textpercent\mypercent
+              \let\textasciitilde\mytilde
+              \let\mlpr@comment@char\mypercent
+              \let\mlpr@tilde@char\mytilde
+            }
+          }{}
           \makeatother
           
           \begin{document}
