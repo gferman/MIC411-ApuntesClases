@@ -25,20 +25,24 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear archivo de configuración web (Figuras y MATLAB)
+      - name: Crear archivo de configuración web (Figuras y Símbolos)
         run: |
           cat << 'EOF' > config.cfg
           \Preamble{xhtml}
           
-          % 1. Solución a las figuras: Evitar tamaños fijos y usar CSS responsivo
+          % 1. Figuras responsivas (evita el achatamiento)
           \Configure{Gin-dim}{}
           \Css{img { max-width: 100\%; height: auto !important; display: block; margin: 1em auto; }}
           
-          % 2. Solución a los símbolos de MATLAB: Imprimir como texto normal
+          % 2. Corrección de símbolos % y ~ en MathJax y texto normal
+          \renewcommand\textpercent{\HCode{&#37;}}
+          \renewcommand\textasciitilde{\HCode{&#126;}}
+          
+          % 3. Aplicar los símbolos puros a matlab-prettifier
           \makeatletter
           \AtBeginDocument{
             \@ifpackageloaded{matlab-prettifier}{
-              \def\mlpr@comment@char{\%}
+              \def\mlpr@comment@char{\textpercent}
               \def\mlpr@tilde@char{\textasciitilde}
             }{}
           }
@@ -47,29 +51,6 @@ jobs:
           \begin{document}
           \EndPreamble
           EOF
-
-      - name: Compilar HTML con make4ht (Páginas divididas)
-        run: |
-          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
-          
-      - name: Procesar Bibliografía
-        run: |
-          biber MIC411apuntes || true
-          
-      - name: Recompilar para generar enlaces cruzados
-        run: |
-          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
-
-      - name: Configurar página de inicio y organizar figuras
-        run: |
-          echo '<meta http-equiv="refresh" content="0; URL=MIC411apuntes.html" />' > public/index.html
-          cp -r Figuras public/Figuras || true
-
-      - name: Publicar en la rama gh-pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
 
       - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
