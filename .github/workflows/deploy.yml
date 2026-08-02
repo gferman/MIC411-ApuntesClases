@@ -34,12 +34,14 @@ jobs:
           \Configure{Gin-dim}{}
           \Css{img { max-width: 100\%; height: auto !important; display: block; margin: 1em auto; }}
           
-          % 2. Corrección robusta de símbolos % y ~ (Inyectando HTML puro)
+          % 2. Corrección robusta de símbolos % y ~ 
           \makeatletter
           \catcode`\#=12
           \gdef\mypercent{\HCode{&#37;}}
-          \gdef\mytilde{\HCode{&#126;}}
           \catcode`\#=6
+          % Para la virgulilla (~), evitamos códigos HTML porque listings los sobre-escapa.
+          % Usamos \string~ para forzar el caracter crudo directamente al archivo web.
+          \gdef\mytilde{\HCode{\string~}}
           
           \AtBeginDocument{
             \let\%\mypercent
