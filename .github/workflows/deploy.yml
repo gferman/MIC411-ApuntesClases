@@ -34,9 +34,9 @@ jobs:
           \Configure{Gin-dim}{}
           \Css{img { max-width: 100\%; height: auto !important; display: block; margin: 1em auto; }}
           
-          % 2. Corrección de símbolos % y ~ en MathJax y texto normal
-          \renewcommand\textpercent{\HCode{&#37;}}
-          \renewcommand\textasciitilde{\HCode{&#126;}}
+          % 2. Corrección de símbolos % y ~ en MathJax y texto normal (usando doble ## para escapar en LaTeX)
+          \renewcommand\textpercent{\HCode{&##37;}}
+          \renewcommand\textasciitilde{\HCode{&##126;}}
           
           % 3. Aplicar los símbolos puros a matlab-prettifier
           \makeatletter
