@@ -191,9 +191,6 @@ jobs:
           % =========================================================
           % 1. Activar numeración AMS en MathJax para subequations
           \Configure{@HEAD}{\HCode{<script>window.MathJax = { tex: { tags: "ams" } };</script>\Hnewline}}
-          
-          % 2. Proteger el entorno subequations para la web
-          \Configure{MathjaxEnv}{subequations}
           % =========================================================
           
           \Configure{Gin-dim}{}
