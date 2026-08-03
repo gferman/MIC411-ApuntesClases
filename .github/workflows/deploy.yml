@@ -187,6 +187,15 @@ jobs:
           % Cargar los archivos externos creados en bash
           \Configure{@HEAD}{\HCode{<link rel="stylesheet" type="text/css" href="custom.css" />\Hnewline}}
           \Configure{@HEAD}{\HCode{<script src="custom.js"></script>\Hnewline}}
+          
+          % =========================================================
+          % 1. Activar numeración AMS en MathJax para subequations
+          \Configure{@HEAD}{\HCode{<script>window.MathJax = { tex: { tags: "ams" } };</script>\Hnewline}}
+          
+          % 2. Proteger el entorno subequations para la web
+          \Configure{MathjaxEnv}{subequations}
+          % =========================================================
+          
           \Configure{Gin-dim}{}
           
           % Corrección de símbolos % y ~
