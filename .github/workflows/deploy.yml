@@ -52,13 +52,9 @@ jobs:
           .sidebar-custom .tableofcontents a:hover { background: #e9ecef; }
           img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
           
-          /* Ocultar botones antiguos de navegación */
           .crosslinks { display: none !important; }
-          
-          /* Ocultar elementos móviles en modo Desktop */
           .mobile-header, .sidebar-overlay { display: none; }
           
-          /* Diseño para móviles (Pantallas menores a 800px) */
           @media (max-width: 800px) {
             body { margin-left: 10px !important; margin-right: 10px !important; padding-top: 65px; }
             .mobile-header {
@@ -174,12 +170,12 @@ jobs:
           cat << 'EOF' > config.cfg
           \Preamble{xhtml}
           
-          % Cargar los archivos externos creados en bash
           \Configure{@HEAD}{\HCode{<link rel="stylesheet" type="text/css" href="custom.css" />\Hnewline}}
           \Configure{@HEAD}{\HCode{<script src="custom.js"></script>\Hnewline}}
           \Configure{Gin-dim}{}
           
-          % Corrección de símbolos % y ~
+          \Configure{@HEAD}{\HCode{<script>window.MathJax = { tex: { tags: "ams" } };</script>\Hnewline}}
+          
           \makeatletter
           \catcode`\#=12
           \gdef\mypercent{\HCode{&#37;}}
@@ -223,40 +219,43 @@ jobs:
         run: |
           make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
-      - name: Limpiar HTML (Acentos en Título, MathJax y Espacios)
+      - name: Post-Procesamiento Estricto con Python
         run: |
-          cat << 'EOF' > clean_html.py
-          import glob, re, unicodedata
+          cat << 'EOF' > post_processor.py
+          import glob, re, html
 
-          def clean_title(match):
-              title = match.group(1)
-              title = title.replace('´', '').replace('`', '').replace('~', '')
-              title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
-              return f"<title>{title}</title>"
+          def force_mathjax_block(match):
+              # Extraer todo el bloque de subequations
+              text = match.group(0)
+              
+              # 1. Decodificar entidades HTML (Convierte &amp; a & para no romper el entorno align)
+              text = html.unescape(text)
+              
+              # 2. Eliminar cualquier etiqueta HTML basura (<p>, <br>, <div>) que make4ht haya inyectado dentro de la matemática
+              text = re.sub(r'<[^>]+>', '', text)
+              
+              # 3. Unificar los espacios fantasmas
+              text = re.sub(r'\\begin\s+\{', r'\\begin{', text)
+              text = re.sub(r'\\end\s+\{', r'\\end{', text)
+              
+              # 4. Envolver explícitamente en $$ para obligar a MathJax a compilarlo
+              return f"\n$$\n{text}\n$$\n"
 
           for filepath in glob.glob("public/*.html"):
               with open(filepath, "r", encoding="utf-8") as f:
                   content = f.read()
               
-              # 1. Arreglar el espacio que tex4ht le agrega a los entornos
-              content = content.replace(r"\begin {", r"\begin{")
-              content = content.replace(r"\end {", r"\end{")
+              # Ejecutar el reparador en todos los bloques subequations del documento
+              content = re.sub(r"\\begin\s*\{subequations\}.*?\\end\s*\{subequations\}", force_mathjax_block, content, flags=re.DOTALL)
               
-              # 2. Limpiar etiqueta <title>
-              content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
-              
-              # 3. Forzar a MathJax a leer subequations envolviéndolo en $$
-              content = content.replace(r"\begin{subequations}", r"$$\begin{subequations}")
-              content = content.replace(r"\end{subequations}", r"\end{subequations}$$")
-              
-              # 4. Solucionar el error de MathJax con los acentos nativos de LaTeX dentro de \text{}
-              content = content.replace(r"\'a", "á").replace(r"\'e", "é").replace(r"\'i", "í").replace(r"\'o", "ó").replace(r"\'u", "ú")
-              content = content.replace(r"\'A", "Á").replace(r"\'E", "É").replace(r"\'I", "Í").replace(r"\'O", "Ó").replace(r"\'U", "Ú")
+              # Reparar espacios fantasmas en cualquier otro entorno residual
+              content = re.sub(r"\\begin\s+\{", r"\\begin{", content)
+              content = re.sub(r"\\end\s+\{", r"\\end{", content)
 
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content)
           EOF
-          python3 clean_html.py
+          python3 post_processor.py
 
       - name: Configurar página de inicio y organizar archivos
         run: |
