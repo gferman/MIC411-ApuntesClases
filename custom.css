@@ -42,10 +42,10 @@ img { max-width: 100%; height: auto !important; display: block; margin: 1em auto
   }
   .mobile-title { font-size: 1.1em; font-weight: bold; }
   .sidebar-custom {
-    left: calc(-1 * var(--sidebar-width)); /* Escondido hacia la izquierda */
-    z-index: 10001; /* Por encima de todo */
+    left: calc(-1 * var(--sidebar-width));
+    z-index: 10001; 
   }
-  .sidebar-custom.open { left: 0; /* Aparece en pantalla */ }
+  .sidebar-custom.open { left: 0; }
   .sidebar-overlay {
     display: block; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.5); z-index: 10000;
