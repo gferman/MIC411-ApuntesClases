@@ -22,13 +22,9 @@ body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right:
 .sidebar-custom .tableofcontents a:hover { background: #e9ecef; }
 img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
 
-/* Ocultar botones antiguos de navegación */
 .crosslinks { display: none !important; }
-
-/* Ocultar elementos móviles en modo Desktop */
 .mobile-header, .sidebar-overlay { display: none; }
 
-/* Diseño para móviles (Pantallas menores a 800px) */
 @media (max-width: 800px) {
   body { margin-left: 10px !important; margin-right: 10px !important; padding-top: 65px; }
   .mobile-header {

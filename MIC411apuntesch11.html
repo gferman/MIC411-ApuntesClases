@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='es' xml:lang='es'> 
-<head><title>11 Control  Optimo de Sistemas Lineales</title> 
+<head><title>11 Control ´ Optimo de Sistemas Lineales</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -10,6 +10,7 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>prev</a>] [<a href='MIC411apuntesch10.html#tailMIC411apuntesch10.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch11.html'>tail</a>] [<a href='MIC411apuntespa3.html#MIC411apuntesch11.html'>up</a>] </p></div>
    <h2 class='chapterHead' id='control-optimo-de-sistemas-lineales'><span class='titlemark'>Capítulo 11</span><br /><a id='x18-19500011'></a>Control Óptimo de Sistemas Lineales</h2>
@@ -55,7 +56,11 @@ explícitamente al funcional de desempeño sin cambiar su estructura original:
 </p><!-- l. 64 --><p class='indent'>   \begin{align*}  J(u) &amp;= \underbrace {\left ( x_0^T P x_0 - x_0^T P x_0 \right )}_{=0} + \int _{0}^{\infty } \left (x^T Q x+u^T R u \right ) dt \\ &amp; = x_0^T P x_0 - x_0^T P x_0 + \int _{0}^{\infty } \left (x^T Q x+u^T R u \right ) dt  \end{align*}
 </p><!-- l. 66 --><p class='indent'>   Ahora, utilizando el <span class='cmti-10'>teorema fundamental del c</span>á<span class='cmti-10'>lculo</span>, la siguiente igualdad se cumple:
 </p>
-   <div class='subequations'>$$\begin{subequations}  \begin{align} \int _{0}^{\infty } \frac {d}{dt}\left ( x^T P x\right ) dt &amp;= x_\infty ^T P x_\infty - x_0^T P x_0 \\ &amp;= 0 - x_0^T P x_0 \end{align}  \end{subequations}$$</div>
+   <div class='subequations'>
+$$
+\begin{subequations}  \begin{align} \int _{0}^{\infty } \frac {d}{dt}\left ( x^T P x\right ) dt &= x_\infty ^T P x_\infty - x_0^T P x_0 \\ &= 0 - x_0^T P x_0 \end{align}  \end{subequations}
+$$
+</div>
 <!-- l. 75 --><p class='indent'>   Reemplazando en el funcional de desempeño:
 </p><!-- l. 79 --><p class='indent'>   \begin{align}  J(u) &amp;= x_0^T P x_0 + \int _{0}^{\infty } \left [\frac {d}{dt}\left ( x^T P x\right ) + x ^T Q x+u^T R u \right ] dt  \end{align}
 </p><!-- l. 81 --><p class='indent'>   Desarrollando el primer término dentro de la integral utilizando la regla de la cadena:
@@ -66,7 +71,11 @@ explícitamente al funcional de desempeño sin cambiar su estructura original:
 </p><!-- l. 99 --><p class='indent'>   \begin{align}  J(u) &amp;= x_0^T P x_0 + \int _{0}^{\infty } \left [ x^T \left ( A^T P + PA + Q\right ) x + u^T R u + 2 u^T B^T P x \right ] dt  \end{align}
 </p><!-- l. 101 --><p class='indent'>   Utilizando la técnica de “completar los cuadrados”:
 </p>
-   <div class='subequations'>$$\begin{subequations}  \begin{align} \left ( u + K x\right )^T R \left ( u + K x\right ) = u^T R u + 2 u^T R K x + x^T K^T R K x \\ \Rightarrow u^T R u + 2 u^T R K x = \left ( u + K x\right )^T R \left ( u + K x\right ) - x^T K^T R K x \end{align}  \end{subequations}$$</div>
+   <div class='subequations'>
+$$
+\begin{subequations}  \begin{align} \left ( u + K x\right )^T R \left ( u + K x\right ) = u^T R u + 2 u^T R K x + x^T K^T R K x \\ \Rightarrow u^T R u + 2 u^T R K x = \left ( u + K x\right )^T R \left ( u + K x\right ) - x^T K^T R K x \end{align}  \end{subequations}
+$$
+</div>
 <!-- l. 110 --><p class='indent'>   Igualando \(K = R^{-1} B^T P\):
 </p><!-- l. 114 --><p class='indent'>   \begin{align}  u^T R u + 2 u^T B^T P x = \left ( u + R^{-1} B^T P x\right )^T R \left ( u + R^{-1} B^T P x\right ) - x^T \left (P^T B R^{-1} B^T P \right ) x  \end{align}
 </p><!-- l. 116 --><p class='indent'>   Nuevamente reemplazamos en el funcional de desempeño:

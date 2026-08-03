@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='es' xml:lang='es'> 
-<head><title>10 Teorıa de Control Clasico</title> 
+<head><title>10 Teor´ıa de Control Cl´asico</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -10,6 +10,7 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch11.html'>next</a>] [<a href='MIC411apuntesch9.html'>prev</a>] [<a href='MIC411apuntesch9.html#tailMIC411apuntesch9.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch10.html'>tail</a>] [<a href='MIC411apuntespa3.html#MIC411apuntesch10.html'>up</a>] </p></div>
    <h2 class='chapterHead' id='teoria-de-control-clasico'><span class='titlemark'>Capítulo 10</span><br /><a id='x17-16900010'></a>Teoría de Control Clásico</h2>
@@ -655,9 +656,21 @@ observable.
                                                                                          
 </p>
    </figure>
-<!-- l. 1073 --><p class='indent'>   Planta: </p><div class='subequations'>$$\begin{subequations}  \begin{align} \dot {x} &amp;= Ax+Bu\\ y &amp;= Cx \end{align}  \end{subequations}$$</div>
-<!-- l. 1081 --><p class='indent'>   Controlador: </p><div class='subequations'>$$\begin{subequations}  \begin{align} u = -K\hat {x} \end{align}  \end{subequations}$$</div>
-<!-- l. 1088 --><p class='indent'>   Estimador y error de estimación: </p><div class='subequations'>$$\begin{subequations}  \begin{align} \dot {\hat {x}}&amp;= A\hat {x}+Bu+L\tilde {y}\\ \hat {y} &amp;= C\hat {x}\\ \tilde {x} &amp;= x-\hat {x}\\ \tilde {y} &amp;= y-\hat {y} \end{align}  \end{subequations}$$</div>
+<!-- l. 1073 --><p class='indent'>   Planta: </p><div class='subequations'>
+$$
+\begin{subequations}  \begin{align} \dot {x} &= Ax+Bu\\ y &= Cx \end{align}  \end{subequations}
+$$
+</div>
+<!-- l. 1081 --><p class='indent'>   Controlador: </p><div class='subequations'>
+$$
+\begin{subequations}  \begin{align} u = -K\hat {x} \end{align}  \end{subequations}
+$$
+</div>
+<!-- l. 1088 --><p class='indent'>   Estimador y error de estimación: </p><div class='subequations'>
+$$
+\begin{subequations}  \begin{align} \dot {\hat {x}}&= A\hat {x}+Bu+L\tilde {y}\\ \hat {y} &= C\hat {x}\\ \tilde {x} &= x-\hat {x}\\ \tilde {y} &= y-\hat {y} \end{align}  \end{subequations}
+$$
+</div>
 <!-- l. 1098 --><p class='indent'>   Utilizando las ecuaciones de cada subsistema, vamos a obtener una expresión para el sistema cerrado:
 <br class='newline' />
 </p><!-- l. 1100 --><p class='indent'>   Reemplazando (2.3c) en (2.2a): \begin{align*}  u&amp;=-K(x-\tilde {x})\\  \end{align*}
