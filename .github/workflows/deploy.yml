@@ -223,16 +223,14 @@ jobs:
         run: |
           make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
-      - name: Limpiar HTML (Acentos en Título y Espacios en MathJax)
+      - name: Limpiar HTML (Acentos en Título, MathJax y Espacios)
         run: |
           cat << 'EOF' > clean_html.py
           import glob, re, unicodedata
 
           def clean_title(match):
               title = match.group(1)
-              # Remover el acento flotante de tex4ht (´) y tildes (~)
               title = title.replace('´', '').replace('`', '').replace('~', '')
-              # Remover acentos reales convirtiéndolos a su letra base (á -> a)
               title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
               return f"<title>{title}</title>"
 
@@ -240,13 +238,21 @@ jobs:
               with open(filepath, "r", encoding="utf-8") as f:
                   content = f.read()
               
-              # 1. Arreglar el espacio que tex4ht le agrega a las ecuaciones
+              # 1. Arreglar el espacio que tex4ht le agrega a los entornos
               content = content.replace(r"\begin {", r"\begin{")
               content = content.replace(r"\end {", r"\end{")
               
-              # 2. Limpiar los acentos y símbolos raros de la etiqueta <title>
+              # 2. Limpiar etiqueta <title>
               content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
               
+              # 3. Forzar a MathJax a leer subequations envolviéndolo en $$
+              content = content.replace(r"\begin{subequations}", r"$$\begin{subequations}")
+              content = content.replace(r"\end{subequations}", r"\end{subequations}$$")
+              
+              # 4. Solucionar el error de MathJax con los acentos nativos de LaTeX dentro de \text{}
+              content = content.replace(r"\'a", "á").replace(r"\'e", "é").replace(r"\'i", "í").replace(r"\'o", "ó").replace(r"\'u", "ú")
+              content = content.replace(r"\'A", "Á").replace(r"\'E", "É").replace(r"\'I", "Í").replace(r"\'O", "Ó").replace(r"\'U", "Ú")
+
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content)
           EOF
