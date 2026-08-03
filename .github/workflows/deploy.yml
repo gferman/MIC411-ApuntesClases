@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Menú lateral y Móvil)
+      - name: Crear JS y CSS del Dashboard (Menú lateral filtrado y Móvil)
         run: |
           cat << 'EOF' > custom.css
           :root { --sidebar-width: 320px; }
@@ -72,10 +72,10 @@ jobs:
             }
             .mobile-title { font-size: 1.1em; font-weight: bold; }
             .sidebar-custom {
-              left: calc(-1 * var(--sidebar-width)); /* Escondido hacia la izquierda */
-              z-index: 10001; /* Por encima de todo */
+              left: calc(-1 * var(--sidebar-width));
+              z-index: 10001; 
             }
-            .sidebar-custom.open { left: 0; /* Aparece en pantalla */ }
+            .sidebar-custom.open { left: 0; }
             .sidebar-overlay {
               display: block; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
               background: rgba(0,0,0,0.5); z-index: 10000;
@@ -89,24 +89,24 @@ jobs:
           document.addEventListener("DOMContentLoaded", function() {
             if (document.querySelector(".sidebar-custom")) return;
 
-            // 1. Fondo oscuro para móviles
+            // 1. Crear el overlay oscuro para móviles
             let overlay = document.createElement("div");
             overlay.className = "sidebar-overlay";
             document.body.insertBefore(overlay, document.body.firstChild);
 
-            // 2. Panel lateral
+            // 2. Crear panel lateral base
             let sidebar = document.createElement("div");
             sidebar.className = "sidebar-custom";
             sidebar.innerHTML = '<a href="MIC411apuntes.html" class="home-btn">🏠 Volver al Inicio</a><div class="sidebar-toc"><p>Cargando menú...</p></div>';
             document.body.insertBefore(sidebar, document.body.firstChild);
 
-            // 3. Barra superior móvil
+            // 3. Crear cabecera superior móvil
             let mobileHeader = document.createElement("div");
             mobileHeader.className = "mobile-header";
             mobileHeader.innerHTML = '<button class="hamburger-btn">☰</button><span class="mobile-title">Apuntes del Curso</span>';
             document.body.insertBefore(mobileHeader, document.body.firstChild);
 
-            // 4. Lógica de los botones para abrir/cerrar menú
+            // 4. Activar los botones móviles
             let btn = document.querySelector(".hamburger-btn");
             btn.addEventListener("click", function() {
               sidebar.classList.add("open");
@@ -117,16 +117,43 @@ jobs:
               overlay.classList.remove("open");
             });
 
-            // 5. Clonar el índice de la página principal
+            // 5. Detectar en qué archivo estamos actualmente
+            let currentFile = window.location.pathname.split('/').pop() || "index.html";
+            if (currentFile === "index.html") currentFile = "MIC411apuntes.html";
+
+            // 6. Extraer y filtrar el índice global
             fetch("MIC411apuntes.html")
               .then(r => r.text())
               .then(html => {
                 let doc = new DOMParser().parseFromString(html, "text/html");
                 let toc = doc.querySelector(".tableofcontents");
+                
                 if(toc) {
+                  // Si NO estamos en la página de inicio, escondemos los demás capítulos
+                  if (currentFile !== "MIC411apuntes.html") {
+                    let entries = toc.querySelectorAll("[class*='Toc']"); // Encuentra todas las clases tipo chapterToc, sectionToc, etc.
+                    entries.forEach(entry => {
+                      let link = entry.querySelector("a");
+                      if (link) {
+                        let href = link.getAttribute("href") || "";
+                        let hrefFile = href.split('#')[0]; // Tomamos solo el nombre del archivo, omitiendo el #hash
+                        
+                        // Si el enlace no apunta al HTML actual, lo ocultamos
+                        if (hrefFile !== currentFile) {
+                          entry.style.display = "none";
+                          // Ocultar también el salto de línea <br> nativo de tex4ht para no dejar espacios en blanco
+                          let next = entry.nextSibling;
+                          while(next && next.nodeType === 3) next = next.nextSibling;
+                          if (next && next.tagName === "BR") next.style.display = "none";
+                        }
+                      }
+                    });
+                  }
+                  
+                  // Inyectar el HTML ya filtrado
                   document.querySelector(".sidebar-toc").innerHTML = toc.outerHTML;
                   
-                  // Cerrar el menú al hacer clic en un enlace (para móviles)
+                  // Hacer que el menú móvil se cierre automáticamente al elegir una sección
                   document.querySelectorAll(".sidebar-custom .tableofcontents a").forEach(link => {
                     link.addEventListener("click", () => {
                       sidebar.classList.remove("open");
