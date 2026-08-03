@@ -222,35 +222,42 @@ jobs:
       - name: Post-Procesamiento Estricto con Python
         run: |
           cat << 'EOF' > post_processor.py
-          import glob, re, html
+          import glob, re, html, unicodedata
 
-          def force_mathjax_block(match):
-              # Extraer todo el bloque de subequations
+          def clean_title(match):
+              title = html.unescape(match.group(1))
+              # Normalizar caracteres (convierte á a a, etc.)
+              title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
+              # Destruir radicalmente TODO lo que no sea letra, numero o espacio
+              title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
+              # Limpiar espacios dobles
+              title = re.sub(r'\s+', ' ', title).strip()
+              return f"<title>{title}</title>"
+
+          def clean_math_block(match):
               text = match.group(0)
-              
-              # 1. Decodificar entidades HTML (Convierte &amp; a & para no romper el entorno align)
+              # 1. Recuperar entidades HTML (e.g. &amp; -> &)
               text = html.unescape(text)
-              
-              # 2. Eliminar cualquier etiqueta HTML basura (<p>, <br>, <div>) que make4ht haya inyectado dentro de la matemática
+              # 2. Eliminar toda etiqueta HTML intrusa inyectada por el motor
               text = re.sub(r'<[^>]+>', '', text)
-              
-              # 3. Unificar los espacios fantasmas
-              text = re.sub(r'\\begin\s+\{', r'\\begin{', text)
-              text = re.sub(r'\\end\s+\{', r'\\end{', text)
-              
-              # 4. Envolver explícitamente en $$ para obligar a MathJax a compilarlo
-              return f"\n$$\n{text}\n$$\n"
+              # 3. Unificar espacios fantasmas en begin/end
+              text = re.sub(r'\\begin\s+?\{', r'\\begin{', text)
+              text = re.sub(r'\\end\s+?\{', r'\\end{', text)
+              # 4. APLICAR TU CORRECCIÓN: Eliminar espacios antes de _ y ^
+              text = re.sub(r'\s+_', '_', text)
+              text = re.sub(r'\s+\^', '^', text)
+              return text
 
           for filepath in glob.glob("public/*.html"):
               with open(filepath, "r", encoding="utf-8") as f:
                   content = f.read()
               
-              # Ejecutar el reparador en todos los bloques subequations del documento
-              content = re.sub(r"\\begin\s*\{subequations\}.*?\\end\s*\{subequations\}", force_mathjax_block, content, flags=re.DOTALL)
+              # Limpiar Título (Bomba nuclear a los acentos)
+              content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
               
-              # Reparar espacios fantasmas en cualquier otro entorno residual
-              content = re.sub(r"\\begin\s+\{", r"\\begin{", content)
-              content = re.sub(r"\\end\s+\{", r"\\end{", content)
+              # Limpiar TODAS las subequations y align
+              content = re.sub(r"\\begin\s*\{subequations\}.*?\\end\s*\{subequations\}", clean_math_block, content, flags=re.DOTALL)
+              content = re.sub(r"\\begin\s*\{align\*?\}.*?\\end\s*\{align\*?\}", clean_math_block, content, flags=re.DOTALL)
 
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content)
