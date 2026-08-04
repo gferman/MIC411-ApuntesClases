@@ -10,6 +10,7 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch7.html'>next</a>] [<a href='#tailMIC411apuntesch6.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch6.html'>up</a>] </p></div>
    <h2 class='chapterHead' id='tecnologia-de-sensores'><span class='titlemark'>Capítulo 6</span><br /><a id='x12-900006'></a>Tecnología de Sensores</h2>
@@ -44,8 +45,8 @@ la resolución, probablemente no detecta microvibraciones, por ejemplo \(1\) mg 
 </p>
    <h4 class='subsectionHead' id='diseno-de-sensores'><span class='titlemark'>6.1.2.   </span> <a id='x12-930006.1.2'></a>Diseño de Sensores</h4>
 <!-- l. 33 --><p class='noindent'>Supongamos tenemos un sensor que se modela como un oscilador SDOF sin amortiguamiento:
-</p><!-- l. 37 --><p class='indent'>   \begin{align*}  \ddot {w} + \omega_s^2 w = -\ddot {z}  \end{align*}
-</p><!-- l. 39 --><p class='indent'>   La FRF de este oscilador es: \begin{align*}  H_{WZ}(\Omega ) = \frac {1}{1-\frac {\omega_s}{\Omega }^2}\\ H_{W\ddot {Z}}(\Omega ) = \frac {1}{\Omega^2 - \omega_s^2}  \end{align*}
+</p><!-- l. 37 --><p class='indent'>   \begin {align*}  \ddot {w} + \omega_s^2 w = -\ddot {z}  \end {align*}
+</p><!-- l. 39 --><p class='indent'>   La FRF de este oscilador es: \begin {align*}  H_{WZ}(\Omega ) = \frac {1}{1-\frac {\omega_s}{\Omega }^2}\\ H_{W\ddot {Z}}(\Omega ) = \frac {1}{\Omega^2 - \omega_s^2}  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>Si quiero que \(w(t)\) se parezca a \(z(t)\). Ocupar rigidez alta.
@@ -77,14 +78,14 @@ de potencial, estos materiales se deforman.
 </p>
    <h3 class='sectionHead' id='especificaciones-de-sensores'><span class='titlemark'>6.3.   </span> <a id='x12-980006.3'></a>Especificaciones de sensores</h3>
 <!-- l. 77 --><p class='noindent'><span class='underline'>sensitividad</span>: Cantidad de voltaje que se genera por unidad de medida de vibración (ej: de aceleración).
-</p><!-- l. 81 --><p class='indent'>   \begin{align*}  S = \frac {\text {output (voltaje)}}{\text {input (vibración)}}  \end{align*}
+</p><!-- l. 81 --><p class='indent'>   \begin {align*}  S = \frac {\text {output (voltaje)}}{\text {input (vibración)}}  \end {align*}
 </p><!-- l. 83 --><p class='indent'>   <span class='underline'>Resolución</span>: Cantidad mínima de input para generar algún voltaje (se relacióna con el ruido/contaminación de la señal).
 <br class='newline' />
 </p><!-- l. 85 --><p class='indent'>   <span class='underline'>Rango de Frecuencias</span>: Rango de frecuencias que el sensor es capaz de medir. Si la respuesta que quiero medir
 contiene una frecuencia fuera de este rango, no se estaría midiendo la respuesta real de la estructura.
 <br class='newline' />
 </p><!-- l. 87 --><p class='indent'>   <span class='underline'>Linealidad</span>: Que tan lineal es la respuesta que estoy midiendo con la señal eléctrica.
-</p><!-- l. 91 --><p class='indent'>   \begin{align*}  \text {medición} = C \times (\text {señal})  \end{align*}
+</p><!-- l. 91 --><p class='indent'>   \begin {align*}  \text {medición} = C \times (\text {señal})  \end {align*}
 </p><!-- l. 93 --><p class='indent'>   Generalmente, los sensores tienen \(R^2 \approx 0.99\)
 </p><!-- l. 95 --><p class='noindent'>
 </p>

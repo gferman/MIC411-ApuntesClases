@@ -10,6 +10,7 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch3.html'>next</a>] [<a href='MIC411apuntesch1.html'>prev</a>] [<a href='MIC411apuntesch1.html#tailMIC411apuntesch1.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch2.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch2.html'>up</a>] </p></div>
    <h2 class='chapterHead' id='modelos-matematicos-de-sistemas-dinamicos-lineales'><span class='titlemark'>Capítulo 2</span><br /><a id='x7-250002'></a>Modelos matemáticos de sistemas dinámicos lineales</h2>
@@ -30,7 +31,7 @@
                                                                                          
    </figure>
    <h3 class='sectionHead' id='principios-fundamentales-de-la-mecanica-estructural'><span class='titlemark'>2.2.   </span> <a id='x7-270002.2'></a>Principios fundamentales de la mecánica estructural</h3>
-<!-- l. 15 --><p class='noindent'>Dominio \(\Omega \) tiene una frontera \(\partial \Omega = \Gamma _u \cup \Gamma _t\), donde \(\Gamma _u\) es la frontera con desplazamientos prescritos, y \(\Gamma _t\) es la frontera con tracciones
+<!-- l. 15 --><p class='noindent'>Dominio \(\Omega \) tiene una frontera \(\partial \Omega = \Gamma_u \cup \Gamma_t\), donde \(\Gamma_u\) es la frontera con desplazamientos prescritos, y \(\Gamma_t\) es la frontera con tracciones
 prescritas.
 </p>
    <figure class='figure' id='-problema-de-valores-de-contorno-en-mecanica-estructural'> 
@@ -59,14 +60,14 @@ prescritas.
    <h4 class='subsectionHead' id='forma-fuerte'><span class='titlemark'>2.2.1.   </span> <a id='x7-280002.2.1'></a>Forma fuerte</h4>
 <!-- l. 33 --><p class='noindent'>La ecuación de equilibrio en forma fuerte, que describe el equilibrio dinámico en un continuo elástico,
 donde:
-</p><!-- l. 41 --><p class='indent'>   \begin{align}  \sigma_{ij,j} + b_i = \rho \frac {\partial^2 u_i}{\partial t^2}, & \qquad \forall \Omega \\ u_i = q_i, & \qquad \forall \Gamma_u\\ \sigma_{ij} n_j = t_i, & \qquad \forall \Gamma_t\\ u_i(x,0) = u_{0i}(x), & \qquad \forall \Omega \\ \frac {\partial u_i}{\partial t}(x,0) =\frac {\partial u_{0i}}{\partial t}(x), & \qquad \forall \Omega \\  \end{align}
-</p><!-- l. 43 --><p class='indent'>   donde: \(\sigma _{ij,j}\) es la divergencia del tensor de esfuerzos (\(\sigma _{ij}\)); \(b_i\) son las fuerzas volumétricas; \(\rho \frac {\partial ^2 u_i}{\partial t^2}\) es el término inercial, con \(\rho \) la
+</p><!-- l. 41 --><p class='indent'>   \begin {align}  \sigma_{ij,j} + b_i = \rho \frac {\partial^2 u_i}{\partial t^2}, &amp; \qquad \forall \Omega \\ u_i = q_i, &amp; \qquad \forall \Gamma_u\\ \sigma_{ij} n_j = t_i, &amp; \qquad \forall \Gamma_t\\ u_i(x,0) = u_{0i}(x), &amp; \qquad \forall \Omega \\ \frac {\partial u_i}{\partial t}(x,0) =\frac {\partial u_{0i}}{\partial t}(x), &amp; \qquad \forall \Omega \\  \end {align}
+</p><!-- l. 43 --><p class='indent'>   donde: \(\sigma_{ij,j}\) es la divergencia del tensor de esfuerzos (\(\sigma_{ij}\)); \(b_i\) son las fuerzas volumétricas; \(\rho \frac {\partial^2 u_i}{\partial t^2}\) es el término inercial, con \(\rho \) la
 densidad y \(u_i\) el desplazamiento.
 </p><!-- l. 45 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='forma-debil'><span class='titlemark'>2.2.2.   </span> <a id='x7-290002.2.2'></a>Forma débil</h4>
 <!-- l. 47 --><p class='noindent'>Lagrangiano: \(\mathcal {L} = T-V\)
-</p><!-- l. 49 --><p class='indent'>   Acción: \(S = \int _{t_1}^{t_2} \mathcal {L}dt\)
+</p><!-- l. 49 --><p class='indent'>   Acción: \(S = \int_{t_1}^{t_2} \mathcal {L}dt\)
 </p><!-- l. 51 --><p class='indent'>   Principio de mínima acción:
 </p><!-- l. 55 --><p class='indent'>   \begin {equation}  \delta S = 0  \end {equation}<a id='x7-29001r1'></a>
 </p><!-- l. 57 --><p class='indent'>   Utilizando calculo variacional se obtiene la forma débil del problema de elastodinámica, utilizando notación directa
@@ -116,10 +117,10 @@ escribe finalmente como un sistema de ecuaciones diferenciales ordinarias (ODEs)
 <!-- l. 96 --><p class='indent'>   <span class='underline'>Problema</span>: Dada la EDM de un sistema estructural 1GDL, determinar su función de transferencia
 \(H(s)\)<br class='newline' />
 </p><!-- l. 98 --><p class='noindent'>Notación:
-</p><!-- l. 103 --><p class='indent'>   \begin{align*}  U(s) &= \mathcal {L}\{u(t)\}~: \text {respuesta (dominio complejo)}\\ F(s) &= \mathcal {L}\{f(t)\} ~: \text {input (dominio complejo)}  \end{align*}
+</p><!-- l. 103 --><p class='indent'>   \begin {align*}  U(s) &amp;= \mathcal {L}\{u(t)\}~: \text {respuesta (dominio complejo)}\\ F(s) &amp;= \mathcal {L}\{f(t)\} ~: \text {input (dominio complejo)}  \end {align*}
 </p><!-- l. 105 --><p class='indent'>   Asumiendo reposo: \(u(0)=\dot {u}(0)=0\)
-</p><!-- l. 112 --><p class='indent'>   \begin{align*}  m\ddot {u}+c\dot {u}+ku &= f(t) ~/\color {red}{\mathcal {L}\{\cdot \}}\\ m\mathcal {L}\{\ddot {u}\}+c\mathcal {L}\{\dot {u}\}+k\mathcal {L}\{u\} &= \mathcal {L}\{f\}\\ ms^2U(s)+csU(s)+kU(s) &= F(s)\\ (ms^2+cs+k)U(s) &= F(s)  \end{align*}
-</p><!-- l. 115 --><p class='indent'>   \begin{align*}  \Longrightarrow H(s) = \frac {U(s)}{F(s)}&=\frac {1}{ms^2+cs+k} ~\text {: TF del sistema de 1GDL}  \end{align*}
+</p><!-- l. 112 --><p class='indent'>   \begin {align*}  m\ddot {u}+c\dot {u}+ku &amp;= f(t) ~/\color {red}{\mathcal {L}\{\cdot \}}\\ m\mathcal {L}\{\ddot {u}\}+c\mathcal {L}\{\dot {u}\}+k\mathcal {L}\{u\} &amp;= \mathcal {L}\{f\}\\ ms^2U(s)+csU(s)+kU(s) &amp;= F(s)\\ (ms^2+cs+k)U(s) &amp;= F(s)  \end {align*}
+</p><!-- l. 115 --><p class='indent'>   \begin {align*}  \Longrightarrow H(s) = \frac {U(s)}{F(s)}&amp;=\frac {1}{ms^2+cs+k} ~\text {: TF del sistema de 1GDL}  \end {align*}
 </p><!-- l. 117 --><p class='indent'>   Aparte: Dada la entrada \(F(s)\) y la TF \(H(s)\), la salida es \(U(s) = H(s)F(s)\) </p><figure class='figure'> 
 
                                                                                          
@@ -137,19 +138,19 @@ escribe finalmente como un sistema de ecuaciones diferenciales ordinarias (ODEs)
 </p><!-- l. 131 --><p class='indent'>   Donde: \(u(t) \in \mathbb {R}^{n \times 1}\), es el vector de grados de libertad; \(M \in \mathbb {R}^{n \times n}\), \(C \in \mathbb {R}^{n \times n}\), y \(K \in \mathbb {R}^{n \times n}\) son las matrices de masas, amortiguamiento y rigidez,
 respectivamente; \(F(t) \in \mathbb {R}^{n \times 1}\) es el vector de fuerzas externas.<br class='newline' />
 </p><!-- l. 133 --><p class='noindent'>Notación:
-</p><!-- l. 140 --><p class='indent'>   \begin{align*}  \mathcal {L}\{u(t)\} &= U(s)\\ \mathcal {L}\{\dot {u}(t)\} &= s U(s) - u(0)\\ \mathcal {L}\{\ddot {u}(t)\} &= s^2 U(s) - s u(0) - \dot {u}(0)\\ \mathcal {L}\{f(t)\} &= F(s)  \end{align*}
+</p><!-- l. 140 --><p class='indent'>   \begin {align*}  \mathcal {L}\{u(t)\} &amp;= U(s)\\ \mathcal {L}\{\dot {u}(t)\} &amp;= s U(s) - u(0)\\ \mathcal {L}\{\ddot {u}(t)\} &amp;= s^2 U(s) - s u(0) - \dot {u}(0)\\ \mathcal {L}\{f(t)\} &amp;= F(s)  \end {align*}
 </p><!-- l. 142 --><p class='indent'>   Entonces, la función de transferencia (<span class='cmti-10'>transfer function, TF</span>) del sistema dinámico se obtiene aplicando la
 transformada de Laplace sobre la EDM, asumiendo condiciones iniciales de reposo (\(u(0)= 0 \wedge \dot {u}(0)=0\)):
-</p><!-- l. 149 --><p class='indent'>   \begin{align*}  M \ddot {u}(t) + C \dot {u}(t) + K u(t) &= F(t) ~/\mathcal {L}\{\cdot \}\\ \Longrightarrow \left [s^2M+sC+K \right ]U(s)&= F(s) \\ \Longrightarrow U(s)&= \underbrace {\left [s^2M+sC+K \right ]^{-1}}_{H(s)} F(s)  \end{align*}
-</p><!-- l. 156 --><p class='indent'>   \begin{align*}  {F}(s) &= \mathcal {L}\{{f}(t)\} ~: \text {input en dominio complejo (excitación)}\\ {U}(s) &= \mathcal {L}\{{u}(t)\}~: \text {output en dominio complejo (respuesta)}\\ {H}(s) &= \left [s^2M + s{C}+{K} \right ]^{-1} ~:\text {TF para un sistema MGDL}  \end{align*}
-</p><!-- l. 158 --><p class='indent'>   Notar que para encontrar los polos se debe resolver las raíces polinomio: \begin{align*}  s^2{M}+s{C}+{K} = {0} ~/ \text {$\cdot {\phi }$ yasumiendo ${C}={0}$} \\ \Longrightarrow (s^2{M}+{K}){\phi } = {0} ~\text {: Problema de valores propios generalizado}  \end{align*}
+</p><!-- l. 149 --><p class='indent'>   \begin {align*}  M \ddot {u}(t) + C \dot {u}(t) + K u(t) &amp;= F(t) ~/\mathcal {L}\{\cdot \}\\ \Longrightarrow \left [s^2M+sC+K \right ]U(s)&amp;= F(s) \\ \Longrightarrow U(s)&amp;= \underbrace {\left [s^2M+sC+K \right ]^{-1}}_{H(s)} F(s)  \end {align*}
+</p><!-- l. 156 --><p class='indent'>   \begin {align*}  {F}(s) &amp;= \mathcal {L}\{{f}(t)\} ~: \text {input en dominio complejo (excitación)}\\ {U}(s) &amp;= \mathcal {L}\{{u}(t)\}~: \text {output en dominio complejo (respuesta)}\\ {H}(s) &amp;= \left [s^2M + s{C}+{K} \right ]^{-1} ~:\text {TF para un sistema MGDL}  \end {align*}
+</p><!-- l. 158 --><p class='indent'>   Notar que para encontrar los polos se debe resolver las raíces polinomio: \begin {align*}  s^2{M}+s{C}+{K} = {0} ~/ \text {$\cdot {\phi }$ yasumiendo ${C}={0}$} \\ \Longrightarrow (s^2{M}+{K}){\phi } = {0} ~\text {: Problema de valores propios generalizado}  \end {align*}
 </p><!-- l. 165 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='representacion-en-variables-de-estado'><span class='titlemark'>2.6.   </span> <a id='x7-360002.6'></a>Representación en variables de estado</h3>
 <!-- l. 167 --><p class='noindent'>La representación espacio-estado reduce la EDM a ecuaciones diferenciales ordinarias cuyas matrices contienen toda
 la información dinámica del sistema.
-</p><!-- l. 171 --><p class='indent'>   \begin{align*}  \text {EDM: }~{M}{\ddot {u}}+{C}{\dot {u}}+{K}{u}&={G}{p}(t)  \end{align*}
-</p><!-- l. 185 --><p class='indent'>   \begin{align*}  \left . \begin{array}{rr} {\dot {x}}={A_s}{x}+{B_s}{p}\\ {y}={C_s}{x}+{D_s}{p} \end{array} \right \} \Longrightarrow \begin{array} {|r|r|} \hline A & B \\ \hline C & D \\ \hline \end{array}  \end{align*}
+</p><!-- l. 171 --><p class='indent'>   \begin {align*}  \text {EDM: }~{M}{\ddot {u}}+{C}{\dot {u}}+{K}{u}&amp;={G}{p}(t)  \end {align*}
+</p><!-- l. 185 --><p class='indent'>   \begin {align*}  \left . \begin {array}{rr} {\dot {x}}={A_s}{x}+{B_s}{p}\\ {y}={C_s}{x}+{D_s}{p} \end {array} \right \} \Longrightarrow \begin {array} {|r|r|} \hline A &amp; B \\ \hline C &amp; D \\ \hline \end {array}  \end {align*}
 </p>
    <figure class='figure'> 
 
@@ -163,7 +164,7 @@ la información dinámica del sistema.
 </p>
    </figure>
 <!-- l. 192 --><p class='indent'>   <span class='underline'>Ecuación de estado</span>
-</p><!-- l. 196 --><p class='indent'>   \begin{align*}  {\dot {x}}={A_s}{x}+{B_s}{p}  \end{align*}
+</p><!-- l. 196 --><p class='indent'>   \begin {align*}  {\dot {x}}={A_s}{x}+{B_s}{p}  \end {align*}
 </p><!-- l. 198 --><p class='indent'>   Donde: </p>
      <ul class='itemize1'>
      <li class='itemize'>Vector de Estado: \({x}=\begin {bmatrix}{u} \\ {\dot {u}}\end {bmatrix} \Longrightarrow {\dot {x}}=\begin {bmatrix}{\dot {u}}\\ {\ddot {u}}\end {bmatrix}\)
@@ -172,7 +173,7 @@ la información dinámica del sistema.
      </li>
      <li class='itemize'>Matriz de influencia de excitación: \({B_s}=\begin {bmatrix}{0}\\ {M}^{-1}{G}\end {bmatrix}\)</li></ul>
 <!-- l. 205 --><p class='indent'>   <span class='underline'>Ecuación de respuesta</span> <br class='newline' />
-</p><!-- l. 209 --><p class='indent'>   \begin{align*}  {y}={C_s}{x}+{D_s}{p}  \end{align*}
+</p><!-- l. 209 --><p class='indent'>   \begin {align*}  {y}={C_s}{x}+{D_s}{p}  \end {align*}
 </p><!-- l. 211 --><p class='indent'>   Donde (este es un ejemplo): </p>
      <ul class='itemize1'>
      <li class='itemize'>Vector de respuesta: \({y}=\begin {bmatrix}{u} \\ {\dot {u}}\\ {\ddot {u}}\end {bmatrix}\)
@@ -182,13 +183,13 @@ la información dinámica del sistema.
      <li class='itemize'>“Feedthrough”: \({D_s}=\begin {bmatrix}{0}\\ {0}\\ {M}^{-1}{G}\end {bmatrix}\)</li></ul>
    <h4 class='subsectionHead' id='relacion-entre-statespace-y-tf'><span class='titlemark'>2.6.1.   </span> <a id='x7-370002.6.1'></a>Relación entre State-Space y TF</h4>
 <!-- l. 225 --><p class='noindent'>Asumiendo condiciones iniciales de reposo: \({x}(0) = {0} \longrightarrow \text {Estados}\)<br class='newline' />
-</p><!-- l. 227 --><p class='indent'>   Entonces, aplicando la transformada de laplace a la ecuación de estado: \begin{align*}  \label {eq:ss2tf_1} {\dot {x}}&={A_s}{x}+{B_s}{p} ~/\mathcal {L}\{\cdot \}\\ \Longrightarrow s{X}(s)&= {A_s}{X}(s)+{B_s}{P}(s)\\ \Longrightarrow (s{I}-{A_s}){X}(s)&={B_s}{P}(s)  \end{align*}
-</p><!-- l. 235 --><p class='indent'>   \begin{align}  \Longrightarrow {X}(s)&=(s{I}-{A_s})^{-1}{B_s}{P}(s)  \end{align}
+</p><!-- l. 227 --><p class='indent'>   Entonces, aplicando la transformada de laplace a la ecuación de estado: \begin {align*}  \label {eq:ss2tf_1} {\dot {x}}&amp;={A_s}{x}+{B_s}{p} ~/\mathcal {L}\{\cdot \}\\ \Longrightarrow s{X}(s)&amp;= {A_s}{X}(s)+{B_s}{P}(s)\\ \Longrightarrow (s{I}-{A_s}){X}(s)&amp;={B_s}{P}(s)  \end {align*}
+</p><!-- l. 235 --><p class='indent'>   \begin {align}  \Longrightarrow {X}(s)&amp;=(s{I}-{A_s})^{-1}{B_s}{P}(s)  \end {align}
 </p><!-- l. 237 --><p class='indent'>   Luego, aplicando la transformada de Laplace a la ecuación de respuesta:
-</p><!-- l. 241 --><p class='indent'>   \begin{align*}  {y}(t)={C_s}{x}+{D_s}{p} ~/\mathcal {L}\{\cdot \}\\  \end{align*}
-</p><!-- l. 244 --><p class='indent'>   \begin{align} \label {eq:ss2tf_2} \Longrightarrow {Y}(s)&={C_s}{X}(s)+{D_s}{P}(s)  \end{align}
-</p><!-- l. 246 --><p class='indent'>   Reemplazando la ecuación <span class='cmbx-10'>??</span> en <span class='cmbx-10'>??</span>: \begin{align*}  {Y}(s)&={C_s}(s{I}-{A_s})^{-1}{B_s}{P}(s)+{D_s}{P}(s)\\ {Y}(s)&=[{C_s}(s{I}-{A_s})^{-1}{B_s}+{D_s}]{P}(s)\\ \Longrightarrow {H}(s)&={C_s}(s{I}-{A_s})^{-1}{B_s}+{D_s}  \end{align*}
-</p><!-- l. 253 --><p class='indent'>   <span class='underline'>Aparte</span>: Asumiendo \({D_s}=0\): \begin{align*}  {H}(s)&={C_s}(s{I}-{A_s})^{-1}{B_s}\\ {H}(s)&=\frac {1}{\det (s{I}-{A_s})}{C_s}\text { adj}(s{I}-{A_s}){B_s} \\ \Longrightarrow \det (s{I}-{A_s})&=0 ~\text {: Problema de valores propios de }{A_s}  \end{align*}
+</p><!-- l. 241 --><p class='indent'>   \begin {align*}  {y}(t)={C_s}{x}+{D_s}{p} ~/\mathcal {L}\{\cdot \}\\  \end {align*}
+</p><!-- l. 244 --><p class='indent'>   \begin {align} \label {eq:ss2tf_2} \Longrightarrow {Y}(s)&amp;={C_s}{X}(s)+{D_s}{P}(s)  \end {align}
+</p><!-- l. 246 --><p class='indent'>   Reemplazando la ecuación <span class='cmbx-10'>??</span> en <span class='cmbx-10'>??</span>: \begin {align*}  {Y}(s)&amp;={C_s}(s{I}-{A_s})^{-1}{B_s}{P}(s)+{D_s}{P}(s)\\ {Y}(s)&amp;=[{C_s}(s{I}-{A_s})^{-1}{B_s}+{D_s}]{P}(s)\\ \Longrightarrow {H}(s)&amp;={C_s}(s{I}-{A_s})^{-1}{B_s}+{D_s}  \end {align*}
+</p><!-- l. 253 --><p class='indent'>   <span class='underline'>Aparte</span>: Asumiendo \({D_s}=0\): \begin {align*}  {H}(s)&amp;={C_s}(s{I}-{A_s})^{-1}{B_s}\\ {H}(s)&amp;=\frac {1}{\det (s{I}-{A_s})}{C_s}\text { adj}(s{I}-{A_s}){B_s} \\ \Longrightarrow \det (s{I}-{A_s})&amp;=0 ~\text {: Problema de valores propios de }{A_s}  \end {align*}
 </p><!-- l. 260 --><p class='indent'>   Por lo tanto, los Polos se pueden obtener por las raíces del polinomio del denominador de \({H}(s)\), o, por los valores
 propios de \(A_s\).
                                                                                          

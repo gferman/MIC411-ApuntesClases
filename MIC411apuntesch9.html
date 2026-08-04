@@ -10,6 +10,7 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch10.html'>next</a>] [<a href='#tailMIC411apuntesch9.html'>tail</a>] [<a href='MIC411apuntespa3.html#MIC411apuntesch9.html'>up</a>] </p></div>
    <h2 class='chapterHead' id='sistemas-de-control-estructural'><span class='titlemark'>Capítulo 9</span><br /><a id='x16-1590009'></a>Sistemas de Control Estructural</h2>
@@ -48,7 +49,7 @@ su desempeño y serviciabilidad ante cargas dinámicas.
      <!-- l. 35 --><p class='noindent'> Como su nombre indica, estos sistemas combinan dos o más de los tipos anteriores para aprovechar sus
      ventajas.</p></dd></dl>
 <!-- l. 39 --><p class='indent'>   En general, las estructuras con dispositivos de control tienen la siguiente EDM:
-</p><!-- l. 43 --><p class='indent'>   \begin{align*}  {M}{\ddot {q}} + {C}{\dot {q}} + {K}{q} + {f}_{p} + f_{s} = {f}_a + {f}_e  \end{align*}
+</p><!-- l. 43 --><p class='indent'>   \begin {align*}  {M}{\ddot {q}} + {C}{\dot {q}} + {K}{q} + {f}_{p} + f_{s} = {f}_a + {f}_e  \end {align*}
 </p><!-- l. 45 --><p class='noindent'>donde \({f}_{p}\) es la fuerza de dispositivos pasivos, \({f}_{sa}\) es la fuerza de dispositivos semi-activos, \({f}_a\) es la fuerza de dispositivos
 activos, y \({f}_e\) es la fuerza externa (p.ej., terremoto).
 </p><!-- l. 47 --><p class='noindent'>
@@ -69,20 +70,20 @@ conexión del dispositivo. Algunos de estos dispositivos requieren ser reemplaza
 </p>
    <h5 class='subsubsectionHead' id='amortiguadores-metalicos'><a id='x16-163000'></a>Amortiguadores metálicos</h5>
 <!-- l. 68 --><p class='noindent'>Disipación de energía por histeresis. Por ejemplo, usando un modelo de Bouc-Wen:
-</p><!-- l. 72 --><p class='indent'>   \begin{align}  f_P(r,\dot {r},t) = (1-\alpha ) k r + \alpha k z(t)  \end{align}
+</p><!-- l. 72 --><p class='indent'>   \begin {align}  f_P(r,\dot {r},t) = (1-\alpha ) k r + \alpha k z(t)  \end {align}
 </p><!-- l. 74 --><p class='indent'>   donde \(z(t)\) es un estado interno que maneja la histeresis del dispositico, y que evoluciona a través de una ecuación
 diferencial nolineal:
-</p><!-- l. 78 --><p class='indent'>   \begin{align}  \dot {z} = h(\dot {r},z)  \end{align}
+</p><!-- l. 78 --><p class='indent'>   \begin {align}  \dot {z} = h(\dot {r},z)  \end {align}
 </p><!-- l. 80 --><p class='noindent'>
 </p>
    <h5 class='subsubsectionHead' id='amortiguadores-de-friccion'><a id='x16-164000'></a>Amortiguadores de fricción</h5>
-<!-- l. 84 --><p class='noindent'>\begin{align}  f_P(\dot {r},t) = \mu (t) N(t) \text {sign}(\dot {r})  \end{align}
+<!-- l. 84 --><p class='noindent'>\begin {align}  f_P(\dot {r},t) = \mu (t) N(t) \text {sign}(\dot {r})  \end {align}
 </p><!-- l. 86 --><p class='noindent'>donde \(\mu (t)\) es el coeficiente de fricción dinámico, \(N(t)\) es la fuerza normal en la superficie de deslizamiento, y \(\dot {r}\) es la velocidad
 relativa entre los terminales del amorgtiguador de roce.
 </p><!-- l. 100 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='amortiguadores-de-masa-sintonizada'><span class='titlemark'>9.2.1.   </span> <a id='x16-1650009.2.1'></a>Amortiguadores de masa sintonizada</h4>
-<!-- l. 104 --><p class='noindent'>\begin{align}  f_P = m_{TMD} a_{TMD}  \end{align}
+<!-- l. 104 --><p class='noindent'>\begin {align}  f_P = m_{TMD} a_{TMD}  \end {align}
 </p><!-- l. 106 --><p class='noindent'>donde \(a_{TMD}\) es la aceleración absoluta del TMD.
 </p><!-- l. 136 --><p class='noindent'>
 </p>
@@ -90,7 +91,7 @@ relativa entre los terminales del amorgtiguador de roce.
 <!-- l. 138 --><p class='noindent'>Los dispositivos de control activo requieren de energía para contrarrestar la respuesta estructural. Funcionan
 adaptandose en función de la excitación y respuesta. Requieren del uso de sensores y actuadores. La ecuación general es
 la siguiente:
-</p><!-- l. 142 --><p class='indent'>   \begin{align}  {M}{\ddot {q}} + {C}{\dot {q}} + {K}{q} = \textcolor {red}{{f}_a(q,\dot {q},\ddot {q},u)} + {f}_e  \end{align}
+</p><!-- l. 142 --><p class='indent'>   \begin {align}  {M}{\ddot {q}} + {C}{\dot {q}} + {K}{q} = \textcolor {red}{{f}_a(q,\dot {q},\ddot {q},u)} + {f}_e  \end {align}
 </p><!-- l. 144 --><p class='indent'>   donde \(f_a\) es la fuerza activa, que puede depender de estados del sistema, pero depende principalmente de una señal
 de control exógena \(u(t)\).
 </p><!-- l. 146 --><p class='indent'>   <span class='underline'>Ventajas del control activo</span>: </p>
@@ -116,7 +117,7 @@ de control exógena \(u(t)\).
 <!-- l. 162 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='control-semiactivo'><span class='titlemark'>9.4.   </span> <a id='x16-1670009.4'></a>Control semi-activo</h3>
-<!-- l. 166 --><p class='noindent'>\begin{align}  {M}{\ddot {q}} + {C}{\dot {q}} + {K}{q} + \textcolor {red}{{f}_s(q,\dot {q},\ddot {q},u)} = {f}_e  \end{align}
+<!-- l. 166 --><p class='noindent'>\begin {align}  {M}{\ddot {q}} + {C}{\dot {q}} + {K}{q} + \textcolor {red}{{f}_s(q,\dot {q},\ddot {q},u)} = {f}_e  \end {align}
 </p><!-- l. 168 --><p class='noindent'>Ejemplo: Amortiguador viscoso de orificio variable. El coeficiente \(c_d(u)\) es una función de una señal de control
 exógeno.
 </p><!-- l. 172 --><p class='indent'>   \begin {equation}  f_{sa}(\dot {r},u) = c_d(u) |\dot {r}|^\alpha \text {sign}(\dot {r})  \end {equation}<a id='x16-167001r2'></a>
