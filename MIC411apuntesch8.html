@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='es' xml:lang='es'> 
-<head><title>8 T´ecnicas de Monitoreo Estructural</title> 
+<head><title>8 Tecnicas de Monitoreo Estructural</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -10,10 +10,9 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
-<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch7.html'>prev</a>] [<a href='MIC411apuntesch7.html#tailMIC411apuntesch7.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch8.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch8.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='tecnicas-de-monitoreo-estructural'><span class='titlemark'>Capítulo 8</span><br /><a id='x14-1360008'></a>Técnicas de Monitoreo Estructural</h2>
+   <h2 class='chapterHead' id='tecnicas-de-monitoreo-estructural'><span class='titlemark'>Capítulo 8</span><br /><a id='x14-1360008'></a>Técnicas de Monitoreo Estructural</h2>
    <h3 class='sectionHead' id='motivacion'><span class='titlemark'>8.1.   </span> <a id='x14-1370008.1'></a>Motivación</h3>
 <!-- l. 5 --><p class='noindent'>Nunca se está seguro de las propiedades <span class='cmti-10'>exactas </span>de una estructura.
 </p><!-- l. 7 --><p class='indent'>
@@ -120,25 +119,25 @@ su FRF, \(G_{YU}(\omega )\).<br class='newline' />
                                                                                          
 </p>
    </figure>
-<!-- l. 93 --><p class='indent'>   \begin{align*}  Y(\omega ) &amp;= G_{YU}(\omega )U(\omega ) \quad \text {(FRF)}\\ y(t) &amp;= (g_{YU} \ast u)(t) \quad \text {(FRI)}  \end{align*}
+<!-- l. 93 --><p class='indent'>   \begin{align*}  Y(\omega ) &= G_{YU}(\omega )U(\omega ) \quad \text {(FRF)}\\ y(t) &= (g_{YU} \ast u)(t) \quad \text {(FRI)}  \end{align*}
 </p><!-- l. 95 --><p class='indent'>   Nota: Relación entre FRF y FRI: \(G_{YU}(\omega ) = \mathcal {F}\{g_{YU}(t)\}\)
 </p>
    <h4 class='subsectionHead' id='densidad-de-poder-espectral-finita'><span class='titlemark'>8.3.2.   </span> <a id='x14-1420008.3.2'></a>Densidad de poder espectral finita</h4>
 <!-- l. 99 --><p class='noindent'>Recordando el teorema de Wiener-Khinchin, que establece la relación entre <span class='cmti-10'>densidad de poder espectral </span>(\(S_{XX}(\Omega )\)) y
 <span class='cmti-10'>autocorrelaci</span>ó<span class='cmti-10'>n </span>(\(R_{XX}(\tau )\)) de un proceso estocástico w.s.s. \(\{X(t),t \in T\}\):
-</p><!-- l. 104 --><p class='indent'>   \begin{align*}  S_{XX}(\Omega ) &amp;= \mathcal {F}\{R_{XX}(\tau )\}\\ R_{XX}(\tau ) &amp;= \mathcal {F}^{-1}\{S_{XX}(\Omega )\}  \end{align*}
+</p><!-- l. 104 --><p class='indent'>   \begin{align*}  S_{XX}(\Omega ) &= \mathcal {F}\{R_{XX}(\tau )\}\\ R_{XX}(\tau ) &= \mathcal {F}^{-1}\{S_{XX}(\Omega )\}  \end{align*}
 </p><!-- l. 106 --><p class='noindent'>donde \(R_{XX}(\tau ) =\mathbb {E}\{X(t)X(t+\tau )\}\) y \(\mathcal {F}\{\cdot \}\) es la transformada de Fourier (contínua).<br class='newline' />
 </p><!-- l. 110 --><p class='indent'>   Mientras, para el caso en tiempo discreto se utiliza la definición de <span class='cmti-10'>periodograma</span>. Suponiendo una muestra finita
 de \(N\) puntos del p.e. \(\{X(t),t \in T\}\), con período de muestreo \(T_s\):
-</p><!-- l. 118 --><p class='indent'>   \begin{align*}  x[n] = \begin{cases} x(n T_s), &amp; n\in \{0,1,\ldots ,N-1\}\\ 0, &amp; \text {otherwe} \end{cases}  \end{align*}
+</p><!-- l. 118 --><p class='indent'>   \begin{align*}  x[n] = \begin{cases} x(n T_s), & n\in \{0,1,\ldots ,N-1\}\\ 0, & \text {otherwe} \end{cases}  \end{align*}
 </p><!-- l. 120 --><p class='indent'>   Entonces, el <span class='cmti-10'>periodograma </span>se define como:
 </p><!-- l. 124 --><p class='indent'>   \begin{align*}  \hat {S}_{XX}(\omega ) = \frac {1}{N} X(\omega ) X(\omega )^{*} = \frac {1}{N} |X(\omega )|^{2}  \end{align*}
 </p><!-- l. 126 --><p class='noindent'>donde \(X(\omega )\) es la transformada de Fourier de tiempo discreto (DTFT) de la señal finita \(x[n]\):
-</p><!-- l. 130 --><p class='indent'>   \begin{align*}  X(\omega ) = \sum _{n=0}^{N-1} x[n] e^{-j \omega n}  \end{align*}
+</p><!-- l. 130 --><p class='indent'>   \begin{align*}  X(\omega ) = \sum_{n=0}^{N-1} x[n] e^{-j \omega n}  \end{align*}
 </p><!-- l. 132 --><p class='noindent'>y \((\cdot )^{*}\) es la transpuesta conjugada.<br class='newline' />
 </p><!-- l. 134 --><p class='indent'>   <span class='cmti-10'>Nota:</span> \(S_{XX}(\omega )\) es un valor real.<br class='newline' />
 </p><!-- l. 136 --><p class='indent'>   En el límite para \(N\to \infty \), el periodograma (un estimador sesgado del PSD) converge al valor real del PSD:
-</p><!-- l. 140 --><p class='indent'>   \begin{align*}  S_{XX}(\omega ) = \lim _{N\to \infty } \mathbb {E} \left \{ \hat {S}_{XX}(\omega ) \right \}  \end{align*}
+</p><!-- l. 140 --><p class='indent'>   \begin{align*}  S_{XX}(\omega ) = \lim_{N\to \infty } \mathbb {E} \left \{ \hat {S}_{XX}(\omega ) \right \}  \end{align*}
 </p><!-- l. 142 --><p class='indent'>   Para todo el estudio que viene a continuación consideramos estimaciones de PSD utilizando alguna de las
 definiciones de periodograma modificado (por ejemplo, método de Welch).
 </p><!-- l. 144 --><p class='noindent'>
@@ -146,17 +145,17 @@ definiciones de periodograma modificado (por ejemplo, método de Welch).
    <h4 class='subsectionHead' id='relaciones-entradasalida-de-poder-espectral'><span class='titlemark'>8.3.3.   </span> <a id='x14-1430008.3.3'></a>Relaciones entrada-salida de poder espectral</h4>
 <!-- l. 146 --><p class='noindent'>Asumir que \(u(t)\) e \(y(t)\), entrada y salida de un sistema LTI SISO determinístico, son procesos estocásticos w.s.s. de media
 cero. Entonces, calculemos un estimador del auto PSD de la respuesta \(y(t)\):
-</p><!-- l. 152 --><p class='indent'>   \begin{align*}  \hat {S}_{YY}(\omega ) &amp;= \frac {1}{N} Y(\omega )Y^{*} (\omega )\\\
-&amp;= \frac {1}{N} \left ( G_{YU}(\omega ) U(\omega )\right ) \left (G_{YU}(\omega ) U(\omega )\right )^{*}\\ &amp;= \frac {1}{N} G_{YU}(\omega ) U(\omega ) U(\omega )^{*} G_{YU}(\omega )^{*}  \end{align*}
+</p><!-- l. 152 --><p class='indent'>   \begin{align*}  \hat {S}_{YY}(\omega ) &= \frac {1}{N} Y(\omega )Y^{*} (\omega )\\\
+&= \frac {1}{N} \left ( G_{YU}(\omega ) U(\omega )\right ) \left (G_{YU}(\omega ) U(\omega )\right )^{*}\\ &= \frac {1}{N} G_{YU}(\omega ) U(\omega ) U(\omega )^{*} G_{YU}(\omega )^{*}  \end{align*}
 </p><!-- l. 154 --><p class='indent'>   Si el sistema es determinístico, con parámetros sin incertidumbre pero desconocidos:
-</p><!-- l. 160 --><p class='indent'>   \begin{align*}  \hat {S}_{YY}(\omega ) &amp;= G_{YU}(\omega ) G_{YU}(\omega )^{*} \underbrace {\left \{ \frac {1}{N}U(\omega ) U(\omega )^{*} \right \}}_{_{\hat {S}_{UU}(\omega )}}\\ \hat {S}_{YY}(\omega ) &amp;= \left | G_{YU}(\omega ) \right |^2 \hat {S}_{UU}(\omega )\\ \left | G_{YU}(\omega ) \right |^2 &amp;= \frac {\hat {S}_{YY}(\omega )}{\hat {S}_{UU}(\omega )}  \end{align*}
+</p><!-- l. 160 --><p class='indent'>   \begin{align*}  \hat {S}_{YY}(\omega ) &= G_{YU}(\omega ) G_{YU}(\omega )^{*} \underbrace {\left \{ \frac {1}{N}U(\omega ) U(\omega )^{*} \right \}}_{_{\hat {S}_{UU}(\omega )}}\\ \hat {S}_{YY}(\omega ) &= \left | G_{YU}(\omega ) \right |^2 \hat {S}_{UU}(\omega )\\ \left | G_{YU}(\omega ) \right |^2 &= \frac {\hat {S}_{YY}(\omega )}{\hat {S}_{UU}(\omega )}  \end{align*}
 </p><!-- l. 162 --><p class='indent'>   <span class='underline'>Nota</span>: \(|G_{YU}(\omega )|^2\) es una función real y nos entrega sólo información de la magnitud del sistema y no de la fase. Por lo tanto,
 <span class='underline'>este método queda descartado</span>.
 </p><!-- l. 164 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='metodo-h'><span class='titlemark'>8.3.4.   </span> <a id='x14-1440008.3.4'></a>Método \(H_1\)</h4>
 <!-- l. 166 --><p class='noindent'>Continuando el estudio del sistema SISO LTI:
-</p><!-- l. 174 --><p class='indent'>   \begin{align*}  Y(\omega ) &amp;= G_{YU}(\omega )U(\omega ) \quad / \cdot U^{*}(\omega )\\ Y(\omega )U^{*}(\omega ) &amp;= G_{YU}(\omega )U(\omega )U^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \underbrace {\left \{\frac {1}{N}Y(\omega )U^{*}(\omega )\right \}}_{\hat {S}_{YU}(\omega )} &amp;= G_{YU}(\omega ) \underbrace {\left \{\frac {1}{N} U(\omega )U^{*}(\omega ) \right \}}_{\hat {S}_{UU}(\omega )} \\ \hat {S}_{YU}(\omega ) &amp;= G_{YU}(\omega ) \hat {S}_{UU}(\omega )\\ \hat {G}_{YU}(\omega ) &amp;= \frac {\hat {S}_{YU}(\omega )}{\hat {S}_{UU}(\omega )} \quad \text {(Estimador $H_1$)}  \end{align*}
+</p><!-- l. 174 --><p class='indent'>   \begin{align*}  Y(\omega ) &= G_{YU}(\omega )U(\omega ) \quad / \cdot U^{*}(\omega )\\ Y(\omega )U^{*}(\omega ) &= G_{YU}(\omega )U(\omega )U^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \underbrace {\left \{\frac {1}{N}Y(\omega )U^{*}(\omega )\right \}}_{\hat {S}_{YU}(\omega )} &= G_{YU}(\omega ) \underbrace {\left \{\frac {1}{N} U(\omega )U^{*}(\omega ) \right \}}_{\hat {S}_{UU}(\omega )} \\ \hat {S}_{YU}(\omega ) &= G_{YU}(\omega ) \hat {S}_{UU}(\omega )\\ \hat {G}_{YU}(\omega ) &= \frac {\hat {S}_{YU}(\omega )}{\hat {S}_{UU}(\omega )} \quad \text {(Estimador $H_1$)}  \end{align*}
 </p><!-- l. 176 --><p class='indent'>   donde \(\hat {S}_{YU}(\omega )\) es la estimación del PSD cruzado entre respuesta \(y(t)\) y entrada \(u(t)\).<br class='newline' />
 </p><!-- l. 178 --><p class='indent'>   <span class='cmti-10'>Nota 1:</span> \(\hat {S}_{YU}(\omega )\) es un número complejo.
 </p><!-- l. 180 --><p class='indent'>   <span class='cmti-10'>Nota 2:</span> \(\hat {G}_{YU}(\omega )\) es un número complejo. Por lo tanto, este método arroja una estimación de la magnitud \(|\hat {G}_{YU}(\omega )|\) y fase \(\angle G_{YU}(\omega )\) del sistema
@@ -167,15 +166,15 @@ dinámico.
 </p>
    <h4 class='subsectionHead' id='metodo-h1'><span class='titlemark'>8.3.5.   </span> <a id='x14-1450008.3.5'></a>Método \(H_2\)</h4>
 <!-- l. 184 --><p class='noindent'>Otra alternativa es el método \(H_2\):
-</p><!-- l. 192 --><p class='indent'>   \begin{align*}  Y(\omega ) &amp;= G_{YU}(\omega )U(\omega ) \quad / \cdot Y^{*}(\omega )\\ Y(\omega ) Y^{*}(\omega ) &amp;= G_{YU}(\omega )U(\omega ) Y^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \underbrace {\left \{\frac {1}{N}Y(\omega )Y^{*}(\omega )\right \}}_{\hat {S}_{YY}(\omega )} &amp;= G_{YU}(\omega ) \underbrace {\left \{\frac {1}{N} Y(\omega )U^{*}(\omega ) \right \}}_{\hat {S}_{YU}(\omega )} \\ \hat {S}_{YY}(\omega ) &amp;= G_{YU}(\omega ) \hat {S}_{YU}(\omega )\\ \hat {G}_{YU}(\omega ) &amp;= \frac {\hat {S}_{YY}(\omega )}{\hat {S}_{YU}(\omega )} \quad \text {(Estimador $H_2$)}  \end{align*}
+</p><!-- l. 192 --><p class='indent'>   \begin{align*}  Y(\omega ) &= G_{YU}(\omega )U(\omega ) \quad / \cdot Y^{*}(\omega )\\ Y(\omega ) Y^{*}(\omega ) &= G_{YU}(\omega )U(\omega ) Y^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \underbrace {\left \{\frac {1}{N}Y(\omega )Y^{*}(\omega )\right \}}_{\hat {S}_{YY}(\omega )} &= G_{YU}(\omega ) \underbrace {\left \{\frac {1}{N} Y(\omega )U^{*}(\omega ) \right \}}_{\hat {S}_{YU}(\omega )} \\ \hat {S}_{YY}(\omega ) &= G_{YU}(\omega ) \hat {S}_{YU}(\omega )\\ \hat {G}_{YU}(\omega ) &= \frac {\hat {S}_{YY}(\omega )}{\hat {S}_{YU}(\omega )} \quad \text {(Estimador $H_2$)}  \end{align*}
 </p><!-- l. 194 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='metodo-hv'><span class='titlemark'>8.3.6.   </span> <a id='x14-1460008.3.6'></a>Método \(H_v\)</h4>
 <!-- l. 196 --><p class='noindent'>Otra alternativa es el método \(H_v\):
-</p><!-- l. 200 --><p class='indent'>   \begin{equation*}  H_v(\omega ) =\Re \{H_v(\omega )\} + j\Im \{H_v(\omega )\}  \end{equation*}
+</p><!-- l. 200 --><p class='indent'>   \begin {equation*}  H_v(\omega ) =\Re \{H_v(\omega )\} + j\Im \{H_v(\omega )\}  \end {equation*}
 </p><!-- l. 202 --><p class='indent'>   que consiste en la media geométrica de estimadores \(H_1\) y \(H_2\). En este sentido, la media geométrica se toma para cada
 parte real e imaginaria del FRF por separado:
-</p><!-- l. 207 --><p class='indent'>   \begin{align*}  \Re \{H_v(\omega )\} &amp; = \sqrt {\Re \{H_1(\omega )\} \Re \{H_2(\omega )\}} \\ \Im \{H_v(\omega )\} &amp; = \sqrt {\Im \{H_1(\omega )\} \Im \{H_2(\omega )\}}  \end{align*}
+</p><!-- l. 207 --><p class='indent'>   \begin{align*}  \Re \{H_v(\omega )\} & = \sqrt {\Re \{H_1(\omega )\} \Re \{H_2(\omega )\}} \\ \Im \{H_v(\omega )\} & = \sqrt {\Im \{H_1(\omega )\} \Im \{H_2(\omega )\}}  \end{align*}
 </p><!-- l. 209 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='mediciones-con-ruido'><span class='titlemark'>8.3.7.   </span> <a id='x14-1470008.3.7'></a>Mediciones con ruido</h4>
@@ -202,25 +201,25 @@ mediciones de entrada y/o salida, hay diferencias relevantes a considerar.
      </li>
      <li class='itemize'>Ruido \(n(t)\) y salida \(y(t)\) descorrelacionados entre si \(\Longrightarrow R_{NY}(\tau ) = \mathbb {E}\{n(t) y(t+\tau )\}=0\)</li></ul>
 <!-- l. 228 --><p class='indent'>   Calculando el auto PSD de señal de entrada medida:
-</p><!-- l. 236 --><p class='indent'>   \begin{align*}  X(\omega ) &amp;= U(\omega )+M(\omega )\\ X(\omega )X^{*}(\omega ) &amp;= \left [ U(\omega )+M(\omega )\right ] \left [ U(\omega )+M(\omega )\right ]^{*}\\ X(\omega )X^{*}(\omega ) &amp;= U(\omega )U^{*}(\omega ) + U(\omega )M^{*}(\omega ) + M(\omega )U^{*}(\omega )+ M(\omega )M^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \hat {S}_{XX}(\omega ) &amp;= \hat {S}_{UU}(\omega ) + \cancelto {0}{\hat {S}_{UM}(\omega )} + \cancelto {0}{\hat {S}_{MU}(\omega )} + \hat {S}_{MM}(\omega )\\ \hat {S}_{XX}(\omega ) &amp;= \hat {S}_{UU}(\omega )+\hat {S}_{MM}(\omega )  \end{align*}
+</p><!-- l. 236 --><p class='indent'>   \begin{align*}  X(\omega ) &= U(\omega )+M(\omega )\\ X(\omega )X^{*}(\omega ) &= \left [ U(\omega )+M(\omega )\right ] \left [ U(\omega )+M(\omega )\right ]^{*}\\ X(\omega )X^{*}(\omega ) &= U(\omega )U^{*}(\omega ) + U(\omega )M^{*}(\omega ) + M(\omega )U^{*}(\omega )+ M(\omega )M^{*}(\omega ) \quad / \frac {1}{N} \cdot \\ \hat {S}_{XX}(\omega ) &= \hat {S}_{UU}(\omega ) + \cancelto {0}{\hat {S}_{UM}(\omega )} + \cancelto {0}{\hat {S}_{MU}(\omega )} + \hat {S}_{MM}(\omega )\\ \hat {S}_{XX}(\omega ) &= \hat {S}_{UU}(\omega )+\hat {S}_{MM}(\omega )  \end{align*}
 </p><!-- l. 238 --><p class='indent'>   De forma similar, el auto PSD de señal de respuesta medida:
-</p><!-- l. 243 --><p class='indent'>   \begin{align*}  \hat {S}_{ZZ}(\omega ) &amp;= \hat {S}_{YY}(\omega ) + \hat {S}_{NN}(\omega )  \end{align*}
+</p><!-- l. 243 --><p class='indent'>   \begin{align*}  \hat {S}_{ZZ}(\omega ) &= \hat {S}_{YY}(\omega ) + \hat {S}_{NN}(\omega )  \end{align*}
 </p><!-- l. 245 --><p class='indent'>   donde:
 </p><!-- l. 249 --><p class='indent'>   \begin{align*}  \hat {S}_{YY}(\omega ) = |G_{yu}(\omega )|^2 \hat {S}_{UU}(\omega )  \end{align*}
 </p><!-- l. 251 --><p class='indent'>   Por otra parte, el PSD cruzado de señal de respuesta y entrada medidas:
-</p><!-- l. 258 --><p class='indent'>   \begin{align*}  Z(\omega )X^{*}(\omega ) &amp;= \bigl [ Y(\omega )+N(\omega ) \bigr ] \bigl [ U(\omega )+M(\omega )\bigr ]^{*}\\ Z(\omega )X^{*}(\omega ) &amp;= Y(\omega )U^{*}(\omega )+Y(\omega )M^{*}(\omega )+N(\omega )U^{*}(\omega )+N(\omega )M(\omega )^{*} \quad / \frac {1}{N}\cdot \\ \hat {S}_{ZX}(\omega ) &amp;= \hat {S}_{YU}(\omega ) + \cancelto {0}{\hat {S}_{YM}(\omega )} + \cancelto {0}{\hat {S}_{NU}(\omega )} + \cancelto {0}{\hat {S}_{NM}(\omega )}\\ \hat {S}_{ZX}(\omega ) &amp;= \hat {S}_{YU}(\omega )  \end{align*}
+</p><!-- l. 258 --><p class='indent'>   \begin{align*}  Z(\omega )X^{*}(\omega ) &= \bigl [ Y(\omega )+N(\omega ) \bigr ] \bigl [ U(\omega )+M(\omega )\bigr ]^{*}\\ Z(\omega )X^{*}(\omega ) &= Y(\omega )U^{*}(\omega )+Y(\omega )M^{*}(\omega )+N(\omega )U^{*}(\omega )+N(\omega )M(\omega )^{*} \quad / \frac {1}{N}\cdot \\ \hat {S}_{ZX}(\omega ) &= \hat {S}_{YU}(\omega ) + \cancelto {0}{\hat {S}_{YM}(\omega )} + \cancelto {0}{\hat {S}_{NU}(\omega )} + \cancelto {0}{\hat {S}_{NM}(\omega )}\\ \hat {S}_{ZX}(\omega ) &= \hat {S}_{YU}(\omega )  \end{align*}
 </p><!-- l. 260 --><p class='indent'>   Entonces, el estimador \(H_1\):
-</p><!-- l. 273 --><p class='indent'>   \begin{align*}  \hat {G}_{ZX}(\omega ) &amp;= \frac {\hat {S}_{ZX}(\omega )}{\hat {S}_{XX}(\omega )}=\frac {\hat {S}_{YU}(\omega )}{\hat {S}_{UU}(\omega )+\hat {S}_{MM}(\omega )}\\ &amp;= \frac {\hat {S}_{YU}(\omega )/\hat {S}_{UU}(\omega )}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )}\\ &amp;= \frac {G_{YU}(\omega )}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )} \\ &amp;= G_{YU}(\omega ) \underbrace {\left [ \frac {1}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )} \right ]}_{&lt; 1} &lt; G_{YU}(\omega )  \end{align*}
+</p><!-- l. 273 --><p class='indent'>   \begin{align*}  \hat {G}_{ZX}(\omega ) &= \frac {\hat {S}_{ZX}(\omega )}{\hat {S}_{XX}(\omega )}=\frac {\hat {S}_{YU}(\omega )}{\hat {S}_{UU}(\omega )+\hat {S}_{MM}(\omega )}\\ &= \frac {\hat {S}_{YU}(\omega )/\hat {S}_{UU}(\omega )}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )}\\ &= \frac {G_{YU}(\omega )}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )} \\ &= G_{YU}(\omega ) \underbrace {\left [ \frac {1}{1+\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )} \right ]}_{< 1} < G_{YU}(\omega )  \end{align*}
 </p><!-- l. 275 --><p class='indent'>   donde el término \(\hat {S}_{MM}(\omega )/\hat {S}_{UU}(\omega )\) es el efecto del ruido de entrada \(M(\omega )\). Luego, \(H_1\) es un limite inferior de \(G_{YU}(\omega )\).<br class='newline' />
 </p><!-- l. 277 --><p class='indent'>   De manera similar, el estimados \(H_2\):
-</p><!-- l. 282 --><p class='indent'>   \begin{align*}  \hat {G}_{ZX}(\omega ) &amp;= \frac {\hat {S}_{ZZ}(\omega )}{\hat {S}_{ZX}(\omega )}\\ &amp;= G_{YU}(\omega ) \underbrace {\left [1 +\frac {\hat {S}_{NN}(\omega )}{\hat {S}_{YY}(\omega )}\right ]}_{&gt; 1} &gt; G_{YU}(\omega )  \end{align*}
+</p><!-- l. 282 --><p class='indent'>   \begin{align*}  \hat {G}_{ZX}(\omega ) &= \frac {\hat {S}_{ZZ}(\omega )}{\hat {S}_{ZX}(\omega )}\\ &= G_{YU}(\omega ) \underbrace {\left [1 +\frac {\hat {S}_{NN}(\omega )}{\hat {S}_{YY}(\omega )}\right ]}_{> 1} > G_{YU}(\omega )  \end{align*}
 </p><!-- l. 284 --><p class='indent'>   donde el término \(\hat {S}_{NN}(\omega )/\hat {S}_{YY}(\omega )\) es el efecto del ruido de salida. Luego, \(H_2\) es un límite superior de \(G_{YU}(\omega )\)
 </p>
    <h4 class='subsectionHead' id='funcion-de-coherencia'><span class='titlemark'>8.3.8.   </span> <a id='x14-1480008.3.8'></a>Función de coherencia</h4>
 <!-- l. 288 --><p class='noindent'>La función de coherencia ordinaria es una herramienta que mide que tanto de la señal de salida se explica (o
 relaciona) con la señal de entrada. Puede ser utilizado como un indicador de calidad del estimador
 H1/H2.
-</p><!-- l. 292 --><p class='indent'>   \begin{align*}  \gamma _{ZX}^2(\omega ) = \frac {|\hat {S}_{ZX}(\omega )|^2}{\hat {S}_{ZZ}(\omega )\hat {S}_{XX}(\omega )} = \frac {H_1(\omega )}{H_2(\omega )}  \end{align*}
+</p><!-- l. 292 --><p class='indent'>   \begin{align*}  \gamma_{ZX}^2(\omega ) = \frac {|\hat {S}_{ZX}(\omega )|^2}{\hat {S}_{ZZ}(\omega )\hat {S}_{XX}(\omega )} = \frac {H_1(\omega )}{H_2(\omega )}  \end{align*}
 </p><!-- l. 294 --><p class='indent'>   donde \( 0 &lt; \gamma _{ZX}^2 &lt; 1\).<br class='newline' />
 </p><!-- l. 296 --><p class='indent'>   <span class='cmti-10'>Notas</span>:
 </p><!-- l. 298 --><p class='indent'>
@@ -268,31 +267,31 @@ determinan usando el método de Welch. Link: <a class='url' href='https://www.ma
    <h4 class='subsectionHead' id='frecuencias-y-formas-modales-utilizando-peakpicking'><span class='titlemark'>8.3.10.   </span> <a id='x14-1500008.3.10'></a>Frecuencias y formas modales utilizando <span class='cmti-10'>peak-picking</span></h4>
 <!-- l. 353 --><p class='noindent'>Referencia: <a id='x14-150001'></a>Craig y Kurdila (<a href='MIC411apuntesli4.html#cite.0@craig2006fundamentalsstructural'>2006</a>, Sec. 18.6)
 </p><!-- l. 355 --><p class='indent'>   Considere la EDM de un sistema MDOF:
-</p><!-- l. 359 --><p class='indent'>   \begin{equation}  M \ddot {u} + C \dot {u} + K u = G p(t)  \end{equation}<a id='x14-150002r1'></a>
+</p><!-- l. 359 --><p class='indent'>   \begin {equation}  M \ddot {u} + C \dot {u} + K u = G p(t)  \end {equation}<a id='x14-150002r1'></a>
 </p><!-- l. 361 --><p class='noindent'>donde \(u(t) \in \mathbb {R}^n\) y \(p(t) \in \mathbb {R}\) son los GLs y la excitación, respectivamente; \(M \in \mathbb {R}^{n \times n}\), \(C \in \mathbb {R}^{n \times n}\) y \(K \in \mathbb {R}^{n \times n}\) son las matrices de masa, amortiguamiento y rigidez,
 respectivamente; \(G \in \mathbb {R}^{n}\) es el vector de participación de la excitación \(p(t)\) en la dinámica del sistema.
 </p><!-- l. 363 --><p class='indent'>   De la solución del problema de valores y vectores propios generalizados:
-</p><!-- l. 367 --><p class='indent'>   \begin{equation}  K \phi = \lambda M \phi  \end{equation}<a id='x14-150003r2'></a>
+</p><!-- l. 367 --><p class='indent'>   \begin {equation}  K \phi = \lambda M \phi  \end {equation}<a id='x14-150003r2'></a>
 </p><!-- l. 369 --><p class='noindent'>donde \(\lambda _r = \omega _r^2\) y \(\phi _r\) es el valor y vector propio del modo \(r\). De este resultado podemos definir coordenadas modales en notación
 matricial:
-</p><!-- l. 373 --><p class='indent'>   \begin{equation}  u(t) = \Phi q(t)  \end{equation}<a id='x14-150004r3'></a>
+</p><!-- l. 373 --><p class='indent'>   \begin {equation}  u(t) = \Phi q(t)  \end {equation}<a id='x14-150004r3'></a>
 </p><!-- l. 375 --><p class='noindent'>donde \(\Phi = [\phi _1, \phi _2, \ldots ,\phi _n]\) es la matriz de formas modales del sistema.
 </p><!-- l. 377 --><p class='indent'>   La relación entre coordenadas físicas y modales la podemos describir en notación indicial:
-</p><!-- l. 381 --><p class='indent'>   \begin{equation} \label {eq:coordmod} u_{s}(t) = \phi _{sr} q_r(t)  \end{equation}<a id='x14-150005r4'></a>
+</p><!-- l. 381 --><p class='indent'>   \begin {equation} \label {eq:coordmod} u_{s}(t) = \phi _{sr} q_r(t)  \end {equation}<a id='x14-150005r4'></a>
 </p><!-- l. 383 --><p class='indent'>   Asumiendo amortiguamiento proporcional, la EDM de la coordenada modal \(q_r(t)\) se escribe:
-</p><!-- l. 387 --><p class='indent'>   \begin{equation}  \ddot {q}_{r} + 2 \zeta _r \omega _r \dot {q}_{r} + \omega _r^2 q_r = \underbrace {\phi _{kr} G_k}_{\gamma _r} p(t)  \end{equation}<a id='x14-150006r5'></a>
+</p><!-- l. 387 --><p class='indent'>   \begin {equation}  \ddot {q}_{r} + 2 \zeta _r \omega _r \dot {q}_{r} + \omega _r^2 q_r = \underbrace {\phi _{kr} G_k}_{\gamma _r} p(t)  \end {equation}<a id='x14-150006r5'></a>
 </p><!-- l. 389 --><p class='indent'>   Aplicando la transformada de Fourier, podemos calcular el FRF de la coordenada modal \(q_r\) dada la entrada
 \(p\):
-</p><!-- l. 393 --><p class='indent'>   \begin{equation}  H_{q_{r} p}(\Omega ) = \frac {\gamma _r}{(\omega _r^2 - \Omega ^2) + j (2 \zeta _r \omega _r \Omega )}  \end{equation}<a id='x14-150007r6'></a>
+</p><!-- l. 393 --><p class='indent'>   \begin {equation}  H_{q_{r} p}(\Omega ) = \frac {\gamma _r}{(\omega _r^2 - \Omega ^2) + j (2 \zeta _r \omega _r \Omega )}  \end {equation}<a id='x14-150007r6'></a>
 </p><!-- l. 395 --><p class='indent'>   Volviendo a (<a href='#x14-150005r4'>8.4<!-- tex4ht:ref: eq:coordmod  --></a>), aplicando la transformada de Fourier:
-</p><!-- l. 401 --><p class='indent'>   \begin{align}  U_{s}(\Omega ) &amp;= \phi _{sr} Q_r(\Omega ) \\ &amp;= \phi _{sr} H_{q_rp}(\Omega ) P(\Omega ) \\ &amp;= H_{u_{s} p}(\Omega ) P(\Omega )  \end{align}
+</p><!-- l. 401 --><p class='indent'>   \begin{align}  U_{s}(\Omega ) &= \phi_{sr} Q_r(\Omega ) \\ &= \phi_{sr} H_{q_rp}(\Omega ) P(\Omega ) \\ &= H_{u_{s} p}(\Omega ) P(\Omega )  \end{align}
 </p><!-- l. 403 --><p class='indent'>   Por lo tanto:
-</p><!-- l. 407 --><p class='indent'>   \begin{equation}  H_{u_{s} p}(\Omega ) = \frac {\gamma _r}{(\omega _r^2 - \Omega ^2) + j (2 \zeta _r \omega _r \Omega )} \phi _{sr}  \end{equation}<a id='x14-150008r7'></a>
+</p><!-- l. 407 --><p class='indent'>   \begin {equation}  H_{u_{s} p}(\Omega ) = \frac {\gamma _r}{(\omega _r^2 - \Omega ^2) + j (2 \zeta _r \omega _r \Omega )} \phi _{sr}  \end {equation}<a id='x14-150008r7'></a>
 </p><!-- l. 409 --><p class='indent'>   Notar que cuando \(\Omega = \omega _r\), el FRF tiene solo parte imaginaria:
-</p><!-- l. 413 --><p class='indent'>   \begin{equation}  H_{u_{s} p}(\omega _r) = \frac {\gamma _r}{j (2 \zeta _r \omega _r^2)} \phi _{sr}  \end{equation}<a id='x14-150009r8'></a>
+</p><!-- l. 413 --><p class='indent'>   \begin {equation}  H_{u_{s} p}(\omega _r) = \frac {\gamma _r}{j (2 \zeta _r \omega _r^2)} \phi _{sr}  \end {equation}<a id='x14-150009r8'></a>
 </p><!-- l. 415 --><p class='indent'>   Entonces, el peak “r” de la parte imaginaria de \(H_{u_{s} p}\) es proporcional a la componente \(\phi _{sr}\) de la forma modal
 \(r\):
-</p><!-- l. 419 --><p class='indent'>   \begin{equation}  \Im \left \{H_{u_{s} p}(\omega _r)\right \} \propto \phi _{sr}  \end{equation}<a id='x14-150010r9'></a>
+</p><!-- l. 419 --><p class='indent'>   \begin {equation}  \Im \left \{H_{u_{s} p}(\omega _r)\right \} \propto \phi _{sr}  \end {equation}<a id='x14-150010r9'></a>
 </p><!-- l. 421 --><p class='indent'>   Podemos ocupar esta información para estimar las formas modales utilizando FRF experimentales:
 </p>
    <figure class='figure' id='-estimacion-de-formas-modales'> 
@@ -306,7 +305,7 @@ matricial:
 name="MIC411apuntes0x.svg" src="Figuras/expmodeshapes.JPG"  
  -->
 </p>
-<figcaption class='caption'><span class='id'>Figura 8.1: </span><span class='content'>Estimación de formas modales</span></figcaption><!-- tex4ht:label?: x14-150011r1  -->
+<figcaption class='caption'><span class='id'>Figura 8.1: </span><span class='content'>Estimación de formas modales</span></figcaption><!-- tex4ht:label?: x14-150011r1  -->
                                                                                          
                                                                                          
    </figure>
@@ -349,7 +348,7 @@ parámetros modales que el sistema MDOF que se está investigando.
      </li>
 <li class='enumerate' id='x14-153007x3'>
      <!-- l. 457 --><p class='noindent'>Descomponer \(S_{yy}(\omega _i)\) utilizando SVD:
-     </p><!-- l. 461 --><p class='noindent'>\begin{equation}  S_{yy}(\omega _i) = U_i \Sigma _i U_i^*, \qquad \forall i\in \{0,\ldots ,N\}  \end{equation}<a id='x14-153008r10'></a>
+     </p><!-- l. 461 --><p class='noindent'>\begin {equation}  S_{yy}(\omega _i) = U_i \Sigma _i U_i^*, \qquad \forall i\in \{0,\ldots ,N\}  \end {equation}<a id='x14-153008r10'></a>
      </p><!-- l. 463 --><p class='noindent'>donde \(U_i = [u_{i1}, u_{i2}, \cdots , u_{iN}]\).
      </p></li>
 <li class='enumerate' id='x14-153010x4'>Graficar valores singular vs frecuencia, e identificar los peaks.
@@ -357,7 +356,7 @@ parámetros modales que el sistema MDOF que se está investigando.
 <li class='enumerate' id='x14-153012x5'>
      <!-- l. 466 --><p class='noindent'>En un peak asociado al modo \(k\) (es decir, en frecuencia \(\omega _k\)), si no hay otros peaks cercanos, y es el peak
      dominante, entonces la primera columna de \(U_k\) corresponde a la forma modal:
-     </p><!-- l. 470 --><p class='noindent'>\begin{equation}  \varphi _k = u_{k1}  \end{equation}<a id='x14-153013r11'></a>
+     </p><!-- l. 470 --><p class='noindent'>\begin {equation}  \varphi _k = u_{k1}  \end {equation}<a id='x14-153013r11'></a>
      </p><!-- l. 472 --><p class='noindent'>y los valores singulares vecinos corresponden al auto PSD del sistema SDOF equivalente en coordenadas
      naturales.
      </p></li>

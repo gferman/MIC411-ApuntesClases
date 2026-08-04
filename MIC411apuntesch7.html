@@ -10,10 +10,9 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
-<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch8.html'>next</a>] [<a href='MIC411apuntesch6.html'>prev</a>] [<a href='MIC411apuntesch6.html#tailMIC411apuntesch6.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch7.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch7.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='procesamiento-digital-de-senales'><span class='titlemark'>Capítulo 7</span><br /><a id='x13-1070007'></a>Procesamiento Digital de Señales</h2>
+   <h2 class='chapterHead' id='procesamiento-digital-de-senales'><span class='titlemark'>Capítulo 7</span><br /><a id='x13-1070007'></a>Procesamiento Digital de Señales</h2>
    <h3 class='sectionHead' id='sistemas-discretos'><span class='titlemark'>7.1.   </span> <a id='x13-1080007.1'></a>Sistemas discretos</h3>
 <!-- l. 5 --><p class='noindent'>Es necesario convertir una señal análoga a discreta.
 </p>
@@ -67,13 +66,13 @@ flip-flops).)<br class='newline' />
 </p>
    <h5 class='subsubsectionHead' id='implementacion-en-matlabsimulink'><a id='x13-111000'></a>Implementación en Matlab/Simulink</h5>
 <!-- l. 48 --><p class='noindent'>Definiendo el rango \(R\) de valores de entrada \(u\) que puede medir el ADC:
-</p><!-- l. 52 --><p class='indent'>   \begin{equation}  R = |u_{\max } - u_{\min }|  \end{equation}<a id='x13-111001r1'></a>
+</p><!-- l. 52 --><p class='indent'>   \begin {equation}  R = |u_{\max } - u_{\min }|  \end {equation}<a id='x13-111001r1'></a>
 </p><!-- l. 54 --><p class='indent'>   El intervalo de cuantización se define como:
-</p><!-- l. 58 --><p class='indent'>   \begin{equation}  q = \frac {R}{2^B}  \end{equation}<a id='x13-111002r2'></a>
+</p><!-- l. 58 --><p class='indent'>   \begin {equation}  q = \frac {R}{2^B}  \end {equation}<a id='x13-111002r2'></a>
 </p><!-- l. 60 --><p class='indent'>   donde \(B\) es el número de bits del ADC. Por ejemplo, si \(u_{\max } = 1g\), \(u_{\min } = -1g\), y \(B = 8\), entonces:
-</p><!-- l. 64 --><p class='indent'>   \begin{equation}  q = \frac {2g}{2^{8}} = 0.0078125 g  \end{equation}<a id='x13-111003r3'></a>
+</p><!-- l. 64 --><p class='indent'>   \begin {equation}  q = \frac {2g}{2^{8}} = 0.0078125 g  \end {equation}<a id='x13-111003r3'></a>
 </p><!-- l. 66 --><p class='indent'>   Por lo tanto, el cuantizador en Simulink funciona de la siguiente forma:
-</p><!-- l. 70 --><p class='indent'>   \begin{equation}  y = q \times \text {round}(u/q)  \end{equation}<a id='x13-111004r4'></a>
+</p><!-- l. 70 --><p class='indent'>   \begin {equation}  y = q \times \text {round}(u/q)  \end {equation}<a id='x13-111004r4'></a>
 </p><!-- l. 72 --><p class='indent'>   donde \(y\) es la señal de salida cuantizada, y \(u\) es la señal de entrada.
                                                                                          
                                                                                          
@@ -119,8 +118,8 @@ entero).<br class='newline' />
                                                                                          
 </p>
    </figure>
-<!-- l. 108 --><p class='indent'>   \begin{align*}  \delta [n] = \begin{cases} 1, &amp; n=0\\ 0,&amp; n \neq 0 \end{cases}  \end{align*}
-</p><!-- l. 112 --><p class='indent'>   \begin{align*}  x[n]=\sum _{k=0}^{N-1} x_k \delta [n-k]=x_0\delta [n]+x_1\delta [n-1]+x_2\delta [n-2]+...+x_{N-1}\delta [n-(N-1)]  \end{align*}
+<!-- l. 108 --><p class='indent'>   \begin{align*}  \delta [n] = \begin{cases} 1, & n=0\\ 0,& n \neq 0 \end{cases}  \end{align*}
+</p><!-- l. 112 --><p class='indent'>   \begin{align*}  x[n]=\sum_{k=0}^{N-1} x_k \delta [n-k]=x_0\delta [n]+x_1\delta [n-1]+x_2\delta [n-2]+...+x_{N-1}\delta [n-(N-1)]  \end{align*}
 </p><!-- l. 116 --><p class='indent'>   \begin{align*}  \{x_n\}_0^{N-1}=\{x_0,x_1,x_2,...,x_{N-1}\} \Longrightarrow \text {Arreglo de N puntos (vector)}  \end{align*}
 </p>
    <h3 class='sectionHead' id='analisis-en-frecuencia'><span class='titlemark'>7.2.   </span> <a id='x13-1130007.2'></a>Análisis en frecuencia</h3>
@@ -138,21 +137,21 @@ entero).<br class='newline' />
 <!-- l. 126 --><p class='noindent'><span class='cmti-10'>Nota:</span> \(j = \sqrt {-1}\) es el número complejo.<br class='newline' />
 </p>
    <h4 class='subsectionHead' id='continuoustime-fourier-transform-ctft'><span class='titlemark'>7.2.1.   </span> <a id='x13-1140007.2.1'></a>Continuous-Time Fourier Transform (CTFT)</h4>
-<!-- l. 133 --><p class='noindent'>\begin{align*}  X(\Omega ) &amp;= \int _{-\infty }^{+\infty }x_a(t)e^{-j\Omega t}dt \quad \text {(CTFT)}\\ x_a(t) &amp;= \frac {1}{2\pi }\int _{-\infty }^{+\infty }X(\Omega )e^{+j\Omega t}d\Omega \quad \text {(inverse CTFT)}  \end{align*}
+<!-- l. 133 --><p class='noindent'>\begin{align*}  X(\Omega ) &= \int_{-\infty }^{+\infty }x_a(t)e^{-j\Omega t}dt \quad \text {(CTFT)}\\ x_a(t) &= \frac {1}{2\pi }\int_{-\infty }^{+\infty }X(\Omega )e^{+j\Omega t}d\Omega \quad \text {(inverse CTFT)}  \end{align*}
 </p><!-- l. 135 --><p class='noindent'>\(t, \Omega \in \mathbb {R}\), \(x_a(t)\in \mathbb {R}\), \(X(\Omega )\in \mathbb {C}\)<br class='newline' />
 </p><!-- l. 137 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='discretetime-fourier-transform-dtft'><span class='titlemark'>7.2.2.   </span> <a id='x13-1150007.2.2'></a>Discrete-time Fourier Transform (DTFT)</h4>
 <!-- l. 139 --><p class='noindent'>Supongamos que la señal \(x(t)\) es discretizada en el tiempo, \(x[n] = x(n T_s)\), donde \(T_s\) es el período de muestreo. Entonces, el DTFT se
 define:
-</p><!-- l. 144 --><p class='indent'>   \begin{align*}  X_d(\omega ) &amp;= \sum _{n=-\infty }^{\infty }x[n]e^{-j\omega n} \quad \text {(DTFT)}\\ x[n] &amp;= \frac {1}{2\pi }\int _{-\infty }^{\infty }X_d(\omega )e^{+j\omega n}d\omega \quad \text {(inverse DTFT)}  \end{align*}
+</p><!-- l. 144 --><p class='indent'>   \begin{align*}  X_d(\omega ) &= \sum_{n=-\infty }^{\infty }x[n]e^{-j\omega n} \quad \text {(DTFT)}\\ x[n] &= \frac {1}{2\pi }\int_{-\infty }^{\infty }X_d(\omega )e^{+j\omega n}d\omega \quad \text {(inverse DTFT)}  \end{align*}
 </p><!-- l. 146 --><p class='indent'>   donde \(\omega \in \mathbb {R}\), \(n \in \mathbb {Z}\).
 </p><!-- l. 148 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='discrete-fourier-transform-dft'><span class='titlemark'>7.2.3.   </span> <a id='x13-1160007.2.3'></a>Discrete Fourier Transform (DFT)</h4>
 <!-- l. 150 --><p class='noindent'>La DFT opera sobre una secuencia de \(N\) puntos en tiempo, \(x[n], n \in \{0,1,2,\ldots ,N-1\}\), y produce una secuencia de \(N\) puntos en frecuencia,
 \(X[m], m \in \{0,1,2,\ldots ,N-1\}\).
-</p><!-- l. 155 --><p class='indent'>   \begin{align*}  X[m] &amp;= \sum _{n=0}^{N-1} x_ne^{-j\frac {2\pi }{N}nm} \quad \text {(DFT)}\\ x[n] &amp;= \frac {1}{N}\sum _{m=0}^{N-1}X_me^{+j\frac {2\pi }{N}nm} \quad \text {(Inverse DFT)}  \end{align*}
+</p><!-- l. 155 --><p class='indent'>   \begin{align*}  X[m] &= \sum_{n=0}^{N-1} x_ne^{-j\frac {2\pi }{N}nm} \quad \text {(DFT)}\\ x[n] &= \frac {1}{N}\sum_{m=0}^{N-1}X_me^{+j\frac {2\pi }{N}nm} \quad \text {(Inverse DFT)}  \end{align*}
 </p><!-- l. 157 --><p class='indent'>   donde \(n,m \in \{0,1,2,\ldots ,N-1\}\).<br class='newline' />
 </p><!-- l. 159 --><p class='indent'>   <span class='cmti-10'>Nota 1</span>: Se asume que la secuencia \(x[n]\) es periódica.<br class='newline' />
 </p><!-- l. 161 --><p class='indent'>   <span class='cmti-10'>Nota 2</span>: Fast Fourier Transform (FFT) es un algoritmo computacional muy eficiente para calcular el DFT.
@@ -164,7 +163,7 @@ Revisar Sección <a href='MIC411apuntesap1.html#fast-fourier-transform-fft'>A.5<
 </p><!-- l. 169 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='relacion-entre-dtft-y-ctft'><span class='titlemark'>7.2.5.   </span> <a id='x13-1180007.2.5'></a>Relación entre DTFT y CTFT</h4>
-<!-- l. 173 --><p class='noindent'>\begin{align*}  X_d(\omega ) = \frac {1}{T} \sum _{l=-\infty }^{+\infty } X \left (\underbrace {\frac {\omega + 2\pi l}{T}}_{= \Omega } \right )  \end{align*}
+<!-- l. 173 --><p class='noindent'>\begin{align*}  X_d(\omega ) = \frac {1}{T} \sum_{l=-\infty }^{+\infty } X \left (\underbrace {\frac {\omega + 2\pi l}{T}}_{= \Omega } \right )  \end{align*}
                                                                                          
                                                                                          
 </p><!-- l. 175 --><p class='noindent'>
@@ -232,7 +231,7 @@ señal análoga no puede ser reconstruida por la señal digitalizada.<br class='
                                                                                          
 </p>
    </figure>
-<!-- l. 220 --><p class='indent'>   \begin{align*}  F_s &amp;&gt; 2f_{max}\\ f_{max} &amp;&lt; \frac {F_s}{2}=F_N \quad \text {(frecuencia de Nyquist)}  \end{align*}
+<!-- l. 220 --><p class='indent'>   \begin{align*}  F_s &> 2f_{max}\\ f_{max} &< \frac {F_s}{2}=F_N \quad \text {(frecuencia de Nyquist)}  \end{align*}
 </p>
    <h5 class='subsubsectionHead' id='con-aliasing'><a id='x13-124000'></a>Con Aliasing</h5>
    <figure class='figure'> 
@@ -311,7 +310,7 @@ Hz).
                                                                                          
 <!-- l. 276 --><p class='noindent'><img alt='PIC' src='Figuras/ADC-architectures.png' />
 </p>
-<figcaption class='caption'><span class='id'>Figura 7.1:                       </span><span class='content'>Arquitecturas                       de                       ADC.                       URL:
+<figcaption class='caption'><span class='id'>Figura 7.1:                       </span><span class='content'>Arquitecturas                       de                       ADC.                       URL:
 <a class='url' href='https://www.analog.com/en/resources/analog-dialogue/articles/the-right-adc-architecture.html'>https://www.analog.com/en/resources/analog-dialogue/articles/the-right-adc-architecture.html</a></span></figcaption><!-- tex4ht:label?: x13-126001r1  -->
                                                                                          
                                                                                          
@@ -393,12 +392,12 @@ generado.<br class='newline' />
    <h3 class='sectionHead' id='estimacion-de-psd-utilizando-periodogramas'><span class='titlemark'>7.8.   </span> <a id='x13-1290007.8'></a>Estimación de PSD utilizando periodogramas</h3>
 <!-- l. 340 --><p class='noindent'>Referencia: <a id='x13-129001'></a>Hayes (<a href='MIC411apuntesli4.html#cite.0@Hayes1996'>1996</a>, Cap. 8).<br class='newline' />
 </p><!-- l. 342 --><p class='indent'>   En el caso de que \(x(t)\) sea un p.e. w.s.s., su PSD se puede calcular de la siguiente forma:
-</p><!-- l. 347 --><p class='indent'>   \begin{align*}  S_{X}(\Omega ) &amp;= \mathcal {F}\{R_{X}(\tau )\} \quad \text {(Caso contínuo, CTFT)}  \end{align*}
+</p><!-- l. 347 --><p class='indent'>   \begin{align*}  S_{X}(\Omega ) &= \mathcal {F}\{R_{X}(\tau )\} \quad \text {(Caso contínuo, CTFT)}  \end{align*}
 </p><!-- l. 349 --><p class='indent'>   En cambio, si \(x[k]\) un p.e. w.s.s., señal digital con un intervalo de muestreo \(T_s\). Podemos estimar \(S_{X}(\omega )\) (continua) utilizando
 estimadores de valor medio y la definición de DTFT.
-</p><!-- l. 353 --><p class='indent'>   \begin{align*}  \hat {S}_{X}(\omega ) = \sum _{k=-\infty }^{+\infty }\hat {r}_x[k]e^{-j\omega k}  \end{align*}
+</p><!-- l. 353 --><p class='indent'>   \begin{align*}  \hat {S}_{X}(\omega ) = \sum_{k=-\infty }^{+\infty }\hat {r}_x[k]e^{-j\omega k}  \end{align*}
 </p><!-- l. 355 --><p class='indent'>   donde el estimador de autocorrelación \(\hat {r}_{X}[k]\), \(n\) es el índice temporal, y \(k\) es el índice para el retraso.
-</p><!-- l. 359 --><p class='indent'>   \begin{align*}  \hat {r}_{X}[k] = \frac {1}{N} \sum _{n=0}^{N-1} x[n] x^*[n+k], \qquad k \in \{0,1,2,\ldots ,N-1\}  \end{align*}
+</p><!-- l. 359 --><p class='indent'>   \begin{align*}  \hat {r}_{X}[k] = \frac {1}{N} \sum_{n=0}^{N-1} x[n] x^*[n+k], \qquad k \in \{0,1,2,\ldots ,N-1\}  \end{align*}
 </p><!-- l. 361 --><p class='indent'>   Alcance para la estimación del PSD:
 </p><!-- l. 363 --><p class='indent'>
      </p><ol class='enumerate1'>
@@ -425,7 +424,7 @@ estimadores de valor medio y la definición de DTFT.
 </p><!-- l. 384 --><p class='indent'>   donde \(A\) es una constante; \(w[n] = w(nT_s)\) es ruido blanco, \(\mu _W(t) = 0\) y \(\sigma _W^2(t) = \sigma ^2\). Entonces, \(\mu _X(t) = A\) y \(\sigma _X^2(t) = \sigma ^2\).<br class='newline' />
 </p><!-- l. 386 --><p class='indent'>   Dada una realización finita \(\{x[0],x[1]...,x[N-1]\}\). Un estimador razonable para la media \(A\) es la “media muestral de A”
 (promedio).
-</p><!-- l. 390 --><p class='indent'>   \begin{align*}  \hat {A} = \frac {1}{N} \sum _{n=0}^{N-1}x[n]  \end{align*}
+</p><!-- l. 390 --><p class='indent'>   \begin{align*}  \hat {A} = \frac {1}{N} \sum_{n=0}^{N-1}x[n]  \end{align*}
 </p><!-- l. 392 --><p class='indent'>   Entonces, queremos dos cosas:
      </p><ol class='enumerate1'>
 <li class='enumerate' id='x13-129011x1'>
@@ -457,18 +456,18 @@ estimadores de valor medio y la definición de DTFT.
    <h4 class='subsectionHead' id='periodograma'><span class='titlemark'>7.8.1.   </span> <a id='x13-1300007.8.1'></a>Periodograma</h4>
 <!-- l. 420 --><p class='noindent'><span class='underline'>Definición</span>:
 </p><!-- l. 422 --><p class='indent'>   Usando DTFT:
-</p><!-- l. 429 --><p class='indent'>   \begin{align*}  \hat {S}_{PER}(\omega ) &amp;= \frac {1}{N} \left | \sum _{n=0}^{N-1} x[n] e^{-j \omega n} \right |^2 \\ &amp; = \frac {1}{N} |X(\omega )|^2\\ &amp; = \frac {1}{N} X(\omega ) X^*(\omega )  \end{align*}
+</p><!-- l. 429 --><p class='indent'>   \begin{align*}  \hat {S}_{PER}(\omega ) &= \frac {1}{N} \left | \sum_{n=0}^{N-1} x[n] e^{-j \omega n} \right |^2 \\ & = \frac {1}{N} |X(\omega )|^2\\ & = \frac {1}{N} X(\omega ) X^*(\omega )  \end{align*}
 </p><!-- l. 431 --><p class='indent'>   Usando DFT:
-</p><!-- l. 437 --><p class='indent'>   \begin{align*}  \hat {S}_{PER}[k] &amp;= \frac {1}{N} \left | \sum _{n=0}^{N-1} x[n] e^{-j 2 \pi n k /N} \right |^2 \\ &amp; = \frac {1}{N} \left | X[k] \right |^2\\ &amp; = \frac {1}{N} X[k] X^*[k]  \end{align*}
+</p><!-- l. 437 --><p class='indent'>   \begin{align*}  \hat {S}_{PER}[k] &= \frac {1}{N} \left | \sum_{n=0}^{N-1} x[n] e^{-j 2 \pi n k /N} \right |^2 \\ & = \frac {1}{N} \left | X[k] \right |^2\\ & = \frac {1}{N} X[k] X^*[k]  \end{align*}
 </p><!-- l. 439 --><p class='indent'>   <span class='underline'>Nota</span>: </p>
      <ul class='itemize1'>
      <li class='itemize'>
      <!-- l. 443 --><p class='noindent'>\(\hat {S}_{PER}[k]\) es sesgado, pero es asintóticamente insesgado
-     </p><!-- l. 447 --><p class='noindent'>\begin{align*}  \lim _{N\to \infty }\mathbb {E}\{\hat {S}_{PER}[k]\}=S_X[k]  \end{align*}
+     </p><!-- l. 447 --><p class='noindent'>\begin{align*}  \lim_{N\to \infty }\mathbb {E}\{\hat {S}_{PER}[k]\}=S_X[k]  \end{align*}
      </p></li>
      <li class='itemize'>
      <!-- l. 449 --><p class='noindent'>Varianza de \(\hat {S}_{PER}[k]\) no tiende a cero para \(N\to \infty \) \(\Longrightarrow \) Problema
-     </p><!-- l. 453 --><p class='noindent'>\begin{align*}  \text {var}\{\hat {S}_X(\omega )\}=\sigma ^4  \end{align*}
+     </p><!-- l. 453 --><p class='noindent'>\begin{align*}  \text {var}\{\hat {S}_X(\omega )\}=\sigma^4  \end{align*}
      </p><!-- l. 455 --><p class='noindent'>donde \(\sigma ^2=\frac {S_0 \omega _c}{\pi }\) si \(x[n]\) es un ruido blanco.<br class='newline' />
 </p>
      </li></ul>
@@ -529,7 +528,7 @@ el efecto de spectral leakage (¡causado por una ventana rectangular en un princ
    </figure>
 <!-- l. 506 --><p class='indent'>   Definición de bloque:
 </p><!-- l. 508 --><p class='indent'>
-                                             \[ x_i[n] = x[n + iL], \qquad \begin{cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end{cases} \]
+                                             \[ x_i[n] = x[n + iL], \qquad \begin {cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end {cases} \]
 </p><!-- l. 516 --><p class='indent'>   La cantidad de bloques resultante se puede calcular con la siguiente formula:
 </p><!-- l. 518 --><p class='indent'>
                                              \[K = \text {floor}\left (\frac {N-L}{L}\right ) + 1\]
@@ -564,10 +563,10 @@ disminuye) y bloques cortos implican una resolución en frecuencia baja, es deci
    </figure>
 <!-- l. 547 --><p class='indent'>   Definición de bloque:
 </p><!-- l. 549 --><p class='indent'>
-                                             \[ x_i[n] = x[n + i(L-D)], \qquad \begin{cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end{cases} \]
+                                             \[ x_i[n] = x[n + i(L-D)], \qquad \begin {cases} n &amp;= \{0,1,\ldots ,L-1\} \\ i &amp;= \{0,1,\ldots ,K-1\} \end {cases} \]
 </p><!-- l. 557 --><p class='indent'>   donde la cantidad de puntos de traslape es \(D\):
 </p><!-- l. 559 --><p class='indent'>
-                                             \[ \begin{cases} D = 0, &amp; \text {sin traslape} \\ D = L/4, &amp; \text {25\% traslape} \\ D = L/2, &amp; \text {50\% traslape (más común)} \end{cases} \]
+                                             \[ \begin {cases} D = 0, &amp; \text {sin traslape} \\ D = L/4, &amp; \text {25\% traslape} \\ D = L/2, &amp; \text {50\% traslape (más común)} \end {cases} \]
 </p><!-- l. 567 --><p class='indent'>   La cantidad de bloques resultante se puede calcular con la siguiente formula:
 </p><!-- l. 569 --><p class='indent'>
                                              \[K = \text {floor}\left (\frac {N-L}{L - D}\right ) + 1\]
