@@ -174,6 +174,8 @@ jobs:
           \Configure{@HEAD}{\HCode{<script src="custom.js"></script>\Hnewline}}
           \Configure{Gin-dim}{}
           
+          \Configure{@HEAD}{\HCode{<script>window.MathJax = { tex: { tags: "ams" } };</script>\Hnewline}}
+          
           \makeatletter
           \catcode`\#=12
           \gdef\mypercent{\HCode{&#37;}}
@@ -188,17 +190,12 @@ jobs:
               \let\mlpr@comment@char\mypercent
               \let\mlpr@tilde@char\mytilde
             }{}
+            
+            % PROTEGER EL ENTORNO DE MAKE4HT
+            \ifdefined\Configure
+              \Configure{MathjaxEnv}{subequations}
+            \fi
           }
-          
-          \@ifpackageloaded{listings}{
-            \lst@AddToHook{PreInit}{
-              \let\%\mypercent
-              \let\textpercent\mypercent
-              \let\textasciitilde\mytilde
-              \let\mlpr@comment@char\mypercent
-              \let\mlpr@tilde@char\mytilde
-            }
-          }{}
           \makeatother
           
           \begin{document}
@@ -217,54 +214,42 @@ jobs:
         run: |
           make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
-      - name: Post-Procesamiento Estricto con Python
+      - name: Limpiar HTML (Acentos, Espacios Fantasmas y MathJax)
         run: |
-          cat << 'EOF' > post_processor.py
+          cat << 'EOF' > clean_html.py
           import glob, re, html, unicodedata
 
-          def clean_title(match):
-              title = html.unescape(match.group(1))
-              title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
-              # Conservar solo caracteres estandar web
-              title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
-              title = re.sub(r'\s+', ' ', title).strip()
-              return f"<title>{title}</title>"
-
-          def clean_math_block(match):
-              text = match.group(0)
-              text = html.unescape(text)
-              text = re.sub(r'<[^>]+>', '', text)
-              text = re.sub(r'\\begin\s+?\{', r'\\begin{', text)
-              text = re.sub(r'\\end\s+?\{', r'\\end{', text)
-              
-              # ELIMINAR ESPACIOS FANTASMAS (NON-BREAKING SPACES Y NORMALES)
-              text = text.replace('\xa0', ' ')
-              text = re.sub(r'\s+_', '_', text)
-              text = re.sub(r'\s+\^', '^', text)
-              
-              # ELIMINAR $$ SI EXISTEN (Para que subequations funcione nativo en MathJax 3)
-              text = text.replace('$$', '')
-              
-              return text
-
           for filepath in glob.glob("public/*.html"):
-              with open(filepath, "r", encoding="utf-8") as f:
-                  content = f.read()
-              
-              # 1. Limpiar los acentos y simbolos del título HTML
-              content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
-              
-              # 2. Reemplazar TODO non-breaking space del documento por espacios normales
-              content = content.replace('\xa0', ' ')
-              
-              # 3. Limpiar TODAS las subequations y align
-              content = re.sub(r"\\begin\s*\{subequations\}.*?\\end\s*\{subequations\}", clean_math_block, content, flags=re.DOTALL)
-              content = re.sub(r"\\begin\s*\{align\*?\}.*?\\end\s*\{align\*?\}", clean_math_block, content, flags=re.DOTALL)
+              try:
+                  with open(filepath, "r", encoding="utf-8") as f:
+                      content = f.read()
 
-              with open(filepath, "w", encoding="utf-8") as f:
-                  f.write(content)
+                  # 1. Limpieza destructiva del titulo (Sin acentos ni simbolos flotantes)
+                  match = re.search(r"<title>(.*?)</title>", content, flags=re.DOTALL|re.IGNORECASE)
+                  if match:
+                      title = html.unescape(match.group(1))
+                      title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
+                      title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
+                      title = re.sub(r'\s+', ' ', title).strip()
+                      content = content[:match.start()] + f"<title>{title}</title>" + content[match.end():]
+
+                  # 2. Reemplazar TODO espacio HTML duro por espacios limpios
+                  content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
+                  
+                  # 3. Remover tu hallazgo: todo espacio inmediatamente antes de un _ o un ^
+                  content = re.sub(r'[ \t]+_', '_', content)
+                  content = re.sub(r'[ \t]+\^', '^', content)
+
+                  # 4. Envolver subequations obligatoriamente en $$ para MathJax 3
+                  content = re.sub(r'\\begin\s*\{subequations\}', r'$$\n\\begin{subequations}', content)
+                  content = re.sub(r'\\end\s*\{subequations\}', r'\\end{subequations}\n$$', content)
+
+                  with open(filepath, "w", encoding="utf-8") as f:
+                      f.write(content)
+              except Exception as e:
+                  print(f"Error procesando el archivo {filepath}: {e}")
           EOF
-          python3 post_processor.py
+          python3 clean_html.py
 
       - name: Configurar página de inicio y organizar archivos
         run: |
