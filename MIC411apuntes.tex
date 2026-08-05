@@ -91,6 +91,13 @@
     }
 }
 
+\makeatletter
+\@ifpackageloaded{tex4ht}{
+% If compiled with tex4ht, neutralize subequations
+\renewenvironment{subequations}{}{}
+}{}
+\makeatother
+
 \def\version{4.0.0}
 
 %%% MAINMATTER %%%
@@ -160,6 +167,8 @@
 \input{Capitulos/IntroMatlab}
 
 \input{Capitulos/IntroSimulink}
+
+\backmatter
 
 \printbibliography[heading=bibintoc]
 
