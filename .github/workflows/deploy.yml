@@ -16,10 +16,20 @@ jobs:
       - name: Obtener el código fuente
         uses: actions/checkout@v4
 
-      - name: Instalar TeX Live Completo y utilidades
+      - name: Instalar TeX Live Ligero y utilidades
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-full biber python3-pygments
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-science \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-lang-spanish \
+            make4ht \
+            biber \
+            python3-pygments
 
       - name: Parchear bug de tex4ht con minted
         run: |
@@ -174,12 +184,11 @@ jobs:
           \Configure{@HEAD}{\HCode{<script src="custom.js"></script>\Hnewline}}
           \Configure{Gin-dim}{}
           
-          % ¡Moviendo makeatletter arriba para evitar Undefined control sequence!
           \makeatletter
           
           % Desempaquetar subequations para MathJax
           \ConfigureEnv{subequations}
-          {\unvbox\voidb@x} % Ahora la macro interna \voidb@x sí funcionará
+          {\unvbox\voidb@x}
           {\unvbox\voidb@x} 
           {}
           {}
@@ -242,6 +251,10 @@ jobs:
                   # 3. Remover todo espacio inmediatamente antes de un _ o un ^
                   content = re.sub(r'[ \t]+_', '_', content)
                   content = re.sub(r'[ \t]+\^', '^', content)
+
+                  # 4. Envolver subequations obligatoriamente en $$ para MathJax 3
+                  content = re.sub(r'\\begin\s*\{subequations\}', r'$$\n\\begin{subequations}', content)
+                  content = re.sub(r'\\end\s*\{subequations\}', r'\\end{subequations}\n$$', content)
 
                   with open(filepath, "w", encoding="utf-8") as f:
                       f.write(content)
