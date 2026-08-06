@@ -16,26 +16,16 @@ jobs:
       - name: Obtener el código fuente
         uses: actions/checkout@v4
 
-      - name: Instalar TeX Live Ligero y utilidades
+      - name: Instalar TeX Live Completo y utilidades
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-science \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-lang-spanish \
-            make4ht \
-            biber \
-            python3-pygments
+          sudo apt-get install -y texlive-full biber python3-pygments
 
       - name: Parchear bug de tex4ht con minted
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard
+      - name: Crear JS y CSS del Dashboard (Menú lateral filtrado y Móvil)
         run: |
           cat << 'EOF' > custom.css
           :root { --sidebar-width: 320px; }
@@ -62,9 +52,13 @@ jobs:
           .sidebar-custom .tableofcontents a:hover { background: #e9ecef; }
           img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
           
+          /* Ocultar botones antiguos de navegación */
           .crosslinks { display: none !important; }
+          
+          /* Ocultar elementos móviles en modo Desktop */
           .mobile-header, .sidebar-overlay { display: none; }
           
+          /* Diseño para móviles (Pantallas menores a 800px) */
           @media (max-width: 800px) {
             body { margin-left: 10px !important; margin-right: 10px !important; padding-top: 65px; }
             .mobile-header {
@@ -178,22 +172,15 @@ jobs:
       - name: Crear archivo de configuración web de LaTeX
         run: |
           cat << 'EOF' > config.cfg
-          \Preamble{xhtml,mathjax}
+          \Preamble{xhtml}
           
+          % Cargar los archivos externos creados en bash
           \Configure{@HEAD}{\HCode{<link rel="stylesheet" type="text/css" href="custom.css" />\Hnewline}}
           \Configure{@HEAD}{\HCode{<script src="custom.js"></script>\Hnewline}}
           \Configure{Gin-dim}{}
           
-          \makeatletter
-          
-          % Desempaquetar subequations para MathJax
-          \ConfigureEnv{subequations}
-          {\unvbox\voidb@x}
-          {\unvbox\voidb@x} 
-          {}
-          {}
-          
           % Corrección de símbolos % y ~
+          \makeatletter
           \catcode`\#=12
           \gdef\mypercent{\HCode{&#37;}}
           \catcode`\#=6
@@ -208,6 +195,16 @@ jobs:
               \let\mlpr@tilde@char\mytilde
             }{}
           }
+          
+          \@ifpackageloaded{listings}{
+            \lst@AddToHook{PreInit}{
+              \let\%\mypercent
+              \let\textpercent\mypercent
+              \let\textasciitilde\mytilde
+              \let\mlpr@comment@char\mypercent
+              \let\mlpr@tilde@char\mytilde
+            }
+          }{}
           \makeatother
           
           \begin{document}
@@ -226,40 +223,32 @@ jobs:
         run: |
           make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
-      - name: Limpiar HTML (Acentos, Espacios Fantasmas y MathJax)
+      - name: Limpiar HTML (Acentos en Título y Espacios en MathJax)
         run: |
           cat << 'EOF' > clean_html.py
-          import glob, re, html, unicodedata
+          import glob, re, unicodedata
+
+          def clean_title(match):
+              title = match.group(1)
+              # Remover el acento flotante de tex4ht (´) y tildes (~)
+              title = title.replace('´', '').replace('`', '').replace('~', '')
+              # Remover acentos reales convirtiéndolos a su letra base (á -> a)
+              title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
+              return f"<title>{title}</title>"
 
           for filepath in glob.glob("public/*.html"):
-              try:
-                  with open(filepath, "r", encoding="utf-8") as f:
-                      content = f.read()
-
-                  # 1. Limpieza destructiva del título (Sin acentos ni símbolos flotantes)
-                  match = re.search(r"<title>(.*?)</title>", content, flags=re.DOTALL|re.IGNORECASE)
-                  if match:
-                      title = html.unescape(match.group(1))
-                      title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
-                      title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
-                      title = re.sub(r'\s+', ' ', title).strip()
-                      content = content[:match.start()] + f"<title>{title}</title>" + content[match.end():]
-
-                  # 2. Reemplazar TODO espacio HTML duro por espacios limpios
-                  content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
-                  
-                  # 3. Remover todo espacio inmediatamente antes de un _ o un ^
-                  content = re.sub(r'[ \t]+_', '_', content)
-                  content = re.sub(r'[ \t]+\^', '^', content)
-
-                  # 4. Envolver subequations obligatoriamente en $$ para MathJax 3
-                  content = re.sub(r'\\begin\s*\{subequations\}', r'$$\n\\begin{subequations}', content)
-                  content = re.sub(r'\\end\s*\{subequations\}', r'\\end{subequations}\n$$', content)
-
-                  with open(filepath, "w", encoding="utf-8") as f:
-                      f.write(content)
-              except Exception as e:
-                  print(f"Error procesando el archivo {filepath}: {e}")
+              with open(filepath, "r", encoding="utf-8") as f:
+                  content = f.read()
+              
+              # 1. Arreglar el espacio que tex4ht le agrega a las ecuaciones
+              content = content.replace(r"\begin {", r"\begin{")
+              content = content.replace(r"\end {", r"\end{")
+              
+              # 2. Limpiar los acentos y símbolos raros de la etiqueta <title>
+              content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
+              
+              with open(filepath, "w", encoding="utf-8") as f:
+                  f.write(content)
           EOF
           python3 clean_html.py
 
