@@ -10,10 +10,9 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
-<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesap2.html'>next</a>] [<a href='#tailMIC411apuntesap1.html'>tail</a>] [<a href='MIC411apuntespa5.html#MIC411apuntesap1.html'>up</a>] </p></div>
-   <h2 class='appendixHead' id='topicos-de-analisis-numerico'><span class='titlemark'>Apéndice A</span><br /><a id='x25-222000A'></a>Tópicos de Análisis Numérico</h2>
+   <h2 class='appendixHead' id='topicos-de-analisis-numerico'><span class='titlemark'>Apéndice A</span><br /><a id='x25-222000A'></a>Tópicos de Análisis Numérico</h2>
    <h3 class='sectionHead' id='ecuaciones-nolineales'><span class='titlemark'>A.1.   </span> <a id='x25-223000A.1'></a>Ecuaciones nolineales</h3>
 <!-- l. 6 --><p class='noindent'><a id='x25-223001'></a>Heath (<a href='MIC411apuntesli4.html#cite.0@heath2002scientificcomputing'>2002</a>)
 </p><!-- l. 8 --><p class='noindent'>
@@ -68,22 +67,22 @@
    <h3 class='sectionHead' id='descomposicion-de-valores-singulares-svd'><span class='titlemark'>A.4.   </span> <a id='x25-237000A.4'></a>Descomposición de valores singulares (SVD)</h3>
 <!-- l. 72 --><p class='noindent'>Referencia: <a id='x25-237001'></a>Brunton y Kutz (<a href='MIC411apuntesli4.html#cite.0@brunton_data-driven_2019'>2019</a>, Cap. 1)
 </p><!-- l. 74 --><p class='indent'>   Dado \(X \in \mathbb {C}^{n \times m}\):
-</p><!-- l. 78 --><p class='indent'>   \begin {equation}  X = U \Sigma V^*  \end {equation}<a id='x25-237002r1'></a>
+</p><!-- l. 78 --><p class='indent'>   \begin{equation}  X = U \Sigma V^*  \end{equation}<a id='x25-237002r1'></a>
 </p><!-- l. 80 --><p class='noindent'>donde \(U \in \mathbb {C}^{n \times n} \) y \(V \in \mathbb {C}^{m \times m}\) son matrices unitarias con columnas ortogonales (es decir, \(U U^* = I\) y \(V V^* = I\)), y \(\Sigma \in \mathbb {R}^{n \times m}\) es una matriz con entradas no-negativas
 y reales en la diagonal, y ceros fuera de la diagonal. Las columnas de \(U\) se denominan los <span class='cmti-10'>vectores singulares izquierdos</span>
 de \(X\), y las columnas de \(V\) son los <span class='cmti-10'>vectores singulares derechos </span>de \(X\).
 </p><!-- l. 82 --><p class='indent'>   Cuando \(n \geq m\), se puede escribir la operación SVD económica:
-</p><!-- l. 93 --><p class='indent'>   \begin {equation}  X = U \Sigma V^* = \begin {bmatrix} \hat {U} &amp; \hat {U}^{\perp } \end {bmatrix} \begin {bmatrix} \hat {\Sigma } \\ 0 \end {bmatrix} V^*  \end {equation}<a id='x25-237003r2'></a>
+</p><!-- l. 93 --><p class='indent'>   \begin{equation}  X = U \Sigma V^* = \begin{bmatrix} \hat {U} &amp; \hat {U}^{\perp } \end{bmatrix} \begin{bmatrix} \hat {\Sigma } \\ 0 \end{bmatrix} V^*  \end{equation}<a id='x25-237003r2'></a>
 </p><!-- l. 95 --><p class='indent'>   donde \(\hat {\Sigma } \in \mathbb {R}^{m \times m}\) es la matriz de valores singulares.
 </p><!-- l. 97 --><p class='indent'>   En Matlab, se utiliza la función <span class='cmtt-10'>svd()</span>
 </p>
    <!-- l. 99 -->
 
-<pre class='lstlisting' id='listing-5'><span class='label'><a id='x25-237004r1'></a>1</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>X</span></span><span style='color:#000000'> <span class='cmtt-10'>= rand(5,3);</span> 
-</span><span class='label'><a id='x25-237005r2'></a>2</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>U</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>S</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X);</span> 
-</span><span class='label'><a id='x25-237006r3'></a>3</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>Uhat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>Shat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X,</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>econ</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span><span style='color:#000000'><span class='cmtt-10'>;</span></span></pre>
+<pre class='lstlisting' id='listing-5'><span class='label'><a id='x25-237004r1'></a>1</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>X</span></span><span style='color:#000000'> <span class='cmtt-10'>= rand(5,3);</span> 
+</span><span class='label'><a id='x25-237005r2'></a>2</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>U</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>S</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X);</span> 
+</span><span class='label'><a id='x25-237006r3'></a>3</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>Uhat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>Shat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X,</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>econ</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span><span style='color:#000000'><span class='cmtt-10'>;</span></span></pre>
 <!-- l. 105 --><p class='indent'>   Una interpretación matemática es que las matrices de correlación \(X X^*\) y \(X X^*\) cumple las siguientes relaciones:
-</p><!-- l. 110 --><p class='indent'>   \begin {align}  (X X^*) U &amp; = U \begin {bmatrix} \hat {\Sigma }^2 &amp; 0 \\ 0 &amp; 0\end {bmatrix}\\ (X^* X) V &amp; = V \hat {\Sigma }^2\\  \end {align}
+</p><!-- l. 110 --><p class='indent'>   \begin{align}  (X X^*) U &amp; = U \begin{bmatrix} \hat {\Sigma }^2 &amp; 0 \\ 0 &amp; 0\end{bmatrix}\\ (X^* X) V &amp; = V \hat {\Sigma }^2\\  \end{align}
 </p><!-- l. 112 --><p class='indent'>   Entonces, los valores singulares de \(X\) corresponden a los valores propios (<span class='cmti-10'>eigenvalues</span>) de las matrices de correlación \(X X^*\)
 y \(X X^*\). También, las columnas de \(U\) son los vectores propios (<span class='cmti-10'>eigenvectors</span>) de la matriz \(X X^*\), y las columnas de \(V\) son los
 vectores propios de la matriz \(X^* X\).
@@ -102,16 +101,16 @@ aplicar la Discrete Fourier Transform (DFT) para calcular la señal en el domini
                                                                                          
                                              \[ \{x_0,x_1,x_2,\ldots ,x_{N-1}\} \xrightarrow {\text {DFT}} \{X_0,X_1,X_2,\ldots ,X_{N-1}\}\]
 </p><!-- l. 124 --><p class='indent'>   Recordando la definión del DFT:
-</p><!-- l. 128 --><p class='indent'>   \begin {equation}  X_m = \sum_{n=0}^{N-1} x_n e^{\frac {-j2\pi n m}{N}}  \end {equation}<a id='x25-239001r3'></a>
+</p><!-- l. 128 --><p class='indent'>   \begin{equation}  X_m = \sum _{n=0}^{N-1} x_n e^{\frac {-j2\pi n m}{N}}  \end{equation}<a id='x25-239001r3'></a>
 </p><!-- l. 130 --><p class='indent'>   Definiendo \(W_N = e^{\frac {j2\pi }{N}}\), que se conoce como la <span class='cmti-10'>ra</span>í<span class='cmti-10'>z</span> \(N\) <span class='cmti-10'>de la unidad</span>, y que corresponde a la solución de \(z^N = 1\) donde \(z \in \mathbb {C}\). Entonces, la
 DFT se puede reescribir como:
-</p><!-- l. 134 --><p class='indent'>   \begin {equation}  X_m = \sum_{n=0}^{N-1} x_n W_N^{-n m}  \end {equation}<a id='x25-239002r4'></a>
+</p><!-- l. 134 --><p class='indent'>   \begin{equation}  X_m = \sum _{n=0}^{N-1} x_n W_N^{-n m}  \end{equation}<a id='x25-239002r4'></a>
 </p><!-- l. 136 --><p class='indent'>   Notar que \(W_N \in \mathbb {C}\), y utilizando la identidad de Euler:
-</p><!-- l. 140 --><p class='indent'>   \begin {equation}  W_N = \cos \left (\frac {2\pi }{N}\right ) + j \sin \left (\frac {2\pi }{N}\right )  \end {equation}<a id='x25-239003r5'></a>
+</p><!-- l. 140 --><p class='indent'>   \begin{equation}  W_N = \cos \left (\frac {2\pi }{N}\right ) + j \sin \left (\frac {2\pi }{N}\right )  \end{equation}<a id='x25-239003r5'></a>
 </p><!-- l. 142 --><p class='indent'>   Entonces \(W_N\) entrega las coordenadas en el plano complejo de un vector de magnitud \(1\). También, las potencias de \(W_N\)
 tiene significado de rotaciones de este vector, que traza una circunferencia de radio unitario.
 </p><!-- l. 144 --><p class='indent'>   Finalmente, el DFT se puede reescribir utilizando notación matricial:
-</p><!-- l. 164 --><p class='indent'>   \begin {equation}  \begin {bmatrix} X_0 \\ X_1 \\ X_2 \\ \vdots \\ X_{N-1} \end {bmatrix} = \underbrace { \begin {bmatrix} 1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\ 1 &amp; W_N^{-1} &amp; W_N^{-2} &amp; \cdots &amp; W_N^{-(N-1)} \\ 1 &amp; W_N^{-2} &amp; W_N^{-4} &amp; \cdots &amp; W_N^{-2(N-1)} \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 1 &amp; W_N^{-(N-1)} &amp; W_N^{-2(N-1)} &amp; \cdots &amp; W_N^{-(N-1)^2} \\ \end {bmatrix} }_{F_N} \begin {bmatrix} x_0 \\ x_1 \\ x_2 \\ \vdots \\ x_{N-1} \end {bmatrix}  \end {equation}<a id='x25-239004r6'></a>
+</p><!-- l. 164 --><p class='indent'>   \begin{equation}  \begin{bmatrix} X_0 \\ X_1 \\ X_2 \\ \vdots \\ X_{N-1} \end{bmatrix} = \underbrace { \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\ 1 &amp; W_N^{-1} &amp; W_N^{-2} &amp; \cdots &amp; W_N^{-(N-1)} \\ 1 &amp; W_N^{-2} &amp; W_N^{-4} &amp; \cdots &amp; W_N^{-2(N-1)} \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 1 &amp; W_N^{-(N-1)} &amp; W_N^{-2(N-1)} &amp; \cdots &amp; W_N^{-(N-1)^2} \\ \end{bmatrix} }_{F_N} \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ \vdots \\ x_{N-1} \end{bmatrix}  \end{equation}<a id='x25-239004r6'></a>
 </p><!-- l. 166 --><p class='indent'>   Donde \(F_N \in \mathbb {C}^{N\times N}\) es la matriz DFT de tamaño \(N\).
 </p><!-- l. 168 --><p class='indent'>   Propiedades de \(F_N\):
 </p><!-- l. 170 --><p class='indent'>

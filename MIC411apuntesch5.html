@@ -10,10 +10,9 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
-<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch4.html'>prev</a>] [<a href='MIC411apuntesch4.html#tailMIC411apuntesch4.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch5.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch5.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='vibraciones-estocasticas'><span class='titlemark'>Capítulo 5</span><br /><a id='x10-660005'></a>Vibraciones Estocásticas</h2>
+   <h2 class='chapterHead' id='vibraciones-estocasticas'><span class='titlemark'>Capítulo 5</span><br /><a id='x10-660005'></a>Vibraciones Estocásticas</h2>
    <h3 class='sectionHead' id='proceso-estocastico'><span class='titlemark'>5.1.   </span> <a id='x10-670005.1'></a>Proceso Estocástico</h3>
 <!-- l. 4 --><p class='noindent'>Una <span class='underline'>variable aleatoria</span> \(X\) es una variable que contiene un grado de incertidumbre. Se caracteriza por una distribución
 (ej. Distribución normal o lognormal). Una “realización” de una variable aleatoria toma un único valor.
@@ -31,7 +30,7 @@
      <li class='itemize'>Intensidad de un terremoto en un sitio específico.</li></ul>
 <!-- l. 15 --><p class='indent'>   Un <span class='underline'>proceso estocástico</span> (p.e.) \(\mathbb {X}\) es una colección de variables aleatorias para cada \(t \in T\). Para los casos prácticos de este
 curso, la indexación \(t\) puede ser el tiempo, por lo que la colección es secuencial. Además, un p.e. puede ser continuo
-(imposible de hacer en computador) o discreto (conjunto, arreglo o vector). \begin {align*}  \Longrightarrow \mathbb {X} = \{X(t): t \in T\} =\{X(t_1), X(t_2), ..., X(t_m)\}  \end {align*}
+(imposible de hacer en computador) o discreto (conjunto, arreglo o vector). \begin{align*}  \Longrightarrow \mathbb {X} = \{X(t): t \in T\} =\{X(t_1), X(t_2), ..., X(t_m)\}  \end{align*}
 </p><!-- l. 20 --><p class='indent'>   Una realización de un proceso estocástico corresponde a la realización de todas las variables aleatorias de su
 colección. <br class='newline' />
 </p><!-- l. 22 --><p class='indent'>   Realización 1: </p><figure class='figure'> 
@@ -76,38 +75,38 @@ colección. <br class='newline' />
      estocástico se define como la probabilidad conjunta de que el proceso tome ciertos valores en diferentes
      instantes de tiempo.
      </p><!-- l. 52 --><p class='noindent'>Matemáticamente, se expresa como:
-     </p><!-- l. 57 --><p class='noindent'>\begin {align*}  F_{X}({x(t)}) &amp;= \mathbb {P}[X(t) \leq {x(t)}]\\ \Longrightarrow F_{X}(x_1,x_2,\ldots ,x_m) &amp;= \mathbb {P} \left [ X(t_1)\leq x_1 \cap X(t_2) \leq x_2 \cap \cdots \cap X(t_m) \leq x_m \right ]  \end {align*}
+     </p><!-- l. 57 --><p class='noindent'>\begin{align*}  F_{X}({x(t)}) &amp;= \mathbb {P}[X(t) \leq {x(t)}]\\ \Longrightarrow F_{X}(x_1,x_2,\ldots ,x_m) &amp;= \mathbb {P} \left [ X(t_1)\leq x_1 \cap X(t_2) \leq x_2 \cap \cdots \cap X(t_m) \leq x_m \right ]  \end{align*}
      </p><!-- l. 65 --><p class='noindent'>Esta expresión nos proporciona la probabilidad de que el proceso estocástico \(X(t)\) en los tiempos \(t_i\) tome valores que no
      excedan \(x(t_i)=x_i\).
      </p><!-- l. 67 --><p class='noindent'>Mientras, la función de densidad de probabilidad conjunta (<span class='cmti-10'>joint PDF </span>en inglés) se define como:
-     </p><!-- l. 71 --><p class='noindent'>\begin {equation*}  f_{X}({x(t)}) = \frac {\partial^m F_X(x_1,x_2,\ldots ,x_m)}{\partial x_1 \partial x_2 \cdots \partial x_m}  \end {equation*}
+     </p><!-- l. 71 --><p class='noindent'>\begin{equation*}  f_{X}({x(t)}) = \frac {\partial ^m F_X(x_1,x_2,\ldots ,x_m)}{\partial x_1 \partial x_2 \cdots \partial x_m}  \end{equation*}
      </p></li>
      <li class='itemize'>
      <!-- l. 73 --><p class='noindent'><span class='cmbx-10'>Momentos estoc</span>á<span class='cmbx-10'>sticos</span><br class='newline' /><span class='underline'>Recordatorio</span>: <br class='newline' />El valor esperado de una variable aleatoria \(\mathbb {E}\{X\}\) es la integral del producto entre los valores que puede
      tomar esa variable aleatoria \(x\) y la función de distribución de probabilidad evaluada en ese valor
      \(f_X(x) = \mathbb {P}(X=x)\).
-     </p><!-- l. 79 --><p class='noindent'>\begin {align*}  \mathbb {E}\{X\} = \int_{-\infty }^{\infty } x f_X(x) dx  \end {align*}
+     </p><!-- l. 79 --><p class='noindent'>\begin{align*}  \mathbb {E}\{X\} = \int _{-\infty }^{\infty } x f_X(x) dx  \end{align*}
      </p><!-- l. 81 --><p class='noindent'>En el caso discreto \(p_X(x_i) = \mathbb {P}(X=x_i)\):
                                                                                          
                                                                                          
-     </p><!-- l. 85 --><p class='noindent'>\begin {align*}  \mathbb {E}\{X\} = \sum_{i=1}^{\infty } x_i p_X(x_i)  \end {align*}
+     </p><!-- l. 85 --><p class='noindent'>\begin{align*}  \mathbb {E}\{X\} = \sum _{i=1}^{\infty } x_i p_X(x_i)  \end{align*}
      </p><!-- l. 87 --><p class='noindent'>En MATLAB, se puede ocupar <span class='cmtt-10'>mean(X) </span>donde <span class='cmtt-10'>X </span>es un vector de números sampleados con la distribución de su
      correspondiente variable aleatoria \(X\). <br class='newline' />
      </p><!-- l. 89 --><p class='noindent'>Los momentos estadísticos de 1er y 2do orden son los siguientes: </p>
          <ul class='itemize2'>
-         <li class='itemize'>Media \((m \times 1)\): \begin {align*}  \mu_{X}(t_i)=\mathbb {E}\{X(t_i)\}  \end {align*}
+         <li class='itemize'>Media \((m \times 1)\): \begin{align*}  \mu _{X}(t_i)=\mathbb {E}\{X(t_i)\}  \end{align*}
          </li>
-         <li class='itemize'>Varianza \((m \times 1)\): \begin {align*}  \sigma_{X}^2(t_i)=\mathbb {E}\{[X(t_i)-\mu_X(t_i)]^2\}  \end {align*}
+         <li class='itemize'>Varianza \((m \times 1)\): \begin{align*}  \sigma _{X}^2(t_i)=\mathbb {E}\{[X(t_i)-\mu _X(t_i)]^2\}  \end{align*}
          </li>
-         <li class='itemize'>Función de autocorrelación \((m \times m)\): \begin {align*}  R_{XX}(t_i,t_j)=\mathbb {E}\{X(t_i)X(t_j)\}  \end {align*}
+         <li class='itemize'>Función de autocorrelación \((m \times m)\): \begin{align*}  R_{XX}(t_i,t_j)=\mathbb {E}\{X(t_i)X(t_j)\}  \end{align*}
          </li>
          <li class='itemize'>
-         <!-- l. 106 --><p class='noindent'>Función de autocovarianza \((m \times m)\): \begin {align*}  \Gamma_{XX}(t_i,t_j)&amp;=\mathbb {E}\{[X(t_i)-\mu_X(t_i)][X(t_j)-\mu_X(t_j)]\} \\ \Gamma_{XX}(t_i,t_j)&amp;=R_{XX}(t_i,t_j)-\mu_{X}(t_i) \mu_{X}(t_j)  \end {align*}
-         </p><!-- l. 112 --><p class='noindent'>Nota: \(\sigma_{X}^2(t_i) = \Gamma_{XX}(t_i,t_i)\)
+         <!-- l. 106 --><p class='noindent'>Función de autocovarianza \((m \times m)\): \begin{align*}  \Gamma _{XX}(t_i,t_j)&amp;=\mathbb {E}\{[X(t_i)-\mu _X(t_i)][X(t_j)-\mu _X(t_j)]\} \\ \Gamma _{XX}(t_i,t_j)&amp;=R_{XX}(t_i,t_j)-\mu _{X}(t_i) \mu _{X}(t_j)  \end{align*}
+         </p><!-- l. 112 --><p class='noindent'>Nota: \(\sigma _{X}^2(t_i) = \Gamma _{XX}(t_i,t_i)\)
          </p></li>
          <li class='itemize'>
-         <!-- l. 114 --><p class='noindent'>Coeficiente de correlación \((m \times m)\): \begin {align*}  \rho_{XX}(t_i,t_j) = \frac {\Gamma_{XX}(t_i,t_j)}{\sigma_{X}(t_i)\sigma_{X}(t_j)}  \end {align*}
-         </p><!-- l. 119 --><p class='noindent'>Notar que: \(\rho_{XX}(t_i, t_i) = 1\).<br class='newline' />
+         <!-- l. 114 --><p class='noindent'>Coeficiente de correlación \((m \times m)\): \begin{align*}  \rho _{XX}(t_i,t_j) = \frac {\Gamma _{XX}(t_i,t_j)}{\sigma _{X}(t_i)\sigma _{X}(t_j)}  \end{align*}
+         </p><!-- l. 119 --><p class='noindent'>Notar que: \(\rho _{XX}(t_i, t_i) = 1\).<br class='newline' />
          </p><!-- l. 121 --><p class='noindent'>Interpretación de la correlación: “medida de independencia lineal entre variables aleatorias”.
 </p>
          <figure class='figure'> 
@@ -115,18 +114,18 @@ colección. <br class='newline' />
  <div class='subfigcaption'><span class='cmr-8'>(a) </span></div> </td></tr></table></div> <a id='x10-68002r2'></a><div class='subfigure'><table><tr><td style='text-align:left'><img alt='PIC' src='Figuras/rho0.png' />
 <div class='subfigcaption'><span class='cmr-8'>(b) </span></div> </td></tr></table></div> </figure>
              <ul class='itemize3'>
-             <li class='itemize'>\(|\rho_{\mathbb {X}\mathbb {X}}(t_i,t_j)| \leq 1\)
+             <li class='itemize'>\(|\rho _{\mathbb {X}\mathbb {X}}(t_i,t_j)| \leq 1\)
              </li>
-             <li class='itemize'>Si \(\rho_{\mathbb {X}\mathbb {X}}(t_i,t_j)=0\), \(\forall t_i \neq t_j\), entonces el p.e. es un proceso descorrelacionado (por ejemplo: ruido blanco).</li></ul>
+             <li class='itemize'>Si \(\rho _{\mathbb {X}\mathbb {X}}(t_i,t_j)=0\), \(\forall t_i \neq t_j\), entonces el p.e. es un proceso descorrelacionado (por ejemplo: ruido blanco).</li></ul>
          </li></ul>
      <!-- l. 134 --><p class='noindent'>En caso de dos procesos estocásticos, \(\mathbb {X} = \{X(t)\), \(t \in T_X\}\) e \( \mathbb {Y} = \{Y(t)\), \(t \in T_Y\}\).
 </p>
          <ul class='itemize2'>
-         <li class='itemize'>Correlación cruzada: \begin {align*}  R_{XY}(t_i,t_j)=\mathbb {E}\{X(t_i)Y(t_j)\}  \end {align*}
+         <li class='itemize'>Correlación cruzada: \begin{align*}  R_{XY}(t_i,t_j)=\mathbb {E}\{X(t_i)Y(t_j)\}  \end{align*}
          </li>
-         <li class='itemize'>Covarianza cruzada: \begin {align*}  \Gamma_{XY}(t_i,t_j) &amp;=\mathbb {E}\{ [X(t_i)-\mu_x(t_i)][Y(t_j)-\mu_y(t_j)]\} \\ \Gamma_{XY}(t_i,t_j) &amp;= R_{XY}(t_i, t_j)-\mu_{X}(t_i)\mu_{Y}(t_j)  \end {align*}
+         <li class='itemize'>Covarianza cruzada: \begin{align*}  \Gamma _{XY}(t_i,t_j) &amp;=\mathbb {E}\{ [X(t_i)-\mu _x(t_i)][Y(t_j)-\mu _y(t_j)]\} \\ \Gamma _{XY}(t_i,t_j) &amp;= R_{XY}(t_i, t_j)-\mu _{X}(t_i)\mu _{Y}(t_j)  \end{align*}
          </li>
-         <li class='itemize'>Coeficiente de correlación cruzado: \begin {align*}  \rho_{XY} (t_i,t_j) = \frac {\Gamma_{XY}(t_i,t_j)}{\sigma_{X}(t_i)\sigma_{Y}(t_j)}  \end {align*}
+         <li class='itemize'>Coeficiente de correlación cruzado: \begin{align*}  \rho _{XY} (t_i,t_j) = \frac {\Gamma _{XY}(t_i,t_j)}{\sigma _{X}(t_i)\sigma _{Y}(t_j)}  \end{align*}
 </li></ul>
                                                                                          
                                                                                          
@@ -148,11 +147,11 @@ colección. <br class='newline' />
      </li>
 <li class='enumerate' id='x10-70004x2'>
      <!-- l. 164 --><p class='noindent'><span class='underline'>P.E. Estrictamente estacionario</span>: La distribución de probabilidad del p.e. no cambia con un retraso en el tiempo:
-     \begin {equation*}  F_{X}(x_1,...,x_m; t_1,...,t_m) = F_{X}(x_1,...,x_m; \textcolor {brown}{t_1 + \tau ,...,t_m + \tau })  \end {equation*} </p><figure class='figure'> 
+     \begin{equation*}  F_{X}(x_1,...,x_m; t_1,...,t_m) = F_{X}(x_1,...,x_m; \textcolor {brown}{t_1 + \tau ,...,t_m + \tau })  \end{equation*} </p><figure class='figure'> 
  <img alt='PIC' src='Figuras/peestricto.png' /> </figure>
      </li>
 <li class='enumerate' id='x10-70006x3'><span class='underline'>P.E. estacionario en el sentido amplio (<span class='cmti-10'>wide-sense stationary</span>)</span>: Estadísticos de 2do orden son finitos y no varían
-     en el tiempo \begin {align*}  \mu_{X}(t) = \text {cst}, \quad \sigma_{X}^2(t) = \text {cst}, \quad R_{XX}(t_i,t_j) = R_{XX}(\underbrace {t_j-t_i}_{=\tau }) = R_{XX}(\tau )  \end {align*}
+     en el tiempo \begin{align*}  \mu _{X}(t) = \text {cst}, \quad \sigma _{X}^2(t) = \text {cst}, \quad R_{XX}(t_i,t_j) = R_{XX}(\underbrace {t_j-t_i}_{=\tau }) = R_{XX}(\tau )  \end{align*}
 </li></ol>
 <!-- l. 178 --><p class='noindent'>
 </p>
@@ -163,10 +162,10 @@ estadísticos sobre el conjunto de todas las posibles realizaciones del proceso.
 </p><!-- l. 184 --><p class='indent'>
                                                                                          
                                                                                          
-                                             \[ \overline {g(X(t))} = \lim_{T \to \infty } \frac {1}{T} \int_0^T g(x(t)) dt\]
+                                             \[ \overline {g(X(t))} = \lim _{T \to \infty } \frac {1}{T} \int _0^T g(x(t)) dt\]
 </p><!-- l. 186 --><p class='indent'>   Y la media en el conjunto de la función \(g(x(t))\):
 </p><!-- l. 188 --><p class='indent'>
-                                             \[ \mathbb {E}\left [g(X(t))\right ] = \int_{-\infty }^{\infty } g(x(t)) f_X(x(t)) dx\]
+                                             \[ \mathbb {E}\left [g(X(t))\right ] = \int _{-\infty }^{\infty } g(x(t)) f_X(x(t)) dx\]
 </p><!-- l. 190 --><p class='indent'>   Entonces, se dice que es <span class='cmti-10'>erg</span>ó<span class='cmti-10'>dico </span>ssi la media en el tiempo es igual a la media en el conjunto:
 </p><!-- l. 192 --><p class='indent'>
                                              \[ \overline {g(X(t))} = \mathbb {E}\left [g(X(t))\right ]\]
@@ -175,20 +174,20 @@ estadísticos sobre el conjunto de todas las posibles realizaciones del proceso.
 <span class='cmbx-10'>Erg</span>ó<span class='cmbx-10'>dico en la media.</span> </dt><dd class='description'>
      <!-- l. 197 --><p class='noindent'> Si la media estimada en el tiempo:
      </p><!-- l. 199 --><p class='noindent'>
-                                               \[\overline {X} = \lim_{T \to \infty } \frac {1}{T} \int_0^T x(t) dt\]
+                                               \[\overline {X} = \lim _{T \to \infty } \frac {1}{T} \int _0^T x(t) dt\]
      </p><!-- l. 201 --><p class='noindent'>es igual a la media en el conjunto:
      </p><!-- l. 203 --><p class='noindent'>
                                                                                          
                                                                                          
-                                               \[\mathbb {E}\left [X(t)\right ] = \mu_X\]
+                                               \[\mathbb {E}\left [X(t)\right ] = \mu _X\]
      </p></dd><dt class='description'>
 <span class='cmbx-10'>Erg</span>ó<span class='cmbx-10'>dico en la autocovarianza.</span> </dt><dd class='description'>
      <!-- l. 205 --><p class='noindent'> Si la autocovarianza estimada en el tiempo:
      </p><!-- l. 207 --><p class='noindent'>
-                                               \[\overline {\Gamma_X}(\tau ) = \lim_{T \to \infty } \frac {1}{T} \int_0^T (x(t)- \mu_X)(x(t+\tau )- \mu_X)^T dt\]
+                                               \[\overline {\Gamma _X}(\tau ) = \lim _{T \to \infty } \frac {1}{T} \int _0^T (x(t)- \mu _X)(x(t+\tau )- \mu _X)^T dt\]
      </p><!-- l. 209 --><p class='noindent'>es igual a la autocovarianza en el conjunto:
      </p><!-- l. 211 --><p class='noindent'>
-                                               \[\mathbb {E}\left [ (X(t)- \mu_X)(X(t+\tau )- \mu_X)^T \right ] = \Gamma_X(\tau )\]
+                                               \[\mathbb {E}\left [ (X(t)- \mu _X)(X(t+\tau )- \mu _X)^T \right ] = \Gamma _X(\tau )\]
      .
      </p></dd><dt class='description'>
 <span class='cmbx-10'>Erg</span>ó<span class='cmbx-10'>dico en el sentido amplio.</span> </dt><dd class='description'>
@@ -201,8 +200,8 @@ estadísticos sobre el conjunto de todas las posibles realizaciones del proceso.
 </p>
    <h3 class='sectionHead' id='pe-gaussiano'><span class='titlemark'>5.4.   </span> <a id='x10-720005.4'></a>P.E. Gaussiano</h3>
 <!-- l. 228 --><p class='noindent'>Un p.e. \(\mathbb {X} = \{X(t)\), \(t \in T\}\), se llama p.e. Gaussiano si, para cada \(t\in T\), las \(m\) variables aleatorias \(X(t_1)\), \(X(t_2)\), \(...,\) \(X(t_m)\) distribuyen normal.
-</p><!-- l. 233 --><p class='indent'>   \begin {align*}  X_i \sim N\big (\mu_X(t), \sigma_X(t)\big )\\ \Longrightarrow \mathbb {X} = \{X(t), t \in T\}\sim N\big (\mu_X,\Gamma_{XX}\big )  \end {align*}
-</p><!-- l. 235 --><p class='indent'>   donde \(\mu_X\) es el vector de las medias de las variables aleatorias del p.e. y \(\Gamma_{XX}\) es la matriz de auto-covarianza.
+</p><!-- l. 233 --><p class='indent'>   \begin{align*}  X_i \sim N\big (\mu _X(t), \sigma _X(t)\big )\\ \Longrightarrow \mathbb {X} = \{X(t), t \in T\}\sim N\big (\mu _X,\Gamma _{XX}\big )  \end{align*}
+</p><!-- l. 235 --><p class='indent'>   donde \(\mu _X\) es el vector de las medias de las variables aleatorias del p.e. y \(\Gamma _{XX}\) es la matriz de auto-covarianza.
 <br class='newline' />
 </p><!-- l. 237 --><p class='indent'>   <span class='underline'>Notas</span>: </p>
      <ul class='itemize1'>
@@ -216,9 +215,9 @@ estadísticos sobre el conjunto de todas las posibles realizaciones del proceso.
 <!-- l. 245 --><p class='noindent'><span class='underline'>Definición</span>: Función de Autocorrelación.<br class='newline' />
 </p><!-- l. 247 --><p class='indent'>   Sea \(\mathbb {X} = \{X(t), t \in T\}\) un w.s.s (wide sense stationary). La matriz de autocorrelación es constante para mismas diferencias
 temporales, es decir, que la función de autocorrelación sólo depende de la diferencia de tiempo.
-</p><!-- l. 251 --><p class='indent'>   \begin {align*}  R_{X}(t_i,t_j) = R_X(\underbrace {t_i - t_j}_{= \tau })  \end {align*}
+</p><!-- l. 251 --><p class='indent'>   \begin{align*}  R_{X}(t_i,t_j) = R_X(\underbrace {t_i - t_j}_{= \tau })  \end{align*}
 </p><!-- l. 253 --><p class='indent'>   Por lo tanto, se define la <span class='underline'>Función de Autocorrelación</span> \(R_X(\tau )\) como:
-</p><!-- l. 257 --><p class='indent'>   \begin {align*}  R_{X}(\tau )=\mathbb {E}\{X(t)X(t+\tau )\}  \end {align*}
+</p><!-- l. 257 --><p class='indent'>   \begin{align*}  R_{X}(\tau )=\mathbb {E}\{X(t)X(t+\tau )\}  \end{align*}
 </p><!-- l. 259 --><p class='indent'>   <span class='underline'>Características de \(R_{X}(\tau )\)</span>:
 </p><!-- l. 261 --><p class='indent'>
      </p><ol class='enumerate1'>
@@ -230,12 +229,12 @@ temporales, es decir, que la función de autocorrelación sólo depende de la di
      </li>
 <li class='enumerate' id='x10-73008x4'>
      <!-- l. 265 --><p class='noindent'>En \(\tau =0\), \(R_{X} (0)\) entrega el máximo valor de la media cuadrada del p.e. \(\mathbb {X} = \{X(t), t \in T\}\):
-     </p><!-- l. 267 --><p class='noindent'>\(R_{X}(0)=\mathbb {E}\{X(t)^2\}=\sigma^2_X + \mu_X^2\)
+     </p><!-- l. 267 --><p class='noindent'>\(R_{X}(0)=\mathbb {E}\{X(t)^2\}=\sigma ^2_X + \mu _X^2\)
                                                                                          
                                                                                          
      </p></li>
 <li class='enumerate' id='x10-73010x5'>
-     <!-- l. 269 --><p class='noindent'>\(R_{X}(\tau )\) es una función definida positiva, es decir, para cualquier función \(g(t)\): \begin {align*}  g(t_1)^T R_{X}(t_1-t_2)g(t_2)\geq 0  \end {align*}
+     <!-- l. 269 --><p class='noindent'>\(R_{X}(\tau )\) es una función definida positiva, es decir, para cualquier función \(g(t)\): \begin{align*}  g(t_1)^T R_{X}(t_1-t_2)g(t_2)\geq 0  \end{align*}
      </p><!-- l. 273 --><p class='noindent'>Por lo tanto, \(R_{X} (\tau )\) es definida positiva siempre.
      </p></li>
 <li class='enumerate' id='x10-73012x6'>\(R_{X} (\tau )\) es continua en \(\tau \) si el p.e. es contínuo.</li></ol>
@@ -247,7 +246,7 @@ temporales, es decir, que la función de autocorrelación sólo depende de la di
    <h4 class='subsectionHead' id='generalidades2'><span class='titlemark'>5.6.1.   </span> <a id='x10-750005.6.1'></a>Generalidades</h4>
 <!-- l. 281 --><p class='noindent'>Primero, debemos establecer la definición adecuada de transformada de Fourier. La convención a utilizar es la que
 corresponde a ingenierísa, donde la transformada de Fourier se define de la siguiente manera:
-</p><!-- l. 286 --><p class='indent'>   \begin {align*}  X(\omega ) &amp;= \mathcal {F}\{x(t)\} &amp;= \int_{-\infty }^{\infty } x(t) e^{-j \omega t} dt &amp; &amp; &amp; \text {(Transformada adelante, \emph {forward})} \\ x(t) &amp;= \mathcal {F}^{-1}\{X(\omega )\} &amp;= \frac {1}{2\pi } \int_{-\infty }^{\infty } X(\omega ) e^{j \omega t} d\omega &amp; &amp; &amp;\text {(Transformada atrás, \emph {inverse})}  \end {align*}
+</p><!-- l. 286 --><p class='indent'>   \begin{align*}  X(\omega ) &amp;= \mathcal {F}\{x(t)\} &amp;= \int _{-\infty }^{\infty } x(t) e^{-j \omega t} dt &amp; &amp; &amp; \text {(Transformada adelante, \emph {forward})} \\ x(t) &amp;= \mathcal {F}^{-1}\{X(\omega )\} &amp;= \frac {1}{2\pi } \int _{-\infty }^{\infty } X(\omega ) e^{j \omega t} d\omega &amp; &amp; &amp;\text {(Transformada atrás, \emph {inverse})}  \end{align*}
 </p><!-- l. 288 --><p class='noindent'>donde \(j=\sqrt {-1}\) es el número complejo. Notar las siguientes identidades importantes:
 </p><!-- l. 290 --><p class='indent'>
      </p><ol class='enumerate1'>
@@ -263,9 +262,9 @@ corresponde a ingenierísa, donde la transformada de Fourier se define de la sig
 <span class='cmbx-10'>Teorema 6 </span>(Teorema de Wiener-Khinchin)<span class='cmbx-10'>.</span>  </span>
 </p><!-- l. 300 --><p class='indent'>   <span class='cmti-10'>Sea</span> \(\{X(t): t\in T\}\) <span class='cmti-10'>un p.e. w.s.s., con funci</span>ó<span class='cmti-10'>n de autocorrelaci</span>ó<span class='cmti-10'>n</span> \(R_{X} (\tau )\)<span class='cmti-10'>. La funci</span>ó<span class='cmti-10'>n de densidad de poder espectral (PSD) se
 define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'>n de autocorrelaci</span>ó<span class='cmti-10'>n:</span>
-</p><!-- l. 304 --><p class='indent'>   \begin {align*}  S_{X}(\omega ) &amp;=\mathcal {F}\{R_{X}(\tau )\}  \end {align*}
+</p><!-- l. 304 --><p class='indent'>   \begin{align*}  S_{X}(\omega ) &amp;=\mathcal {F}\{R_{X}(\tau )\}  \end{align*}
 </p><!-- l. 306 --><p class='indent'>   <span class='cmti-10'>Equivalentemente:</span>
-</p><!-- l. 310 --><p class='indent'>   \begin {align*}  R_{X}(\tau ) &amp;=\mathcal {F}^{-1}\{S_{X}(\omega )\}  \end {align*}
+</p><!-- l. 310 --><p class='indent'>   \begin{align*}  R_{X}(\tau ) &amp;=\mathcal {F}^{-1}\{S_{X}(\omega )\}  \end{align*}
                                                                                          
                                                                                          
 </p>
@@ -281,9 +280,9 @@ define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'
 <li class='enumerate' id='x10-77004x2'>
      <!-- l. 319 --><p class='noindent'>El <span class='cmti-10'>poder </span>se define como el área bajo la curva de \(S_{X}(\omega )\)
      </p><!-- l. 321 --><p class='noindent'>
-                                               \[ P_X = \frac {1}{2\pi }\int_{-\infty }^{\infty } S_X(\omega ) \]
+                                               \[ P_X = \frac {1}{2\pi }\int _{-\infty }^{\infty } S_X(\omega ) \]
      </p></li>
-<li class='enumerate' id='x10-77006x3'>El poder del PSD es igual a la autocorrelación \(\mathbb {E}\{X(t)^2\} = R_{X}(\tau =0) = \sigma^2_X + \mu^2_X\).
+<li class='enumerate' id='x10-77006x3'>El poder del PSD es igual a la autocorrelación \(\mathbb {E}\{X(t)^2\} = R_{X}(\tau =0) = \sigma ^2_X + \mu ^2_X\).
 </li></ol>
    <figure class='figure'> 
 
@@ -297,8 +296,8 @@ define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'
 </p>
    </figure>
    <h3 class='sectionHead' id='ruido-blanco'><span class='titlemark'>5.7.   </span> <a id='x10-780005.7'></a>Ruido blanco</h3>
-<!-- l. 334 --><p class='noindent'>Sea \(\mathbb {X}=\{X(t): t\in T\}\) un p.e. w.s.s. Gaussiano, con \(\mu_X=0\) en todo \(t \in T\), \(\mathbb {X}\) es un ruido blanco si su PSD es constante:
-</p><!-- l. 339 --><p class='indent'>   \begin {align*}  S_X(\omega ) &amp;= S_0, \quad \forall \omega \in (-\infty ,+\infty )\\ \Longrightarrow R_X(\tau ) &amp;= S_0\delta (\tau )  \end {align*}
+<!-- l. 334 --><p class='noindent'>Sea \(\mathbb {X}=\{X(t): t\in T\}\) un p.e. w.s.s. Gaussiano, con \(\mu _X=0\) en todo \(t \in T\), \(\mathbb {X}\) es un ruido blanco si su PSD es constante:
+</p><!-- l. 339 --><p class='indent'>   \begin{align*}  S_X(\omega ) &amp;= S_0, \quad \forall \omega \in (-\infty ,+\infty )\\ \Longrightarrow R_X(\tau ) &amp;= S_0\delta (\tau )  \end{align*}
 </p><!-- l. 341 --><p class='noindent'>donde \(S_0\) tiene unidades de [(Poder)/(rad/s)]. Por ejemplo: [(m/s\(^2\))\(^2\)/(rad/s)], [(N)\(^2\)/(rad/s)].
 </p>
    <figure class='figure'> 
@@ -316,7 +315,7 @@ define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'
 </p>
    <h3 class='sectionHead' id='ruido-blanco-de-banda-limitada-blwn'><span class='titlemark'>5.8.   </span> <a id='x10-790005.8'></a>Ruido blanco de banda limitada (BLWN)</h3>
 <!-- l. 352 --><p class='noindent'>Sea \(\{X(t),t \in T\}\) un p.e., w.s.s., es un <span class='cmti-10'>ruido blanco de banda limitada </span>(band-limited white noise, BLWN) si:
-</p><!-- l. 363 --><p class='indent'>   \begin {align*}  S_X(\omega ) &amp; = \left \{ \begin {array}{ll} S_0 &amp;, |\omega |\leq \omega_c \\ 0 &amp;, |\omega |&gt; \omega_c \\ \end {array} \right . \\ R_X(\tau ) &amp; = \left ( 2 S_0 \omega_c \right ) \left ( \frac {1}{2\pi } \right ) \left [ \frac {\sin (\omega_c \tau )}{\omega_c \tau } \right ] \\ &amp; = \left ( \frac {S_0 \omega_c}{\pi } \right ) \text {sinc}(\omega_c \tau )  \end {align*}
+</p><!-- l. 363 --><p class='indent'>   \begin{align*}  S_X(\omega ) &amp; = \left \{ \begin{array}{ll} S_0 &amp;, |\omega |\leq \omega _c \\ 0 &amp;, |\omega |&gt; \omega _c \\ \end{array} \right . \\ R_X(\tau ) &amp; = \left ( 2 S_0 \omega _c \right ) \left ( \frac {1}{2\pi } \right ) \left [ \frac {\sin (\omega _c \tau )}{\omega _c \tau } \right ] \\ &amp; = \left ( \frac {S_0 \omega _c}{\pi } \right ) \text {sinc}(\omega _c \tau )  \end{align*}
 </p>
    <figure class='figure'> 
 
@@ -329,7 +328,7 @@ define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'
                                                                                          
 </p>
    </figure>
-<!-- l. 372 --><p class='indent'>   Varianza: \(\sigma^2 = R_x(0) = \frac {S_0 \omega_c}{\pi }\).
+<!-- l. 372 --><p class='indent'>   Varianza: \(\sigma ^2 = R_x(0) = \frac {S_0 \omega _c}{\pi }\).
 </p>
    <figure class='figure' id='-autocorrelacion-blwn-creado-en-python'> 
 
@@ -340,7 +339,7 @@ define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'
                                                                                          
 <!-- l. 376 --><p class='noindent'><img alt='PIC' src='Figuras/BLWN_ACF.png' />
 </p>
-<figcaption class='caption'><span class='id'>Figura 5.1: </span><span class='content'>Autocorrelación BLWN, creado en Python.</span></figcaption><!-- tex4ht:label?: x10-79001r1  -->
+<figcaption class='caption'><span class='id'>Figura 5.1: </span><span class='content'>Autocorrelación BLWN, creado en Python.</span></figcaption><!-- tex4ht:label?: x10-79001r1  -->
                                                                                          
                                                                                          
    </figure>
@@ -350,53 +349,53 @@ define como la transformada de Fourier de la funci</span>ó<span class='cmti-10'
 </p>
    <h3 class='sectionHead' id='respuesta-estocastica-de-sistemas-lineales'><span class='titlemark'>5.10.   </span> <a id='x10-810005.10'></a>Respuesta estocástica de sistemas lineales</h3>
 <!-- l. 386 --><p class='noindent'>Sea un sistema LTI:
-</p><!-- l. 390 --><p class='indent'>   \begin {align*}  {\dot {x}} ={A}{x} + {B}u(t), \quad {x}(0)={0}  \end {align*}
-</p><!-- l. 392 --><p class='indent'>   y asumiendo que \(u(t)\) es una realización de un p.e. \(\mathbb {U} = \{U(t), t \in T\}\) w.s.s. con \(\mu_\mathbb {U}(t) = 0\). <br class='newline' />
-</p><!-- l. 394 --><p class='indent'>   <span class='underline'>Objetivo</span>: Determinar el estado \({x}(t)\), el cual se puede analizar como un p.e. w.s.s., \(\mathbb {X} = \{X(t)\), \(t \in T\}\) con \(\mu_X(t)=0\)<br class='newline' />
-</p><!-- l. 396 --><p class='indent'>   Recordar que la autocovarianza \({\Gamma }_X(t)\) cuando \(\mu_X(t)=0\) es:
-</p><!-- l. 400 --><p class='indent'>   \begin {align*}  \Gamma_X(t) = \mathbb {E}\{X(t)X(t)^T\}  \end {align*}
+</p><!-- l. 390 --><p class='indent'>   \begin{align*}  {\dot {x}} ={A}{x} + {B}u(t), \quad {x}(0)={0}  \end{align*}
+</p><!-- l. 392 --><p class='indent'>   y asumiendo que \(u(t)\) es una realización de un p.e. \(\mathbb {U} = \{U(t), t \in T\}\) w.s.s. con \(\mu _\mathbb {U}(t) = 0\). <br class='newline' />
+</p><!-- l. 394 --><p class='indent'>   <span class='underline'>Objetivo</span>: Determinar el estado \({x}(t)\), el cual se puede analizar como un p.e. w.s.s., \(\mathbb {X} = \{X(t)\), \(t \in T\}\) con \(\mu _X(t)=0\)<br class='newline' />
+</p><!-- l. 396 --><p class='indent'>   Recordar que la autocovarianza \({\Gamma }_X(t)\) cuando \(\mu _X(t)=0\) es:
+</p><!-- l. 400 --><p class='indent'>   \begin{align*}  \Gamma _X(t) = \mathbb {E}\{X(t)X(t)^T\}  \end{align*}
 </p><!-- l. 402 --><p class='indent'>   Entonces, la derivada temporal de la autocovarianza es:
-</p><!-- l. 409 --><p class='indent'>   \begin {align*}  \dot {\Gamma }_X(t)&amp;=\frac {d}{dt}\mathbb {E}\{XX^T\}=\mathbb {E}\{\frac {d}{dt}(XX^T)\}\\ &amp;= \mathbb {E}\{\dot {X}X^T+X\dot {X}^T\}\\ &amp;= \mathbb {E}\{(AX+BU)X^T+X(AX+BU)^T\}\\ &amp;= A\mathbb {E}\{XX^T\}+B\mathbb {E}\{UX^T\}+\mathbb {E}\{XX^T\}A^T+\mathbb {E}\{XU^T\}B^T  \end {align*}
-</p><!-- l. 411 --><p class='indent'>   Definiendo \(Q=\mathbb {E}\{BUX^T\}+\mathbb {E}\{XU^T B^T\}\) \begin {align*}  \dot {\Gamma }_X &amp;= A\Gamma_X+\Gamma_XA^T+Q \qquad \text {(Ecuación diferencial de Lyapunov)}  \end {align*}
-</p><!-- l. 416 --><p class='indent'>   Si \({u}(t)\) es un ruido blanco, es decir, \(\mu_U=0\), \(R_U(\tau )= S_o\delta (\tau )\), con \(S_U(\omega )=S_0, \forall \omega \), y recordando que la solución analítica de \(x(t)\) es:
-</p><!-- l. 420 --><p class='indent'>   \begin {equation*}  x(t)=\phi (t)x_0+\int_0^t \phi (t-\tau )Bu(\tau )d\tau  \end {equation*}
+</p><!-- l. 409 --><p class='indent'>   \begin{align*}  \dot {\Gamma }_X(t)&amp;=\frac {d}{dt}\mathbb {E}\{XX^T\}=\mathbb {E}\{\frac {d}{dt}(XX^T)\}\\ &amp;= \mathbb {E}\{\dot {X}X^T+X\dot {X}^T\}\\ &amp;= \mathbb {E}\{(AX+BU)X^T+X(AX+BU)^T\}\\ &amp;= A\mathbb {E}\{XX^T\}+B\mathbb {E}\{UX^T\}+\mathbb {E}\{XX^T\}A^T+\mathbb {E}\{XU^T\}B^T  \end{align*}
+</p><!-- l. 411 --><p class='indent'>   Definiendo \(Q=\mathbb {E}\{BUX^T\}+\mathbb {E}\{XU^T B^T\}\) \begin{align*}  \dot {\Gamma }_X &amp;= A\Gamma _X+\Gamma _XA^T+Q \qquad \text {(Ecuación diferencial de Lyapunov)}  \end{align*}
+</p><!-- l. 416 --><p class='indent'>   Si \({u}(t)\) es un ruido blanco, es decir, \(\mu _U=0\), \(R_U(\tau )= S_o\delta (\tau )\), con \(S_U(\omega )=S_0, \forall \omega \), y recordando que la solución analítica de \(x(t)\) es:
+</p><!-- l. 420 --><p class='indent'>   \begin{equation*}  x(t)=\phi (t)x_0+\int _0^t \phi (t-\tau )Bu(\tau )d\tau  \end{equation*}
 </p><!-- l. 422 --><p class='indent'>   Desarrollemos el primer término de \(Q\) de la ecuación diferencial de Lyapunov:
-</p><!-- l. 428 --><p class='indent'>   \begin {align*}  \mathbb {E}\{BUX^T \} &amp;= \mathbb {E} \left \{ BU(t) \left [ \int_0^t \phi (t-\tau )B U(\tau ) d\tau \right ]^T \right \}\\ &amp;= B \int_0^t \mathbb {E} \left \{U(t) \left [U^T (\tau ) B^T \phi^T (t-\tau ) \right ] \right \} d\tau \\ &amp;= B \int_0^t \mathbb {E} \left \{ U(t)U^T(\tau ) \right \} B^T \phi^T (t-\tau ) d\tau  \end {align*}
-</p><!-- l. 430 --><p class='indent'>   Dado que \(U(t)\) es un ruido blanco con \(\mu_{U}(t)=0\), \(R(\tau ) = \mathbb {E}\{U(t)U(t +\tau )\} = S_0 \delta (\tau )\). También, se cumple: \(\mathbb {E}\{U(t)U(\tau )\} = S_0 \delta (t-\tau )\). Entonces, se puede demostrar que:
-</p><!-- l. 434 --><p class='indent'>   \begin {align*}  \mathbb {E}\{BUX^T \}=\frac {1}{2}B (S_0) B^T  \end {align*}
-</p><!-- l. 436 --><p class='indent'>   Por lo tanto: \begin {align*}  Q &amp;= \mathbb {E}\{BUX^T \}+\mathbb {E}\{BU^T X^T \}=2\mathbb {E}\{BUX^T \}\\ Q &amp;= B(S_0)B^T  \end {align*}
-</p><!-- l. 442 --><p class='indent'>   Para resolver \(\Gamma_X(t)\), se calcula \(Q\) que depende de \(S_0\) y \(B\):
-</p><!-- l. 446 --><p class='indent'>   \begin {align*}  \dot {\Gamma }_X(t)=A\Gamma_X+\Gamma_XA^T +Q  \end {align*}
+</p><!-- l. 428 --><p class='indent'>   \begin{align*}  \mathbb {E}\{BUX^T \} &amp;= \mathbb {E} \left \{ BU(t) \left [ \int _0^t \phi (t-\tau )B U(\tau ) d\tau \right ]^T \right \}\\ &amp;= B \int _0^t \mathbb {E} \left \{U(t) \left [U^T (\tau ) B^T \phi ^T (t-\tau ) \right ] \right \} d\tau \\ &amp;= B \int _0^t \mathbb {E} \left \{ U(t)U^T(\tau ) \right \} B^T \phi ^T (t-\tau ) d\tau  \end{align*}
+</p><!-- l. 430 --><p class='indent'>   Dado que \(U(t)\) es un ruido blanco con \(\mu _{U}(t)=0\), \(R(\tau ) = \mathbb {E}\{U(t)U(t +\tau )\} = S_0 \delta (\tau )\). También, se cumple: \(\mathbb {E}\{U(t)U(\tau )\} = S_0 \delta (t-\tau )\). Entonces, se puede demostrar que:
+</p><!-- l. 434 --><p class='indent'>   \begin{align*}  \mathbb {E}\{BUX^T \}=\frac {1}{2}B (S_0) B^T  \end{align*}
+</p><!-- l. 436 --><p class='indent'>   Por lo tanto: \begin{align*}  Q &amp;= \mathbb {E}\{BUX^T \}+\mathbb {E}\{BU^T X^T \}=2\mathbb {E}\{BUX^T \}\\ Q &amp;= B(S_0)B^T  \end{align*}
+</p><!-- l. 442 --><p class='indent'>   Para resolver \(\Gamma _X(t)\), se calcula \(Q\) que depende de \(S_0\) y \(B\):
+</p><!-- l. 446 --><p class='indent'>   \begin{align*}  \dot {\Gamma }_X(t)=A\Gamma _X+\Gamma _XA^T +Q  \end{align*}
 </p><!-- l. 448 --><p class='indent'>   La solución es única ssi \(A\) es Hurwitz.<br class='newline' />
 </p><!-- l. 450 --><p class='indent'>   <span class='underline'>Notas</span>: </p>
      <ul class='itemize1'>
      <li class='itemize'>\(Q\) es una matriz simétrica, definida positiva. Entonces, \(s_0\) es una matriz simétrica, definida positiva.
      </li>
-     <li class='itemize'>\(\Gamma_X\) es una matriz simétrica, definida positiva.</li></ul>
+     <li class='itemize'>\(\Gamma _X\) es una matriz simétrica, definida positiva.</li></ul>
 <!-- l. 456 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='autocovarianza-caso-estacionario'><span class='titlemark'>5.10.1.   </span> <a id='x10-820005.10.1'></a>Autocovarianza caso estacionario</h4>
 <!-- l. 457 --><p class='noindent'>Estudiando el caso de la respuesta en estado estacionario para \(t \to \infty \):
-</p><!-- l. 461 --><p class='indent'>   \begin {align*}  \lim_{t \to \infty } \dot {\Gamma }_X(t)=0  \end {align*}
+</p><!-- l. 461 --><p class='indent'>   \begin{align*}  \lim _{t \to \infty } \dot {\Gamma }_X(t)=0  \end{align*}
 </p><!-- l. 463 --><p class='indent'>   En este caso, la Ecuación de Lyapunov queda de la siguiente forma:
-</p><!-- l. 467 --><p class='indent'>   \begin {align*}  0 = A\Gamma_X + \Gamma_XA^T + Q, \qquad \text {(Ecuación de Lyapunov)}  \end {align*}
-</p><!-- l. 469 --><p class='indent'>   Donde ahora \(\Gamma_X\) es la autocovarianza en estado estacionario de los estados \(X\).<br class='newline' />
+</p><!-- l. 467 --><p class='indent'>   \begin{align*}  0 = A\Gamma _X + \Gamma _XA^T + Q, \qquad \text {(Ecuación de Lyapunov)}  \end{align*}
+</p><!-- l. 469 --><p class='indent'>   Donde ahora \(\Gamma _X\) es la autocovarianza en estado estacionario de los estados \(X\).<br class='newline' />
                                                                                          
                                                                                          
 </p><!-- l. 471 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='autocovarianza-de-la-respuesta'><span class='titlemark'>5.10.2.   </span> <a id='x10-830005.10.2'></a>Autocovarianza de la respuesta</h4>
-<!-- l. 472 --><p class='noindent'>La autocovarianza de la respuesta \(\Gamma_X\), considerando: \begin {align*}  y(t) = Cx(t)  \end {align*}
-</p><!-- l. 477 --><p class='indent'>   donde \(y(t)\) es un p.e., w.s.s., \(\mathbb {Y} = \{Y(t), t \in T\}\) con \(\mu_Y(t)=0\).<br class='newline' />
-</p><!-- l. 479 --><p class='indent'>   La matriz de autocovarianza de la respuesta se determina de la siguiente manera: \begin {align*}  \Gamma_Y = \mathbb {E}\{YY^T\} &amp;= \mathbb {E}\{(CX)(CX)^T\}\\ &amp;= \mathbb {E}\{CXX^T C^T\}\\ &amp;= C \mathbb {E}\{XX^T\}C^T\\ &amp;= C \Gamma_X C^T\\  \end {align*}
-</p><!-- l. 487 --><p class='indent'>   Donde \(\Gamma_X\) es la solución de la ecuación de Lyapunov en estado estacionario.
+<!-- l. 472 --><p class='noindent'>La autocovarianza de la respuesta \(\Gamma _X\), considerando: \begin{align*}  y(t) = Cx(t)  \end{align*}
+</p><!-- l. 477 --><p class='indent'>   donde \(y(t)\) es un p.e., w.s.s., \(\mathbb {Y} = \{Y(t), t \in T\}\) con \(\mu _Y(t)=0\).<br class='newline' />
+</p><!-- l. 479 --><p class='indent'>   La matriz de autocovarianza de la respuesta se determina de la siguiente manera: \begin{align*}  \Gamma _Y = \mathbb {E}\{YY^T\} &amp;= \mathbb {E}\{(CX)(CX)^T\}\\ &amp;= \mathbb {E}\{CXX^T C^T\}\\ &amp;= C \mathbb {E}\{XX^T\}C^T\\ &amp;= C \Gamma _X C^T\\  \end{align*}
+</p><!-- l. 487 --><p class='indent'>   Donde \(\Gamma _X\) es la solución de la ecuación de Lyapunov en estado estacionario.
 </p><!-- l. 489 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='error-cuadratico-medio-rms'><span class='titlemark'>5.10.3.   </span> <a id='x10-840005.10.3'></a>Error Cuadrático Medio RMS</h4>
 <!-- l. 490 --><p class='noindent'>Sea el proceso estocástico \(\mathbb {X} = \{X(t), t \in T\}\), su Error Cuadrático Medio (Root mean square error, RMS) es una función que cuantifica...
 y se calcula como:
-</p><!-- l. 494 --><p class='indent'>   \begin {align*}  \text {rms}_X(t) = \sqrt {\mathbb {E}\{(X(t) - \mu_X(t))^2\}}  \end {align*}
-</p><!-- l. 496 --><p class='indent'>   Cuando \(\mu_X(t) = 0\) \begin {align*}  &amp; \text {rms}_X(t) = \sqrt {\mathbb {E}\{X(t)^2\}} = \sqrt {\mathbb {E}\{X(t)X(t)^T\}} \\ \Longrightarrow &amp; \text {rms}_X(t) = \sqrt {\Gamma_{X}(t)}  \end {align*}
+</p><!-- l. 494 --><p class='indent'>   \begin{align*}  \text {rms}_X(t) = \sqrt {\mathbb {E}\{(X(t) - \mu _X(t))^2\}}  \end{align*}
+</p><!-- l. 496 --><p class='indent'>   Cuando \(\mu _X(t) = 0\) \begin{align*}  &amp; \text {rms}_X(t) = \sqrt {\mathbb {E}\{X(t)^2\}} = \sqrt {\mathbb {E}\{X(t)X(t)^T\}} \\ \Longrightarrow &amp; \text {rms}_X(t) = \sqrt {\Gamma _{X}(t)}  \end{align*}
 </p><!-- l. 503 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='modelos-estocasticos-en-ingenieria-estructural'><span class='titlemark'>5.11.   </span> <a id='x10-850005.11'></a>Modelos Estocásticos en Ingeniería Estructural</h3>
@@ -452,20 +451,20 @@ del suelo producto de un evento sísmico. <br class='newline' />
 <!-- l. 536 --><p class='indent'>   El suelo es modelado como un sistema SDOF donde la aceleración total del oscilador es lo que representa la
 aceleración del suelo. En este caso, la EDM del oscilador SDOF, considerando el grado de libertad \(z(t)\) (movimiento
 relativo del suelo respecto a la roca), es la siguiente:
-</p><!-- l. 540 --><p class='indent'>   \begin {align*}  \ddot {z}(t) +2\xi_g\omega_g \dot {z}(t) +\omega_g^2 z(t) = W(t)  \end {align*}
+</p><!-- l. 540 --><p class='indent'>   \begin{align*}  \ddot {z}(t) +2\xi _g\omega _g \dot {z}(t) +\omega _g^2 z(t) = W(t)  \end{align*}
 </p><!-- l. 542 --><p class='indent'>   Considerando la aceleración de la roca base \(W(t)\) como p.e. \(\mathbb {W} = \{W(t), t \in T\}\) ruido blanco, es
-</p><!-- l. 548 --><p class='indent'>   \begin {align*}  \mu_W(t) =&amp; 0 \\ R_W(\tau ) =&amp; S_0 \delta (\tau ) \\ S_W(\omega ) =&amp; S_0, \quad \forall \omega  \end {align*}
+</p><!-- l. 548 --><p class='indent'>   \begin{align*}  \mu _W(t) =&amp; 0 \\ R_W(\tau ) =&amp; S_0 \delta (\tau ) \\ S_W(\omega ) =&amp; S_0, \quad \forall \omega  \end{align*}
 </p><!-- l. 550 --><p class='indent'>   Donde \(S_0\) es el poder espectral del sismo en roca y está relacionado con una medida de intensidad del registro
 sísmico, ej: \(PGA\) o \(S_a(T)\).<br class='newline' />
 </p><!-- l. 552 --><p class='indent'>   La aceleración total del suelo es \(\ddot {u}_{g} = \ddot {z} + w(t)\) (en campo abierto):
-</p><!-- l. 556 --><p class='indent'>   \begin {align*}  \ddot {u}_g(t) = -2\xi_g\omega_g \dot {z}(t) - \omega_g^2 z(t)  \end {align*}
+</p><!-- l. 556 --><p class='indent'>   \begin{align*}  \ddot {u}_g(t) = -2\xi _g\omega _g \dot {z}(t) - \omega _g^2 z(t)  \end{align*}
 </p><!-- l. 558 --><p class='indent'>   En representación espacio-estado:
-</p><!-- l. 563 --><p class='indent'>   \begin {align*}  \dot {x}_g =&amp; {A}_g{x}_g+{B}_g W(t) \\ {y}_g =&amp; {C}_g{x}_g  \end {align*}
+</p><!-- l. 563 --><p class='indent'>   \begin{align*}  \dot {x}_g =&amp; {A}_g{x}_g+{B}_g W(t) \\ {y}_g =&amp; {C}_g{x}_g  \end{align*}
 </p><!-- l. 565 --><p class='indent'>   Donde:
-</p><!-- l. 575 --><p class='indent'>   \begin {align*}  {x_g} = \begin {Bmatrix} z \\ \dot {z} \end {Bmatrix}, \qquad y_g = \begin {Bmatrix} \ddot {u}_g \end {Bmatrix}  \end {align*}
-</p><!-- l. 590 --><p class='indent'>   \begin {align*}  {A}_g = \begin {bmatrix} 0 &amp; 1 \\ -\omega_g^2 &amp; -2\xi_g\omega_g \end {bmatrix}, \qquad {B}_g = \begin {bmatrix} 0 \\ 1 \end {bmatrix}, \qquad {C}_g = \begin {bmatrix} -\omega_g^2 &amp; -2\xi_g\omega_g \end {bmatrix}, \qquad {D}_g = [0]  \end {align*}
+</p><!-- l. 575 --><p class='indent'>   \begin{align*}  {x_g} = \begin{Bmatrix} z \\ \dot {z} \end{Bmatrix}, \qquad y_g = \begin{Bmatrix} \ddot {u}_g \end{Bmatrix}  \end{align*}
+</p><!-- l. 590 --><p class='indent'>   \begin{align*}  {A}_g = \begin{bmatrix} 0 &amp; 1 \\ -\omega _g^2 &amp; -2\xi _g\omega _g \end{bmatrix}, \qquad {B}_g = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \qquad {C}_g = \begin{bmatrix} -\omega _g^2 &amp; -2\xi _g\omega _g \end{bmatrix}, \qquad {D}_g = [0]  \end{align*}
 </p><!-- l. 592 --><p class='indent'>   Se puede demostrar que la función de respuesta en frecuencia (FRF) del estado de suelo es:
-</p><!-- l. 597 --><p class='indent'>   \begin {align*}  H_{KT}(\Omega ) &amp;= \frac {\omega_g^2+i2\xi_g\omega_g\Omega }{(\omega_g^2-\Omega^2)+i2\xi_g\omega_g\Omega }\\ |H_{KT}(\Omega )|^2 &amp;= \frac {\omega_g^4+4\xi_g^2\omega_g^2\Omega^2}{(\omega_g^2-\Omega^2)^2+4\xi_g^2\omega_g^2\Omega^2}  \end {align*}
+</p><!-- l. 597 --><p class='indent'>   \begin{align*}  H_{KT}(\Omega ) &amp;= \frac {\omega _g^2+i2\xi _g\omega _g\Omega }{(\omega _g^2-\Omega ^2)+i2\xi _g\omega _g\Omega }\\ |H_{KT}(\Omega )|^2 &amp;= \frac {\omega _g^4+4\xi _g^2\omega _g^2\Omega ^2}{(\omega _g^2-\Omega ^2)^2+4\xi _g^2\omega _g^2\Omega ^2}  \end{align*}
 </p>
    <figure class='figure'> 
 
@@ -493,8 +492,8 @@ que es el registro sísmico en la superficie.
 </p>
    </figure>
 <!-- l. 611 --><p class='indent'>   Se puede demostrar que:
-</p><!-- l. 618 --><p class='indent'>   \begin {align*}  S_{\ddot {U}_g}(\omega ) &amp;= |H_{KT}(\omega )|^2 S_{W}(\omega ) \\ \Longrightarrow S_{\ddot {U}_g}(\omega ) &amp;= |H_{KT}(\omega )|^2S_0  \end {align*}
-</p><!-- l. 620 --><p class='indent'>   Notar que hasta el momento los parámetros del modelo K-T son: \(S_0\), \(\omega_g\), \(\xi_g\). Por ejemplo, los parámetros del terremoto El
+</p><!-- l. 618 --><p class='indent'>   \begin{align*}  S_{\ddot {U}_g}(\omega ) &amp;= |H_{KT}(\omega )|^2 S_{W}(\omega ) \\ \Longrightarrow S_{\ddot {U}_g}(\omega ) &amp;= |H_{KT}(\omega )|^2S_0  \end{align*}
+</p><!-- l. 620 --><p class='indent'>   Notar que hasta el momento los parámetros del modelo K-T son: \(S_0\), \(\omega _g\), \(\xi _g\). Por ejemplo, los parámetros del terremoto El
 Centro 1940 son los siguientes (<a id='x10-86001'></a>Soong &amp; Grigoriu, <a href='MIC411apuntesli4.html#cite.0@Soong1993'>1993</a>):
 </p>
      <ul class='itemize1'>
@@ -521,15 +520,15 @@ blanco \(W(t)\) y retorne como output la respuesta de la estructura \({y}(t)\).
 </p>
    </figure>
 <!-- l. 639 --><p class='indent'>   Ecuaciones del modelo K-T:
-</p><!-- l. 644 --><p class='indent'>   \begin {align*}  \dot {x}_g(t) &amp;= A_g x_g(t) + B_g W(t)\\ y_g(t) &amp;= C_g x(t)\\  \end {align*}
+</p><!-- l. 644 --><p class='indent'>   \begin{align*}  \dot {x}_g(t) &amp;= A_g x_g(t) + B_g W(t)\\ y_g(t) &amp;= C_g x(t)\\  \end{align*}
 </p><!-- l. 646 --><p class='indent'>   Ecuaciones del sistema estructural:
-</p><!-- l. 651 --><p class='indent'>   \begin {align*}  \dot {x}_s(t) &amp;= A_s x_s(t) + B_s \ddot {u}_g(t)\\ y_s(t) &amp;= C_s x(t)  \end {align*}
-</p><!-- l. 653 --><p class='indent'>   El sistema aumentado en representación espacio-estado \(x_a = \begin {Bmatrix} x_s \\ x_g \end {Bmatrix}\):
-</p><!-- l. 658 --><p class='indent'>   \begin {align*}  \dot {x}_a &amp;= A_a x_a + B_a W(t)\\ y &amp;= C_a x_a  \end {align*}
-</p><!-- l. 672 --><p class='indent'>   \begin {align*}  A_a = \begin {bmatrix} A_s &amp; B_s C_g \\ 0 &amp; A_g \end {bmatrix}, \qquad B_a = \begin {bmatrix} 0 \\ B_g \end {bmatrix}, \qquad C_a = \begin {bmatrix} C_s &amp; 0 \end {bmatrix}  \end {align*}
-</p><!-- l. 674 --><p class='indent'>   Sea \(\Gamma_{X_a}\) la autocovarianza de los estados del sistema aumentado. Se puede obtener la autocovarianza de la respuesta \(\Gamma_Y\)
+</p><!-- l. 651 --><p class='indent'>   \begin{align*}  \dot {x}_s(t) &amp;= A_s x_s(t) + B_s \ddot {u}_g(t)\\ y_s(t) &amp;= C_s x(t)  \end{align*}
+</p><!-- l. 653 --><p class='indent'>   El sistema aumentado en representación espacio-estado \(x_a = \begin{Bmatrix} x_s \\ x_g \end{Bmatrix}\):
+</p><!-- l. 658 --><p class='indent'>   \begin{align*}  \dot {x}_a &amp;= A_a x_a + B_a W(t)\\ y &amp;= C_a x_a  \end{align*}
+</p><!-- l. 672 --><p class='indent'>   \begin{align*}  A_a = \begin{bmatrix} A_s &amp; B_s C_g \\ 0 &amp; A_g \end{bmatrix}, \qquad B_a = \begin{bmatrix} 0 \\ B_g \end{bmatrix}, \qquad C_a = \begin{bmatrix} C_s &amp; 0 \end{bmatrix}  \end{align*}
+</p><!-- l. 674 --><p class='indent'>   Sea \(\Gamma _{X_a}\) la autocovarianza de los estados del sistema aumentado. Se puede obtener la autocovarianza de la respuesta \(\Gamma _Y\)
 desde la ecuación de Lyapunov en estado estacionario:
-</p><!-- l. 679 --><p class='indent'>   \begin {align*}  0 &amp;= A_a\Gamma_{X_a} +\Gamma_{X_a}A_a^T+Q_a\\ \Gamma_Y &amp;= C_a\Gamma_{X_a}C_a^T  \end {align*}
+</p><!-- l. 679 --><p class='indent'>   \begin{align*}  0 &amp;= A_a\Gamma _{X_a} +\Gamma _{X_a}A_a^T+Q_a\\ \Gamma _Y &amp;= C_a\Gamma _{X_a}C_a^T  \end{align*}
 </p><!-- l. 681 --><p class='noindent'>donde \(Q_a = B_a \left (S_0 \right ) B_a^T\).
 </p>
    <h5 class='subsubsectionHead' id='modelo-kt-no-estacionario'><a id='x10-88000'></a>Modelo K-T no estacionario</h5>
@@ -560,19 +559,19 @@ de “forma” de un registro sísmico.
 </p>
    </figure>
 <!-- l. 697 --><p class='indent'>   Entonces:
-</p><!-- l. 704 --><p class='indent'>   \begin {align*}  \ddot {u}_g(t) &amp;= \psi (t) y_{g}(t) \\ &amp;= \psi (t) \left [ C_g x_g(t) \right ] \\ &amp;= \underbrace {\left [ \psi (t) C_g \right ]}_{C_g^{NE}(t)} x_g(t)\\ &amp;= C_g^{NE}(t) x_g(t)  \end {align*}
-</p><!-- l. 706 --><p class='indent'>   Notar que se mantiene \(\mu_{\ddot {U}_g}(t) = 0\), pero, \(\sigma_{\ddot {U}_g}(t) \neq \text {cst}\). <br class='newline' />
+</p><!-- l. 704 --><p class='indent'>   \begin{align*}  \ddot {u}_g(t) &amp;= \psi (t) y_{g}(t) \\ &amp;= \psi (t) \left [ C_g x_g(t) \right ] \\ &amp;= \underbrace {\left [ \psi (t) C_g \right ]}_{C_g^{NE}(t)} x_g(t)\\ &amp;= C_g^{NE}(t) x_g(t)  \end{align*}
+</p><!-- l. 706 --><p class='indent'>   Notar que se mantiene \(\mu _{\ddot {U}_g}(t) = 0\), pero, \(\sigma _{\ddot {U}_g}(t) \neq \text {cst}\). <br class='newline' />
 </p><!-- l. 708 --><p class='indent'>   Por lo tanto, el modelo matemático resulta:
-</p><!-- l. 713 --><p class='indent'>   \begin {align*}  \dot {x}_g(t) &amp;= A_g x_g(t) + B_g W(t)\\ \ddot {u}_g(t) &amp;= C_g^{NE}(t) x(t)\\  \end {align*}
-</p><!-- l. 718 --><p class='indent'>   \begin {align*}  \dot {x}_s(t) &amp;= A_s x_s(t) + B_s \ddot {u}_g(t)\\ y(t) &amp;= C_s x(t)  \end {align*}
+</p><!-- l. 713 --><p class='indent'>   \begin{align*}  \dot {x}_g(t) &amp;= A_g x_g(t) + B_g W(t)\\ \ddot {u}_g(t) &amp;= C_g^{NE}(t) x(t)\\  \end{align*}
+</p><!-- l. 718 --><p class='indent'>   \begin{align*}  \dot {x}_s(t) &amp;= A_s x_s(t) + B_s \ddot {u}_g(t)\\ y(t) &amp;= C_s x(t)  \end{align*}
 </p><!-- l. 721 --><p class='indent'>   Ahora el sistema aumentado tiene matrices que varían en el tiempo.
-</p><!-- l. 726 --><p class='indent'>   \begin {align*}  \dot {x}_a(t) &amp;= A_a(t)x_a(t) + B_a w(t)\\ y(t) &amp;= C_a x_a(t)  \end {align*}
-</p><!-- l. 740 --><p class='indent'>   \begin {align*}  A_a(t) = \begin {bmatrix} A_s &amp; B_s C_g^{NE}(t) \\ 0 &amp; A_g \end {bmatrix}, \qquad B_a = \begin {bmatrix} 0 \\ B_g \end {bmatrix}, \qquad C_a = \begin {bmatrix} C_s &amp; 0 \end {bmatrix}  \end {align*}
-</p><!-- l. 742 --><p class='indent'>   La covarianza en este caso se debe resolver integrando la ecuación diferencial de Lyapunov donde \(\Gamma_{X_a}(t)\) está en función
+</p><!-- l. 726 --><p class='indent'>   \begin{align*}  \dot {x}_a(t) &amp;= A_a(t)x_a(t) + B_a w(t)\\ y(t) &amp;= C_a x_a(t)  \end{align*}
+</p><!-- l. 740 --><p class='indent'>   \begin{align*}  A_a(t) = \begin{bmatrix} A_s &amp; B_s C_g^{NE}(t) \\ 0 &amp; A_g \end{bmatrix}, \qquad B_a = \begin{bmatrix} 0 \\ B_g \end{bmatrix}, \qquad C_a = \begin{bmatrix} C_s &amp; 0 \end{bmatrix}  \end{align*}
+</p><!-- l. 742 --><p class='indent'>   La covarianza en este caso se debe resolver integrando la ecuación diferencial de Lyapunov donde \(\Gamma _{X_a}(t)\) está en función
 del tiempo (\(\dot {\Gamma }_{X_a} \neq 0\)):
-</p><!-- l. 746 --><p class='indent'>   \begin {align*}  \dot {\Gamma }_{X_{a}}(t) = A_a(t) \Gamma_{X_a}(t) + \Gamma_{X_a}(t) A_a(t)^T + Q_a  \end {align*}
+</p><!-- l. 746 --><p class='indent'>   \begin{align*}  \dot {\Gamma }_{X_{a}}(t) = A_a(t) \Gamma _{X_a}(t) + \Gamma _{X_a}(t) A_a(t)^T + Q_a  \end{align*}
 </p><!-- l. 748 --><p class='noindent'>donde \(Q_a = B_a \left ( S_0 \right ) B_a^T\).<br class='newline' />
-</p><!-- l. 750 --><p class='indent'>   Como \(\Gamma_{X_a}(t)\) varía en el tiempo, entonces \( \Gamma_Y(t)\) también varía en el tiempo.<br class='newline' />
+</p><!-- l. 750 --><p class='indent'>   Como \(\Gamma _{X_a}(t)\) varía en el tiempo, entonces \( \Gamma _Y(t)\) también varía en el tiempo.<br class='newline' />
 </p><!-- l. 752 --><p class='noindent'><span class='cmti-10'>Nota: </span>Ecuación diferencial de Lyapunov puede ser resuelta numéricamente utilizando métodos de integración temporal
 (por ejemplo, método de Euler).
                                                                                          
