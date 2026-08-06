@@ -91,12 +91,12 @@
     }
 }
 
-\makeatletter
-\@ifpackageloaded{tex4ht}{
-% If compiled with tex4ht, neutralize subequations
-\renewenvironment{subequations}{}{}
-}{}
-\makeatother
+% \makeatletter
+% \@ifpackageloaded{tex4ht}{
+% % If compiled with tex4ht, neutralize subequations
+% \renewenvironment{subequations}{}{}
+% }{}
+% \makeatother
 
 \def\version{4.0.0}
 
@@ -168,7 +168,9 @@
 
 \input{Capitulos/IntroSimulink}
 
-\backmatter
+% \backmatter
+
+\appendix
 
 \printbibliography[heading=bibintoc]
 
