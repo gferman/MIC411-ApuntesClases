@@ -1,4 +1,4 @@
-name: Compilar Sitio Web Multipartes
+name: Compilar Sitio Web Multipartes (MathML)
 
 on:
   push:
