@@ -10,9 +10,10 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch7.html'>prev</a>] [<a href='MIC411apuntesch7.html#tailMIC411apuntesch7.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch8.html'>tail</a>] [<a href='MIC411apuntespa2.html#MIC411apuntesch8.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='tecnicas-de-monitoreo-estructural'><span class='titlemark'>Capítulo 8</span><br /><a id='x14-1360008'></a>Técnicas de Monitoreo Estructural</h2>
+   <h2 class='chapterHead' id='tecnicas-de-monitoreo-estructural'><span class='titlemark'>Capítulo 8</span><br /><a id='x14-1360008'></a>Técnicas de Monitoreo Estructural</h2>
    <h3 class='sectionHead' id='motivacion'><span class='titlemark'>8.1.   </span> <a id='x14-1370008.1'></a>Motivación</h3>
 <!-- l. 5 --><p class='noindent'>Nunca se está seguro de las propiedades <span class='cmti-10'>exactas </span>de una estructura.
 </p><!-- l. 7 --><p class='indent'>
@@ -133,11 +134,11 @@ de \(N\) puntos del p.e. \(\{X(t),t \in T\}\), con período de muestreo \(T_s\):
 </p><!-- l. 120 --><p class='indent'>   Entonces, el <span class='cmti-10'>periodograma </span>se define como:
 </p><!-- l. 124 --><p class='indent'>   \begin{align*}  \hat {S}_{XX}(\omega ) = \frac {1}{N} X(\omega ) X(\omega )^{*} = \frac {1}{N} |X(\omega )|^{2}  \end{align*}
 </p><!-- l. 126 --><p class='noindent'>donde \(X(\omega )\) es la transformada de Fourier de tiempo discreto (DTFT) de la señal finita \(x[n]\):
-</p><!-- l. 130 --><p class='indent'>   \begin{align*}  X(\omega ) = \sum _{n=0}^{N-1} x[n] e^{-j \omega n}  \end{align*}
+</p><!-- l. 130 --><p class='indent'>   \begin{align*}  X(\omega ) = \sum_{n=0}^{N-1} x[n] e^{-j \omega n}  \end{align*}
 </p><!-- l. 132 --><p class='noindent'>y \((\cdot )^{*}\) es la transpuesta conjugada.<br class='newline' />
 </p><!-- l. 134 --><p class='indent'>   <span class='cmti-10'>Nota:</span> \(S_{XX}(\omega )\) es un valor real.<br class='newline' />
 </p><!-- l. 136 --><p class='indent'>   En el límite para \(N\to \infty \), el periodograma (un estimador sesgado del PSD) converge al valor real del PSD:
-</p><!-- l. 140 --><p class='indent'>   \begin{align*}  S_{XX}(\omega ) = \lim _{N\to \infty } \mathbb {E} \left \{ \hat {S}_{XX}(\omega ) \right \}  \end{align*}
+</p><!-- l. 140 --><p class='indent'>   \begin{align*}  S_{XX}(\omega ) = \lim_{N\to \infty } \mathbb {E} \left \{ \hat {S}_{XX}(\omega ) \right \}  \end{align*}
 </p><!-- l. 142 --><p class='indent'>   Para todo el estudio que viene a continuación consideramos estimaciones de PSD utilizando alguna de las
 definiciones de periodograma modificado (por ejemplo, método de Welch).
 </p><!-- l. 144 --><p class='noindent'>
@@ -219,18 +220,18 @@ mediciones de entrada y/o salida, hay diferencias relevantes a considerar.
 <!-- l. 288 --><p class='noindent'>La función de coherencia ordinaria es una herramienta que mide que tanto de la señal de salida se explica (o
 relaciona) con la señal de entrada. Puede ser utilizado como un indicador de calidad del estimador
 H1/H2.
-</p><!-- l. 292 --><p class='indent'>   \begin{align*}  \gamma _{ZX}^2(\omega ) = \frac {|\hat {S}_{ZX}(\omega )|^2}{\hat {S}_{ZZ}(\omega )\hat {S}_{XX}(\omega )} = \frac {H_1(\omega )}{H_2(\omega )}  \end{align*}
-</p><!-- l. 294 --><p class='indent'>   donde \( 0 &lt; \gamma _{ZX}^2 &lt; 1\).<br class='newline' />
+</p><!-- l. 292 --><p class='indent'>   \begin{align*}  \gamma_{ZX}^2(\omega ) = \frac {|\hat {S}_{ZX}(\omega )|^2}{\hat {S}_{ZZ}(\omega )\hat {S}_{XX}(\omega )} = \frac {H_1(\omega )}{H_2(\omega )}  \end{align*}
+</p><!-- l. 294 --><p class='indent'>   donde \( 0 &lt; \gamma_{ZX}^2 &lt; 1\).<br class='newline' />
 </p><!-- l. 296 --><p class='indent'>   <span class='cmti-10'>Notas</span>:
 </p><!-- l. 298 --><p class='indent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x14-148002x1'>Si \(\gamma _{ZX}^2 \approx 1\), entonces existe buena coherencia entre entrada y salida. En general, los peaks de resonancia deben
+<li class='enumerate' id='x14-148002x1'>Si \(\gamma_{ZX}^2 \approx 1\), entonces existe buena coherencia entre entrada y salida. En general, los peaks de resonancia deben
      tener un valor de coherecia cercano a 1.
      </li>
-<li class='enumerate' id='x14-148004x2'>Si  \(\gamma _{ZX}^2 \approx 0\),  no  existe  correlación  entre  entrada  y  salida  del  sistema.  Esto  ocurre  especialmente  en
+<li class='enumerate' id='x14-148004x2'>Si  \(\gamma_{ZX}^2 \approx 0\),  no  existe  correlación  entre  entrada  y  salida  del  sistema.  Esto  ocurre  especialmente  en
      anti-resonancias, donde la estructura rechaza la entrada en la frecuencia correspondiente.
      </li>
-<li class='enumerate' id='x14-148006x3'>Si la coherencia es baja (por ejemplo, \(\gamma _{ZX}^2 &lt;&lt; 1\)), puede deberse a problemas asociados con el experimento. Por
+<li class='enumerate' id='x14-148006x3'>Si la coherencia es baja (por ejemplo, \(\gamma_{ZX}^2 &lt;&lt; 1\)), puede deberse a problemas asociados con el experimento. Por
      ejemplo, ruido de medición es excesivo, entrada no excita adecuadamente la estructura, o problemas de
      <span class='cmti-10'>spectral leakage </span>por uso inapropiado de ventanas del periodograma modificado.
      </li>
@@ -258,7 +259,7 @@ H1/H2.
                                                                                          
                                                                                          
      </p></li>
-<li class='enumerate' id='x14-149012x6'>Calcular \(\gamma _{ZX}^2\) y revisar la calidad de la estimación FRF.
+<li class='enumerate' id='x14-149012x6'>Calcular \(\gamma_{ZX}^2\) y revisar la calidad de la estimación FRF.
 </li></ol>
 <!-- l. 346 --><p class='noindent'>En <span class='cmti-10'>Matlab</span>, la función <span class='cmtt-10'>tfestimate() </span>determina el FRF experimental con estimadores H1/H2, donde los periodogramas se
 determinan usando el método de Welch. Link: <a class='url' href='https://www.mathworks.com/help/signal/ref/tfestimate.html'>https://www.mathworks.com/help/signal/ref/tfestimate.html</a>.
@@ -272,26 +273,26 @@ determinan usando el método de Welch. Link: <a class='url' href='https://www.ma
 respectivamente; \(G \in \mathbb {R}^{n}\) es el vector de participación de la excitación \(p(t)\) en la dinámica del sistema.
 </p><!-- l. 363 --><p class='indent'>   De la solución del problema de valores y vectores propios generalizados:
 </p><!-- l. 367 --><p class='indent'>   \begin{equation}  K \phi = \lambda M \phi  \end{equation}<a id='x14-150003r2'></a>
-</p><!-- l. 369 --><p class='noindent'>donde \(\lambda _r = \omega _r^2\) y \(\phi _r\) es el valor y vector propio del modo \(r\). De este resultado podemos definir coordenadas modales en notación
+</p><!-- l. 369 --><p class='noindent'>donde \(\lambda_r = \omega_r^2\) y \(\phi_r\) es el valor y vector propio del modo \(r\). De este resultado podemos definir coordenadas modales en notación
 matricial:
 </p><!-- l. 373 --><p class='indent'>   \begin{equation}  u(t) = \Phi q(t)  \end{equation}<a id='x14-150004r3'></a>
-</p><!-- l. 375 --><p class='noindent'>donde \(\Phi = [\phi _1, \phi _2, \ldots ,\phi _n]\) es la matriz de formas modales del sistema.
+</p><!-- l. 375 --><p class='noindent'>donde \(\Phi = [\phi_1, \phi_2, \ldots ,\phi_n]\) es la matriz de formas modales del sistema.
 </p><!-- l. 377 --><p class='indent'>   La relación entre coordenadas físicas y modales la podemos describir en notación indicial:
-</p><!-- l. 381 --><p class='indent'>   \begin{equation} \label {eq:coordmod} u_{s}(t) = \phi _{sr} q_r(t)  \end{equation}<a id='x14-150005r4'></a>
+</p><!-- l. 381 --><p class='indent'>   \begin{equation} \label {eq:coordmod} u_{s}(t) = \phi_{sr} q_r(t)  \end{equation}<a id='x14-150005r4'></a>
 </p><!-- l. 383 --><p class='indent'>   Asumiendo amortiguamiento proporcional, la EDM de la coordenada modal \(q_r(t)\) se escribe:
-</p><!-- l. 387 --><p class='indent'>   \begin{equation}  \ddot {q}_{r} + 2 \zeta _r \omega _r \dot {q}_{r} + \omega _r^2 q_r = \underbrace {\phi _{kr} G_k}_{\gamma _r} p(t)  \end{equation}<a id='x14-150006r5'></a>
+</p><!-- l. 387 --><p class='indent'>   \begin{equation}  \ddot {q}_{r} + 2 \zeta_r \omega_r \dot {q}_{r} + \omega_r^2 q_r = \underbrace {\phi_{kr} G_k}_{\gamma_r} p(t)  \end{equation}<a id='x14-150006r5'></a>
 </p><!-- l. 389 --><p class='indent'>   Aplicando la transformada de Fourier, podemos calcular el FRF de la coordenada modal \(q_r\) dada la entrada
 \(p\):
-</p><!-- l. 393 --><p class='indent'>   \begin{equation}  H_{q_{r} p}(\Omega ) = \frac {\gamma _r}{(\omega _r^2 - \Omega ^2) + j (2 \zeta _r \omega _r \Omega )}  \end{equation}<a id='x14-150007r6'></a>
+</p><!-- l. 393 --><p class='indent'>   \begin{equation}  H_{q_{r} p}(\Omega ) = \frac {\gamma_r}{(\omega_r^2 - \Omega^2) + j (2 \zeta_r \omega_r \Omega )}  \end{equation}<a id='x14-150007r6'></a>
 </p><!-- l. 395 --><p class='indent'>   Volviendo a (<a href='#x14-150005r4'>8.4<!-- tex4ht:ref: eq:coordmod  --></a>), aplicando la transformada de Fourier:
-</p><!-- l. 401 --><p class='indent'>   \begin{align}  U_{s}(\Omega ) &amp;= \phi _{sr} Q_r(\Omega ) \\ &amp;= \phi _{sr} H_{q_rp}(\Omega ) P(\Omega ) \\ &amp;= H_{u_{s} p}(\Omega ) P(\Omega )  \end{align}
+</p><!-- l. 401 --><p class='indent'>   \begin{align}  U_{s}(\Omega ) &amp;= \phi_{sr} Q_r(\Omega ) \\ &amp;= \phi_{sr} H_{q_rp}(\Omega ) P(\Omega ) \\ &amp;= H_{u_{s} p}(\Omega ) P(\Omega )  \end{align}
 </p><!-- l. 403 --><p class='indent'>   Por lo tanto:
-</p><!-- l. 407 --><p class='indent'>   \begin{equation}  H_{u_{s} p}(\Omega ) = \frac {\gamma _r}{(\omega _r^2 - \Omega ^2) + j (2 \zeta _r \omega _r \Omega )} \phi _{sr}  \end{equation}<a id='x14-150008r7'></a>
-</p><!-- l. 409 --><p class='indent'>   Notar que cuando \(\Omega = \omega _r\), el FRF tiene solo parte imaginaria:
-</p><!-- l. 413 --><p class='indent'>   \begin{equation}  H_{u_{s} p}(\omega _r) = \frac {\gamma _r}{j (2 \zeta _r \omega _r^2)} \phi _{sr}  \end{equation}<a id='x14-150009r8'></a>
-</p><!-- l. 415 --><p class='indent'>   Entonces, el peak “r” de la parte imaginaria de \(H_{u_{s} p}\) es proporcional a la componente \(\phi _{sr}\) de la forma modal
+</p><!-- l. 407 --><p class='indent'>   \begin{equation}  H_{u_{s} p}(\Omega ) = \frac {\gamma_r}{(\omega_r^2 - \Omega^2) + j (2 \zeta_r \omega_r \Omega )} \phi_{sr}  \end{equation}<a id='x14-150008r7'></a>
+</p><!-- l. 409 --><p class='indent'>   Notar que cuando \(\Omega = \omega_r\), el FRF tiene solo parte imaginaria:
+</p><!-- l. 413 --><p class='indent'>   \begin{equation}  H_{u_{s} p}(\omega_r) = \frac {\gamma_r}{j (2 \zeta_r \omega_r^2)} \phi_{sr}  \end{equation}<a id='x14-150009r8'></a>
+</p><!-- l. 415 --><p class='indent'>   Entonces, el peak “r” de la parte imaginaria de \(H_{u_{s} p}\) es proporcional a la componente \(\phi_{sr}\) de la forma modal
 \(r\):
-</p><!-- l. 419 --><p class='indent'>   \begin{equation}  \Im \left \{H_{u_{s} p}(\omega _r)\right \} \propto \phi _{sr}  \end{equation}<a id='x14-150010r9'></a>
+</p><!-- l. 419 --><p class='indent'>   \begin{equation}  \Im \left \{H_{u_{s} p}(\omega_r)\right \} \propto \phi_{sr}  \end{equation}<a id='x14-150010r9'></a>
 </p><!-- l. 421 --><p class='indent'>   Podemos ocupar esta información para estimar las formas modales utilizando FRF experimentales:
 </p>
    <figure class='figure' id='-estimacion-de-formas-modales'> 
@@ -305,7 +306,7 @@ matricial:
 name="MIC411apuntes0x.svg" src="Figuras/expmodeshapes.JPG"  
  -->
 </p>
-<figcaption class='caption'><span class='id'>Figura 8.1: </span><span class='content'>Estimación de formas modales</span></figcaption><!-- tex4ht:label?: x14-150011r1  -->
+<figcaption class='caption'><span class='id'>Figura 8.1: </span><span class='content'>Estimación de formas modales</span></figcaption><!-- tex4ht:label?: x14-150011r1  -->
                                                                                          
                                                                                          
    </figure>
@@ -347,16 +348,16 @@ parámetros modales que el sistema MDOF que se está investigando.
 <li class='enumerate' id='x14-153005x2'>Calcular auto PSD de respuesta \(S_{yy}(\omega ) \in \mathbb {R}^{m \times m}\) utilizando método de Welch.
      </li>
 <li class='enumerate' id='x14-153007x3'>
-     <!-- l. 457 --><p class='noindent'>Descomponer \(S_{yy}(\omega _i)\) utilizando SVD:
-     </p><!-- l. 461 --><p class='noindent'>\begin{equation}  S_{yy}(\omega _i) = U_i \Sigma _i U_i^*, \qquad \forall i\in \{0,\ldots ,N\}  \end{equation}<a id='x14-153008r10'></a>
+     <!-- l. 457 --><p class='noindent'>Descomponer \(S_{yy}(\omega_i)\) utilizando SVD:
+     </p><!-- l. 461 --><p class='noindent'>\begin{equation}  S_{yy}(\omega_i) = U_i \Sigma_i U_i^*, \qquad \forall i\in \{0,\ldots ,N\}  \end{equation}<a id='x14-153008r10'></a>
      </p><!-- l. 463 --><p class='noindent'>donde \(U_i = [u_{i1}, u_{i2}, \cdots , u_{iN}]\).
      </p></li>
 <li class='enumerate' id='x14-153010x4'>Graficar valores singular vs frecuencia, e identificar los peaks.
      </li>
 <li class='enumerate' id='x14-153012x5'>
-     <!-- l. 466 --><p class='noindent'>En un peak asociado al modo \(k\) (es decir, en frecuencia \(\omega _k\)), si no hay otros peaks cercanos, y es el peak
+     <!-- l. 466 --><p class='noindent'>En un peak asociado al modo \(k\) (es decir, en frecuencia \(\omega_k\)), si no hay otros peaks cercanos, y es el peak
      dominante, entonces la primera columna de \(U_k\) corresponde a la forma modal:
-     </p><!-- l. 470 --><p class='noindent'>\begin{equation}  \varphi _k = u_{k1}  \end{equation}<a id='x14-153013r11'></a>
+     </p><!-- l. 470 --><p class='noindent'>\begin{equation}  \varphi_k = u_{k1}  \end{equation}<a id='x14-153013r11'></a>
      </p><!-- l. 472 --><p class='noindent'>y los valores singulares vecinos corresponden al auto PSD del sistema SDOF equivalente en coordenadas
      naturales.
      </p></li>

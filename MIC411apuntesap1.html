@@ -10,9 +10,10 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesap2.html'>next</a>] [<a href='#tailMIC411apuntesap1.html'>tail</a>] [<a href='MIC411apuntespa5.html#MIC411apuntesap1.html'>up</a>] </p></div>
-   <h2 class='appendixHead' id='topicos-de-analisis-numerico'><span class='titlemark'>Apéndice A</span><br /><a id='x25-222000A'></a>Tópicos de Análisis Numérico</h2>
+   <h2 class='appendixHead' id='topicos-de-analisis-numerico'><span class='titlemark'>Apéndice A</span><br /><a id='x25-222000A'></a>Tópicos de Análisis Numérico</h2>
    <h3 class='sectionHead' id='ecuaciones-nolineales'><span class='titlemark'>A.1.   </span> <a id='x25-223000A.1'></a>Ecuaciones nolineales</h3>
 <!-- l. 6 --><p class='noindent'><a id='x25-223001'></a>Heath (<a href='MIC411apuntesli4.html#cite.0@heath2002scientificcomputing'>2002</a>)
 </p><!-- l. 8 --><p class='noindent'>
@@ -78,9 +79,9 @@ de \(X\), y las columnas de \(V\) son los <span class='cmti-10'>vectores singula
 </p>
    <!-- l. 99 -->
 
-<pre class='lstlisting' id='listing-5'><span class='label'><a id='x25-237004r1'></a>1</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>X</span></span><span style='color:#000000'> <span class='cmtt-10'>= rand(5,3);</span> 
-</span><span class='label'><a id='x25-237005r2'></a>2</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>U</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>S</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X);</span> 
-</span><span class='label'><a id='x25-237006r3'></a>3</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>Uhat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>Shat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X,</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>econ</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span><span style='color:#000000'><span class='cmtt-10'>;</span></span></pre>
+<pre class='lstlisting' id='listing-5'><span class='label'><a id='x25-237004r1'></a>1</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>X</span></span><span style='color:#000000'> <span class='cmtt-10'>= rand(5,3);</span> 
+</span><span class='label'><a id='x25-237005r2'></a>2</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>U</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>S</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X);</span> 
+</span><span class='label'><a id='x25-237006r3'></a>3</span><span class='cmtt-10'>    </span><span style='color:#000000'><span class='cmtt-10'>[</span></span><span style='color:#000000'><span class='cmtt-10'>Uhat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>Shat</span></span><span style='color:#000000'><span class='cmtt-10'>,</span></span><span style='color:#000000'><span class='cmtt-10'>V</span></span><span style='color:#000000'><span class='cmtt-10'>]</span></span><span style='color:#000000'> <span class='cmtt-10'>= svd(X,</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#A020F0'><span class='cmtt-10'>econ</span></span><span style='color:#A020F0'><span class='tctt-1000'>'</span></span><span style='color:#000000'><span class='cmtt-10'>)</span></span><span style='color:#000000'><span class='cmtt-10'>;</span></span></pre>
 <!-- l. 105 --><p class='indent'>   Una interpretación matemática es que las matrices de correlación \(X X^*\) y \(X X^*\) cumple las siguientes relaciones:
 </p><!-- l. 110 --><p class='indent'>   \begin{align}  (X X^*) U &amp; = U \begin{bmatrix} \hat {\Sigma }^2 &amp; 0 \\ 0 &amp; 0\end{bmatrix}\\ (X^* X) V &amp; = V \hat {\Sigma }^2\\  \end{align}
 </p><!-- l. 112 --><p class='indent'>   Entonces, los valores singulares de \(X\) corresponden a los valores propios (<span class='cmti-10'>eigenvalues</span>) de las matrices de correlación \(X X^*\)
@@ -101,10 +102,10 @@ aplicar la Discrete Fourier Transform (DFT) para calcular la señal en el domini
                                                                                          
                                              \[ \{x_0,x_1,x_2,\ldots ,x_{N-1}\} \xrightarrow {\text {DFT}} \{X_0,X_1,X_2,\ldots ,X_{N-1}\}\]
 </p><!-- l. 124 --><p class='indent'>   Recordando la definión del DFT:
-</p><!-- l. 128 --><p class='indent'>   \begin{equation}  X_m = \sum _{n=0}^{N-1} x_n e^{\frac {-j2\pi n m}{N}}  \end{equation}<a id='x25-239001r3'></a>
+</p><!-- l. 128 --><p class='indent'>   \begin{equation}  X_m = \sum_{n=0}^{N-1} x_n e^{\frac {-j2\pi n m}{N}}  \end{equation}<a id='x25-239001r3'></a>
 </p><!-- l. 130 --><p class='indent'>   Definiendo \(W_N = e^{\frac {j2\pi }{N}}\), que se conoce como la <span class='cmti-10'>ra</span>í<span class='cmti-10'>z</span> \(N\) <span class='cmti-10'>de la unidad</span>, y que corresponde a la solución de \(z^N = 1\) donde \(z \in \mathbb {C}\). Entonces, la
 DFT se puede reescribir como:
-</p><!-- l. 134 --><p class='indent'>   \begin{equation}  X_m = \sum _{n=0}^{N-1} x_n W_N^{-n m}  \end{equation}<a id='x25-239002r4'></a>
+</p><!-- l. 134 --><p class='indent'>   \begin{equation}  X_m = \sum_{n=0}^{N-1} x_n W_N^{-n m}  \end{equation}<a id='x25-239002r4'></a>
 </p><!-- l. 136 --><p class='indent'>   Notar que \(W_N \in \mathbb {C}\), y utilizando la identidad de Euler:
 </p><!-- l. 140 --><p class='indent'>   \begin{equation}  W_N = \cos \left (\frac {2\pi }{N}\right ) + j \sin \left (\frac {2\pi }{N}\right )  \end{equation}<a id='x25-239003r5'></a>
 </p><!-- l. 142 --><p class='indent'>   Entonces \(W_N\) entrega las coordenadas en el plano complejo de un vector de magnitud \(1\). También, las potencias de \(W_N\)

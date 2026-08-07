@@ -10,9 +10,10 @@
  <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
 <link href='custom.css' rel='stylesheet' type='text/css' /> 
 <script src='custom.js'></script> 
+<script>window.MathJax = { tex: { tags: "ams" } };</script> 
 </head><body>
    <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='MIC411apuntesch3.html'>next</a>] [<a href='MIC411apuntesch1.html'>prev</a>] [<a href='MIC411apuntesch1.html#tailMIC411apuntesch1.html'>prev-tail</a>] [<a href='#tailMIC411apuntesch2.html'>tail</a>] [<a href='MIC411apuntespa1.html#MIC411apuntesch2.html'>up</a>] </p></div>
-   <h2 class='chapterHead' id='modelos-matematicos-de-sistemas-dinamicos-lineales'><span class='titlemark'>Capítulo 2</span><br /><a id='x7-250002'></a>Modelos matemáticos de sistemas dinámicos lineales</h2>
+   <h2 class='chapterHead' id='modelos-matematicos-de-sistemas-dinamicos-lineales'><span class='titlemark'>Capítulo 2</span><br /><a id='x7-250002'></a>Modelos matemáticos de sistemas dinámicos lineales</h2>
    <h3 class='sectionHead' id='generalidades1'><span class='titlemark'>2.1.   </span> <a id='x7-260002.1'></a>Generalidades</h3>
 <!-- l. 5 --><p class='noindent'>Existen diversas formas de modelar un sistema dinámico en el rango lineal.
 </p>
@@ -25,12 +26,12 @@
                                                                                          
 <!-- l. 9 --><p class='noindent'><img alt='PIC' src='Figuras/modelos.png' />
 </p>
-<figcaption class='caption'><span class='id'>Figura 2.1: </span><span class='content'>Relaciones entre distintas representaciones de modelos de sistemas dinámicos.</span></figcaption><!-- tex4ht:label?: x7-26001r1  -->
+<figcaption class='caption'><span class='id'>Figura 2.1: </span><span class='content'>Relaciones entre distintas representaciones de modelos de sistemas dinámicos.</span></figcaption><!-- tex4ht:label?: x7-26001r1  -->
                                                                                          
                                                                                          
    </figure>
    <h3 class='sectionHead' id='principios-fundamentales-de-la-mecanica-estructural'><span class='titlemark'>2.2.   </span> <a id='x7-270002.2'></a>Principios fundamentales de la mecánica estructural</h3>
-<!-- l. 15 --><p class='noindent'>Dominio \(\Omega \) tiene una frontera \(\partial \Omega = \Gamma _u \cup \Gamma _t\), donde \(\Gamma _u\) es la frontera con desplazamientos prescritos, y \(\Gamma _t\) es la frontera con tracciones
+<!-- l. 15 --><p class='noindent'>Dominio \(\Omega \) tiene una frontera \(\partial \Omega = \Gamma_u \cup \Gamma_t\), donde \(\Gamma_u\) es la frontera con desplazamientos prescritos, y \(\Gamma_t\) es la frontera con tracciones
 prescritas.
 </p>
    <figure class='figure' id='-problema-de-valores-de-contorno-en-mecanica-estructural'> 
@@ -42,7 +43,7 @@ prescritas.
                                                                                          
 <!-- l. 19 --><p class='noindent'><img alt='PIC' src='Figuras/dominio.png' />
 </p>
-<figcaption class='caption'><span class='id'>Figura 2.2: </span><span class='content'>Problema de valores de contorno en mecánica estructural.</span></figcaption><!-- tex4ht:label?: x7-27001r2  -->
+<figcaption class='caption'><span class='id'>Figura 2.2: </span><span class='content'>Problema de valores de contorno en mecánica estructural.</span></figcaption><!-- tex4ht:label?: x7-27001r2  -->
                                                                                          
                                                                                          
    </figure>
@@ -59,14 +60,14 @@ prescritas.
    <h4 class='subsectionHead' id='forma-fuerte'><span class='titlemark'>2.2.1.   </span> <a id='x7-280002.2.1'></a>Forma fuerte</h4>
 <!-- l. 33 --><p class='noindent'>La ecuación de equilibrio en forma fuerte, que describe el equilibrio dinámico en un continuo elástico,
 donde:
-</p><!-- l. 41 --><p class='indent'>   \begin{align}  \sigma _{ij,j} + b_i = \rho \frac {\partial ^2 u_i}{\partial t^2}, &amp; \qquad \forall \Omega \\ u_i = q_i, &amp; \qquad \forall \Gamma _u\\ \sigma _{ij} n_j = t_i, &amp; \qquad \forall \Gamma _t\\ u_i(x,0) = u_{0i}(x), &amp; \qquad \forall \Omega \\ \frac {\partial u_i}{\partial t}(x,0) =\frac {\partial u_{0i}}{\partial t}(x), &amp; \qquad \forall \Omega \\  \end{align}
-</p><!-- l. 43 --><p class='indent'>   donde: \(\sigma _{ij,j}\) es la divergencia del tensor de esfuerzos (\(\sigma _{ij}\)); \(b_i\) son las fuerzas volumétricas; \(\rho \frac {\partial ^2 u_i}{\partial t^2}\) es el término inercial, con \(\rho \) la
+</p><!-- l. 41 --><p class='indent'>   \begin{align}  \sigma_{ij,j} + b_i = \rho \frac {\partial^2 u_i}{\partial t^2}, &amp; \qquad \forall \Omega \\ u_i = q_i, &amp; \qquad \forall \Gamma_u\\ \sigma_{ij} n_j = t_i, &amp; \qquad \forall \Gamma_t\\ u_i(x,0) = u_{0i}(x), &amp; \qquad \forall \Omega \\ \frac {\partial u_i}{\partial t}(x,0) =\frac {\partial u_{0i}}{\partial t}(x), &amp; \qquad \forall \Omega \\  \end{align}
+</p><!-- l. 43 --><p class='indent'>   donde: \(\sigma_{ij,j}\) es la divergencia del tensor de esfuerzos (\(\sigma_{ij}\)); \(b_i\) son las fuerzas volumétricas; \(\rho \frac {\partial^2 u_i}{\partial t^2}\) es el término inercial, con \(\rho \) la
 densidad y \(u_i\) el desplazamiento.
 </p><!-- l. 45 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='forma-debil'><span class='titlemark'>2.2.2.   </span> <a id='x7-290002.2.2'></a>Forma débil</h4>
 <!-- l. 47 --><p class='noindent'>Lagrangiano: \(\mathcal {L} = T-V\)
-</p><!-- l. 49 --><p class='indent'>   Acción: \(S = \int _{t_1}^{t_2} \mathcal {L}dt\)
+</p><!-- l. 49 --><p class='indent'>   Acción: \(S = \int_{t_1}^{t_2} \mathcal {L}dt\)
 </p><!-- l. 51 --><p class='indent'>   Principio de mínima acción:
 </p><!-- l. 55 --><p class='indent'>   \begin{equation}  \delta S = 0  \end{equation}<a id='x7-29001r1'></a>
 </p><!-- l. 57 --><p class='indent'>   Utilizando calculo variacional se obtiene la forma débil del problema de elastodinámica, utilizando notación directa
