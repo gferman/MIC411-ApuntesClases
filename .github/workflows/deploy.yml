@@ -1,4 +1,4 @@
-name: Compilar Sitio Web Multipartes (MathML)
+name: Compilar Sitio Web Multipartes
 
 on:
   push:
@@ -172,14 +172,21 @@ jobs:
       - name: Crear archivo de configuración web de LaTeX
         run: |
           cat << 'EOF' > config.cfg
-          \Preamble{xhtml,mathml}
+          \Preamble{xhtml,mathjax}
           
-          % Cargar los archivos externos creados en bash
           \Configure{@HEAD}{\HCode{<link rel="stylesheet" type="text/css" href="custom.css" />\Hnewline}}
           \Configure{@HEAD}{\HCode{<script src="custom.js"></script>\Hnewline}}
+          \Configure{@HEAD}{\HCode{<script>window.MathJax = { tex: { tags: "ams" } };</script>\Hnewline}}
           \Configure{Gin-dim}{}
           
           \makeatletter
+          % Solución 1 de la documentación: Desempaquetar subequations
+          \ConfigureEnv{subequations}
+          {\unvbox\voidb@x} % Do nothing at the start
+          {\unvbox\voidb@x} % Do nothing at the end
+          {}
+          {}
+          
           % Corrección de símbolos % y ~
           \catcode`\#=12
           \gdef\mypercent{\HCode{&#37;}}
@@ -211,51 +218,56 @@ jobs:
           \EndPreamble
           EOF
 
-      - name: Compilar HTML con make4ht (Páginas divididas, MathML)
+      - name: Compilar HTML con make4ht (Páginas divididas)
         run: |
-          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathml,html,2" "" "" "-shell-escape -interaction=nonstopmode"
+          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
           
       - name: Procesar Bibliografía
         run: |
           biber MIC411apuntes || true
           
-      - name: Recompilar para generar enlaces cruzados (MathML)
+      - name: Recompilar para generar enlaces cruzados
         run: |
-          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathml,html,2" "" "" "-shell-escape -interaction=nonstopmode"
+          make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
-      - name: Limpiar HTML (Acentos en Título y Espacios Duros)
+      - name: Limpiar HTML (Acentos en Título y Espacios en MathJax)
         run: |
           cat << 'EOF' > clean_html.py
-          import glob, re, unicodedata
+          import glob, re, html, unicodedata
 
           def clean_title(match):
               title = match.group(1)
-              # Remover el acento flotante de tex4ht (´) y tildes (~)
-              title = title.replace('´', '').replace('`', '').replace('~', '')
+              title = html.unescape(title)
               # Remover acentos reales convirtiéndolos a su letra base (á -> a)
               title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
+              # Destruir radicalmente TODO lo que no sea letra, numero o espacio
+              title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
+              title = re.sub(r'\s+', ' ', title).strip()
               return f"<title>{title}</title>"
 
           for filepath in glob.glob("public/*.html"):
-              with open(filepath, "r", encoding="utf-8") as f:
-                  content = f.read()
-              
-              # 1. Arreglar el espacio que tex4ht le agrega a los entornos (Opcional, pero seguro)
-              content = content.replace(r"\begin {", r"\begin{")
-              content = content.replace(r"\end {", r"\end{")
-              
-              # 2. Limpiar los acentos y símbolos raros de la etiqueta <title>
-              content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
-              
-              # 3. Eliminar espacios duros inyectados por make4ht
-              content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
-              
-              # 4. Eliminar el espacio antes de subíndices (_) y superíndices (^)
-              content = re.sub(r'[ \t]+_', '_', content)
-              content = re.sub(r'[ \t]+\^', '^', content)
-              
-              with open(filepath, "w", encoding="utf-8") as f:
-                  f.write(content)
+              try:
+                  with open(filepath, "r", encoding="utf-8") as f:
+                      content = f.read()
+                  
+                  # 1. Arreglar el espacio que tex4ht le agrega a los entornos
+                  content = content.replace(r"\begin {", r"\begin{")
+                  content = content.replace(r"\end {", r"\end{")
+                  
+                  # 2. Limpiar los acentos y símbolos raros de la etiqueta <title>
+                  content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
+                  
+                  # 3. Eliminar espacios duros inyectados por make4ht
+                  content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
+                  
+                  # 4. Eliminar el espacio molesto antes de subíndices (_) y superíndices (^)
+                  content = re.sub(r'[ \t]+_', '_', content)
+                  content = re.sub(r'[ \t]+\^', '^', content)
+                  
+                  with open(filepath, "w", encoding="utf-8") as f:
+                      f.write(content)
+              except Exception as e:
+                  print(f"Error procesando el archivo {filepath}: {e}")
           EOF
           python3 clean_html.py
 
