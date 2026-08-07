@@ -37,14 +37,15 @@ document.addEventListener("DOMContentLoaded", function() {
       let toc = doc.querySelector(".tableofcontents");
       
       if(toc) {
-        let rootItems = Array.from(toc.childNodes);
+        // === RECONSTRUIR TOC ESTILO "JUST THE DOCS" ===
+        // Seleccionamos exclusivamente etiquetas válidas (ignorando BR y nodos de texto vacíos)
+        let tocElements = Array.from(toc.querySelectorAll("[class*='Toc']"));
         let newToc = document.createElement("div");
         newToc.className = "tableofcontents";
         
         let currentPartWrapper = null;
         let currentChapWrapper = null;
 
-        // Helper para inyectar flechas desplegables
         function addToggle(parentNode, wrapperNode) {
             let toggle = document.createElement("span");
             toggle.className = "nav-toggle";
@@ -62,53 +63,47 @@ document.addEventListener("DOMContentLoaded", function() {
                     toggle.classList.remove("open");
                 }
             });
-            return toggle;
         }
 
-        // 1. Reconstruir la jerarquía: Parte > Capítulo > Sección
-        rootItems.forEach(node => {
-            if (node.nodeType === 1 && node.tagName !== "BR") {
-                // Limpiar cualquier inline style que tex4ht haya exportado
-                node.style.display = ""; 
+        tocElements.forEach(node => {
+            // Desconectar el nodo de su estructura original plana
+            if (node.parentNode) node.parentNode.removeChild(node);
+            
+            let isPart = node.classList.contains("partToc");
+            let isChap = node.classList.contains("chapterToc") || node.classList.contains("appendixToc");
+            
+            if (isPart) {
+                newToc.appendChild(node);
+                // Crear la "carpeta" donde irán los capítulos de esta parte
+                currentPartWrapper = document.createElement("div");
+                currentPartWrapper.className = "nav-sublist part-sublist";
+                currentPartWrapper.style.display = "none";
+                newToc.appendChild(currentPartWrapper);
+                addToggle(node, currentPartWrapper);
+                currentChapWrapper = null; // Reiniciamos el contenedor de capítulos
+            } 
+            else if (isChap) {
+                let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
+                targetParent.appendChild(node);
                 
-                if (node.classList.contains("partToc")) {
-                    // Nueva Parte
-                    newToc.appendChild(node);
-                    currentPartWrapper = document.createElement("div");
-                    currentPartWrapper.className = "nav-sublist part-sublist";
-                    currentPartWrapper.style.display = "none"; // Oculto por defecto
-                    newToc.appendChild(currentPartWrapper);
-                    addToggle(node, currentPartWrapper);
-                    currentChapWrapper = null; // Reiniciar capítulo al cambiar de parte
-                } 
-                else if (node.classList.contains("chapterToc") || node.classList.contains("appendixToc")) {
-                    // Nuevo Capítulo (va dentro de la parte actual, si existe)
-                    let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
-                    targetParent.appendChild(node);
-                    
-                    currentChapWrapper = document.createElement("div");
-                    currentChapWrapper.className = "nav-sublist chap-sublist";
-                    currentChapWrapper.style.display = "none"; // Oculto por defecto
-                    targetParent.appendChild(currentChapWrapper);
-                    addToggle(node, currentChapWrapper);
-                } 
-                else {
-                    // Es una Sección, Subsección, etc.
-                    if (currentChapWrapper) {
-                        currentChapWrapper.appendChild(node); // Va en el capítulo
-                    } else if (currentPartWrapper) {
-                        currentPartWrapper.appendChild(node); // Va en la parte (raro pero posible)
-                    } else {
-                        newToc.appendChild(node); // Huérfano en la raíz
-                    }
-                }
+                // Crear la "carpeta" donde irán las secciones de este capítulo
+                currentChapWrapper = document.createElement("div");
+                currentChapWrapper.className = "nav-sublist chap-sublist";
+                currentChapWrapper.style.display = "none";
+                targetParent.appendChild(currentChapWrapper);
+                addToggle(node, currentChapWrapper);
+            } 
+            else {
+                // Secciones y subsecciones: van dentro del capítulo actual
+                let targetParent = currentChapWrapper ? currentChapWrapper : (currentPartWrapper ? currentPartWrapper : newToc);
+                targetParent.appendChild(node);
             }
         });
         
-        // 2. Auto-expandir el menú según la página actual
+        // Auto-expandir carpetas de la página actual
         let wrappers = newToc.querySelectorAll(".nav-sublist");
         wrappers.forEach(wrapper => {
-            // Si la carpeta quedó vacía, esconder el triángulo
+            // Ocultar la flecha si el capítulo/parte no tiene nada adentro
             if (wrapper.children.length === 0) {
                 let prev = wrapper.previousElementSibling;
                 if (prev) {
@@ -117,35 +112,39 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
             
-            // Extraer links dentro de este nivel y del título padre
-            let links = Array.from(wrapper.querySelectorAll("a")).map(a => a.getAttribute("href").split('#')[0]);
+            let links = Array.from(wrapper.querySelectorAll("a")).map(a => {
+                let href = a.getAttribute("href");
+                return href ? href.split('#')[0] : "";
+            });
+            
             let parentLinkNode = wrapper.previousElementSibling;
             if (parentLinkNode && parentLinkNode.querySelector("a")) {
-                links.push(parentLinkNode.querySelector("a").getAttribute("href").split('#')[0]);
+                let pHref = parentLinkNode.querySelector("a").getAttribute("href");
+                if (pHref) links.push(pHref.split('#')[0]);
             }
             
-            // Si estamos en este capítulo/parte, lo abrimos
             if (links.includes(currentFile)) {
                 wrapper.style.display = "block";
                 if (parentLinkNode) {
                     let t = parentLinkNode.querySelector(".nav-toggle");
                     if (t) t.classList.add("open");
                 }
-                // Si abrimos un capítulo, nos aseguramos de abrir la Parte que lo contiene
+                
                 let parentPartWrapper = wrapper.closest(".part-sublist");
                 if (parentPartWrapper) {
                     parentPartWrapper.style.display = "block";
-                    let pToggle = parentPartWrapper.previousElementSibling.querySelector(".nav-toggle");
-                    if (pToggle) pToggle.classList.add("open");
+                    let pToggle = parentPartWrapper.previousElementSibling;
+                    if (pToggle) {
+                        let pt = pToggle.querySelector(".nav-toggle");
+                        if (pt) pt.classList.add("open");
+                    }
                 }
             }
         });
         
-        // Reemplazar el viejo índice plano por el nuevo jerárquico
         document.querySelector(".sidebar-toc").innerHTML = "";
         document.querySelector(".sidebar-toc").appendChild(newToc);
         
-        // Cerrar menú móvil al seleccionar una opción
         document.querySelectorAll(".sidebar-custom .tableofcontents a").forEach(link => {
           link.addEventListener("click", () => {
             sidebar.classList.remove("open");
