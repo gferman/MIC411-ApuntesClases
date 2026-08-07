@@ -47,18 +47,22 @@ Si $\xi>0, ~ \omega_n>0$:
 %\end{align*}
 
 Notar que el FRF se puede obtener al reemplazar $s=j\omega$ en la TF:
+
 \begin{align*}
     H(\omega)=H(s)\bigg|_{s=j\omega}
 \end{align*}
 
 \underline{Ejemplo}: Sistema de 1GDL
+
 \begin{align*}
     \text{EOM: }~m\ddot{u}+c\dot{u}+ku=f(t)
 \end{align*}
+
 \begin{align*}
     \Longrightarrow \text{TF: }&~ H(s)=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+(c/m)s+k/m}\\
     \Longrightarrow \text{FRF: }&~ H(\omega)=H(s)\bigg|_{s=j\omega}=\frac{1}{(k=m\omega^2)+j\omega c}
 \end{align*}
+
 \begin{align*}
     H(\omega)=\frac{1}{(j\omega-\lambda_1)(j\omega-\lambda_1^*)}
 \end{align*}
@@ -77,14 +81,12 @@ $$ \lambda_{2} = \lambda_{1}^{*}$$
 
 \section{Valores propios de matriz de estados}
 
-\begin{subequations}
-    \begin{align}
-        A v = \lambda v \\
-        (\lambda I - A)v=0\\
-        \det(\lambda I-A) = 0 \\
-        \Delta_A(\lambda) = \lambda^n + \alpha_{n-1} \lambda^{n-1} + \alpha_{n-2} \lambda^{n-2} + \cdots + \alpha_{1} \lambda + \alpha_{0} = 0
-    \end{align}
-\end{subequations}
+\begin{align}
+    A v = \lambda v \\
+    (\lambda I - A)v=0\\
+    \det(\lambda I-A) = 0 \\
+    \Delta_A(\lambda) = \lambda^n + \alpha_{n-1} \lambda^{n-1} + \alpha_{n-2} \lambda^{n-2} + \cdots + \alpha_{1} \lambda + \alpha_{0} = 0
+\end{align}
 
 $\lambda$ y $v$ son los valores y vectores propios de $A$.
 
@@ -112,8 +114,8 @@ La función \textit{Delta de Dirac} se denota como:
 %\end{align*}
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{delta.png}
+    \centering
+    \includegraphics[width=2in]{delta.png}
 \end{figure}
 
 \underline{Propiedades}:
@@ -123,8 +125,8 @@ La función \textit{Delta de Dirac} se denota como:
 \end{align*}
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{dirac.png}
+    \centering
+    \includegraphics[width=4in]{dirac.png}
 \end{figure}
 
 \begin{align*}
