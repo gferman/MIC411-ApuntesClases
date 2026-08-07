@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Partes y Capítulos colapsables)
+      - name: Crear JS y CSS del Dashboard (Menú lateral filtrado y colapsable)
         run: |
           cat << 'EOF' > custom.css
           :root { --sidebar-width: 330px; }
@@ -46,28 +46,36 @@ jobs:
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
           }
           .home-btn:hover { background: #0056b3; }
-          .tableofcontents { display: none; }
-          .sidebar-custom .tableofcontents { display: block; margin-top: 0; }
           
-          /* Ocultar elementos predeterminados de tex4ht */
+          /* Esconder botones antiguos (Prev/Next) */
           .crosslinks { display: none !important; }
-          .tableofcontents br { display: none; } 
           
-          /* Diseño de los Toggles y Niveles */
-          .sidebar-custom .tableofcontents a { text-decoration: none; color: #0366d6; padding: 4px 0; display: inline-block; }
-          .sidebar-custom .tableofcontents a:hover { background: transparent; text-decoration: underline; }
-          .nav-toggle {
-            display: inline-block; width: 18px; text-align: center; cursor: pointer;
-            color: #666; transition: transform 0.2s ease; font-size: 0.8em;
-            user-select: none; margin-right: 2px;
+          /* Evitar que el CSS modifique el TOC nativo del Body en el Home Page */
+          .sidebar-custom .tableofcontents { display: block; margin-top: 0; }
+          .sidebar-custom .tableofcontents br { display: none; } 
+          
+          /* === FORZAR SALTOS DE LÍNEA Y ESTILOS "JUST THE DOCS" === */
+          .sidebar-custom [class*='Toc'] { display: block; margin: 6px 0; line-height: 1.4; }
+          .sidebar-custom [class*='Toc'] a { text-decoration: none; color: #0366d6; }
+          .sidebar-custom [class*='Toc'] a:hover { text-decoration: underline; color: #0056b3; }
+          
+          .sidebar-custom .partToc { font-weight: bold; margin-top: 18px; border-bottom: 1px solid #ccc; padding-bottom: 4px; font-size: 1.1em; color: #333; }
+          .sidebar-custom .chapterToc, .sidebar-custom .appendixToc { font-weight: 600; font-size: 1.05em; margin-top: 10px; }
+          .sidebar-custom .sectionToc, .sidebar-custom .subsectionToc { font-size: 0.95em; color: #555; margin-top: 5px; }
+          
+          /* Flechas desplegables */
+          .sidebar-custom .nav-toggle {
+            display: inline-block; width: 20px; text-align: center; cursor: pointer;
+            color: #666; transition: transform 0.2s ease; font-size: 0.85em;
+            user-select: none; margin-right: 5px; font-weight: bold;
           }
-          .nav-toggle.open { transform: rotate(90deg); color: #0366d6; }
-          .nav-sublist { padding-left: 18px; margin-top: 2px; margin-bottom: 6px; border-left: 1px solid #ddd; margin-left: 7px; }
+          .sidebar-custom .nav-toggle.open { transform: rotate(90deg); color: #0366d6; }
           
-          /* Espaciados por nivel */
-          .partToc { font-weight: bold; margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 4px; font-size: 1.05em; }
-          .chapterToc, .appendixToc { margin-top: 8px; font-weight: 600; }
-          .sectionToc, .subsectionToc { margin-top: 4px; font-size: 0.95em; }
+          /* "Carpetas" contenedoras */
+          .sidebar-custom .nav-sublist { 
+            padding-left: 10px; margin-top: 4px; margin-bottom: 8px; 
+            border-left: 2px solid #eaecef; margin-left: 10px; 
+          }
           
           img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
           .mobile-header, .sidebar-overlay { display: none; }
@@ -135,14 +143,15 @@ jobs:
                 let toc = doc.querySelector(".tableofcontents");
                 
                 if(toc) {
-                  let rootItems = Array.from(toc.childNodes);
+                  // === RECONSTRUIR TOC ESTILO "JUST THE DOCS" ===
+                  // Seleccionamos exclusivamente etiquetas válidas (ignorando BR y nodos de texto vacíos)
+                  let tocElements = Array.from(toc.querySelectorAll("[class*='Toc']"));
                   let newToc = document.createElement("div");
                   newToc.className = "tableofcontents";
                   
                   let currentPartWrapper = null;
                   let currentChapWrapper = null;
 
-                  // Helper para inyectar flechas desplegables
                   function addToggle(parentNode, wrapperNode) {
                       let toggle = document.createElement("span");
                       toggle.className = "nav-toggle";
@@ -160,53 +169,47 @@ jobs:
                               toggle.classList.remove("open");
                           }
                       });
-                      return toggle;
                   }
 
-                  // 1. Reconstruir la jerarquía: Parte > Capítulo > Sección
-                  rootItems.forEach(node => {
-                      if (node.nodeType === 1 && node.tagName !== "BR") {
-                          // Limpiar cualquier inline style que tex4ht haya exportado
-                          node.style.display = ""; 
+                  tocElements.forEach(node => {
+                      // Desconectar el nodo de su estructura original plana
+                      if (node.parentNode) node.parentNode.removeChild(node);
+                      
+                      let isPart = node.classList.contains("partToc");
+                      let isChap = node.classList.contains("chapterToc") || node.classList.contains("appendixToc");
+                      
+                      if (isPart) {
+                          newToc.appendChild(node);
+                          // Crear la "carpeta" donde irán los capítulos de esta parte
+                          currentPartWrapper = document.createElement("div");
+                          currentPartWrapper.className = "nav-sublist part-sublist";
+                          currentPartWrapper.style.display = "none";
+                          newToc.appendChild(currentPartWrapper);
+                          addToggle(node, currentPartWrapper);
+                          currentChapWrapper = null; // Reiniciamos el contenedor de capítulos
+                      } 
+                      else if (isChap) {
+                          let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
+                          targetParent.appendChild(node);
                           
-                          if (node.classList.contains("partToc")) {
-                              // Nueva Parte
-                              newToc.appendChild(node);
-                              currentPartWrapper = document.createElement("div");
-                              currentPartWrapper.className = "nav-sublist part-sublist";
-                              currentPartWrapper.style.display = "none"; // Oculto por defecto
-                              newToc.appendChild(currentPartWrapper);
-                              addToggle(node, currentPartWrapper);
-                              currentChapWrapper = null; // Reiniciar capítulo al cambiar de parte
-                          } 
-                          else if (node.classList.contains("chapterToc") || node.classList.contains("appendixToc")) {
-                              // Nuevo Capítulo (va dentro de la parte actual, si existe)
-                              let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
-                              targetParent.appendChild(node);
-                              
-                              currentChapWrapper = document.createElement("div");
-                              currentChapWrapper.className = "nav-sublist chap-sublist";
-                              currentChapWrapper.style.display = "none"; // Oculto por defecto
-                              targetParent.appendChild(currentChapWrapper);
-                              addToggle(node, currentChapWrapper);
-                          } 
-                          else {
-                              // Es una Sección, Subsección, etc.
-                              if (currentChapWrapper) {
-                                  currentChapWrapper.appendChild(node); // Va en el capítulo
-                              } else if (currentPartWrapper) {
-                                  currentPartWrapper.appendChild(node); // Va en la parte (raro pero posible)
-                              } else {
-                                  newToc.appendChild(node); // Huérfano en la raíz
-                              }
-                          }
+                          // Crear la "carpeta" donde irán las secciones de este capítulo
+                          currentChapWrapper = document.createElement("div");
+                          currentChapWrapper.className = "nav-sublist chap-sublist";
+                          currentChapWrapper.style.display = "none";
+                          targetParent.appendChild(currentChapWrapper);
+                          addToggle(node, currentChapWrapper);
+                      } 
+                      else {
+                          // Secciones y subsecciones: van dentro del capítulo actual
+                          let targetParent = currentChapWrapper ? currentChapWrapper : (currentPartWrapper ? currentPartWrapper : newToc);
+                          targetParent.appendChild(node);
                       }
                   });
                   
-                  // 2. Auto-expandir el menú según la página actual
+                  // Auto-expandir carpetas de la página actual
                   let wrappers = newToc.querySelectorAll(".nav-sublist");
                   wrappers.forEach(wrapper => {
-                      // Si la carpeta quedó vacía, esconder el triángulo
+                      // Ocultar la flecha si el capítulo/parte no tiene nada adentro
                       if (wrapper.children.length === 0) {
                           let prev = wrapper.previousElementSibling;
                           if (prev) {
@@ -215,35 +218,39 @@ jobs:
                           }
                       }
                       
-                      // Extraer links dentro de este nivel y del título padre
-                      let links = Array.from(wrapper.querySelectorAll("a")).map(a => a.getAttribute("href").split('#')[0]);
+                      let links = Array.from(wrapper.querySelectorAll("a")).map(a => {
+                          let href = a.getAttribute("href");
+                          return href ? href.split('#')[0] : "";
+                      });
+                      
                       let parentLinkNode = wrapper.previousElementSibling;
                       if (parentLinkNode && parentLinkNode.querySelector("a")) {
-                          links.push(parentLinkNode.querySelector("a").getAttribute("href").split('#')[0]);
+                          let pHref = parentLinkNode.querySelector("a").getAttribute("href");
+                          if (pHref) links.push(pHref.split('#')[0]);
                       }
                       
-                      // Si estamos en este capítulo/parte, lo abrimos
                       if (links.includes(currentFile)) {
                           wrapper.style.display = "block";
                           if (parentLinkNode) {
                               let t = parentLinkNode.querySelector(".nav-toggle");
                               if (t) t.classList.add("open");
                           }
-                          // Si abrimos un capítulo, nos aseguramos de abrir la Parte que lo contiene
+                          
                           let parentPartWrapper = wrapper.closest(".part-sublist");
                           if (parentPartWrapper) {
                               parentPartWrapper.style.display = "block";
-                              let pToggle = parentPartWrapper.previousElementSibling.querySelector(".nav-toggle");
-                              if (pToggle) pToggle.classList.add("open");
+                              let pToggle = parentPartWrapper.previousElementSibling;
+                              if (pToggle) {
+                                  let pt = pToggle.querySelector(".nav-toggle");
+                                  if (pt) pt.classList.add("open");
+                              }
                           }
                       }
                   });
                   
-                  // Reemplazar el viejo índice plano por el nuevo jerárquico
                   document.querySelector(".sidebar-toc").innerHTML = "";
                   document.querySelector(".sidebar-toc").appendChild(newToc);
                   
-                  // Cerrar menú móvil al seleccionar una opción
                   document.querySelectorAll(".sidebar-custom .tableofcontents a").forEach(link => {
                     link.addEventListener("click", () => {
                       sidebar.classList.remove("open");
@@ -271,10 +278,10 @@ jobs:
           \Configure{Gin-dim}{}
           
           \makeatletter
-          % Desempaquetar subequations para MathJax
+          % Solución para desempaquetar subequations y enviarlas crudas a MathJax
           \ConfigureEnv{subequations}
-          {\unvbox\voidb@x} % Do nothing at the start
-          {\unvbox\voidb@x} % Do nothing at the end
+          {\unvbox\voidb@x}
+          {\unvbox\voidb@x} 
           {}
           {}
           
@@ -293,16 +300,6 @@ jobs:
               \let\mlpr@tilde@char\mytilde
             }{}
           }
-          
-          \@ifpackageloaded{listings}{
-            \lst@AddToHook{PreInit}{
-              \let\%\mypercent
-              \let\textpercent\mypercent
-              \let\textasciitilde\mytilde
-              \let\mlpr@comment@char\mypercent
-              \let\mlpr@tilde@char\mytilde
-            }
-          }{}
           \makeatother
           
           \begin{document}
@@ -321,17 +318,14 @@ jobs:
         run: |
           make4ht -u -c config.cfg -d public MIC411apuntes.tex "mathjax,html,2" "" "" "-shell-escape -interaction=nonstopmode"
 
-      - name: Limpiar HTML (Acentos en Título y Espacios en MathJax)
+      - name: Limpiar HTML (Acentos, Espacios Fantasmas y MathJax)
         run: |
           cat << 'EOF' > clean_html.py
           import glob, re, html, unicodedata
 
           def clean_title(match):
-              title = match.group(1)
-              title = html.unescape(title)
-              # Remover acentos reales convirtiéndolos a su letra base
+              title = html.unescape(match.group(1))
               title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
-              # Destruir radicalmente TODO lo que no sea letra, numero o espacio
               title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
               title = re.sub(r'\s+', ' ', title).strip()
               return f"<title>{title}</title>"
@@ -341,15 +335,19 @@ jobs:
                   with open(filepath, "r", encoding="utf-8") as f:
                       content = f.read()
 
-                  # 1. Limpiar el título
+                  # 1. Limpieza destructiva del título (Sin acentos ni símbolos flotantes)
                   content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
 
-                  # 2. Reemplazar espacios duros HTML inyectados por make4ht
+                  # 2. Reemplazar TODO espacio HTML duro por espacios limpios
                   content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
                   
-                  # 3. Remover el espacio molesto antes de subíndices (_) y superíndices (^)
+                  # 3. Remover el espacio problemático inmediatamente antes de un _ o un ^
                   content = re.sub(r'[ \t]+_', '_', content)
                   content = re.sub(r'[ \t]+\^', '^', content)
+
+                  # 4. Solucionar el problema de subequations en MathJax 3 (Envolver en $$)
+                  content = re.sub(r'\\begin\s*\{subequations\}', r'$$\n\\begin{subequations}', content)
+                  content = re.sub(r'\\end\s*\{subequations\}', r'\\end{subequations}\n$$', content)
 
                   with open(filepath, "w", encoding="utf-8") as f:
                       f.write(content)
