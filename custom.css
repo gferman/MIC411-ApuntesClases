@@ -1,4 +1,4 @@
-:root { --sidebar-width: 330px; }
+:root { --sidebar-width: 340px; }
 body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right: 20px; font-family: sans-serif; }
 .sidebar-custom {
   position: fixed; top: 0; left: 0; bottom: 0;
@@ -30,8 +30,8 @@ body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right:
 .sidebar-custom [class*='Toc'] a:hover { text-decoration: underline; color: #0056b3; }
 
 .sidebar-custom .partToc { font-weight: bold; margin-top: 18px; border-bottom: 1px solid #ccc; padding-bottom: 4px; font-size: 1.1em; color: #333; }
-.sidebar-custom .chapterToc, .sidebar-custom .appendixToc { font-weight: 600; font-size: 1.05em; margin-top: 10px; }
-.sidebar-custom .sectionToc, .sidebar-custom .subsectionToc { font-size: 0.95em; color: #555; margin-top: 5px; }
+.sidebar-custom .chapterToc, .sidebar-custom .appendixToc, .sidebar-custom .likechapterToc { font-weight: 600; font-size: 1.05em; margin-top: 10px; }
+.sidebar-custom .sectionToc, .sidebar-custom .likesectionToc, .sidebar-custom .subsectionToc { font-size: 0.95em; color: #555; margin-top: 5px; }
 
 /* Flechas desplegables */
 .sidebar-custom .nav-toggle {
@@ -61,7 +61,7 @@ img { max-width: 100%; height: auto !important; display: block; margin: 1em auto
     background: none; border: none; color: white; font-size: 1.5em;
     cursor: pointer; margin-right: 15px; font-weight: bold;
   }
-  .mobile-title { font-size: 1.1em; font-weight: bold; }
+  .mobile-title { font-size: 1.05em; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sidebar-custom { left: calc(-1 * var(--sidebar-width)); z-index: 10001; }
   .sidebar-custom.open { left: 0; }
   .sidebar-overlay {

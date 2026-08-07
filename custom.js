@@ -11,13 +11,16 @@ document.addEventListener("DOMContentLoaded", function() {
   let sidebar = document.createElement("div");
   sidebar.className = "sidebar-custom";
   
+  // TITULO PARA LA BARRA LATERAL (PC)
+  let titleHtml = '<div style="padding: 0 5px 15px 5px; font-weight: bold; font-size: 1.15em; color: #333; border-bottom: 1px solid #ddd; margin-bottom: 15px;">MIC411 Dinámica Estructural Avanzada</div>';
   let homeBtnHtml = (currentFile === "MIC411apuntes.html") ? '' : '<a href="MIC411apuntes.html" class="home-btn">🏠 Volver al Inicio</a>';
-  sidebar.innerHTML = homeBtnHtml + '<div class="sidebar-toc"><p>Cargando menú...</p></div>';
+  sidebar.innerHTML = titleHtml + homeBtnHtml + '<div class="sidebar-toc"><p>Cargando menú...</p></div>';
   document.body.insertBefore(sidebar, document.body.firstChild);
 
+  // TITULO PARA LA BARRA SUPERIOR (CELULAR)
   let mobileHeader = document.createElement("div");
   mobileHeader.className = "mobile-header";
-  mobileHeader.innerHTML = '<button class="hamburger-btn">☰</button><span class="mobile-title">Apuntes del Curso</span>';
+  mobileHeader.innerHTML = '<button class="hamburger-btn">☰</button><span class="mobile-title">MIC411 Dinámica Estructural Avanzada</span>';
   document.body.insertBefore(mobileHeader, document.body.firstChild);
 
   let btn = document.querySelector(".hamburger-btn");
@@ -43,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         let currentPartWrapper = null;
         let currentChapWrapper = null;
-        let skipSections = false; // FLAG INTELIGENTE PARA OCULTAR "VERSIONES"
+        let inVersionesChapter = false; // BANDERÍN INTELIGENTE
 
         function addToggle(parentNode, wrapperNode) {
             let toggle = document.createElement("span");
@@ -67,11 +70,31 @@ document.addEventListener("DOMContentLoaded", function() {
         tocElements.forEach(node => {
             if (node.parentNode) node.parentNode.removeChild(node);
             
-            let isPart = node.classList.contains("partToc");
-            let isChap = node.classList.contains("chapterToc") || node.classList.contains("appendixToc");
+            let cls = node.className || "";
+            let level = 99;
             
-            if (isPart) {
-                skipSections = false; // Resetea la bandera por si acaso
+            if (cls.includes("partToc")) level = 0;
+            else if (cls.includes("chapterToc") || cls.includes("appendixToc") || cls.includes("likechapterToc")) level = 1;
+            else if (cls.includes("subsubsectionToc") || cls.includes("likesubsubsectionToc")) level = 4;
+            else if (cls.includes("subsectionToc") || cls.includes("likesubsectionToc")) level = 3;
+            else if (cls.includes("sectionToc") || cls.includes("likesectionToc")) level = 2;
+
+            let textLower = (node.textContent || "").toLowerCase().trim();
+
+            // === LÓGICA DE FILTRADO PARA VERSIONES ===
+            if (level === 0) {
+                inVersionesChapter = false; // Si empieza una parte, no estamos en Versiones
+            } else if (level === 1) {
+                inVersionesChapter = textLower.includes("versiones") || textLower.includes("versión");
+            }
+            
+            if (level > 1 && inVersionesChapter) {
+                return; // DESTRUYE (IGNORA) TODA SECCIÓN ADENTRO DEL CAPÍTULO VERSIONES
+            }
+            // ==========================================
+
+            // Construcción del Árbol HTML
+            if (level === 0) {
                 newToc.appendChild(node);
                 currentPartWrapper = document.createElement("div");
                 currentPartWrapper.className = "nav-sublist part-sublist";
@@ -80,11 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 addToggle(node, currentPartWrapper);
                 currentChapWrapper = null; 
             } 
-            else if (isChap) {
-                // Si el capítulo se llama "Versiones", prendemos la bandera para ignorar todo lo de adentro
-                let chapText = (node.textContent || "").toLowerCase();
-                skipSections = chapText.includes("versiones") || chapText.includes("versión");
-                
+            else if (level === 1) {
                 let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
                 targetParent.appendChild(node);
                 
@@ -95,12 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 addToggle(node, currentChapWrapper);
             } 
             else {
-                // FILTRO: Si estamos en el capítulo de Versiones, ignorar nodo.
-                let secText = (node.textContent || "").toLowerCase();
-                if (skipSections || secText.includes("versión") || secText.includes("versiones")) {
-                    return; // No se agrega al árbol, queda oculto para siempre
-                }
-                
                 let targetParent = currentChapWrapper ? currentChapWrapper : (currentPartWrapper ? currentPartWrapper : newToc);
                 targetParent.appendChild(node);
             }
@@ -109,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
         let wrappers = newToc.querySelectorAll(".nav-sublist");
         wrappers.forEach(wrapper => {
-            // Si la carpeta quedó vacía (como pasará con "Versiones"), esconder el triángulo
+            // Si la carpeta quedó vacía (Como en el caso de "Versiones"), esconder el triángulo
             if (wrapper.children.length === 0) {
                 let prev = wrapper.previousElementSibling;
                 if (prev) {
