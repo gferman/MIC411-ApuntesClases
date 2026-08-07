@@ -25,10 +25,10 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Menú filtrado e inteligente)
+      - name: Crear JS y CSS del Dashboard (Menú Jerárquico Inteligente)
         run: |
           cat << 'EOF' > custom.css
-          :root { --sidebar-width: 330px; }
+          :root { --sidebar-width: 340px; }
           body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right: 20px; font-family: sans-serif; }
           .sidebar-custom {
             position: fixed; top: 0; left: 0; bottom: 0;
@@ -60,8 +60,8 @@ jobs:
           .sidebar-custom [class*='Toc'] a:hover { text-decoration: underline; color: #0056b3; }
           
           .sidebar-custom .partToc { font-weight: bold; margin-top: 18px; border-bottom: 1px solid #ccc; padding-bottom: 4px; font-size: 1.1em; color: #333; }
-          .sidebar-custom .chapterToc, .sidebar-custom .appendixToc { font-weight: 600; font-size: 1.05em; margin-top: 10px; }
-          .sidebar-custom .sectionToc, .sidebar-custom .subsectionToc { font-size: 0.95em; color: #555; margin-top: 5px; }
+          .sidebar-custom .chapterToc, .sidebar-custom .appendixToc, .sidebar-custom .likechapterToc { font-weight: 600; font-size: 1.05em; margin-top: 10px; }
+          .sidebar-custom .sectionToc, .sidebar-custom .likesectionToc, .sidebar-custom .subsectionToc { font-size: 0.95em; color: #555; margin-top: 5px; }
           
           /* Flechas desplegables */
           .sidebar-custom .nav-toggle {
@@ -91,7 +91,7 @@ jobs:
               background: none; border: none; color: white; font-size: 1.5em;
               cursor: pointer; margin-right: 15px; font-weight: bold;
             }
-            .mobile-title { font-size: 1.1em; font-weight: bold; }
+            .mobile-title { font-size: 1.05em; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .sidebar-custom { left: calc(-1 * var(--sidebar-width)); z-index: 10001; }
             .sidebar-custom.open { left: 0; }
             .sidebar-overlay {
@@ -117,13 +117,16 @@ jobs:
             let sidebar = document.createElement("div");
             sidebar.className = "sidebar-custom";
             
+            // TITULO PARA LA BARRA LATERAL (PC)
+            let titleHtml = '<div style="padding: 0 5px 15px 5px; font-weight: bold; font-size: 1.15em; color: #333; border-bottom: 1px solid #ddd; margin-bottom: 15px;">MIC411 Dinámica Estructural Avanzada</div>';
             let homeBtnHtml = (currentFile === "MIC411apuntes.html") ? '' : '<a href="MIC411apuntes.html" class="home-btn">🏠 Volver al Inicio</a>';
-            sidebar.innerHTML = homeBtnHtml + '<div class="sidebar-toc"><p>Cargando menú...</p></div>';
+            sidebar.innerHTML = titleHtml + homeBtnHtml + '<div class="sidebar-toc"><p>Cargando menú...</p></div>';
             document.body.insertBefore(sidebar, document.body.firstChild);
 
+            // TITULO PARA LA BARRA SUPERIOR (CELULAR)
             let mobileHeader = document.createElement("div");
             mobileHeader.className = "mobile-header";
-            mobileHeader.innerHTML = '<button class="hamburger-btn">☰</button><span class="mobile-title">Apuntes del Curso</span>';
+            mobileHeader.innerHTML = '<button class="hamburger-btn">☰</button><span class="mobile-title">MIC411 Dinámica Estructural Avanzada</span>';
             document.body.insertBefore(mobileHeader, document.body.firstChild);
 
             let btn = document.querySelector(".hamburger-btn");
@@ -149,7 +152,7 @@ jobs:
                   
                   let currentPartWrapper = null;
                   let currentChapWrapper = null;
-                  let skipSections = false; // FLAG INTELIGENTE PARA OCULTAR "VERSIONES"
+                  let inVersionesChapter = false; // BANDERÍN INTELIGENTE
 
                   function addToggle(parentNode, wrapperNode) {
                       let toggle = document.createElement("span");
@@ -173,11 +176,31 @@ jobs:
                   tocElements.forEach(node => {
                       if (node.parentNode) node.parentNode.removeChild(node);
                       
-                      let isPart = node.classList.contains("partToc");
-                      let isChap = node.classList.contains("chapterToc") || node.classList.contains("appendixToc");
+                      let cls = node.className || "";
+                      let level = 99;
                       
-                      if (isPart) {
-                          skipSections = false; // Resetea la bandera por si acaso
+                      if (cls.includes("partToc")) level = 0;
+                      else if (cls.includes("chapterToc") || cls.includes("appendixToc") || cls.includes("likechapterToc")) level = 1;
+                      else if (cls.includes("subsubsectionToc") || cls.includes("likesubsubsectionToc")) level = 4;
+                      else if (cls.includes("subsectionToc") || cls.includes("likesubsectionToc")) level = 3;
+                      else if (cls.includes("sectionToc") || cls.includes("likesectionToc")) level = 2;
+
+                      let textLower = (node.textContent || "").toLowerCase().trim();
+
+                      // === LÓGICA DE FILTRADO PARA VERSIONES ===
+                      if (level === 0) {
+                          inVersionesChapter = false; // Si empieza una parte, no estamos en Versiones
+                      } else if (level === 1) {
+                          inVersionesChapter = textLower.includes("versiones") || textLower.includes("versión");
+                      }
+                      
+                      if (level > 1 && inVersionesChapter) {
+                          return; // DESTRUYE (IGNORA) TODA SECCIÓN ADENTRO DEL CAPÍTULO VERSIONES
+                      }
+                      // ==========================================
+
+                      // Construcción del Árbol HTML
+                      if (level === 0) {
                           newToc.appendChild(node);
                           currentPartWrapper = document.createElement("div");
                           currentPartWrapper.className = "nav-sublist part-sublist";
@@ -186,11 +209,7 @@ jobs:
                           addToggle(node, currentPartWrapper);
                           currentChapWrapper = null; 
                       } 
-                      else if (isChap) {
-                          // Si el capítulo se llama "Versiones", prendemos la bandera para ignorar todo lo de adentro
-                          let chapText = (node.textContent || "").toLowerCase();
-                          skipSections = chapText.includes("versiones") || chapText.includes("versión");
-                          
+                      else if (level === 1) {
                           let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
                           targetParent.appendChild(node);
                           
@@ -201,12 +220,6 @@ jobs:
                           addToggle(node, currentChapWrapper);
                       } 
                       else {
-                          // FILTRO: Si estamos en el capítulo de Versiones, ignorar nodo.
-                          let secText = (node.textContent || "").toLowerCase();
-                          if (skipSections || secText.includes("versión") || secText.includes("versiones")) {
-                              return; // No se agrega al árbol, queda oculto para siempre
-                          }
-                          
                           let targetParent = currentChapWrapper ? currentChapWrapper : (currentPartWrapper ? currentPartWrapper : newToc);
                           targetParent.appendChild(node);
                       }
@@ -215,7 +228,7 @@ jobs:
                   // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
                   let wrappers = newToc.querySelectorAll(".nav-sublist");
                   wrappers.forEach(wrapper => {
-                      // Si la carpeta quedó vacía (como pasará con "Versiones"), esconder el triángulo
+                      // Si la carpeta quedó vacía (Como en el caso de "Versiones"), esconder el triángulo
                       if (wrapper.children.length === 0) {
                           let prev = wrapper.previousElementSibling;
                           if (prev) {
@@ -349,7 +362,7 @@ jobs:
                   # 2. Reemplazar espacios duros HTML inyectados por make4ht
                   content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
                   
-                  # 3. Remover el espacio molesto antes de subíndices (_) y superíndices (^)
+                  # 3. Remover el espacio problemático inmediatamente antes de un _ o un ^
                   content = re.sub(r'[ \t]+_', '_', content)
                   content = re.sub(r'[ \t]+\^', '^', content)
 
