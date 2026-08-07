@@ -142,11 +142,11 @@ análisis.
                                                                                          
    </figure>
 <!-- l. 111 --><p class='indent'>   Se tiene que:
-</p><!-- l. 117 --><p class='indent'>   \begin{align*}  f_s &amp;= ku^2 \\ p_1 = k u_1^2 &amp;\rightarrow u_1 = \sqrt {\frac {p_1}{k}}\\ p_2 = k u_2^2 &amp;\rightarrow u_2 = \sqrt {\frac {p_2}{k}}\\  \end{align*}
+</p><!-- l. 117 --><p class='indent'>   \begin {align*}  f_s &amp;= ku^2 \\ p_1 = k u_1^2 &amp;\rightarrow u_1 = \sqrt {\frac {p_1}{k}}\\ p_2 = k u_2^2 &amp;\rightarrow u_2 = \sqrt {\frac {p_2}{k}}\\  \end {align*}
 </p><!-- l. 119 --><p class='indent'>   La pregunta es, ¿Se cumple el principio de superposición?
-</p><!-- l. 123 --><p class='indent'>   \begin{align*}  p_1+p_2 &amp;\xrightarrow {?} u_1+u_2  \end{align*}
+</p><!-- l. 123 --><p class='indent'>   \begin {align*}  p_1+p_2 &amp;\xrightarrow {?} u_1+u_2  \end {align*}
 </p><!-- l. 125 --><p class='indent'>   La respuesta es no, ya que:
-</p><!-- l. 136 --><p class='indent'>   \begin{align*}  p_1 + p_2 &amp;= k(u_*)^2 \\ u_* &amp;= \sqrt {\frac {p_1 +p_2}{k}} \neq \sqrt {\frac {p_1}{k}} + \sqrt {\frac {p_2}{k}}  \end{align*}
+</p><!-- l. 136 --><p class='indent'>   \begin {align*}  p_1 + p_2 &amp;= k(u_*)^2 \\ u_* &amp;= \sqrt {\frac {p_1 +p_2}{k}} \neq \sqrt {\frac {p_1}{k}} + \sqrt {\frac {p_2}{k}}  \end {align*}
 </p>
    <h4 class='subsectionHead' id='invariante-tiempo-vs-variante-tiempo'><span class='titlemark'>1.2.4.   </span> <a id='x6-210001.2.4'></a>Invariante tiempo vs variante tiempo</h4>
      <ul class='itemize1'>
@@ -193,7 +193,7 @@ caminar y frecuencia de pasos) sobre un mismo puente (sistema), se obtendrán re
  <img alt='PIC' src='Figuras/continuo.png' /> </figure>
      </li>
      <li class='itemize'>
-     <!-- l. 186 --><p class='noindent'>Sistema Discreto: señales han sido discretizadas en el tiempo.<br class='newline' /><span class='underline'>Ejemplo</span>: Interés de una cuenta bancaria. \begin{align*}  y(k+1)=(1+r)y(k) \longrightarrow \text {Ecuación de diferencias finitas}  \end{align*}
+     <!-- l. 186 --><p class='noindent'>Sistema Discreto: señales han sido discretizadas en el tiempo.<br class='newline' /><span class='underline'>Ejemplo</span>: Interés de una cuenta bancaria. \begin {align*}  y(k+1)=(1+r)y(k) \longrightarrow \text {Ecuación de diferencias finitas}  \end {align*}
 </p>
          <ul class='itemize2'>
          <li class='itemize'>\(y(k+1)\): balance cuenta año \(k+1\)
@@ -232,7 +232,7 @@ estas señales se discretizan en función del tiempo.
    </figure>
 <!-- l. 215 --><p class='indent'>   Los sistemas LTI, son aquellos cuyas propiedades y parámetros no varían en el tiempo, es decir, que los coeficientes
 de las ecuaciones diferenciales de los modelos matemáticos de los sistemas dinámicos son constantes en el tiempo \(a_i=cte\).
-\begin{align*}  \frac {d^ny}{dt^n}+a_{n-1}\frac {d^{n-1}y}{dt^{n-1}}+...+a_2\frac {d^2y}{dt^2}+a_1\frac {dy}{dt}+a_0y=u(t)  \end{align*}
+\begin {align*}  \frac {d^ny}{dt^n}+a_{n-1}\frac {d^{n-1}y}{dt^{n-1}}+...+a_2\frac {d^2y}{dt^2}+a_1\frac {dy}{dt}+a_0y=u(t)  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>\(u(t)\): excitación
@@ -240,7 +240,7 @@ de las ecuaciones diferenciales de los modelos matemáticos de los sistemas din�
      <li class='itemize'>\(y(t)\): respuesta
      </li>
      <li class='itemize'>\(a_i\): coeficientes</li></ul>
-<!-- l. 224 --><p class='noindent'>Dada una excitación \(u(t)\), la respuesta se obtiene al resolver la ecuación diferencial: \begin{align*}  y(t)=y_H(t)+y_p(t)  \end{align*}
+<!-- l. 224 --><p class='noindent'>Dada una excitación \(u(t)\), la respuesta se obtiene al resolver la ecuación diferencial: \begin {align*}  y(t)=y_H(t)+y_p(t)  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>\(y_H(t)\) es la <span id='textcolor6'>respuesta homogénea</span> (para \(u(t)=0\), con condiciones iniciales)

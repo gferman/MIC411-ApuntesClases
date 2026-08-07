@@ -37,34 +37,86 @@ document.addEventListener("DOMContentLoaded", function() {
       let toc = doc.querySelector(".tableofcontents");
       
       if(toc) {
-        if (currentFile === "MIC411apuntes.html") {
-          let deepEntries = toc.querySelectorAll(".sectionToc, .subsectionToc, .subsubsectionToc, .paragraphToc, .subparagraphToc");
-          deepEntries.forEach(entry => {
-            entry.style.display = "none";
-            let next = entry.nextSibling;
-            while(next && next.nodeType === 3) next = next.nextSibling;
-            if (next && next.tagName === "BR") next.style.display = "none";
-          });
-        } else {
-          let entries = toc.querySelectorAll("[class*='Toc']"); 
-          entries.forEach(entry => {
-            let link = entry.querySelector("a");
-            if (link) {
-              let href = link.getAttribute("href") || "";
-              let hrefFile = href.split('#')[0]; 
+        // === INICIO LÓGICA COLLAPSIBLE (JUST THE DOCS) ===
+        let rootItems = Array.from(toc.childNodes);
+        let currentWrapper = null;
+        
+        // Crear un nuevo contenedor para el índice reorganizado
+        let newToc = document.createElement("div");
+        newToc.className = "tableofcontents";
+        
+        rootItems.forEach(node => {
+          if (node.nodeType === 1 && (node.classList.contains("chapterToc") || node.classList.contains("appendixToc") || node.classList.contains("partToc"))) {
+              // Nodo principal: Lo agregamos directo a la raíz
+              newToc.appendChild(node);
               
-              if (hrefFile !== currentFile) {
-                entry.style.display = "none";
-                let next = entry.nextSibling;
-                while(next && next.nodeType === 3) next = next.nextSibling;
-                if (next && next.tagName === "BR") next.style.display = "none";
+              // Si es capítulo o apéndice, creamos su "carpeta" colapsable
+              if(node.classList.contains("chapterToc") || node.classList.contains("appendixToc")) {
+                  // 1. Inyectar flecha (triángulo)
+                  let toggle = document.createElement("span");
+                  toggle.className = "nav-toggle";
+                  toggle.innerHTML = "▶";
+                  node.insertBefore(toggle, node.firstChild);
+                  
+                  // 2. Crear contenedor interno oculto
+                  currentWrapper = document.createElement("div");
+                  currentWrapper.className = "nav-sublist";
+                  currentWrapper.style.display = "none";
+                  newToc.appendChild(currentWrapper);
+                  
+                  // 3. Agregar evento click a la flecha
+                  toggle.addEventListener("click", (e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (currentWrapper.style.display === "none") {
+                          currentWrapper.style.display = "block";
+                          toggle.classList.add("open");
+                      } else {
+                          currentWrapper.style.display = "none";
+                          toggle.classList.remove("open");
+                      }
+                  });
+              } else {
+                  currentWrapper = null; // Si es parte, no agrupa secciones
               }
+          } else if (currentWrapper && node.nodeType === 1 && node.tagName !== "BR") {
+              // Es una subsección: La guardamos dentro de la carpeta del capítulo actual
+              currentWrapper.appendChild(node);
+          } else if (!currentWrapper && node.nodeType === 1 && node.tagName !== "BR") {
+              // Elementos huérfanos antes del primer capítulo
+              newToc.appendChild(node);
+          }
+        });
+        
+        // === AUTO-EXPANDIR EL CAPÍTULO ACTUAL ===
+        let chapters = newToc.querySelectorAll(".chapterToc, .appendixToc");
+        chapters.forEach(chap => {
+            let wrapper = chap.nextElementSibling;
+            if (wrapper && wrapper.classList.contains("nav-sublist")) {
+                // Si un capítulo no tiene secciones, ocultar la flecha
+                if (wrapper.children.length === 0) {
+                    let toggle = chap.querySelector(".nav-toggle");
+                    if(toggle) toggle.style.visibility = "hidden";
+                }
+                
+                // Recolectar todos los links de este capítulo (incluyendo el título padre)
+                let links = [];
+                if (chap.querySelector("a")) links.push(chap.querySelector("a").getAttribute("href").split('#')[0]);
+                wrapper.querySelectorAll("a").forEach(a => links.push(a.getAttribute("href").split('#')[0]));
+                
+                // Si el archivo en el que estamos coincide con alguno del bloque, expandir
+                if (links.includes(currentFile)) {
+                    wrapper.style.display = "block";
+                    let toggle = chap.querySelector(".nav-toggle");
+                    if(toggle) toggle.classList.add("open");
+                }
             }
-          });
-        }
+        });
         
-        document.querySelector(".sidebar-toc").innerHTML = toc.outerHTML;
+        document.querySelector(".sidebar-toc").innerHTML = "";
+        document.querySelector(".sidebar-toc").appendChild(newToc);
         
+        // Cerrar overlay en móviles al hacer click
         document.querySelectorAll(".sidebar-custom .tableofcontents a").forEach(link => {
           link.addEventListener("click", () => {
             sidebar.classList.remove("open");

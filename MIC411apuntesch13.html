@@ -16,25 +16,25 @@
    <h2 class='chapterHead' id='control-optimo-de-sistemas-nolineales'><span class='titlemark'>Capítulo 13</span><br /><a id='x21-21300013'></a>Control óptimo de sistemas nolineales</h2>
    <h3 class='sectionHead' id='planteamiento-caso-general'><span class='titlemark'>13.1.   </span> <a id='x21-21400013.1'></a>Planteamiento (caso general)</h3>
 <!-- l. 5 --><p class='noindent'>Dado un sistema dinámico:
-</p><!-- l. 9 --><p class='indent'>   \begin{align*}  \dot {x}(t)=f\big ( x(t),u(t),t\big )  \end{align*}
+</p><!-- l. 9 --><p class='indent'>   \begin {align*}  \dot {x}(t)=f\big ( x(t),u(t),t\big )  \end {align*}
 </p><!-- l. 11 --><p class='indent'>   Problema es encontrar \(u(t)\), para llevar el estado \(x(t)\) hasta \(x(t_1)\), para un tiempo finito \(t\in [t_0,t_1]\), tal que se cumpla la siguiente
 condición, donde \(J(u)\) es el funcional de desempeño:
-</p><!-- l. 15 --><p class='indent'>   \begin{align*}  J(u) = \int_{t_0}^{t_1} \mathcal {L} \big ( x(t), u(t), t \big ) dt + m \big ( x(t_1) \big )  \end{align*}
+</p><!-- l. 15 --><p class='indent'>   \begin {align*}  J(u) = \int_{t_0}^{t_1} \mathcal {L} \big ( x(t), u(t), t \big ) dt + m \big ( x(t_1) \big )  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>\(\int_{t_0}^{t_1} \mathcal {L} \big (x(t),u(t),t\big )dt\): “Costo de viaje” (running cost)
      </li>
      <li class='itemize'>\(m \big ( x(t_1) \big )\): costo terminal</li></ul>
 <!-- l. 22 --><p class='indent'>   El problema de control óptimo se define como:
-</p><!-- l. 26 --><p class='indent'>   \begin{align*}  u^\star = \arg \min_{u_{[t_0,t_1]}} J(u)  \end{align*}
+</p><!-- l. 26 --><p class='indent'>   \begin {align*}  u^\star = \arg \min_{u_{[t_0,t_1]}} J(u)  \end {align*}
 </p><!-- l. 28 --><p class='indent'>   Se define la <span id='textcolor125'>función de valor V</span> como el mínimo costo posible para la trayectoria del sistema dinámico para todos los
 controles posibles \(u_{[t_0,t_1]}\):
-</p><!-- l. 32 --><p class='indent'>   \begin{align*}  V(x_0,t_0) = \min_{u_{[t_0,t_1]}} J(u) = \min_{u_{[t_0,t_1]}} \Big \{\int_{t_0}^{t_1} \mathcal {L} \big (x(t),u(t),t\big )dt+m\big (x(t_1)\big ) \Big \}  \end{align*}
+</p><!-- l. 32 --><p class='indent'>   \begin {align*}  V(x_0,t_0) = \min_{u_{[t_0,t_1]}} J(u) = \min_{u_{[t_0,t_1]}} \Big \{\int_{t_0}^{t_1} \mathcal {L} \big (x(t),u(t),t\big )dt+m\big (x(t_1)\big ) \Big \}  \end {align*}
 </p><!-- l. 34 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='principio-de-optimalidad'><span class='titlemark'>13.2.   </span> <a id='x21-21500013.2'></a>Principio de Optimalidad</h3>
 <!-- l. 36 --><p class='noindent'>Para cada \(t\in [t_0,t_1)\) y \(x\in \mathbb {R}^n\), y para \(\Delta t\in [0,t_1-t)\), la función de valor \(V(x,t)\) satisface la relación:
-</p><!-- l. 40 --><p class='indent'>   \begin{align*}  V(x,t) = \min_{u_{[t,t+\Delta t]}} \Big \{ \int_t^{t+\Delta t} \mathcal {L}\big (x(s),u(s),s\big )ds+V\big (x(t+\Delta t),t+\Delta t\big )\Big \}  \end{align*}
+</p><!-- l. 40 --><p class='indent'>   \begin {align*}  V(x,t) = \min_{u_{[t,t+\Delta t]}} \Big \{ \int_t^{t+\Delta t} \mathcal {L}\big (x(s),u(s),s\big )ds+V\big (x(t+\Delta t),t+\Delta t\big )\Big \}  \end {align*}
 </p>
      <ul class='itemize1'>
      <li class='itemize'>\(\int_t^{t+\Delta t} l\big (x(s),u(s),s\big )ds\): costo asociado al intervalo \([t+\Delta t]\)
@@ -67,17 +67,17 @@ controles posibles \(u_{[t_0,t_1]}\):
      </li>
 <li class='enumerate' id='x21-216008x4'>Calcular límite para \(\Delta t\to 0\)</li></ol>
 
-<!-- l. 69 --><p class='indent'>   \begin{align*}  \text {Ec. HJB: } \quad -V_t(x,t) = \min_{u \in \mathcal {U}} \left \{ \mathcal {L}(x,u,t) + \left ( \nabla_x V(x,t) \right )^T f(x,u,t) \right \}  \end{align*}
+<!-- l. 69 --><p class='indent'>   \begin {align*}  \text {Ec. HJB: } \quad -V_t(x,t) = \min_{u \in \mathcal {U}} \left \{ \mathcal {L}(x,u,t) + \left ( \nabla_x V(x,t) \right )^T f(x,u,t) \right \}  \end {align*}
 </p><!-- l. 71 --><p class='indent'>   donde \(V_t=\frac {\partial V}{\partial t}\), \(\nabla_x V=\frac {\partial V}{\partial x}\) <br class='newline' />
 </p><!-- l. 73 --><p class='indent'>   Notar que la ecuación HJB es una ec. diferencial parcial. Por lo tanto, para resolver necesitamos condiciones de
 borde:
-</p><!-- l. 77 --><p class='indent'>   \begin{align*}  V\big (x(t_1),t_1\big )=m\big (x(t_1)\big )  \end{align*}
+</p><!-- l. 77 --><p class='indent'>   \begin {align*}  V\big (x(t_1),t_1\big )=m\big (x(t_1)\big )  \end {align*}
 </p><!-- l. 79 --><p class='indent'>   <span class='underline'>Definición</span>: Hamiltoniano
-</p><!-- l. 83 --><p class='indent'>   \begin{align*}  \mathcal {H}(x,p,u,t) = \mathcal {L}(x,u,t) + p^T(x,t) f(x,u,t)  \end{align*}
+</p><!-- l. 83 --><p class='indent'>   \begin {align*}  \mathcal {H}(x,p,u,t) = \mathcal {L}(x,u,t) + p^T(x,t) f(x,u,t)  \end {align*}
 </p><!-- l. 85 --><p class='indent'>   donde \(\mathcal {H}\) es el Hamiltoneano; \(\mathcal {L}\) es el Lagrangiano; \(p = \nabla_x V\) es la penalización de Lagrange; y \(f\) es la dinámica del
 sistema.<br class='newline' />
 </p><!-- l. 87 --><p class='indent'>   Entonces, la ex. HJB se reduce a:
-</p><!-- l. 91 --><p class='indent'>   \begin{align*}  -V_t(x,t)=\min_{u \in \mathcal {U}} \mathcal {H}(x,p,u,t)  \end{align*}
+</p><!-- l. 91 --><p class='indent'>   \begin {align*}  -V_t(x,t)=\min_{u \in \mathcal {U}} \mathcal {H}(x,p,u,t)  \end {align*}
 </p><!-- l. 93 --><p class='indent'>   Con estas herramientas, formulamos el siguiente algoritmo para diseñar controladores óptimos:
 </p><!-- l. 95 --><p class='indent'>
      </p><ol class='enumerate1'>
@@ -89,44 +89,44 @@ sistema.<br class='newline' />
      </li>
 <li class='enumerate' id='x21-216014x3'>Buscar \(u^\star = \arg \min_u \mathcal {H}(x,p,u,t)\)
      </li>
-<li class='enumerate' id='x21-216016x4'>Substituir \(u^\star \) en la expresión HJB \begin{align*}  -V_t = \mathcal {H}(x,p,u^\star ,t)  \end{align*}
+<li class='enumerate' id='x21-216016x4'>Substituir \(u^\star \) en la expresión HJB \begin {align*}  -V_t = \mathcal {H}(x,p,u^\star ,t)  \end {align*}
      </li>
 <li class='enumerate' id='x21-216018x5'>Resolver la ec. dif. parcial para determinar \(u^\star \)</li></ol>
 <!-- l. 106 --><p class='noindent'>
 </p>
    <h3 class='sectionHead' id='ejemplo-control-lqr'><span class='titlemark'>13.4.   </span> <a id='x21-21700013.4'></a>Ejemplo Control LQR</h3>
 <!-- l. 108 --><p class='noindent'>Sea el sistema LTI:
-</p><!-- l. 112 --><p class='indent'>   \begin{align*}  \dot {x} = f(x,u) = A x + B u  \end{align*}
+</p><!-- l. 112 --><p class='indent'>   \begin {align*}  \dot {x} = f(x,u) = A x + B u  \end {align*}
 </p><!-- l. 114 --><p class='indent'>   y el funcional de desempeño:
-</p><!-- l. 118 --><p class='indent'>   \begin{align*}  J(u) =\int_{t_0}^{t_f} \left [ x^T Q x + u^T R u \right ] dt + x^T(t_f) Q_f x(t_f)  \end{align*}
+</p><!-- l. 118 --><p class='indent'>   \begin {align*}  J(u) =\int_{t_0}^{t_f} \left [ x^T Q x + u^T R u \right ] dt + x^T(t_f) Q_f x(t_f)  \end {align*}
 </p><!-- l. 120 --><p class='indent'>   Requisitos: \(Q\), \(R\), \(M\) son matrices definidas positivas y simétricas.<br class='newline' />
 </p><!-- l. 122 --><p class='indent'>   Utilizando el algoritmo para resolver la ec. HJB:
 </p><!-- l. 124 --><p class='indent'>
      </p><ol class='enumerate1'>
-<li class='enumerate' id='x21-217001x13.4'> Hamiltoniano: \begin{align*}  \mathcal {H}(x,u,V_x,t) = x^T Q x + u^T R u + V^T_x \left ( A x + B u \right )  \end{align*}
+<li class='enumerate' id='x21-217001x13.4'> Hamiltoniano: \begin {align*}  \mathcal {H}(x,u,V_x,t) = x^T Q x + u^T R u + V^T_x \left ( A x + B u \right )  \end {align*}
      </li>
-<li class='enumerate' id='x21-217002x13.4'> Buscar \(u^\star \): \(u^\star = \arg \min_u \mathcal {H}(x,u,V_x,t)\) \begin{align*}  \Longrightarrow \frac {\partial \mathcal {H}}{\partial u} = 0 \Longrightarrow \frac {\partial }{\partial u}\left [ x^T Q x + u^T R u + V_x^T \left ( A x + B u \right ) \right ] = 0\\ \Longrightarrow 2 R u + B^T V_x = 0\\ \Longrightarrow u^\star = -\frac {1}{2} R^{-1} B^T V_x(x,t)  \end{align*}
+<li class='enumerate' id='x21-217002x13.4'> Buscar \(u^\star \): \(u^\star = \arg \min_u \mathcal {H}(x,u,V_x,t)\) \begin {align*}  \Longrightarrow \frac {\partial \mathcal {H}}{\partial u} = 0 \Longrightarrow \frac {\partial }{\partial u}\left [ x^T Q x + u^T R u + V_x^T \left ( A x + B u \right ) \right ] = 0\\ \Longrightarrow 2 R u + B^T V_x = 0\\ \Longrightarrow u^\star = -\frac {1}{2} R^{-1} B^T V_x(x,t)  \end {align*}
      </li>
 <li class='enumerate' id='x21-217003x13.4'>
-     <!-- l. 135 --><p class='noindent'> \begin{align*}  -V_t(x,t) &amp;= \mathcal {H}(x,u^\star ,V_t,t)\\ \Longrightarrow -V_t &amp;= x^T Q x + (u^\star )^T R u^\star + V_x^T \left (A x + B u^\star \right )  \end{align*}
-     </p><!-- l. 141 --><p class='noindent'>\begin{align}  \Longrightarrow -V_t &amp;= x^T Q x - \frac {1}{4} V_x^T B R^{-1} B^T V_x + V_x^T A x  \end{align}
+     <!-- l. 135 --><p class='noindent'> \begin {align*}  -V_t(x,t) &amp;= \mathcal {H}(x,u^\star ,V_t,t)\\ \Longrightarrow -V_t &amp;= x^T Q x + (u^\star )^T R u^\star + V_x^T \left (A x + B u^\star \right )  \end {align*}
+     </p><!-- l. 141 --><p class='noindent'>\begin {align}  \Longrightarrow -V_t &amp;= x^T Q x - \frac {1}{4} V_x^T B R^{-1} B^T V_x + V_x^T A x  \end {align}
 </p>
      </li></ol>
 <!-- l. 144 --><p class='indent'>   Suponga que: \(V(x,t) = x^T P(t) x\), \(P(t) \in \mathbb {R}^{n \times n}\), \(P^T (t)=P(t)\), \(P(t) \succ 0\)
-</p><!-- l. 149 --><p class='indent'>   \begin{align*}  V_t &amp;= x^T \dot {P}(t) x\\ V_x &amp;= 2 P(t) x  \end{align*}
+</p><!-- l. 149 --><p class='indent'>   \begin {align*}  V_t &amp;= x^T \dot {P}(t) x\\ V_x &amp;= 2 P(t) x  \end {align*}
 </p><!-- l. 151 --><p class='indent'>   Sustituyendo en (12):
-</p><!-- l. 157 --><p class='indent'>   \begin{align*}  -x^T \dot {P}x &amp;= x^T Q x-\frac {1}{4} \left ( 2 P x \right )^T B R^{-1} B^T \left ( 2 P x \right ) + \left ( 2 P x \right )^T Ax\\ \Longrightarrow -x^T \dot {P} x &amp;= x^T \left [Q + PA + A^T P - P^T B R^{-1} B^T P \right ]x\\ \Longrightarrow -\dot {P} &amp;= Q + P A +A^T P -P^T BR^{-1}B^T P \quad \text {(Ecuación de Riccati)}  \end{align*}
+</p><!-- l. 157 --><p class='indent'>   \begin {align*}  -x^T \dot {P}x &amp;= x^T Q x-\frac {1}{4} \left ( 2 P x \right )^T B R^{-1} B^T \left ( 2 P x \right ) + \left ( 2 P x \right )^T Ax\\ \Longrightarrow -x^T \dot {P} x &amp;= x^T \left [Q + PA + A^T P - P^T B R^{-1} B^T P \right ]x\\ \Longrightarrow -\dot {P} &amp;= Q + P A +A^T P -P^T BR^{-1}B^T P \quad \text {(Ecuación de Riccati)}  \end {align*}
 </p><!-- l. 159 --><p class='indent'>   Para resolver la ecuación (diferencial) de Ricatti, es necesaria una condición inicial (o final). En estos casos, se
 ocupa el costo terminal para obtener \(P(t_f) = Q_f\), y con este valor hacer la integración numérica de la EDO hacia atrás (“<span class='cmti-10'>backwards
 integration</span>”), hasta obtener \(P(t)\).
                                                                                          
                                                                                          
 </p><!-- l. 161 --><p class='indent'>   Sea el cambio de variable \(\tau = t_f - t, \tau \in [0, t_f-t_0]\):
-</p><!-- l. 165 --><p class='indent'>   \begin{align}  \frac {dP}{dt} = \frac {dP}{d\tau } \frac {d\tau }{dt} = -\frac {dP}{d\tau }  \end{align}
+</p><!-- l. 165 --><p class='indent'>   \begin {align}  \frac {dP}{dt} = \frac {dP}{d\tau } \frac {d\tau }{dt} = -\frac {dP}{d\tau }  \end {align}
 </p><!-- l. 167 --><p class='indent'>   Entonces:
-</p><!-- l. 172 --><p class='indent'>   \begin{align*}  \dot {P}(\tau ) &amp;= Q + P(\tau ) A +A^T P(\tau ) - P(\tau )^T B R^{-1} B^T P(\tau ), \quad \forall \tau \in [0,t_f - t_0] \\ P(0) &amp;= Q_f  \end{align*}
+</p><!-- l. 172 --><p class='indent'>   \begin {align*}  \dot {P}(\tau ) &amp;= Q + P(\tau ) A +A^T P(\tau ) - P(\tau )^T B R^{-1} B^T P(\tau ), \quad \forall \tau \in [0,t_f - t_0] \\ P(0) &amp;= Q_f  \end {align*}
 </p><!-- l. 174 --><p class='indent'>   Resuelto \(P(t)\), se calcula la ganancia del controlador:
-</p><!-- l. 182 --><p class='indent'>   \begin{align*}  V(x,t) &amp;= x^T P(t)x \\ V_x(x,t) &amp;= 2 P(t) x\\ \Longrightarrow u^\star &amp;= \frac {1}{2} R^{-1} B^T V_x(x,t) = -\frac {1}{2} R^{-1} B^T \left ( 2 P(t) x \right )\\ u^\star &amp;= - R^{-1} B^T P(t) x\\ u^\star &amp;= -K(t) x  \end{align*}
+</p><!-- l. 182 --><p class='indent'>   \begin {align*}  V(x,t) &amp;= x^T P(t)x \\ V_x(x,t) &amp;= 2 P(t) x\\ \Longrightarrow u^\star &amp;= \frac {1}{2} R^{-1} B^T V_x(x,t) = -\frac {1}{2} R^{-1} B^T \left ( 2 P(t) x \right )\\ u^\star &amp;= - R^{-1} B^T P(t) x\\ u^\star &amp;= -K(t) x  \end {align*}
 </p><!-- l. 184 --><p class='indent'>   donde \(K(t) = R^{-1} B^T P(t) \Longrightarrow \) Control óptimo LQR de horizonte finito (gains variable en el tiempo)
 </p><!-- l. 252 --><p class='noindent'>
 </p>

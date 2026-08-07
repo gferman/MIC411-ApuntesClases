@@ -18,17 +18,27 @@ body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right:
 .home-btn:hover { background: #0056b3; }
 .tableofcontents { display: none; }
 .sidebar-custom .tableofcontents { display: block; margin-top: 0; }
-.sidebar-custom .tableofcontents a { text-decoration: none; color: #0366d6; display: block; padding: 6px 0; border-bottom: 1px solid #eee; }
-.sidebar-custom .tableofcontents a:hover { background: #e9ecef; }
-img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
 
-/* Ocultar botones antiguos de navegación */
+/* Ocultar botones antiguos y brs de tex4ht */
 .crosslinks { display: none !important; }
+.tableofcontents br { display: none; } 
 
-/* Ocultar elementos móviles en modo Desktop */
+/* Estilos Just the Docs para TOC */
+.sidebar-custom .tableofcontents a { text-decoration: none; color: #0366d6; padding: 4px 0; display: inline-block; }
+.sidebar-custom .tableofcontents a:hover { background: transparent; text-decoration: underline; }
+.nav-toggle {
+  display: inline-block; width: 16px; text-align: center; cursor: pointer;
+  color: #666; transition: transform 0.2s ease; font-size: 0.75em;
+  user-select: none; margin-right: 5px;
+}
+.nav-toggle.open { transform: rotate(90deg); }
+.nav-sublist { padding-left: 20px; margin-top: 4px; }
+.chapterToc, .appendixToc, .partToc, .sectionToc, .subsectionToc { display: block; margin-top: 6px; }
+.partToc { font-weight: bold; margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+
+img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
 .mobile-header, .sidebar-overlay { display: none; }
 
-/* Diseño para móviles (Pantallas menores a 800px) */
 @media (max-width: 800px) {
   body { margin-left: 10px !important; margin-right: 10px !important; padding-top: 65px; }
   .mobile-header {
