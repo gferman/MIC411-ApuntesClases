@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Menú lateral filtrado y colapsable)
+      - name: Crear JS y CSS del Dashboard (Menú filtrado e inteligente)
         run: |
           cat << 'EOF' > custom.css
           :root { --sidebar-width: 330px; }
@@ -143,14 +143,13 @@ jobs:
                 let toc = doc.querySelector(".tableofcontents");
                 
                 if(toc) {
-                  // === RECONSTRUIR TOC ESTILO "JUST THE DOCS" ===
-                  // Seleccionamos exclusivamente etiquetas válidas (ignorando BR y nodos de texto vacíos)
                   let tocElements = Array.from(toc.querySelectorAll("[class*='Toc']"));
                   let newToc = document.createElement("div");
                   newToc.className = "tableofcontents";
                   
                   let currentPartWrapper = null;
                   let currentChapWrapper = null;
+                  let skipSections = false; // FLAG INTELIGENTE PARA OCULTAR "VERSIONES"
 
                   function addToggle(parentNode, wrapperNode) {
                       let toggle = document.createElement("span");
@@ -172,27 +171,29 @@ jobs:
                   }
 
                   tocElements.forEach(node => {
-                      // Desconectar el nodo de su estructura original plana
                       if (node.parentNode) node.parentNode.removeChild(node);
                       
                       let isPart = node.classList.contains("partToc");
                       let isChap = node.classList.contains("chapterToc") || node.classList.contains("appendixToc");
                       
                       if (isPart) {
+                          skipSections = false; // Resetea la bandera por si acaso
                           newToc.appendChild(node);
-                          // Crear la "carpeta" donde irán los capítulos de esta parte
                           currentPartWrapper = document.createElement("div");
                           currentPartWrapper.className = "nav-sublist part-sublist";
                           currentPartWrapper.style.display = "none";
                           newToc.appendChild(currentPartWrapper);
                           addToggle(node, currentPartWrapper);
-                          currentChapWrapper = null; // Reiniciamos el contenedor de capítulos
+                          currentChapWrapper = null; 
                       } 
                       else if (isChap) {
+                          // Si el capítulo se llama "Versiones", prendemos la bandera para ignorar todo lo de adentro
+                          let chapText = (node.textContent || "").toLowerCase();
+                          skipSections = chapText.includes("versiones") || chapText.includes("versión");
+                          
                           let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
                           targetParent.appendChild(node);
                           
-                          // Crear la "carpeta" donde irán las secciones de este capítulo
                           currentChapWrapper = document.createElement("div");
                           currentChapWrapper.className = "nav-sublist chap-sublist";
                           currentChapWrapper.style.display = "none";
@@ -200,16 +201,21 @@ jobs:
                           addToggle(node, currentChapWrapper);
                       } 
                       else {
-                          // Secciones y subsecciones: van dentro del capítulo actual
+                          // FILTRO: Si estamos en el capítulo de Versiones, ignorar nodo.
+                          let secText = (node.textContent || "").toLowerCase();
+                          if (skipSections || secText.includes("versión") || secText.includes("versiones")) {
+                              return; // No se agrega al árbol, queda oculto para siempre
+                          }
+                          
                           let targetParent = currentChapWrapper ? currentChapWrapper : (currentPartWrapper ? currentPartWrapper : newToc);
                           targetParent.appendChild(node);
                       }
                   });
                   
-                  // Auto-expandir carpetas de la página actual
+                  // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
                   let wrappers = newToc.querySelectorAll(".nav-sublist");
                   wrappers.forEach(wrapper => {
-                      // Ocultar la flecha si el capítulo/parte no tiene nada adentro
+                      // Si la carpeta quedó vacía (como pasará con "Versiones"), esconder el triángulo
                       if (wrapper.children.length === 0) {
                           let prev = wrapper.previousElementSibling;
                           if (prev) {
@@ -325,7 +331,9 @@ jobs:
 
           def clean_title(match):
               title = html.unescape(match.group(1))
+              # Remover acentos reales convirtiéndolos a su letra base
               title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
+              # Destruir radicalmente TODO lo que no sea letra, numero o espacio
               title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
               title = re.sub(r'\s+', ' ', title).strip()
               return f"<title>{title}</title>"
@@ -338,10 +346,10 @@ jobs:
                   # 1. Limpieza destructiva del título (Sin acentos ni símbolos flotantes)
                   content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
 
-                  # 2. Reemplazar TODO espacio HTML duro por espacios limpios
+                  # 2. Reemplazar espacios duros HTML inyectados por make4ht
                   content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
                   
-                  # 3. Remover el espacio problemático inmediatamente antes de un _ o un ^
+                  # 3. Remover el espacio molesto antes de subíndices (_) y superíndices (^)
                   content = re.sub(r'[ \t]+_', '_', content)
                   content = re.sub(r'[ \t]+\^', '^', content)
 
