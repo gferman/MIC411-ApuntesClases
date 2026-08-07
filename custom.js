@@ -37,14 +37,13 @@ document.addEventListener("DOMContentLoaded", function() {
       let toc = doc.querySelector(".tableofcontents");
       
       if(toc) {
-        // === RECONSTRUIR TOC ESTILO "JUST THE DOCS" ===
-        // Seleccionamos exclusivamente etiquetas válidas (ignorando BR y nodos de texto vacíos)
         let tocElements = Array.from(toc.querySelectorAll("[class*='Toc']"));
         let newToc = document.createElement("div");
         newToc.className = "tableofcontents";
         
         let currentPartWrapper = null;
         let currentChapWrapper = null;
+        let skipSections = false; // FLAG INTELIGENTE PARA OCULTAR "VERSIONES"
 
         function addToggle(parentNode, wrapperNode) {
             let toggle = document.createElement("span");
@@ -66,27 +65,29 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         tocElements.forEach(node => {
-            // Desconectar el nodo de su estructura original plana
             if (node.parentNode) node.parentNode.removeChild(node);
             
             let isPart = node.classList.contains("partToc");
             let isChap = node.classList.contains("chapterToc") || node.classList.contains("appendixToc");
             
             if (isPart) {
+                skipSections = false; // Resetea la bandera por si acaso
                 newToc.appendChild(node);
-                // Crear la "carpeta" donde irán los capítulos de esta parte
                 currentPartWrapper = document.createElement("div");
                 currentPartWrapper.className = "nav-sublist part-sublist";
                 currentPartWrapper.style.display = "none";
                 newToc.appendChild(currentPartWrapper);
                 addToggle(node, currentPartWrapper);
-                currentChapWrapper = null; // Reiniciamos el contenedor de capítulos
+                currentChapWrapper = null; 
             } 
             else if (isChap) {
+                // Si el capítulo se llama "Versiones", prendemos la bandera para ignorar todo lo de adentro
+                let chapText = (node.textContent || "").toLowerCase();
+                skipSections = chapText.includes("versiones") || chapText.includes("versión");
+                
                 let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
                 targetParent.appendChild(node);
                 
-                // Crear la "carpeta" donde irán las secciones de este capítulo
                 currentChapWrapper = document.createElement("div");
                 currentChapWrapper.className = "nav-sublist chap-sublist";
                 currentChapWrapper.style.display = "none";
@@ -94,16 +95,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 addToggle(node, currentChapWrapper);
             } 
             else {
-                // Secciones y subsecciones: van dentro del capítulo actual
+                // FILTRO: Si estamos en el capítulo de Versiones, ignorar nodo.
+                let secText = (node.textContent || "").toLowerCase();
+                if (skipSections || secText.includes("versión") || secText.includes("versiones")) {
+                    return; // No se agrega al árbol, queda oculto para siempre
+                }
+                
                 let targetParent = currentChapWrapper ? currentChapWrapper : (currentPartWrapper ? currentPartWrapper : newToc);
                 targetParent.appendChild(node);
             }
         });
         
-        // Auto-expandir carpetas de la página actual
+        // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
         let wrappers = newToc.querySelectorAll(".nav-sublist");
         wrappers.forEach(wrapper => {
-            // Ocultar la flecha si el capítulo/parte no tiene nada adentro
+            // Si la carpeta quedó vacía (como pasará con "Versiones"), esconder el triángulo
             if (wrapper.children.length === 0) {
                 let prev = wrapper.previousElementSibling;
                 if (prev) {
