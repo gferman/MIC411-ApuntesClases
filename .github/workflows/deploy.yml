@@ -25,10 +25,10 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Menú lateral colapsable)
+      - name: Crear JS y CSS del Dashboard (Partes y Capítulos colapsables)
         run: |
           cat << 'EOF' > custom.css
-          :root { --sidebar-width: 320px; }
+          :root { --sidebar-width: 330px; }
           body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right: 20px; font-family: sans-serif; }
           .sidebar-custom {
             position: fixed; top: 0; left: 0; bottom: 0;
@@ -49,22 +49,25 @@ jobs:
           .tableofcontents { display: none; }
           .sidebar-custom .tableofcontents { display: block; margin-top: 0; }
           
-          /* Ocultar botones antiguos y brs de tex4ht */
+          /* Ocultar elementos predeterminados de tex4ht */
           .crosslinks { display: none !important; }
           .tableofcontents br { display: none; } 
           
-          /* Estilos Just the Docs para TOC */
+          /* Diseño de los Toggles y Niveles */
           .sidebar-custom .tableofcontents a { text-decoration: none; color: #0366d6; padding: 4px 0; display: inline-block; }
           .sidebar-custom .tableofcontents a:hover { background: transparent; text-decoration: underline; }
           .nav-toggle {
-            display: inline-block; width: 16px; text-align: center; cursor: pointer;
-            color: #666; transition: transform 0.2s ease; font-size: 0.75em;
-            user-select: none; margin-right: 5px;
+            display: inline-block; width: 18px; text-align: center; cursor: pointer;
+            color: #666; transition: transform 0.2s ease; font-size: 0.8em;
+            user-select: none; margin-right: 2px;
           }
-          .nav-toggle.open { transform: rotate(90deg); }
-          .nav-sublist { padding-left: 20px; margin-top: 4px; }
-          .chapterToc, .appendixToc, .partToc, .sectionToc, .subsectionToc { display: block; margin-top: 6px; }
-          .partToc { font-weight: bold; margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+          .nav-toggle.open { transform: rotate(90deg); color: #0366d6; }
+          .nav-sublist { padding-left: 18px; margin-top: 2px; margin-bottom: 6px; border-left: 1px solid #ddd; margin-left: 7px; }
+          
+          /* Espaciados por nivel */
+          .partToc { font-weight: bold; margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 4px; font-size: 1.05em; }
+          .chapterToc, .appendixToc { margin-top: 8px; font-weight: 600; }
+          .sectionToc, .subsectionToc { margin-top: 4px; font-size: 0.95em; }
           
           img { max-width: 100%; height: auto !important; display: block; margin: 1em auto; }
           .mobile-header, .sidebar-overlay { display: none; }
@@ -81,10 +84,7 @@ jobs:
               cursor: pointer; margin-right: 15px; font-weight: bold;
             }
             .mobile-title { font-size: 1.1em; font-weight: bold; }
-            .sidebar-custom {
-              left: calc(-1 * var(--sidebar-width));
-              z-index: 10001; 
-            }
+            .sidebar-custom { left: calc(-1 * var(--sidebar-width)); z-index: 10001; }
             .sidebar-custom.open { left: 0; }
             .sidebar-overlay {
               display: block; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -135,86 +135,115 @@ jobs:
                 let toc = doc.querySelector(".tableofcontents");
                 
                 if(toc) {
-                  // === INICIO LÓGICA COLLAPSIBLE (JUST THE DOCS) ===
                   let rootItems = Array.from(toc.childNodes);
-                  let currentWrapper = null;
-                  
-                  // Crear un nuevo contenedor para el índice reorganizado
                   let newToc = document.createElement("div");
                   newToc.className = "tableofcontents";
                   
-                  rootItems.forEach(node => {
-                    if (node.nodeType === 1 && (node.classList.contains("chapterToc") || node.classList.contains("appendixToc") || node.classList.contains("partToc"))) {
-                        // Nodo principal: Lo agregamos directo a la raíz
-                        newToc.appendChild(node);
-                        
-                        // Si es capítulo o apéndice, creamos su "carpeta" colapsable
-                        if(node.classList.contains("chapterToc") || node.classList.contains("appendixToc")) {
-                            // 1. Inyectar flecha (triángulo)
-                            let toggle = document.createElement("span");
-                            toggle.className = "nav-toggle";
-                            toggle.innerHTML = "▶";
-                            node.insertBefore(toggle, node.firstChild);
-                            
-                            // 2. Crear contenedor interno oculto
-                            currentWrapper = document.createElement("div");
-                            currentWrapper.className = "nav-sublist";
-                            currentWrapper.style.display = "none";
-                            newToc.appendChild(currentWrapper);
-                            
-                            // 3. Agregar evento click a la flecha
-                            toggle.addEventListener("click", (e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                if (currentWrapper.style.display === "none") {
-                                    currentWrapper.style.display = "block";
-                                    toggle.classList.add("open");
-                                } else {
-                                    currentWrapper.style.display = "none";
-                                    toggle.classList.remove("open");
-                                }
-                            });
-                        } else {
-                            currentWrapper = null; // Si es parte, no agrupa secciones
-                        }
-                    } else if (currentWrapper && node.nodeType === 1 && node.tagName !== "BR") {
-                        // Es una subsección: La guardamos dentro de la carpeta del capítulo actual
-                        currentWrapper.appendChild(node);
-                    } else if (!currentWrapper && node.nodeType === 1 && node.tagName !== "BR") {
-                        // Elementos huérfanos antes del primer capítulo
-                        newToc.appendChild(node);
-                    }
-                  });
-                  
-                  // === AUTO-EXPANDIR EL CAPÍTULO ACTUAL ===
-                  let chapters = newToc.querySelectorAll(".chapterToc, .appendixToc");
-                  chapters.forEach(chap => {
-                      let wrapper = chap.nextElementSibling;
-                      if (wrapper && wrapper.classList.contains("nav-sublist")) {
-                          // Si un capítulo no tiene secciones, ocultar la flecha
-                          if (wrapper.children.length === 0) {
-                              let toggle = chap.querySelector(".nav-toggle");
-                              if(toggle) toggle.style.visibility = "hidden";
+                  let currentPartWrapper = null;
+                  let currentChapWrapper = null;
+
+                  // Helper para inyectar flechas desplegables
+                  function addToggle(parentNode, wrapperNode) {
+                      let toggle = document.createElement("span");
+                      toggle.className = "nav-toggle";
+                      toggle.innerHTML = "▶";
+                      parentNode.insertBefore(toggle, parentNode.firstChild);
+                      
+                      toggle.addEventListener("click", (e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          if (wrapperNode.style.display === "none") {
+                              wrapperNode.style.display = "block";
+                              toggle.classList.add("open");
+                          } else {
+                              wrapperNode.style.display = "none";
+                              toggle.classList.remove("open");
                           }
+                      });
+                      return toggle;
+                  }
+
+                  // 1. Reconstruir la jerarquía: Parte > Capítulo > Sección
+                  rootItems.forEach(node => {
+                      if (node.nodeType === 1 && node.tagName !== "BR") {
+                          // Limpiar cualquier inline style que tex4ht haya exportado
+                          node.style.display = ""; 
                           
-                          // Recolectar todos los links de este capítulo (incluyendo el título padre)
-                          let links = [];
-                          if (chap.querySelector("a")) links.push(chap.querySelector("a").getAttribute("href").split('#')[0]);
-                          wrapper.querySelectorAll("a").forEach(a => links.push(a.getAttribute("href").split('#')[0]));
-                          
-                          // Si el archivo en el que estamos coincide con alguno del bloque, expandir
-                          if (links.includes(currentFile)) {
-                              wrapper.style.display = "block";
-                              let toggle = chap.querySelector(".nav-toggle");
-                              if(toggle) toggle.classList.add("open");
+                          if (node.classList.contains("partToc")) {
+                              // Nueva Parte
+                              newToc.appendChild(node);
+                              currentPartWrapper = document.createElement("div");
+                              currentPartWrapper.className = "nav-sublist part-sublist";
+                              currentPartWrapper.style.display = "none"; // Oculto por defecto
+                              newToc.appendChild(currentPartWrapper);
+                              addToggle(node, currentPartWrapper);
+                              currentChapWrapper = null; // Reiniciar capítulo al cambiar de parte
+                          } 
+                          else if (node.classList.contains("chapterToc") || node.classList.contains("appendixToc")) {
+                              // Nuevo Capítulo (va dentro de la parte actual, si existe)
+                              let targetParent = currentPartWrapper ? currentPartWrapper : newToc;
+                              targetParent.appendChild(node);
+                              
+                              currentChapWrapper = document.createElement("div");
+                              currentChapWrapper.className = "nav-sublist chap-sublist";
+                              currentChapWrapper.style.display = "none"; // Oculto por defecto
+                              targetParent.appendChild(currentChapWrapper);
+                              addToggle(node, currentChapWrapper);
+                          } 
+                          else {
+                              // Es una Sección, Subsección, etc.
+                              if (currentChapWrapper) {
+                                  currentChapWrapper.appendChild(node); // Va en el capítulo
+                              } else if (currentPartWrapper) {
+                                  currentPartWrapper.appendChild(node); // Va en la parte (raro pero posible)
+                              } else {
+                                  newToc.appendChild(node); // Huérfano en la raíz
+                              }
                           }
                       }
                   });
                   
+                  // 2. Auto-expandir el menú según la página actual
+                  let wrappers = newToc.querySelectorAll(".nav-sublist");
+                  wrappers.forEach(wrapper => {
+                      // Si la carpeta quedó vacía, esconder el triángulo
+                      if (wrapper.children.length === 0) {
+                          let prev = wrapper.previousElementSibling;
+                          if (prev) {
+                              let t = prev.querySelector(".nav-toggle");
+                              if (t) t.style.visibility = "hidden";
+                          }
+                      }
+                      
+                      // Extraer links dentro de este nivel y del título padre
+                      let links = Array.from(wrapper.querySelectorAll("a")).map(a => a.getAttribute("href").split('#')[0]);
+                      let parentLinkNode = wrapper.previousElementSibling;
+                      if (parentLinkNode && parentLinkNode.querySelector("a")) {
+                          links.push(parentLinkNode.querySelector("a").getAttribute("href").split('#')[0]);
+                      }
+                      
+                      // Si estamos en este capítulo/parte, lo abrimos
+                      if (links.includes(currentFile)) {
+                          wrapper.style.display = "block";
+                          if (parentLinkNode) {
+                              let t = parentLinkNode.querySelector(".nav-toggle");
+                              if (t) t.classList.add("open");
+                          }
+                          // Si abrimos un capítulo, nos aseguramos de abrir la Parte que lo contiene
+                          let parentPartWrapper = wrapper.closest(".part-sublist");
+                          if (parentPartWrapper) {
+                              parentPartWrapper.style.display = "block";
+                              let pToggle = parentPartWrapper.previousElementSibling.querySelector(".nav-toggle");
+                              if (pToggle) pToggle.classList.add("open");
+                          }
+                      }
+                  });
+                  
+                  // Reemplazar el viejo índice plano por el nuevo jerárquico
                   document.querySelector(".sidebar-toc").innerHTML = "";
                   document.querySelector(".sidebar-toc").appendChild(newToc);
                   
-                  // Cerrar overlay en móviles al hacer click
+                  // Cerrar menú móvil al seleccionar una opción
                   document.querySelectorAll(".sidebar-custom .tableofcontents a").forEach(link => {
                     link.addEventListener("click", () => {
                       sidebar.classList.remove("open");
@@ -300,7 +329,9 @@ jobs:
           def clean_title(match):
               title = match.group(1)
               title = html.unescape(title)
+              # Remover acentos reales convirtiéndolos a su letra base
               title = ''.join(c for c in unicodedata.normalize('NFD', title) if unicodedata.category(c) != 'Mn')
+              # Destruir radicalmente TODO lo que no sea letra, numero o espacio
               title = re.sub(r'[^a-zA-Z0-9\s\-]', '', title)
               title = re.sub(r'\s+', ' ', title).strip()
               return f"<title>{title}</title>"
@@ -313,10 +344,10 @@ jobs:
                   # 1. Limpiar el título
                   content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
 
-                  # 2. Reemplazar espacios duros HTML
+                  # 2. Reemplazar espacios duros HTML inyectados por make4ht
                   content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
                   
-                  # 3. Eliminar espacios antes de _ y ^
+                  # 3. Remover el espacio molesto antes de subíndices (_) y superíndices (^)
                   content = re.sub(r'[ \t]+_', '_', content)
                   content = re.sub(r'[ \t]+\^', '^', content)
 
