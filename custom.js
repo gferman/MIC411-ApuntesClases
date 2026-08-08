@@ -99,6 +99,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 return; 
             }
 
+            // LÓGICA PARA EXTRAER BIBLIOGRAFÍA DEL APÉNDICE
+            if (level === 1 && (textLower.includes("bibliografía") || textLower.includes("bibliografia"))) {
+                currentPartWrapper = null; // Rompe el vínculo con la parte anterior
+            }
+
             // Construcción del Árbol HTML
             if (level === 0) {
                 newToc.appendChild(node);
@@ -125,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         
-        // Auto-expandir carpetas
         let wrappers = newToc.querySelectorAll(".nav-sublist");
         wrappers.forEach(wrapper => {
             if (wrapper.children.length === 0) {
