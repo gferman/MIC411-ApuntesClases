@@ -205,6 +205,11 @@ jobs:
                           return; 
                       }
 
+                      // LÓGICA PARA EXTRAER BIBLIOGRAFÍA DEL APÉNDICE
+                      if (level === 1 && (textLower.includes("bibliografía") || textLower.includes("bibliografia"))) {
+                          currentPartWrapper = null; // Rompe el vínculo con la parte anterior
+                      }
+
                       // Construcción del Árbol HTML
                       if (level === 0) {
                           newToc.appendChild(node);
@@ -231,7 +236,6 @@ jobs:
                       }
                   });
                   
-                  // Auto-expandir carpetas
                   let wrappers = newToc.querySelectorAll(".nav-sublist");
                   wrappers.forEach(wrapper => {
                       if (wrapper.children.length === 0) {
@@ -302,12 +306,14 @@ jobs:
           \Configure{Gin-dim}{}
           
           \makeatletter
+          % Solución para desempaquetar subequations y enviarlas crudas a MathJax
           \ConfigureEnv{subequations}
           {\unvbox\voidb@x}
           {\unvbox\voidb@x} 
           {}
           {}
           
+          % Corrección de símbolos % y ~
           \catcode`\#=12
           \gdef\mypercent{\HCode{&#37;}}
           \catcode`\#=6
@@ -343,7 +349,7 @@ jobs:
       - name: Limpiar HTML (Acentos, Espacios Fantasmas y MathJax)
         run: |
           cat << 'EOF' > clean_html.py
-          import glob, re, html
+          import glob, re, html, unicodedata
 
           def clean_title(match):
               title = html.unescape(match.group(1))
