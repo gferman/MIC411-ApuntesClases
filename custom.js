@@ -2,14 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
   let currentPath = window.location.pathname.split('/').pop() || "index.html";
   let currentFile = (currentPath === "index.html" || currentPath === "") ? "MIC411apuntes.html" : currentPath;
 
-  // Destruir los mini-TOCs generados en el cuerpo de los capítulos
-  document.querySelectorAll('[class*="TOCS"]').forEach(el => {
-      if (!el.closest('.sidebar-custom')) el.remove();
-  });
-
-  // ELIMINAR EL TOC DEL CUERPO SOLO EN LA PÁGINA DE INICIO (Para dejar la portada limpia)
+  // ELIMINAR LOS ÍNDICES DEL CUERPO *SOLO* EN LA PÁGINA DE INICIO PARA UNA PORTADA LIMPIA
   if (currentFile === "MIC411apuntes.html") {
-      document.querySelectorAll('.tableofcontents').forEach(el => {
+      document.querySelectorAll('.tableofcontents, [class*="TOCS"]').forEach(el => {
           if (!el.closest('.sidebar-custom')) el.remove();
       });
   }
@@ -93,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let textLower = (node.textContent || "").toLowerCase().trim();
 
-            // === LÓGICA DE FILTRADO PARA VERSIONES ===
+            // LÓGICA DE FILTRADO PARA VERSIONES
             if (level === 0) {
                 inVersionesChapter = false; 
             } else if (level === 1) {
@@ -130,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         
-        // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
+        // Auto-expandir carpetas
         let wrappers = newToc.querySelectorAll(".nav-sublist");
         wrappers.forEach(wrapper => {
             if (wrapper.children.length === 0) {
