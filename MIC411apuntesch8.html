@@ -102,7 +102,7 @@ de la instrumentación.
 </p>
    </figure>
    <h3 class='sectionHead' id='metodos-noparametricos-de-estimacion-espectral'><span class='titlemark'>8.3.   </span> <a id='x14-1400008.3'></a>Métodos no-paramétricos de estimación espectral</h3>
-<!-- l. 79 --><p class='noindent'>Referencias: <a id='x14-140001'></a>Craig y Kurdila (<a href='MIC411apuntesli4.html#cite.0@craig2006fundamentalsstructural'>2006</a>, Sec. 18.4) y <a id='x14-140002'></a>Bendat y Piersol (<a href='MIC411apuntesli4.html#cite.0@Bendat2011'>2011</a>, Cap. 6).
+<!-- l. 79 --><p class='noindent'>Referencias: <a id='x14-140001'></a>Craig y Kurdila (<a href='MIC411apuntesli5.html#cite.0@craig2006fundamentalsstructural'>2006</a>, Sec. 18.4) y <a id='x14-140002'></a>Bendat y Piersol (<a href='MIC411apuntesli5.html#cite.0@Bendat2011'>2011</a>, Cap. 6).
 </p><!-- l. 81 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='definiciones'><span class='titlemark'>8.3.1.   </span> <a id='x14-1410008.3.1'></a>Definiciones</h4>
@@ -266,7 +266,7 @@ determinan usando el método de Welch. Link: <a class='url' href='https://www.ma
 </p><!-- l. 351 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='frecuencias-y-formas-modales-utilizando-peakpicking'><span class='titlemark'>8.3.10.   </span> <a id='x14-1500008.3.10'></a>Frecuencias y formas modales utilizando <span class='cmti-10'>peak-picking</span></h4>
-<!-- l. 353 --><p class='noindent'>Referencia: <a id='x14-150001'></a>Craig y Kurdila (<a href='MIC411apuntesli4.html#cite.0@craig2006fundamentalsstructural'>2006</a>, Sec. 18.6)
+<!-- l. 353 --><p class='noindent'>Referencia: <a id='x14-150001'></a>Craig y Kurdila (<a href='MIC411apuntesli5.html#cite.0@craig2006fundamentalsstructural'>2006</a>, Sec. 18.6)
 </p><!-- l. 355 --><p class='indent'>   Considere la EDM de un sistema MDOF:
 </p><!-- l. 359 --><p class='indent'>   \begin {equation}  M \ddot {u} + C \dot {u} + K u = G p(t)  \end {equation}<a id='x14-150002r1'></a>
 </p><!-- l. 361 --><p class='noindent'>donde \(u(t) \in \mathbb {R}^n\) y \(p(t) \in \mathbb {R}\) son los GLs y la excitación, respectivamente; \(M \in \mathbb {R}^{n \times n}\), \(C \in \mathbb {R}^{n \times n}\) y \(K \in \mathbb {R}^{n \times n}\) son las matrices de masa, amortiguamiento y rigidez,
@@ -311,7 +311,7 @@ name="MIC411apuntes0x.svg" src="Figuras/expmodeshapes.JPG"
                                                                                          
    </figure>
    <h4 class='subsectionHead' id='ajuste-de-modelos-no-parametricos'><span class='titlemark'>8.3.11.   </span> <a id='x14-1510008.3.11'></a>Ajuste de modelos no paramétricos</h4>
-<!-- l. 431 --><p class='noindent'>Métodos de estimación de parámetros (<a id='x14-151001'></a>Ljung, <a href='MIC411apuntesli4.html#cite.0@Ljung1998'>1998</a>, Cap. 7):
+<!-- l. 431 --><p class='noindent'>Métodos de estimación de parámetros (<a id='x14-151001'></a>Ljung, <a href='MIC411apuntesli5.html#cite.0@Ljung1998'>1998</a>, Cap. 7):
 </p>
      <ul class='itemize1'>
      <li class='itemize'>Least squares (LS)
@@ -334,7 +334,7 @@ OMA).
 </p>
    <h4 class='subsectionHead' id='frequency-domain-decomposition-fdd'><span class='titlemark'>8.4.1.   </span> <a id='x14-1530008.4.1'></a>Frequency domain decomposition (FDD)</h4>
 <!-- l. 448 --><p class='noindent'>El método de descomposición en el dominio de la frecuencia (FDD) permite aproximar las frecuencias y modos de
-vibrar a partir del cálculo de descomposición de valores singulares de la función de PSD (<a id='x14-153001'></a>Brincker et al., <a href='MIC411apuntesli4.html#cite.0@brincker2001modalidentification'>2001</a>). Los
+vibrar a partir del cálculo de descomposición de valores singulares de la función de PSD (<a id='x14-153001'></a>Brincker et al., <a href='MIC411apuntesli5.html#cite.0@brincker2001modalidentification'>2001</a>). Los
 valores singulares se pueden utilizar para definir un sistema SDOF equivalente caracterizado por los mismos
 parámetros modales que el sistema MDOF que se está investigando.
 </p><!-- l. 452 --><p class='indent'>   Algoritmo:
@@ -376,7 +376,7 @@ frecuencia.
 </p><!-- l. 482 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='eigensystem-realization-algorithm-era'><span class='titlemark'>8.4.3.   </span> <a id='x14-1550008.4.3'></a>Eigensystem Realization Algorithm (ERA)</h4>
-<!-- l. 484 --><p class='noindent'>Referencia: <a id='x14-155001'></a>Juang y Pappa (<a href='MIC411apuntesli4.html#cite.0@Juang1985'>1985</a>)
+<!-- l. 484 --><p class='noindent'>Referencia: <a id='x14-155001'></a>Juang y Pappa (<a href='MIC411apuntesli5.html#cite.0@Juang1985'>1985</a>)
 </p><!-- l. 486 --><p class='indent'>   Matlab: <span class='cmtt-10'>era()</span>. URL: <a class='url' href='https://www.mathworks.com/help/ident/ref/era.html'>https://www.mathworks.com/help/ident/ref/era.html</a>
                                                                                          
                                                                                          
@@ -391,7 +391,7 @@ aplicada.
 </p><!-- l. 495 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='stochastic-subspace-identification-ssi'><span class='titlemark'>8.4.5.   </span> <a id='x14-1570008.4.5'></a>Stochastic Subspace Identification (SSI)</h4>
-<!-- l. 497 --><p class='noindent'>Referencia: <a id='x14-157001'></a>Van Overschee y De Moor (<a href='MIC411apuntesli4.html#cite.0@vanoverschee2011subspaceidentification'>2011</a>)
+<!-- l. 497 --><p class='noindent'>Referencia: <a id='x14-157001'></a>Van Overschee y De Moor (<a href='MIC411apuntesli5.html#cite.0@vanoverschee2011subspaceidentification'>2011</a>)
 </p><!-- l. 499 --><p class='indent'>   Clase de algoritmos que utilizan proyecciones (oblícuas) de subespacios y algebra lineal (factorización QR y SVD)
 para buscar la representación de variables de estado del sistema, \((A, B, C, D)\).
 </p><!-- l. 501 --><p class='indent'>   Alternativas para construir matriz Hankel: Data-Driven (SSI-DATA) y Covariance-Driven (SSI-COV).
