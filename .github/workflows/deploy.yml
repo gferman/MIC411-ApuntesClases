@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Menú lateral y Portada Limpia)
+      - name: Crear JS y CSS del Dashboard (Corrección de Índice General)
         run: |
           cat << 'EOF' > custom.css
           :root { --sidebar-width: 340px; }
@@ -50,13 +50,12 @@ jobs:
           /* Esconder botones antiguos (Prev/Next) */
           .crosslinks { display: none !important; }
           
-          /* === OCULTAR ÍNDICES NATIVOS DEL CUERPO (PORTADA LIMPIA) === */
-          .tableofcontents { display: none !important; }
+          /* Ocultar mini-TOCs (chapterTOCS) generados por tex4ht dentro de los capítulos */
+          [class*="TOCS"] { display: none !important; } 
+          
+          /* === FORZAR SALTOS DE LÍNEA Y ESTILOS "JUST THE DOCS" EN EL DASHBOARD === */
           .sidebar-custom .tableofcontents { display: block !important; margin-top: 0; }
           .sidebar-custom .tableofcontents br { display: none; } 
-          [class*="TOCS"] { display: none !important; } /* Oculta chapterTOCS generados por tex4ht */
-          
-          /* === FORZAR SALTOS DE LÍNEA Y ESTILOS "JUST THE DOCS" === */
           .sidebar-custom [class*='Toc'] { display: block; margin: 6px 0; line-height: 1.4; }
           .sidebar-custom [class*='Toc'] a { text-decoration: none; color: #0366d6; }
           .sidebar-custom [class*='Toc'] a:hover { text-decoration: underline; color: #0056b3; }
@@ -107,17 +106,22 @@ jobs:
 
           cat << 'EOF' > custom.js
           document.addEventListener("DOMContentLoaded", function() {
-            // Destruir el TOC original y los mini-TOCs del cuerpo de la página para tener portada limpia
-            document.querySelectorAll('.tableofcontents, [class*="TOCS"]').forEach(el => {
-                if (!el.closest('.sidebar-custom')) {
-                    el.remove();
-                }
-            });
-
-            if (document.querySelector(".sidebar-custom")) return;
-
             let currentPath = window.location.pathname.split('/').pop() || "index.html";
             let currentFile = (currentPath === "index.html" || currentPath === "") ? "MIC411apuntes.html" : currentPath;
+
+            // Destruir los mini-TOCs generados en el cuerpo de los capítulos
+            document.querySelectorAll('[class*="TOCS"]').forEach(el => {
+                if (!el.closest('.sidebar-custom')) el.remove();
+            });
+
+            // ELIMINAR EL TOC DEL CUERPO SOLO EN LA PÁGINA DE INICIO (Para dejar la portada limpia)
+            if (currentFile === "MIC411apuntes.html") {
+                document.querySelectorAll('.tableofcontents').forEach(el => {
+                    if (!el.closest('.sidebar-custom')) el.remove();
+                });
+            }
+
+            if (document.querySelector(".sidebar-custom")) return;
 
             let overlay = document.createElement("div");
             overlay.className = "sidebar-overlay";
@@ -196,6 +200,7 @@ jobs:
 
                       let textLower = (node.textContent || "").toLowerCase().trim();
 
+                      // === LÓGICA DE FILTRADO PARA VERSIONES ===
                       if (level === 0) {
                           inVersionesChapter = false; 
                       } else if (level === 1) {
@@ -206,6 +211,7 @@ jobs:
                           return; 
                       }
 
+                      // Construcción del Árbol HTML
                       if (level === 0) {
                           newToc.appendChild(node);
                           currentPartWrapper = document.createElement("div");
@@ -231,6 +237,7 @@ jobs:
                       }
                   });
                   
+                  // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
                   let wrappers = newToc.querySelectorAll(".nav-sublist");
                   wrappers.forEach(wrapper => {
                       if (wrapper.children.length === 0) {
