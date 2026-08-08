@@ -20,13 +20,12 @@ body { margin-left: calc(var(--sidebar-width) + 40px) !important; padding-right:
 /* Esconder botones antiguos (Prev/Next) */
 .crosslinks { display: none !important; }
 
-/* === OCULTAR ÍNDICES NATIVOS DEL CUERPO (PORTADA LIMPIA) === */
-.tableofcontents { display: none !important; }
+/* Ocultar mini-TOCs (chapterTOCS) generados por tex4ht dentro de los capítulos */
+[class*="TOCS"] { display: none !important; } 
+
+/* === FORZAR SALTOS DE LÍNEA Y ESTILOS "JUST THE DOCS" EN EL DASHBOARD === */
 .sidebar-custom .tableofcontents { display: block !important; margin-top: 0; }
 .sidebar-custom .tableofcontents br { display: none; } 
-[class*="TOCS"] { display: none !important; } /* Oculta chapterTOCS generados por tex4ht */
-
-/* === FORZAR SALTOS DE LÍNEA Y ESTILOS "JUST THE DOCS" === */
 .sidebar-custom [class*='Toc'] { display: block; margin: 6px 0; line-height: 1.4; }
 .sidebar-custom [class*='Toc'] a { text-decoration: none; color: #0366d6; }
 .sidebar-custom [class*='Toc'] a:hover { text-decoration: underline; color: #0056b3; }
