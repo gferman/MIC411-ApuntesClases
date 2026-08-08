@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
+  // Destruir el TOC original y los mini-TOCs del cuerpo de la página para tener portada limpia
+  document.querySelectorAll('.tableofcontents, [class*="TOCS"]').forEach(el => {
+      if (!el.closest('.sidebar-custom')) {
+          el.remove();
+      }
+  });
+
   if (document.querySelector(".sidebar-custom")) return;
 
   let currentPath = window.location.pathname.split('/').pop() || "index.html";
@@ -46,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         let currentPartWrapper = null;
         let currentChapWrapper = null;
-        let inVersionesChapter = false; // BANDERÍN INTELIGENTE
+        let inVersionesChapter = false; 
 
         function addToggle(parentNode, wrapperNode) {
             let toggle = document.createElement("span");
@@ -81,19 +88,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let textLower = (node.textContent || "").toLowerCase().trim();
 
-            // === LÓGICA DE FILTRADO PARA VERSIONES ===
             if (level === 0) {
-                inVersionesChapter = false; // Si empieza una parte, no estamos en Versiones
+                inVersionesChapter = false; 
             } else if (level === 1) {
                 inVersionesChapter = textLower.includes("versiones") || textLower.includes("versión");
             }
             
             if (level > 1 && inVersionesChapter) {
-                return; // DESTRUYE (IGNORA) TODA SECCIÓN ADENTRO DEL CAPÍTULO VERSIONES
+                return; 
             }
-            // ==========================================
 
-            // Construcción del Árbol HTML
             if (level === 0) {
                 newToc.appendChild(node);
                 currentPartWrapper = document.createElement("div");
@@ -119,10 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         
-        // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
         let wrappers = newToc.querySelectorAll(".nav-sublist");
         wrappers.forEach(wrapper => {
-            // Si la carpeta quedó vacía (Como en el caso de "Versiones"), esconder el triángulo
             if (wrapper.children.length === 0) {
                 let prev = wrapper.previousElementSibling;
                 if (prev) {
