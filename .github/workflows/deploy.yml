@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo sed -i 's/\\newcommand{\\:minted@def@opt@switch}/\\let\\:minted@def@opt@switch\\relax\\newcommand{\\:minted@def@opt@switch}/g' /usr/share/texlive/texmf-dist/tex/generic/tex4ht/minted-sty-hooks.4ht
 
-      - name: Crear JS y CSS del Dashboard (Menú Jerárquico Inteligente)
+      - name: Crear JS y CSS del Dashboard (Menú lateral y Portada Limpia)
         run: |
           cat << 'EOF' > custom.css
           :root { --sidebar-width: 340px; }
@@ -50,9 +50,11 @@ jobs:
           /* Esconder botones antiguos (Prev/Next) */
           .crosslinks { display: none !important; }
           
-          /* Evitar que el CSS modifique el TOC nativo del Body en el Home Page */
-          .sidebar-custom .tableofcontents { display: block; margin-top: 0; }
+          /* === OCULTAR ÍNDICES NATIVOS DEL CUERPO (PORTADA LIMPIA) === */
+          .tableofcontents { display: none !important; }
+          .sidebar-custom .tableofcontents { display: block !important; margin-top: 0; }
           .sidebar-custom .tableofcontents br { display: none; } 
+          [class*="TOCS"] { display: none !important; } /* Oculta chapterTOCS generados por tex4ht */
           
           /* === FORZAR SALTOS DE LÍNEA Y ESTILOS "JUST THE DOCS" === */
           .sidebar-custom [class*='Toc'] { display: block; margin: 6px 0; line-height: 1.4; }
@@ -105,6 +107,13 @@ jobs:
 
           cat << 'EOF' > custom.js
           document.addEventListener("DOMContentLoaded", function() {
+            // Destruir el TOC original y los mini-TOCs del cuerpo de la página para tener portada limpia
+            document.querySelectorAll('.tableofcontents, [class*="TOCS"]').forEach(el => {
+                if (!el.closest('.sidebar-custom')) {
+                    el.remove();
+                }
+            });
+
             if (document.querySelector(".sidebar-custom")) return;
 
             let currentPath = window.location.pathname.split('/').pop() || "index.html";
@@ -152,7 +161,7 @@ jobs:
                   
                   let currentPartWrapper = null;
                   let currentChapWrapper = null;
-                  let inVersionesChapter = false; // BANDERÍN INTELIGENTE
+                  let inVersionesChapter = false; 
 
                   function addToggle(parentNode, wrapperNode) {
                       let toggle = document.createElement("span");
@@ -187,19 +196,16 @@ jobs:
 
                       let textLower = (node.textContent || "").toLowerCase().trim();
 
-                      // === LÓGICA DE FILTRADO PARA VERSIONES ===
                       if (level === 0) {
-                          inVersionesChapter = false; // Si empieza una parte, no estamos en Versiones
+                          inVersionesChapter = false; 
                       } else if (level === 1) {
                           inVersionesChapter = textLower.includes("versiones") || textLower.includes("versión");
                       }
                       
                       if (level > 1 && inVersionesChapter) {
-                          return; // DESTRUYE (IGNORA) TODA SECCIÓN ADENTRO DEL CAPÍTULO VERSIONES
+                          return; 
                       }
-                      // ==========================================
 
-                      // Construcción del Árbol HTML
                       if (level === 0) {
                           newToc.appendChild(node);
                           currentPartWrapper = document.createElement("div");
@@ -225,10 +231,8 @@ jobs:
                       }
                   });
                   
-                  // Auto-expandir carpetas de la página actual y ocultar flechas sin contenido
                   let wrappers = newToc.querySelectorAll(".nav-sublist");
                   wrappers.forEach(wrapper => {
-                      // Si la carpeta quedó vacía (Como en el caso de "Versiones"), esconder el triángulo
                       if (wrapper.children.length === 0) {
                           let prev = wrapper.previousElementSibling;
                           if (prev) {
@@ -359,7 +363,7 @@ jobs:
                   # 1. Limpieza destructiva del título (Sin acentos ni símbolos flotantes)
                   content = re.sub(r"<title>(.*?)</title>", clean_title, content, flags=re.DOTALL|re.IGNORECASE)
 
-                  # 2. Reemplazar espacios duros HTML inyectados por make4ht
+                  # 2. Reemplazar TODO espacio HTML duro por espacios limpios
                   content = content.replace('\xa0', ' ').replace('&nbsp;', ' ')
                   
                   # 3. Remover el espacio problemático inmediatamente antes de un _ o un ^
